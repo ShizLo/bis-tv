@@ -1,0 +1,104 @@
+<template>
+  <div class="banner-wrapper">
+    <div class="container">
+      <div class="columns-2 py-8">
+        <div class="banner__block-text text-left">
+          <h1 class="banner__text">
+            Инженерные коммуникации и благоустройство участка
+          </h1>
+          <button class="banner__button">
+            Обсудить задачу
+            <svg
+              class="banner__button-icon"
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="Frame 1864">
+                <path
+                  id="Vector"
+                  d="M1.75 7.29163H12.25M12.25 7.29163L7 12.5416M12.25 7.29163L7 2.04163"
+                  stroke="#102938"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            ...
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+          <!-- <div class="swiper-scrollbar"></div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.swiper {
+  width: 600px;
+  height: 300px;
+}
+.banner-wrapper {
+  background-color: #f5f5f5;
+}
+.banner__block-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+}
+.banner__text {
+  font-weight: 600;
+  line-height: 120%;
+  font-size: 40px;
+  color: #102938;
+}
+.banner__button {
+  font: 600 16px / 125% "Roboto Flex";
+  display: flex;
+  height: 48px;
+  padding: 11px 14px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  border: 1px solid #102938;
+  background: rgba(245, 245, 245, 0);
+  color: #102938;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+</style>
+<script>
+import swiper from "../assets/js/swiper";
+
+export default {
+  components: {},
+  name: "App",
+  setup() {
+    return {};
+  },
+  data: () => ({
+    //
+  }),
+  mounted() {
+    this.$nextTick(function () {
+      swiper.init();
+    });
+  },
+};
+</script>
