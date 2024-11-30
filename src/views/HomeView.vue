@@ -29,17 +29,33 @@
             </svg>
           </button>
         </div>
-        <div class="swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            ...
+        <div class="banner__swiper">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  class="swiper__img"
+                  src="../assets/images/rulon-kartochka-3-max-700.webp"
+                  width="462"
+                  height="280"
+                  alt="Озеленение участка"
+                />
+                <div class="swiper__content">
+                  <div class="content__price">
+                    <span>от 900 руб./м²</span>
+                  </div>
+                  <div class="content__title">Озеленение участка</div>
+                </div>
+              </div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+              ...
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <!-- <div class="swiper-scrollbar"></div> -->
           </div>
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-          <!-- <div class="swiper-scrollbar"></div> -->
         </div>
       </div>
     </div>
@@ -47,9 +63,52 @@
 </template>
 
 <style scoped>
+.banner__swiper {
+  /* overflow: hidden; */
+  display: flex;
+  justify-content: end;
+}
 .swiper {
-  width: 600px;
-  height: 300px;
+  width: 540px;
+  height: 360px;
+  margin: 0;
+  border-radius: 8px;
+}
+.swiper-slide {
+  position: relative;
+}
+.swiper__img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.swiper__content {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px 30px 53px;
+}
+.content__price {
+  font-size: 1rem;
+  font-weight: 600;
+  background: #fff;
+  display: inline-block;
+  border-radius: 32px;
+  padding: 3px 10px;
+  color: #102938;
+}
+.content__title {
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #fff;
+  width: calc(100% - 68px);
 }
 .banner-wrapper {
   background-color: #f5f5f5;
