@@ -6,26 +6,48 @@ const swiper = new Swiper(".swiper", {
     init: function () {
       console.log("swiper initialized");
     },
+    slideChange: () => {
+      // Здесь мы переключаем старый слайд на новый и нужно обновить прогресс-бар. Без таймаута стиль не обновляется.
+      // document
+      //   .querySelector(".swiper-pagination-bullet-active::after")
+      //   .classList.remove("active");
+      // setTimeout(() => {
+      //   document
+      //     .querySelector(".swiper-pagination-bullet-active::after")
+      //     .classList.add("active");
+      // }, 50);
+    },
   },
-  // Optional parameters
   direction: "horizontal",
-  loop: true,
-
-  // If we need pagination
+  slidesPerView: 1, // колво слайдов на показ
+  // spaceBetween: 30, // отступ между слайдами
+  loop: true, // бесконечный слайдер
+  speed: 1200,
+  effect: "fade",
+  fadeEffect: {
+    crossFade: true,
+  },
+  // lazy: {
+  //   loadOnTransitionStart: false,
+  //   loadPrevNext: false,
+  // },
+  // autoHeight: true, // авто высота изображения
+  autoplay: {
+    delay: 4000,
+    // Отключить после ручного переключения
+    disableOnInteraction: true,
+    // Остановится на последнем слайде
+    stopOnLastSlide: false,
+  },
   pagination: {
     el: ".swiper-pagination",
+    type: "bullets",
+    clickable: true,
   },
-
-  // Navigation arrows
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
-
-  // And if we need scrollbar
-  // scrollbar: {
-  //   el: ".swiper-scrollbar",
-  // },
   modules: [Navigation, Pagination],
 });
 

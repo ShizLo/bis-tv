@@ -1,7 +1,7 @@
 <template>
   <div class="banner-wrapper">
     <div class="container">
-      <div class="columns-2 py-8">
+      <div class="columns-2 py-8 flex">
         <div class="banner__block-text text-left">
           <h1 class="banner__text">
             Инженерные коммуникации и благоустройство участка
@@ -29,15 +29,13 @@
             </svg>
           </button>
         </div>
-        <div class="banner__swiper">
+        <div class="swiper-container">
           <div class="swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
                 <img
                   class="swiper__img"
                   src="../assets/images/rulon-kartochka-3-max-700.webp"
-                  width="462"
-                  height="280"
                   alt="Озеленение участка"
                 />
                 <div class="swiper__content">
@@ -47,14 +45,37 @@
                   <div class="content__title">Озеленение участка</div>
                 </div>
               </div>
-              <div class="swiper-slide">Slide 2</div>
-              <div class="swiper-slide">Slide 3</div>
-              ...
+              <div class="swiper-slide">
+                <img
+                  class="swiper__img"
+                  src="../assets/images/parkovka-iz-schebnya-max-700.webp"
+                  alt="Парковка из щебня"
+                />
+                <!-- <div class="swiper-lazy-preloader"></div> -->
+                <div class="swiper__content">
+                  <div class="content__price">
+                    <span>от 1 900 руб./м²</span>
+                  </div>
+                  <div class="content__title">Парковка из щебня</div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  class="swiper__img"
+                  src="../assets/images/septik-kartochka-1-max-700.webp"
+                  alt="Септик под ключ"
+                />
+                <div class="swiper__content">
+                  <div class="content__price">
+                    <span>~ 100 000 руб.</span>
+                  </div>
+                  <div class="content__title">Септик под ключ</div>
+                </div>
+              </div>
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-            <!-- <div class="swiper-scrollbar"></div> -->
           </div>
         </div>
       </div>
@@ -65,8 +86,28 @@
 </template>
 
 <style scoped>
-.banner__swiper {
-  /* overflow: hidden; */
+.test {
+  background-color: red !important;
+  opacity: 1;
+  width: 40px;
+}
+/* .swiper-pagination > .swiper-pagination-bullet-active {
+  background-color: red !important;
+} */
+.banner-gallery__elems {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+  padding: 0 30px 30px;
+}
+
+.swiper-container {
   display: flex;
   justify-content: end;
 }
@@ -86,7 +127,6 @@
 }
 .swiper__content {
   position: absolute;
-  z-index: 3;
   bottom: 0;
   left: 0;
   right: 0;
@@ -95,7 +135,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 30px 30px 53px;
+  padding: 30px 30px 22px;
 }
 .content__price {
   font-size: 1rem;
@@ -107,10 +147,20 @@
   color: #102938;
 }
 .content__title {
+  z-index: 10;
   font-weight: 600;
   font-size: 1.6rem;
   color: #fff;
   width: calc(100% - 68px);
+}
+.swiper__content::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
 }
 .banner-wrapper {
   background-color: #f5f5f5;
@@ -129,7 +179,7 @@
   color: #102938;
 }
 .banner__button {
-  font: 600 16px / 125% "Roboto Flex";
+  font-weight: 500;
   display: flex;
   height: 48px;
   padding: 11px 14px;
@@ -148,6 +198,7 @@
 import swiper from "../assets/js/swiper";
 import OurServices from "../components/OurServices.vue";
 import WorksSlider from "../components/WorksSlider.vue"
+import "../assets/styles/swiper-home.css";
 
 export default {
   components: {

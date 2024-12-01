@@ -74,10 +74,6 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
       </div>
     </div>
   </div>
-
-  <!-- <div>
-    <h1 class="text-3xl font-bold underline">Hello world</h1>
-  </div> -->
   <router-view />
 </template>
 
@@ -95,7 +91,6 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  /* border-bottom: 1px solid #e8eaec; */
 }
 .header__block {
   display: flex;
@@ -134,7 +129,6 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
   display: flex;
   justify-content: center;
   align-items: center;
-  /* gap: 10px; */
 }
 .nav__arrow .nav__link::after {
   content: "";
@@ -213,9 +207,6 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 </style>
 
 <script>
-// import Swiper from "swiper/bundle";
-// import { Navigation, Pagination } from "swiper/modules";
-
 export default {
   components: {},
   name: "App",
