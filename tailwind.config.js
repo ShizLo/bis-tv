@@ -19,6 +19,8 @@ export default {
       "gray-dark": "#273444",
       gray: "#8492a6",
       "gray-light": "#d3dce6",
+      "neutral-500":  "#f5f5f5",
+      "hover-service": "#0db25a"
     },
     fontFamily: {
       sans: [

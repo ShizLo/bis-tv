@@ -60,6 +60,8 @@
       </div>
     </div>
   </div>
+  <OurServices/>
+  <WorksSlider/>
 </template>
 
 <style scoped>
@@ -144,9 +146,14 @@
 </style>
 <script>
 import swiper from "../assets/js/swiper";
+import OurServices from "../components/OurServices.vue";
+import WorksSlider from "../components/WorksSlider.vue"
 
 export default {
-  components: {},
+  components: {
+    OurServices,
+    WorksSlider,
+  },
   name: "App",
   setup() {
     return {};
