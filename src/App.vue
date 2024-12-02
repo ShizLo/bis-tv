@@ -28,8 +28,110 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
               </button>
             </li>
             <li class="nav__item nav__arrow">
-              <span class="nav__link">О комании</span>
-              <ChevronDownIcon class="size-5 mt-1" aria-hidden="true" />
+              <div @click="submenuVisible()" class="flex items-center">
+                <span class="nav__link">О комании</span>
+                <ChevronDownIcon class="size-5" aria-hidden="true" />
+              </div>
+
+              <div
+                :class="activeMenu === 1 ? 'nav__window' : ''"
+                class="sub-menu"
+              >
+                <div class="sub-menu__wrap">
+                  <ul class="sub-menu__list">
+                    <li class="sub-menu__item">
+                      <a class="sub-menu__link" href="">О нас</a>
+                    </li>
+                    <li class="sub-menu__item">
+                      <a class="sub-menu__link" href="">Отзывы</a>
+                    </li>
+                    <li class="sub-menu__item">
+                      <a class="sub-menu__link" href="">Наши видео</a>
+                    </li>
+                    <li class="sub-menu__item">
+                      <a class="sub-menu__link" href="">Доставка</a>
+                    </li>
+                    <li class="sub-menu__item">
+                      <a class="sub-menu__link" href="">Оплата</a>
+                    </li>
+                    <li class="sub-menu__item">
+                      <a class="sub-menu__link" href="">Гарантии</a>
+                    </li>
+                    <li class="sub-menu__item">
+                      <a class="sub-menu__link" href="">Полезное</a>
+                    </li>
+                    <li class="sub-menu__item">
+                      <a class="sub-menu__link" href="">Вакансии</a>
+                    </li>
+                  </ul>
+                  <div class="sub-menu__blog blog">
+                    <div class="blog__wrap blog__wrap_positioned">
+                      <span class="blog__title">БИС: про жизнь за городом</span>
+                      <p class="blog__description">
+                        Наш блог c полезным контентом для тех, кто живет за
+                        городом
+                      </p>
+                      <div class="blog__links">
+                        <a class="blog__link" href="" target="_blank">
+                          <img
+                            loading="lazy"
+                            width="34"
+                            height="34"
+                            src="../src/assets/icons/blog-telegram.svg"
+                            alt="Иконка Telegram"
+                            class="blog__icon"
+                          />
+                        </a>
+                        <a class="blog__link" href="" target="_blank">
+                          <img
+                            loading="lazy"
+                            width="34"
+                            height="34"
+                            src="../src/assets/icons/blog-vk.svg"
+                            alt="Иконка Вконтакте"
+                            class="blog__icon"
+                          />
+                        </a>
+                        <a class="blog__link" href="" target="_blank">
+                          <img
+                            loading="lazy"
+                            width="34"
+                            height="34"
+                            src="../src/assets/icons/blog-dzen.svg"
+                            alt="Иконка Дзен"
+                            class="blog__icon"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                    <div class="blog__wrap blog__wrap_positioned">
+                      <span class="blog__title">Мы на YouTube</span>
+                      <p class="blog__description">
+                        Канал БИС про жизнь за городом
+                      </p>
+                      <a target="_blank" href="" class="youtube-btn">
+                        <svg
+                          width="24"
+                          height="17"
+                          viewBox="0 0 24 17"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M23.5002 2.82667C23.2236 1.81191 22.4116 1.01446 21.3783 0.742827C19.5054 0.25 12 0.25 12 0.25C12 0.25 4.49457 0.25 2.62364 0.742827C1.59039 1.01446 0.7784 1.81191 0.501811 2.82667C0 4.6641 0 8.5 0 8.5C0 8.5 0 12.3359 0.501811 14.1733C0.7784 15.1881 1.59039 15.9855 2.62364 16.2572C4.49457 16.75 12 16.75 12 16.75C12 16.75 19.5054 16.75 21.3764 16.2572C22.4096 15.9855 23.2216 15.1881 23.4982 14.1733C24 12.3359 24 8.5 24 8.5C24 8.5 24 4.6641 23.4982 2.82667H23.5002Z"
+                            fill="#FF0000"
+                          ></path>
+                          <path
+                            d="M9.60059 12.0352V4.96484L15.8377 8.5L9.60059 12.0352Z"
+                            fill="white"
+                          ></path>
+                        </svg>
+                        <span>Подписаться</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
             <!-- Дополнить класс выше -->
             <li class="nav__item">
@@ -106,6 +208,9 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
   width: 186px;
   height: 39px;
 }
+.logo__img {
+  height: 40px;
+}
 .nav__list {
   display: flex;
   justify-content: space-between;
@@ -121,6 +226,7 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
   font-weight: 600;
   font-size: 1.45rem;
   text-align: center;
+  cursor: pointer;
 }
 .nav__arrow {
   position: relative;
@@ -204,6 +310,117 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
   margin-top: 45px;
   background: #f0f4f9;
 }
+.sub-menu {
+  display: none;
+  position: absolute;
+  left: -15px;
+  bottom: 0;
+  width: fit-content;
+  transform: translateY(100%);
+  z-index: 15;
+}
+.nav__window {
+  display: block;
+}
+.sub-menu__wrap {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 30px;
+  border-radius: 9px;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 4px 28px 0 rgba(0, 60, 92, 0.08);
+  margin-top: 18px;
+}
+.sub-menu__list {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  text-align: left;
+}
+.sub-menu__item {
+  min-width: 150px;
+  width: 100%;
+}
+.sub-menu__link {
+  font-size: 1.2rem;
+  display: flex;
+  width: 100%;
+  color: #102938;
+}
+.sub-menu__blog {
+  position: relative;
+  min-width: 150px;
+  max-height: 100%;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+}
+.sub-menu__blog::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: -30px;
+  width: 1px;
+  height: 100%;
+  background: #e8eaec;
+}
+.blog {
+  width: 100%;
+}
+.blog__wrap {
+  align-items: flex-start;
+  justify-content: stretch;
+  gap: 10px;
+  flex-direction: column;
+  display: flex;
+}
+.blog__title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #102938;
+}
+.blog__description {
+  font-size: 1rem;
+  font-weight: 400;
+
+  text-align: left;
+  color: #102938;
+  white-space: normal;
+}
+.blog__links {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-top: 5px;
+  width: 100%;
+}
+.blog__link {
+  width: 34px;
+  height: 34px;
+}
+.youtube-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  align-items: center;
+  column-gap: 8px;
+  background-color: #102938;
+  color: #fff;
+  border-radius: 4px;
+  padding: 8px 0;
+  cursor: pointer;
+}
 </style>
 
 <script>
@@ -214,8 +431,18 @@ export default {
     return {};
   },
   data: () => ({
-    //
+    activeMenu: 0, // Активация меню "О компании"
   }),
+  methods: {
+    // Активация меню "О компании"
+    submenuVisible() {
+      if (this.activeMenu === 1) {
+        this.activeMenu = 0;
+      } else {
+        this.activeMenu = 1;
+      }
+    },
+  },
   mounted() {
     this.$nextTick(function () {});
   },
