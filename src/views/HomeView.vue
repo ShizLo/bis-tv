@@ -81,10 +81,39 @@
       </div>
     </div>
   </div>
-  <OurServices/>
-  <WorksSlider/>
+  <OurServices />
+  <WorksSlider />
+  <Partners />
 </template>
 
+<script>
+import "../assets/styles/swiper-home.css";
+
+import swiper from "../assets/js/swiper";
+import OurServices from "../components/OurServices.vue";
+import WorksSlider from "../components/WorksSlider.vue";
+import Partners from "../components/Partners.vue";
+
+export default {
+  components: {
+    OurServices,
+    WorksSlider,
+    Partners,
+  },
+  name: "App",
+  setup() {
+    return {};
+  },
+  data: () => ({
+    //
+  }),
+  mounted() {
+    this.$nextTick(function () {
+      swiper.init();
+    });
+  },
+};
+</script>
 <style scoped>
 .test {
   background-color: red !important;
@@ -194,28 +223,3 @@
   transition: all 0.3s ease 0s;
 }
 </style>
-<script>
-import swiper from "../assets/js/swiper";
-import OurServices from "../components/OurServices.vue";
-import WorksSlider from "../components/WorksSlider.vue"
-import "../assets/styles/swiper-home.css";
-
-export default {
-  components: {
-    OurServices,
-    WorksSlider,
-  },
-  name: "App",
-  setup() {
-    return {};
-  },
-  data: () => ({
-    //
-  }),
-  mounted() {
-    this.$nextTick(function () {
-      swiper.init();
-    });
-  },
-};
-</script>
