@@ -6,11 +6,12 @@
   import 'swiper/css';
 
   import 'swiper/css/pagination';
+  import 'swiper/css/navigation';
 
   import '../../src/style.css';
 
   // import required modules
-  import { Pagination } from 'swiper/modules';
+  import { Pagination, Navigation } from 'swiper/modules';
 
   export default {
     components: {
@@ -19,7 +20,7 @@
     },
     setup() {
       return {
-        modules: [Pagination],
+        modules: [Pagination, Navigation],
       };
     },
   };
@@ -35,19 +36,59 @@
     :pagination="{
       clickable: true,
     }"
+    
     :modules="modules"
     class="mySwiper"
   >
-    <swiper-slide><img src="https://sewera.ru/image/cache/catalog/stories/ozelenenie-max-500.webp" data-src="https://sewera.ru/image/cache/catalog/stories/ozelenenie-max-500.webp" alt="Автополив, озеленение, освещение" class="insta-gallery__preview lazyloaded"></swiper-slide>
-    <swiper-slide><img src="https://sewera.ru/image/cache/catalog/stories/zaezd-max-500.webp" data-src="https://sewera.ru/image/cache/catalog/stories/zaezd-max-500.webp" alt="Заезд на участок и выравнивание" class="insta-gallery__preview lazyloaded"></swiper-slide>
-    <swiper-slide><img src="https://sewera.ru/image/cache/catalog/stories/Dorojki_posadka_viravnivanie-max-500.webp" data-src="https://sewera.ru/image/cache/catalog/stories/Dorojki_posadka_viravnivanie-max-500.webp" alt="Дорожки, посадка и выравнивание" class="insta-gallery__preview lazyloaded"></swiper-slide>
-    <swiper-slide><img src="https://sewera.ru/image/cache/catalog/stories/ozelenenie-max-500.webp" data-src="https://sewera.ru/image/cache/catalog/stories/ozelenenie-max-500.webp" alt="Автополив, озеленение, освещение" class="insta-gallery__preview lazyloaded"></swiper-slide>
-    <swiper-slide><img src="https://sewera.ru/image/cache/catalog/stories/zaezd-max-500.webp" data-src="https://sewera.ru/image/cache/catalog/stories/zaezd-max-500.webp" alt="Заезд на участок и выравнивание" class="insta-gallery__preview lazyloaded"></swiper-slide>
-    <swiper-slide><img src="https://sewera.ru/image/cache/catalog/stories/Dorojki_posadka_viravnivanie-max-500.webp" data-src="https://sewera.ru/image/cache/catalog/stories/Dorojki_posadka_viravnivanie-max-500.webp" alt="Дорожки, посадка и выравнивание" class="insta-gallery__preview lazyloaded"></swiper-slide>
-    <swiper-slide><img src="https://sewera.ru/image/cache/catalog/stories/ozelenenie-max-500.webp" data-src="https://sewera.ru/image/cache/catalog/stories/ozelenenie-max-500.webp" alt="Автополив, озеленение, освещение" class="insta-gallery__preview lazyloaded"></swiper-slide>
-    <swiper-slide><img src="https://sewera.ru/image/cache/catalog/stories/zaezd-max-500.webp" data-src="https://sewera.ru/image/cache/catalog/stories/zaezd-max-500.webp" alt="Заезд на участок и выравнивание" class="insta-gallery__preview lazyloaded"></swiper-slide>
-    <swiper-slide><img src="https://sewera.ru/image/cache/catalog/stories/Dorojki_posadka_viravnivanie-max-500.webp" data-src="https://sewera.ru/image/cache/catalog/stories/Dorojki_posadka_viravnivanie-max-500.webp" alt="Дорожки, посадка и выравнивание" class="insta-gallery__preview lazyloaded"></swiper-slide>
-  </swiper>
+    <swiper-slide>
+      <img src="../assets/images/avtopoliv_viravnivanie-max-500.webp" alt="Автополив, озеленение, освещение" class="insta-gallery__preview lazyloaded">
+      <div class="content__slide">
+        <p class="content_title">Автополив, озеленение, освещение</p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../assets/images/zaezd-max-500.webp"  alt="Заезд на участок и выравнивание" class="insta-gallery__preview lazyloaded">
+      <div class="content__slide">
+        <p class="content_title">Заезд на участок и выравнивание</p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../assets/images/Dorojki_posadka_viravnivanie-max-500.webp"  alt="Дорожки, посадка и выравнивание" class="insta-gallery__preview lazyloaded">
+      <div class="content__slide">
+        <p class="content_title">Дорожки, посадка и выравнивание</p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../assets/images/parkovka_zaezd-max-500.webp"  alt="Парковка, заезд" class="insta-gallery__preview lazyloaded">
+      <div class="content__slide">
+        <p class="content_title">Парковка, заезд</p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../assets/images/avtopoliv_viravnivanie-max-500.webp" alt="Автополив, озеленение, освещение" class="insta-gallery__preview lazyloaded">
+      <div class="content__slide">
+        <p class="content_title">Автополив, озеленение, освещение</p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../assets/images/zaezd-max-500.webp"  alt="Заезд на участок и выравнивание" class="insta-gallery__preview lazyloaded">
+      <div class="content__slide">
+        <p class="content_title">Заезд на участок и выравнивание</p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../assets/images/Dorojki_posadka_viravnivanie-max-500.webp"  alt="Дорожки, посадка и выравнивание" class="insta-gallery__preview lazyloaded">
+      <div class="content__slide">
+        <p class="content_title">Дорожки, посадка и выравнивание</p>
+      </div>
+    </swiper-slide>
+    <swiper-slide>
+      <img src="../assets/images/parkovka_zaezd-max-500.webp"  alt="Парковка, заезд" class="insta-gallery__preview lazyloaded">
+      <div class="content__slide">
+        <p class="content_title">Парковка, заезд</p>
+      </div>
+    </swiper-slide>
+    </swiper>
     </section>
 </template>
 <style scoped>
@@ -81,5 +122,25 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+ 
+}
+
+.content__slide {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+
+}
+.content_title {
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: normal;
+  color: #fff;
+  text-shadow: 3px -3px 8px black;
+  text-align: left;
+  padding: 15px;
 }
 </style>

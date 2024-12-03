@@ -1,19 +1,29 @@
 <script>
 export default {
-    
+  props: {
+      title: String,
+      price: String,
+      path: String,
+    },
+    computed: {
+      style() {
+        return 'background: url(' + this.path + '.webp)' // какой же сука Великий костыль))
+      }
+    }
 }
 </script>
 <template>
-    <section class="rounded-lg bg-neutral-500 hover:bg-hover-service transition delay-150">
+    <section class="rounded-lg bg-neutral-500 h-96 hover:bg-hover-service transition delay-150">
         <div class="flex ml-4 h-full">
-                  <a class="content__link flex flex-col self-start justify-between p-4 h-full w-full"
-                    href="#">
+                  <a  class="content__link flex flex-col self-start justify-between p-4 h-full w-full"
+                      href="#"
+                      :style="style">
                     <div class="content__description pt-4">
                       <div class="content__title">
-                        <span>Септик под ключ</span>
+                        <span>{{ title }}</span>
                       </div>
                       <div class="content__price mt-8">
-                        <span>От 87 500 руб.</span>
+                        <span>От {{ price }} руб.</span>
                       </div>
                     </div>
                     <div class="flex flex-col justify-end items-start">
@@ -85,6 +95,13 @@ export default {
     </section>
 </template>
 <style scoped>
+a {
+  
+  background-position-x: right !important;
+    background-position-y: bottom !important;
+    background-size: 100% !important;
+    background-repeat: no-repeat !important;
+}
 .content__title{
     font-weight: 600;
     line-height: 120%;
