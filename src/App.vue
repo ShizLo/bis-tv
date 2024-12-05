@@ -1,5 +1,6 @@
 <script setup>
 import { ChevronDownIcon } from "@heroicons/vue/20/solid";
+import NavigationCatalog from "./components/NavigationCatalog.vue";
 </script>
 <template>
   <div class="container py-2">
@@ -18,7 +19,7 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
         <nav class="header__nav nav">
           <ul role="list" class="nav__list">
             <li class="nav__item">
-              <button class="nav__button button">
+              <button class="nav__button button" @click="catalogVisible()">
                 <span id="list_burger" class="nav__burger burger">
                   <span class="burger__line burger__line-first"></span>
                   <span class="burger__line burger__line-second"></span>
@@ -26,6 +27,11 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
                 </span>
                 Каталог
               </button>
+              <div class="catalog "
+              :class="catalogIsVisible === 1 ? 'nav__window' : ''">
+              <NavigationCatalog 
+              />
+            </div>
             </li>
             <li class="nav__item nav__arrow">
               <div @click="submenuVisible()" class="flex items-center">
@@ -228,6 +234,20 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
   text-align: center;
   cursor: pointer;
 }
+/* .nav__item_active .nav__window, .nav__item_hover .nav__window {
+    display: block;
+} */
+
+.catalog {
+    display: none;
+    left: 0;
+    bottom: 30px;
+    max-width: 1264px;
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+    transform: translateY(100%);
+}
 .nav__arrow {
   position: relative;
 }
@@ -424,14 +444,18 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 </style>
 
 <script>
+import NavigationCatalog from "./components/NavigationCatalog.vue";
 export default {
-  components: {},
+  components: {
+    NavigationCatalog
+  },
   name: "App",
   setup() {
     return {};
   },
   data: () => ({
-    activeMenu: 0, // Активация меню "О компании"
+    activeMenu: 0,
+    catalogIsVisible: 0, // Активация меню "О компании"
   }),
   methods: {
     // Активация меню "О компании"
@@ -440,6 +464,13 @@ export default {
         this.activeMenu = 0;
       } else {
         this.activeMenu = 1;
+      }
+    },
+    catalogVisible() {
+      if (this.catalogIsVisible === 1) {
+        this.catalogIsVisible = 0;
+      } else {
+        this.catalogIsVisible = 1;
       }
     },
   },
