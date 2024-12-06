@@ -85,6 +85,7 @@
   <WorksSlider />
   <Partners />
   <AboutUs />
+  
 </template>
 
 <script>
@@ -95,6 +96,8 @@ import OurServices from "../components/OurServices.vue";
 import WorksSlider from "../components/WorksSlider.vue";
 import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
+
+
 
 export default {
   components: {
