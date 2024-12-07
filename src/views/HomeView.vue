@@ -29,7 +29,7 @@
             </svg>
           </button>
         </div>
-        <div class="swiper-container">
+        <div class="swiper-container text-left">
           <div class="swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
@@ -85,16 +85,18 @@
   <WorksSlider />
   <Partners />
   <AboutUs />
+  <Footer />
 </template>
 
 <script>
-import "../assets/styles/swiper-home.css";
-
 import swiper from "../assets/js/swiper";
 import OurServices from "../components/OurServices.vue";
 import WorksSlider from "../components/WorksSlider.vue";
 import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
+import Footer from "../components/Footer.vue";
+
+import "../assets/styles/swiper-home.css";
 
 export default {
   components: {
@@ -102,6 +104,7 @@ export default {
     WorksSlider,
     Partners,
     AboutUs,
+    Footer,
   },
   name: "App",
   setup() {

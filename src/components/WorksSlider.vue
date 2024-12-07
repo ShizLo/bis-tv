@@ -1,95 +1,126 @@
 <script>
-  // Import Swiper Vue.js components
-  import { Swiper, SwiperSlide } from 'swiper/vue';
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
 
-  // Import Swiper styles
-  import 'swiper/css';
+// Import Swiper styles
+//import "swiper/css";
 
-  import 'swiper/css/pagination';
-  import 'swiper/css/navigation';
+//import "swiper/css/pagination";
+//import "swiper/css/navigation";
 
-  import '../../src/style.css';
+//import "../../src/style.css";
 
-  // import required modules
-  import { Pagination, Navigation } from 'swiper/modules';
+// import required modules
+import { Pagination, Navigation } from "swiper/modules";
 
-  export default {
-    components: {
-      Swiper,
-      SwiperSlide,
-    },
-    setup() {
-      return {
-        modules: [Pagination, Navigation],
-      };
-    },
-  };
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      modules: [Pagination, Navigation],
+    };
+  },
+};
 </script>
 <template>
-    <div class="container pb-4 pt-8">
-        <h2 class="content-bar__h2">Наши работы по благоустройству</h2>
-    </div>
-    <section class="container py-2 flex">
-        <swiper
-    :slidesPerView="5"
-    :spaceBetween="30"
-    :pagination="{
-      clickable: true,
-    }"
-    
-    :modules="modules"
-    class="mySwiper"
-  >
-    <swiper-slide>
-      <img src="../assets/images/avtopoliv_viravnivanie-max-500.webp" alt="Автополив, озеленение, освещение" class="insta-gallery__preview lazyloaded">
-      <div class="content__slide">
-        <p class="content_title">Автополив, озеленение, освещение</p>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <img src="../assets/images/zaezd-max-500.webp"  alt="Заезд на участок и выравнивание" class="insta-gallery__preview lazyloaded">
-      <div class="content__slide">
-        <p class="content_title">Заезд на участок и выравнивание</p>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <img src="../assets/images/Dorojki_posadka_viravnivanie-max-500.webp"  alt="Дорожки, посадка и выравнивание" class="insta-gallery__preview lazyloaded">
-      <div class="content__slide">
-        <p class="content_title">Дорожки, посадка и выравнивание</p>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <img src="../assets/images/parkovka_zaezd-max-500.webp"  alt="Парковка, заезд" class="insta-gallery__preview lazyloaded">
-      <div class="content__slide">
-        <p class="content_title">Парковка, заезд</p>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <img src="../assets/images/avtopoliv_viravnivanie-max-500.webp" alt="Автополив, озеленение, освещение" class="insta-gallery__preview lazyloaded">
-      <div class="content__slide">
-        <p class="content_title">Автополив, озеленение, освещение</p>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <img src="../assets/images/zaezd-max-500.webp"  alt="Заезд на участок и выравнивание" class="insta-gallery__preview lazyloaded">
-      <div class="content__slide">
-        <p class="content_title">Заезд на участок и выравнивание</p>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <img src="../assets/images/Dorojki_posadka_viravnivanie-max-500.webp"  alt="Дорожки, посадка и выравнивание" class="insta-gallery__preview lazyloaded">
-      <div class="content__slide">
-        <p class="content_title">Дорожки, посадка и выравнивание</p>
-      </div>
-    </swiper-slide>
-    <swiper-slide>
-      <img src="../assets/images/parkovka_zaezd-max-500.webp"  alt="Парковка, заезд" class="insta-gallery__preview lazyloaded">
-      <div class="content__slide">
-        <p class="content_title">Парковка, заезд</p>
-      </div>
-    </swiper-slide>
+  <div class="container pb-4 pt-8">
+    <h2 class="content-bar__h2">Наши работы по благоустройству</h2>
+  </div>
+  <section class="container py-2 flex">
+    <swiper
+      :slidesPerView="5"
+      :spaceBetween="30"
+      :pagination="{
+        clickable: true,
+      }"
+      :modules="modules"
+      class="mySwiper"
+    >
+      <swiper-slide>
+        <img
+          src="../assets/images/avtopoliv_viravnivanie-max-500.webp"
+          alt="Автополив, озеленение, освещение"
+          class="insta-gallery__preview lazyloaded"
+        />
+        <div class="content__slide">
+          <p class="content_title">Автополив, озеленение, освещение</p>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          src="../assets/images/zaezd-max-500.webp"
+          alt="Заезд на участок и выравнивание"
+          class="insta-gallery__preview lazyloaded"
+        />
+        <div class="content__slide">
+          <p class="content_title">Заезд на участок и выравнивание</p>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          src="../assets/images/Dorojki_posadka_viravnivanie-max-500.webp"
+          alt="Дорожки, посадка и выравнивание"
+          class="insta-gallery__preview lazyloaded"
+        />
+        <div class="content__slide">
+          <p class="content_title">Дорожки, посадка и выравнивание</p>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          src="../assets/images/parkovka_zaezd-max-500.webp"
+          alt="Парковка, заезд"
+          class="insta-gallery__preview lazyloaded"
+        />
+        <div class="content__slide">
+          <p class="content_title">Парковка, заезд</p>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          src="../assets/images/avtopoliv_viravnivanie-max-500.webp"
+          alt="Автополив, озеленение, освещение"
+          class="insta-gallery__preview lazyloaded"
+        />
+        <div class="content__slide">
+          <p class="content_title">Автополив, озеленение, освещение</p>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          src="../assets/images/zaezd-max-500.webp"
+          alt="Заезд на участок и выравнивание"
+          class="insta-gallery__preview lazyloaded"
+        />
+        <div class="content__slide">
+          <p class="content_title">Заезд на участок и выравнивание</p>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          src="../assets/images/Dorojki_posadka_viravnivanie-max-500.webp"
+          alt="Дорожки, посадка и выравнивание"
+          class="insta-gallery__preview lazyloaded"
+        />
+        <div class="content__slide">
+          <p class="content_title">Дорожки, посадка и выравнивание</p>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <img
+          src="../assets/images/parkovka_zaezd-max-500.webp"
+          alt="Парковка, заезд"
+          class="insta-gallery__preview lazyloaded"
+        />
+        <div class="content__slide">
+          <p class="content_title">Парковка, заезд</p>
+        </div>
+      </swiper-slide>
     </swiper>
-    </section>
+  </section>
 </template>
 <style scoped>
 .content-bar__h2 {
@@ -122,7 +153,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
- 
 }
 
 .content__slide {
@@ -132,7 +162,6 @@
   width: 100%;
   flex-direction: column;
   justify-content: flex-end;
-
 }
 .content_title {
   font-weight: 600;

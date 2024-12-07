@@ -2,7 +2,7 @@
   <section class="partners content">
     <div class="container">
       <h2 class="partners__header mb-4 mt-8">Наши партнеры</h2>
-      <div class="columns-3">
+      <div class="columns-3 partner__items">
         <div>
           <div class="partner__item">
             <a class="partner__link" target="_blank">
@@ -50,7 +50,7 @@
                     width="381"
                     height="200"
                     loading="lazy"
-                    src="../assets/images/ScoutHouse.webp"
+                    src="../assets/images/IMG_4429-min.webp"
                     alt=""
                   />
                 </span>
@@ -75,6 +75,9 @@
   border-radius: 32px;
   padding: 3px 10px;
   color: #102938;
+}
+.partner__items {
+  column-gap: 35px;
 }
 .partner__item {
   position: relative;
