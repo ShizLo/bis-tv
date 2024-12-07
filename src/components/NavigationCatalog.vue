@@ -199,8 +199,7 @@ export default {
 </template>
 <style scoped>
 .form-feedback__show {
-    display: flex
-;
+    display: block;
     opacity: 1;
 }
 

@@ -17,30 +17,31 @@ export default {
 				<path d="M1.20868 14.5405L14.2902 1.45898M14.2902 14.5405L1.20875 1.45899" stroke="#102938" stroke-width="2" stroke-linecap="round"></path>
 			</svg>
 		</button>
-
+        <p class="form-feedback__title">Свяжемся с вами для консультации</p>
 		<form class="form-feedback__form" onsubmit="return true; ym(38077235,'reachGoal','submitted');">
 
-			<p class="form-feedback__title">Свяжемся с вами для консультации</p>
+			
 
 			<div class="form-feedback__group">
-				<input class="form-feedback__group-input hover-group-input" type="text" name="Имя" id="modalName2">
-				<label class="form-feedback__group-placeholder" for="modalName2"><span>Имя</span></label>
+				<input class="form-feedback__group-input hover-group-input" type="text" name="Имя" placeholder="Имя" id="modalName2">
+				<!-- <label class="form-feedback__group-placeholder" for="modalName2"><span>Имя</span></label> -->
 			</div>
 
 			<div class="form-feedback__group">
-				<input class="form-feedback__group-input phone_mask hover-group-input" type="tel" name="Телефон" id="modalTelephone2" required="">
-				<label class="form-feedback__group-placeholder" for="modalTelephone2"><span>Телефон</span></label>
+				<input class="form-feedback__group-input phone_mask hover-group-input" type="tel" placeholder="Телефон" name="Телефон" id="modalTelephone2" required="">
+				
 			</div>
 
 			<button type="submit" class="form-feedback__send-btn btn" data-id="#consultationForm2" data-form="">
 				ОТПРАВИТЬ
 			</button>
 
-			<p class="form-feedback__bottom-text">
+			
+		</form>
+        <p class="form-feedback__bottom-text">
 				Нажимая кнопку «отправить», вы соглашаетесь с
 				<a href="/politika-konfidencialnosti/">Политикой конфиденциальности</a>
 			</p>
-		</form>
 	</div>
 </div>
 </template>
@@ -63,15 +64,15 @@ export default {
 }
 .form-feedback__container {
     background-color: #fff;
-    display: flex
-;
+    display: flex;
     align-items: center;
     padding: 40px 121px;
     text-align: left;
     color: #102938;
-    width: 50%;
-    max-width: 839px;
-    min-width: 643px;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
 }
 .form-feedback__close-btn {
     position: absolute;
@@ -85,7 +86,7 @@ export default {
     box-sizing: border-box;
 }
 .form-feedback__form {
-    max-width: 402px;
+    width: 45%;
 }
 .form-feedback__title {
     font-size: 34px;
@@ -134,11 +135,11 @@ export default {
 }
 input[type="email"], input[type="password"], input[type="tel"], input[type="text"], textarea {
     width: 100%;
-    height: auto;
+    height: 100%;
     color: #333;
     font: bold 16px "Roboto Flex", Arial;
     vertical-align: top;
-    padding: 10px 0 4px;
+    /* padding: 10px 0 4px; */
     border: none;
     border-bottom: 2px solid #102938;
     background: 0 0;
