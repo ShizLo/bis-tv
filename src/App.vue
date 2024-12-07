@@ -3,7 +3,7 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 import NavigationCatalog from "./components/NavigationCatalog.vue";
 </script>
 <template>
-  <div class="container py-2">
+  <div class="py-2 _container">
     <div class="header">
       <div class="header__block">
         <a class="header__logo logo" href="">
@@ -27,10 +27,12 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                 </span>
                 Каталог
               </button>
-              <div class="catalog "
-              :class="catalogIsVisible === 1 ? 'nav__window' : ''">
-              <NavigationCatalog />
-            </div>
+              <div
+                class="catalog"
+                :class="catalogIsVisible === 1 ? 'nav__window' : ''"
+              >
+                <NavigationCatalog />
+              </div>
             </li>
             <li class="nav__item nav__arrow">
               <div @click="submenuVisible()" class="flex items-center">
@@ -45,7 +47,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                 <div class="sub-menu__wrap">
                   <ul class="sub-menu__list">
                     <li class="sub-menu__item">
-                      <a class="sub-menu__link"  href="">О нас</a>
+                      <a class="sub-menu__link" href="">О нас</a>
                     </li>
                     <li class="sub-menu__item">
                       <a class="sub-menu__link" href="">Отзывы</a>
@@ -183,7 +185,9 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   </div>
   <router-view />
 </template>
-<style scoped>
+<style lang="scss">
+@use "../src/assets/styles/app.scss" as c;
+
 .swiper {
   width: 600px;
   height: 300px;
@@ -197,24 +201,39 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-}
-.header__block {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  align-items: center;
-}
-.header__logo {
-  display: flex;
-  align-items: center;
+  &__logo {
+    display: flex;
+    align-items: center;
+  }
+  &__block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+  }
+  &__nav {
+    @media (max-width: c.$md2) {
+      display: none;
+    }
+  }
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    @media (max-width: c.$md2) {
+      gap: 0;
+    }
+  }
 }
 .logo {
   width: 186px;
   height: 39px;
+  &__img {
+    height: 40px;
+  }
 }
-.logo__img {
-  height: 40px;
-}
+
 .nav__list {
   display: flex;
   justify-content: space-between;
@@ -232,19 +251,15 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   text-align: center;
   cursor: pointer;
 }
-/* .nav__item_active .nav__window, .nav__item_hover .nav__window {
-    display: block;
-} */
-
 .catalog {
-    display: none;
-    left: 0;
-    bottom: 30px;
-    max-width: 1264px;
-    width: 100%;
-    position: absolute;
-    z-index: 100;
-    transform: translateY(100%);
+  display: none;
+  left: 0;
+  bottom: 30px;
+  max-width: 1264px;
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+  transform: translateY(100%);
 }
 .nav__arrow {
   position: relative;
@@ -307,10 +322,6 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   left: 0;
 }
 .header__list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
 }
 .list__item {
   display: flex;
@@ -323,6 +334,9 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   font-size: 1.45rem;
   letter-spacing: 0.7px;
   white-space: nowrap;
+  @media (max-width: c.$md2) {
+    display: none;
+  }
 }
 .footer {
   margin-top: 45px;
@@ -444,7 +458,6 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
 <script>
 import NavigationCatalog from "./components/NavigationCatalog.vue";
 
-
 export default {
   components: {
     NavigationCatalog,
@@ -454,7 +467,7 @@ export default {
     return {};
   },
   data: () => ({
-    activeMenu: 0,  // Активация меню "О компании"
+    activeMenu: 0, // Активация меню "О компании"
     catalogIsVisible: 0,
   }),
   methods: {

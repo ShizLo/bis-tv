@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { TvIcon } from "@heroicons/vue/16/solid";
-</script>
-
 <template>
   <footer class="footer mt-12">
     <div class="footer__content container columns-4">

@@ -2,13 +2,13 @@
 export default {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
-    screens: {
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      xxl: "1536px",
-    },
+    // screens: {
+    //   sm: "640px",
+    //   md: "768px",
+    //   lg: "1024px",
+    //   xl: "1280px",
+    //   xxl: "1536px",
+    // },
     colors: {
       blue: "#1fb6ff",
       purple: "#7e5bef",
@@ -19,8 +19,8 @@ export default {
       "gray-dark": "#273444",
       gray: "#8492a6",
       "gray-light": "#d3dce6",
-      "neutral-500":  "#f5f5f5",
-      "hover-service": "#0db25a"
+      "neutral-500": "#f5f5f5",
+      "hover-service": "#0db25a",
     },
     fontFamily: {
       sans: [
@@ -37,10 +37,10 @@ export default {
       ],
       //   serif: ["Merriweather", "serif"],
     },
-    container: {
-      center: true,
-      padding: "2rem",
-    },
+    // container: {
+    //   center: true,
+    //   padding: "2rem",
+    // },
     extend: {},
   },
   plugins: [],
