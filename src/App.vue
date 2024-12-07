@@ -29,8 +29,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
               </button>
               <div class="catalog "
               :class="catalogIsVisible === 1 ? 'nav__window' : ''">
-              <NavigationCatalog 
-              />
+              <NavigationCatalog />
             </div>
             </li>
             <li class="nav__item nav__arrow">
@@ -46,7 +45,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                 <div class="sub-menu__wrap">
                   <ul class="sub-menu__list">
                     <li class="sub-menu__item">
-                      <a class="sub-menu__link" href="">О нас</a>
+                      <a class="sub-menu__link"  href="">О нас</a>
                     </li>
                     <li class="sub-menu__item">
                       <a class="sub-menu__link" href="">Отзывы</a>
@@ -184,7 +183,6 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   </div>
   <router-view />
 </template>
-
 <style scoped>
 .swiper {
   width: 600px;
@@ -445,17 +443,19 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
 
 <script>
 import NavigationCatalog from "./components/NavigationCatalog.vue";
+
+
 export default {
   components: {
-    NavigationCatalog
+    NavigationCatalog,
   },
   name: "App",
   setup() {
     return {};
   },
   data: () => ({
-    activeMenu: 0,
-    catalogIsVisible: 0, // Активация меню "О компании"
+    activeMenu: 0,  // Активация меню "О компании"
+    catalogIsVisible: 0,
   }),
   methods: {
     // Активация меню "О компании"

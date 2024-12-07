@@ -85,7 +85,11 @@
   <WorksSlider />
   <Partners />
   <AboutUs />
+<<<<<<< HEAD
   <Footer />
+=======
+  
+>>>>>>> a38401590d830a63b02fa9e239fc737604769945
 </template>
 
 <script>
@@ -97,6 +101,8 @@ import AboutUs from "../components/AboutUs.vue";
 import Footer from "../components/Footer.vue";
 
 import "../assets/styles/swiper-home.css";
+
+
 
 export default {
   components: {

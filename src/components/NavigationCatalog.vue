@@ -1,5 +1,26 @@
 <script>
+import Form from "../components/Form/Form.vue";
+
 export default {
+    components: {
+        Form,
+  },
+  setup() {
+    return {};
+  },
+  data: () => ({
+
+    formIsVisible: 0, 
+  }),
+  methods: {
+    formVisible() {
+      if (this.formIsVisible === 1) {
+        this.formIsVisible = 0;
+      } else {
+        this.formIsVisible = 1;
+      }
+    },
+  },
     props: {
 
     },
@@ -9,6 +30,9 @@ export default {
 }
 </script>
 <template>
+      <Form 
+      :class="formIsVisible === 1 ? 'form-feedback__show' : ''"
+      @someEvent="formVisible"/>
     <div class="catalog__wrap">
         <ul class="catalog__list">
             <li class="catalog__list-item">
@@ -20,7 +44,7 @@ export default {
                 <ul class="catalog__list-item__body">
                     <li class="catalog__list-item__body-item">
                         <div class="catalog__item" data-test="0">
-                            <a class="catalog__link" href="/septiki/">Септик под ключ</a>
+                            <a class="catalog__link" @click="formVisible()">Септик под ключ</a>
                         </div>
 
                         <div class="catalog__item" data-test="1">
@@ -174,7 +198,11 @@ export default {
     </div>
 </template>
 <style scoped>
-
+.form-feedback__show {
+    display: flex
+;
+    opacity: 1;
+}
 
 
 
