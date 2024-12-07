@@ -41,7 +41,7 @@
   </footer>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .footer {
   padding: 30px 0px 20px 0px;
   background-color: #f5f5f5;

@@ -142,7 +142,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
             </li>
             <!-- Дополнить класс выше -->
             <li class="nav__item">
-              <a class="nav__link" href="">Контакты</a>
+              <a class="nav__link-contacts" href="">Контакты</a>
             </li>
           </ul>
         </nav>
@@ -178,6 +178,11 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
             <a class="list__item link__phone" href="tel:+7 981 937-13-76">
               +7 981 999-99-96
             </a>
+            <a
+              class="list__item link__phone-mobile"
+              href="tel:+7 981 937-13-76"
+            >
+            </a>
           </li>
         </ul>
       </div>
@@ -188,10 +193,10 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
 <style lang="scss">
 @use "../src/assets/styles/app.scss" as c;
 
-.swiper {
-  width: 600px;
-  height: 300px;
-}
+// .swiper {
+//   width: 600px;
+//   height: 300px;
+// }
 .header {
   position: relative;
   width: 100%;
@@ -222,7 +227,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     align-items: center;
     gap: 20px;
     @media (max-width: c.$md2) {
-      gap: 0;
+      gap: 14px;
     }
   }
 }
@@ -250,6 +255,9 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   font-size: 1.45rem;
   text-align: center;
   cursor: pointer;
+}
+.nav__link-contacts {
+  display: none;
 }
 .catalog {
   display: none;
@@ -336,6 +344,21 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   white-space: nowrap;
   @media (max-width: c.$md2) {
     display: none;
+  }
+  &-mobile {
+    display: none;
+    @media (max-width: c.$md2) {
+      display: flex;
+    }
+    &:before {
+      width: 20px;
+      height: 20px;
+      content: "";
+      background-image: url(../src/assets/icons/header-new-phone.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
   }
 }
 .footer {

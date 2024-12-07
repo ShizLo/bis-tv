@@ -1,7 +1,8 @@
 <template>
   <div class="banner-wrapper">
-    <div class="container">
-      <div class="columns-2 py-8 flex">
+    <div class="_container">
+      <!-- <div class="columns-2 py-8 flex"> -->
+      <div class="banner">
         <div class="banner__block-text text-left">
           <h1 class="banner__text">
             Инженерные коммуникации и благоустройство участка
@@ -120,7 +121,9 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+@use "../assets/styles/app.scss" as c;
+
 .test {
   background-color: red !important;
   opacity: 1;
@@ -129,6 +132,11 @@ export default {
 /* .swiper-pagination > .swiper-pagination-bullet-active {
   background-color: red !important;
 } */
+@media (max-width: c.$md3) {
+  ._container {
+    padding: 0;
+  }
+}
 .banner-gallery__elems {
   position: absolute;
   z-index: 3;
@@ -143,14 +151,37 @@ export default {
 }
 
 .swiper-container {
-  display: flex;
-  justify-content: end;
+  width: 100%;
+  height: 360px;
+  border-radius: 8px;
+  overflow: hidden;
+  @media (max-width: c.$md3) {
+    border-radius: 0;
+  }
+  @media (max-width: c.$md4) {
+    height: 300px;
+  }
 }
 .swiper {
-  width: 540px;
-  height: 360px;
-  margin: 0;
-  border-radius: 8px;
+  max-width: 100%;
+  height: 100%;
+  margin: auto;
+  margin: auto;
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px 30px 22px;
+    @media (max-width: c.$md3) {
+      padding: 25px 10px 22px;
+    }
+  }
 }
 .swiper-slide {
   position: relative;
@@ -159,18 +190,6 @@ export default {
   height: 100%;
   width: 100%;
   object-fit: cover;
-}
-.swiper__content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 30px 30px 22px;
 }
 .content__price {
   font-size: 1rem;
@@ -199,33 +218,60 @@ export default {
 }
 .banner-wrapper {
   background-color: #f5f5f5;
+  @media (max-width: c.$md4) {
+    background-color: #fff;
+  }
 }
-.banner__block-text {
+.banner {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 60px;
-}
-.banner__text {
-  font-weight: 600;
-  line-height: 120%;
-  font-size: 40px;
-  color: #102938;
-}
-.banner__button {
-  font-weight: 500;
-  display: flex;
-  height: 48px;
-  padding: 11px 14px;
-  align-items: center;
-  gap: 8px;
-  border-radius: 4px;
-  border: 1px solid #102938;
-  background: rgba(245, 245, 245, 0);
-  color: #102938;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
+  padding: 20px 0px 20px 0px;
+
+  @media (max-width: c.$md2) {
+    flex-wrap: wrap-reverse;
+    padding: 0px 0px 0px 0px;
+  }
+  &__block-text {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+
+    @media (max-width: c.$md2) {
+      padding: 20px 10px;
+      gap: 15px;
+    }
+  }
+  &__text {
+    font-weight: 600;
+    line-height: 120%;
+    font-size: 2rem; //40
+    color: #102938;
+    @media (max-width: c.$md2) {
+      font-size: 1.5rem;
+    }
+    @media (max-width: c.$md4) {
+      text-align: center;
+    }
+  }
+  &__button {
+    font-weight: 500;
+    display: flex;
+    height: 48px;
+    padding: 11px 14px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    border: 1px solid #102938;
+    background: rgba(245, 245, 245, 0);
+    color: #102938;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    @media (max-width: c.$md3) {
+      align-self: flex-end;
+    }
+  }
 }
 </style>
