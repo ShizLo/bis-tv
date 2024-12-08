@@ -13,8 +13,10 @@ export default {
 };
 </script>
 <template>
-  <section class="rounded-lg bg-neutral-500 hover:bg-blue transition delay-150">
-    <div class="flex ml-4 h-full">
+  <div
+    class="service__item rounded-lg bg-neutral-500 hover:bg-blue transition delay-150"
+  >
+    <div class="flex h-full">
       <a
         class="content__link flex flex-col self-start justify-between p-4 h-full w-full"
         href="#"
@@ -30,7 +32,7 @@ export default {
         </div>
       </a>
     </div>
-  </section>
+  </div>
 </template>
 <style scoped>
 a {
