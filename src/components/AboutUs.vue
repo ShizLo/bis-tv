@@ -5,34 +5,42 @@ export default {
 };
 </script>
 <template>
-  <section class="about-us container mt-8">
-    <div class="flex gap-8">
-      <div class="basis-2/6">
-        <div class="w-5/5">
-          <h2 class="about-us__header">Про БИС</h2>
-          <div class="flex about-us-title">
-            <p class="txt-flex__sub-title mt-8">
-              Относимся с любовью к каждому квадратному метру
-            </p>
+  <section class="about-us">
+    <div class="_container">
+      <div class="flex gap-8">
+        <div class="basis-2/6">
+          <div class="w-5/5">
+            <h2 class="about-us__header">Про БИС</h2>
+            <div class="flex about-us-title">
+              <p class="txt-flex__sub-title mt-8">
+                Относимся с любовью к каждому квадратному метру
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="basis-4/6 txt-flex__right area-text">
-        <p class="area-text">&nbsp;</p>
-        <p class="area-text">
-          Мы – профессиональная команда нулевого цикла, предоставляющая
-          комплексные решения в области инженерных коммуникаций и
-          благоустройства участков. Мы занимаемся проектированием, монтажом и
-          обслуживанием систем водоснабжения, канализации, электроснабжения,
-          отопления, а также выполняем работы по благоустройству территорий. Наш
-          опыт и квалификация позволяют нам реализовывать проекты любой
-          сложности, обеспечивая высокий уровень качества и надежности.
-        </p>
+        <div class="basis-4/6 txt-flex__right area-text">
+          <p class="area-text">&nbsp;</p>
+          <p class="area-text">
+            Мы – профессиональная команда нулевого цикла, предоставляющая
+            комплексные решения в области инженерных коммуникаций и
+            благоустройства участков. Мы занимаемся проектированием, монтажом и
+            обслуживанием систем водоснабжения, канализации, электроснабжения,
+            отопления, а также выполняем работы по благоустройству территорий.
+            Наш опыт и квалификация позволяют нам реализовывать проекты любой
+            сложности, обеспечивая высокий уровень качества и надежности.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 </template>
-<style scoped>
+<style lang="scss" scoped>
+@use "../assets/styles/app.scss" as c;
+
+.about-us {
+  margin-top: 2rem;
+}
+
 .txt-flex__right {
   flex: 1 1 0;
 }

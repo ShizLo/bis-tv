@@ -23,13 +23,13 @@ export default {
             />
           </div>
           <div class="services__row">
-            <ServiceSmallCard
+            <ServiceCard
               class="services__row-item-sm"
               title="Водоподготовка"
               price="30 000"
               path="src/assets/images/content-bar-img-2"
             />
-            <ServiceSmallCard
+            <ServiceCard
               class="services__row-item-sm"
               title="Колодец"
               price="11 000"
@@ -39,13 +39,13 @@ export default {
         </div>
         <div class="services__column">
           <div class="services__row">
-            <ServiceSmallCard
+            <ServiceCard
               class="services__row-item-sm"
               title="Благоустройство"
               price="210"
               path="src/assets/images/content-bar-img-4"
             />
-            <ServiceSmallCard
+            <ServiceCard
               class="services__row-item-sm"
               title="Скважины"
               price="3650"
@@ -77,6 +77,14 @@ export default {
     border-radius: 32px;
     padding: 3px 10px;
     color: #102938;
+    @media (max-width: c.$md4) {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+    @media (min-width: c.$md4) {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
   }
   &__items {
     display: flex;
@@ -85,6 +93,7 @@ export default {
       flex-wrap: wrap;
     }
   }
+
   &__column {
     display: flex;
     flex-wrap: wrap;

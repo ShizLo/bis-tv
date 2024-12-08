@@ -1,6 +1,6 @@
 <template>
   <footer class="footer mt-12">
-    <div class="footer__content container columns-4">
+    <div class="footer__content _container columns-4">
       <div class="footer__social">
         <a class="social__item footer__logo logo">
           <img
@@ -42,6 +42,8 @@
 </template>
 
 <style lang="scss" scoped>
+@use "../assets/styles/app.scss" as c;
+
 .footer {
   padding: 30px 0px 20px 0px;
   background-color: #f5f5f5;

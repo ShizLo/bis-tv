@@ -83,7 +83,7 @@
     </div>
   </div>
   <OurServices />
-  <WorksSlider />
+  <!-- <WorksSlider /> -->
   <Partners />
   <AboutUs />
   <Footer />
@@ -241,6 +241,9 @@ export default {
     @media (max-width: c.$md2) {
       padding: 20px 10px;
       gap: 15px;
+    }
+    @media (max-width: c.$md4) {
+      padding-bottom: 10px;
     }
   }
   &__text {
