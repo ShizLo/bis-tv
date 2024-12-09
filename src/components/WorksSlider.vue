@@ -24,10 +24,6 @@ export default {
       :slidesPerView="2"
       navigation
       :spaceBetween="30"
-      :pagination="{
-        clickable: true,
-        
-      }"
       :modules="modules"
       :breakpoints="{
         640: {
@@ -57,16 +53,7 @@ export default {
           <p class="content_title">Автополив, озеленение, освещение</p>
         </div>
       </swiper-slide>
-      <swiper-slide>
-        <img
-          src="../assets/images/zaezd-max-500.webp"
-          alt="Заезд на участок и выравнивание"
-          class="insta-gallery__preview lazyloaded"
-        />
-        <div class="content__slide">
-          <p class="content_title">Заезд на участок и выравнивание</p>
-        </div>
-      </swiper-slide>
+      
       <swiper-slide>
         <img
           src="../assets/images/Dorojki_posadka_viravnivanie-max-500.webp"
@@ -151,7 +138,6 @@ export default {
   width: 100%;
   height: 100%;
 }
-
 .swiper-slide {
   text-align: center;
   font-size: 18px;

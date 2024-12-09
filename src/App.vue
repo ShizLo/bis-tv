@@ -329,8 +329,6 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   bottom: 0;
   left: 0;
 }
-.header__list {
-}
 .list__item {
   display: flex;
   justify-content: center;
