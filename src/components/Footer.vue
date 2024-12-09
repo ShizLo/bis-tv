@@ -20,7 +20,7 @@
       </div>
       <hr class="divider" />
       <div class="footer__copy">Copyright ©2025 All rights reserved</div>
-    </footer>
+    </footer>121519222630 0205
   </section>
 </template>
 
@@ -37,6 +37,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
   flex-wrap: wrap-reverse;
   gap: 10px;
 
