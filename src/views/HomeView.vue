@@ -83,7 +83,7 @@
     </div>
   </div>
   <OurServices />
-  <!-- <WorksSlider /> -->
+  <WorksSlider />
   <Partners />
   <AboutUs />
   <Footer />

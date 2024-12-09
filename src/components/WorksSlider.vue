@@ -1,42 +1,50 @@
 <script>
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-
-// Import Swiper styles
-//import "swiper/css";
-
-//import "swiper/css/pagination";
-//import "swiper/css/navigation";
-
-//import "../../src/style.css";
-
-// import required modules
 import { Pagination, Navigation } from "swiper/modules";
-
+import 'swiper/css/navigation';
 export default {
   components: {
     Swiper,
     SwiperSlide,
   },
   setup() {
-    return {
+    return {      
       modules: [Pagination, Navigation],
     };
   },
 };
 </script>
 <template>
-  <div class="container pb-4 pt-8">
+  <section class="works-slider">
+    <div class="_container _container-settings">
     <h2 class="content-bar__h2">Наши работы по благоустройству</h2>
-  </div>
-  <section class="container py-2 flex">
+    </div>
+    <div class="_container">
     <swiper
-      :slidesPerView="5"
+      :slidesPerView="2"
+      navigation
       :spaceBetween="30"
       :pagination="{
         clickable: true,
+        
       }"
       :modules="modules"
+      :breakpoints="{
+        640: {
+      slidesPerView: 3,
+      spaceBetween: 20
+    },
+    // when window width is >= 480px
+    768: {
+      slidesPerView: 4,
+      spaceBetween: 30
+    },
+    // when window width is >= 640px
+    1024: {
+      slidesPerView: 5,
+      spaceBetween: 40
+    }
+      }"
       class="mySwiper"
     >
       <swiper-slide>
@@ -120,9 +128,16 @@ export default {
         </div>
       </swiper-slide>
     </swiper>
-  </section>
+    </div>
+</section>
 </template>
-<style scoped>
+<style lang="scss" scoped>
+@use "../assets/styles/app.scss" as c;
+
+._container-settings {
+  padding-bottom: 16px;
+  padding-top: 32px;
+}
 .content-bar__h2 {
   font-size: 28px;
   font-weight: 600;
@@ -158,6 +173,7 @@ export default {
 .content__slide {
   display: flex;
   position: absolute;
+  box-sizing: border-box;
   height: 100%;
   width: 100%;
   flex-direction: column;
@@ -165,11 +181,17 @@ export default {
 }
 .content_title {
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 100%;
   line-height: normal;
   color: #fff;
   text-shadow: 3px -3px 8px black;
   text-align: left;
   padding: 15px;
+  @media (max-width: c.$md3) {
+    font-size: 1rem;
+    }
+    // @media (max-width: c.$md2) {
+    // font-size: 1rem;
+    // }
 }
 </style>
