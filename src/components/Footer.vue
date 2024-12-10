@@ -20,7 +20,7 @@
       </div>
       <hr class="divider" />
       <div class="footer__copy">Copyright ©2025 All rights reserved</div>
-    </footer>121519222630 0205
+    </footer>
   </section>
 </template>
 

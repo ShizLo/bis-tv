@@ -86,6 +86,7 @@
   <WorksSlider />
   <Partners />
   <AboutUs />
+  <GlobalForm />
   <Footer />
 </template>
 
@@ -96,6 +97,7 @@ import WorksSlider from "../components/WorksSlider.vue";
 import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
 import Footer from "../components/Footer.vue";
+import GlobalForm from "../components/Form/GlobalForm.vue";
 
 import "../assets/styles/swiper-home.css";
 
@@ -105,6 +107,7 @@ export default {
     WorksSlider,
     Partners,
     AboutUs,
+    GlobalForm,
     Footer,
   },
   name: "App",
@@ -129,6 +132,14 @@ export default {
   opacity: 1;
   width: 40px;
 }
+.banner__button:hover {
+  background: #102938;
+  color: #f5f5f5;
+  border-color: #102938;
+}
+// .banner__button > svg:hover {
+//   fill: #f5f5f5;
+// }
 /* .swiper-pagination > .swiper-pagination-bullet-active {
   background-color: red !important;
 } */
