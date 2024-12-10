@@ -79,7 +79,7 @@ export default {
     color: #102938;
     @media (max-width: c.$md4) {
       margin-bottom: 10px;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
     @media (min-width: c.$md4) {
       margin-top: 10px;

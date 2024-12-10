@@ -1,7 +1,7 @@
 <template>
   <section class="partners content">
     <div class="_container">
-      <h2 class="partners__header mb-4 mt-8">Наши партнеры</h2>
+      <h2 class="partners__header">Наши партнеры</h2>
       <!-- <div class="columns-3 partners__items"> -->
       <div class="partners__items">
         <div class="partners__item">
@@ -68,6 +68,11 @@
     border-radius: 32px;
     padding: 3px 10px;
     color: #102938;
+    padding-top: 32px;
+    padding-bottom: 16px;
+    @media (max-width: c.$md4) {
+      font-size: 1.3rem;
+    }
   }
   &__items {
     display: flex;
