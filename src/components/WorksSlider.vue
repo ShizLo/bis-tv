@@ -56,65 +56,45 @@ export default {
             <p class="content_title">Озеленение, освещение</p>
           </div>
         </swiper-slide>
+        <swiper-slide>
+          <img
+            src="../assets/images/work-swiper-3.jpg"
+            alt="Свайное поле"
+            class="swiper__img lazyloaded"
+          />
+          <div class="content__slide">
+            <p class="content_title">Заезд на участок и свайное поле</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <img
+            src="../assets/images/work-swiper-2.jpg"
+            alt="Дорожки, посадка и выравнивание"
+            class="swiper__img lazyloaded"
+          />
+          <div class="content__slide">
+            <p class="content_title">Дорожки, посадка и выравнивание</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <img
+            src="../assets/images/work-swiper-4.jpg"
+            alt="Электричество"
+            class="swiper__img lazyloaded"
+          />
+          <div class="content__slide">
+            <p class="content_title">Электричество</p>
+          </div>
+        </swiper-slide>
 
         <swiper-slide>
           <img
-            src="../assets/images/Dorojki_posadka_viravnivanie-max-500.webp"
-            alt="Дорожки, посадка и выравнивание"
-            class="insta-gallery__preview lazyloaded"
+            src="../assets/images/work-swiper-5.jpeg"
+            alt="Забор из штакетника"
+            class="swiper__img lazyloaded"
           />
           <div class="content__slide">
-            <p class="content_title">Дорожки, посадка и выравнивание</p>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <img
-            src="../assets/images/parkovka_zaezd-max-500.webp"
-            alt="Парковка, заезд"
-            class="insta-gallery__preview lazyloaded"
-          />
-          <div class="content__slide">
-            <p class="content_title">Парковка, заезд</p>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <img
-            src="../assets/images/avtopoliv_viravnivanie-max-500.webp"
-            alt="Автополив, озеленение, освещение"
-            class="insta-gallery__preview lazyloaded"
-          />
-          <div class="content__slide">
-            <p class="content_title">Автополив, озеленение, освещение</p>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <img
-            src="../assets/images/zaezd-max-500.webp"
-            alt="Заезд на участок и выравнивание"
-            class="insta-gallery__preview lazyloaded"
-          />
-          <div class="content__slide">
-            <p class="content_title">Заезд на участок и выравнивание</p>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <img
-            src="../assets/images/Dorojki_posadka_viravnivanie-max-500.webp"
-            alt="Дорожки, посадка и выравнивание"
-            class="insta-gallery__preview lazyloaded"
-          />
-          <div class="content__slide">
-            <p class="content_title">Дорожки, посадка и выравнивание</p>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <img
-            src="../assets/images/parkovka_zaezd-max-500.webp"
-            alt="Парковка, заезд"
-            class="insta-gallery__preview lazyloaded"
-          />
-          <div class="content__slide">
-            <p class="content_title">Парковка, заезд</p>
+            <p class="content_title">Забор из штакетника</p>
           </div>
         </swiper-slide>
       </swiper>
@@ -144,6 +124,9 @@ export default {
 .swiper {
   width: 100%;
   height: 100%;
+  &__img {
+    border-radius: 4px;
+  }
 }
 .swiper-slide {
   text-align: center;
@@ -162,6 +145,9 @@ export default {
   // height: 100%;
   height: 425px;
   object-fit: cover;
+  @media (max-width: c.$md4) {
+    height: 300px;
+  }
 }
 
 .content__slide {
