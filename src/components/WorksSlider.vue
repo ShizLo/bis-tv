@@ -25,7 +25,7 @@ export default {
       <swiper
         :slidesPerView="2"
         navigation
-        :pagination='{"dynamicBullets": true}'
+        :pagination="{ dynamicBullets: true }"
         :spaceBetween="10"
         :modules="modules"
         :breakpoints="{
@@ -48,12 +48,12 @@ export default {
       >
         <swiper-slide>
           <img
-            src="../assets/images/avtopoliv_viravnivanie-max-500.webp"
+            src="../assets/images/landshaft.jpg"
             alt="Автополив, озеленение, освещение"
-            class="insta-gallery__preview lazyloaded"
+            class="swiper__img lazyloaded"
           />
           <div class="content__slide">
-            <p class="content_title">Автополив, озеленение, освещение</p>
+            <p class="content_title">Озеленение, освещение</p>
           </div>
         </swiper-slide>
 
@@ -159,7 +159,8 @@ export default {
 .swiper-slide img {
   display: block;
   width: 100%;
-  height: 100%;
+  // height: 100%;
+  height: 425px;
   object-fit: cover;
 }
 
@@ -173,7 +174,7 @@ export default {
   justify-content: flex-end;
 }
 .content_title {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 100%;
   line-height: normal;
   color: #fff;

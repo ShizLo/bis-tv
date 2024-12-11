@@ -19,7 +19,7 @@ export default {
               class="services__row-item-big"
               title="Септик под ключ"
               price="87 500"
-              path="src/assets/images/content-bar-img-1"
+              path="src/assets/images/septik1"
             />
           </div>
           <div class="services__row">
@@ -27,7 +27,7 @@ export default {
               class="services__row-item-sm"
               title="Водоподготовка"
               price="30 000"
-              path="src/assets/images/content-bar-img-2"
+              path="src/assets/images/sticker3"
             />
             <ServiceCard
               class="services__row-item-sm"

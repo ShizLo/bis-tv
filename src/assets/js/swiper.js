@@ -51,4 +51,16 @@ const swiper = new Swiper(".swiper", {
   modules: [Navigation, Pagination],
 });
 
+// const webp = require("webp-converter");
+// import webp from "webp-converter";
+// const result = webp.cwebp(
+//   "../src/assets/images/parkovka.jpg",
+//   "../src/assets/images/parkovka.webp",
+//   "-q 80",
+//   (logging = "-v")
+// );
+// result.then((response) => {
+//   console.log(response);
+// });
+
 export default swiper;
