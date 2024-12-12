@@ -70,16 +70,22 @@ export default {
 
 .services {
   &__title {
-    font-size: 28px;
+    font-size: c.$fs-xxl;
     font-weight: 600;
     background: #fff;
     display: inline-block;
     border-radius: 32px;
     padding: 3px 10px;
     color: #102938;
+    @media (max-width: c.$md2) {
+      font-size: c.$fs-xl;
+    }
+    @media (max-width: c.$md3) {
+      font-size: c.$fs-xl;
+    }
     @media (max-width: c.$md4) {
       margin-bottom: 10px;
-      font-size: 1.3rem;
+      font-size: c.$fs-l;
     }
     @media (min-width: c.$md4) {
       margin-top: 10px;

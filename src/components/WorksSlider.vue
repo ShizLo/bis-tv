@@ -109,7 +109,7 @@ export default {
   padding-top: 32px;
 }
 .content-bar__h2 {
-  font-size: 28px;
+  font-size: c.$fs-xxl;
   font-weight: 600;
   background: #fff;
   display: inline-block;
