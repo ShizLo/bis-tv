@@ -62,7 +62,7 @@
 
 .partners {
   &__header {
-    font-size: 28px;
+    font-size: c.$fs-xxl;
     font-weight: 600;
     background: #fff;
     border-radius: 32px;

@@ -36,20 +36,34 @@
               <div class="swiper-slide">
                 <img
                   class="swiper__img"
-                  src="../assets/images/rulon-kartochka-3-max-700.webp"
+                  src="../assets/images/IMG_3848.jpeg"
                   alt="Озеленение участка"
                 />
                 <div class="swiper__content">
                   <div class="content__price">
-                    <span>от 900 руб./м²</span>
+                    <!-- <span>от 900 руб./м²</span> -->
+                    <span>от 150 000 руб</span>
                   </div>
-                  <div class="content__title">Озеленение участка</div>
+                  <div class="content__title">Установка забора</div>
                 </div>
               </div>
               <div class="swiper-slide">
                 <img
                   class="swiper__img"
-                  src="../assets/images/parkovka-iz-schebnya-max-700.webp"
+                  src="../assets/images/vint.jpg"
+                  alt="Септик под ключ"
+                />
+                <div class="swiper__content">
+                  <div class="content__price">
+                    <span>от 100 000 руб.</span>
+                  </div>
+                  <div class="content__title">Свайное поле</div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  class="swiper__img"
+                  src="../assets/images/parkovka.jpg"
                   alt="Парковка из щебня"
                 />
                 <!-- <div class="swiper-lazy-preloader"></div> -->
@@ -57,18 +71,32 @@
                   <div class="content__price">
                     <span>от 1 900 руб./м²</span>
                   </div>
-                  <div class="content__title">Парковка из щебня</div>
+                  <div class="content__title">Парковка</div>
                 </div>
               </div>
               <div class="swiper-slide">
                 <img
                   class="swiper__img"
-                  src="../assets/images/septik-kartochka-1-max-700.webp"
+                  src="../assets/images/vodopodgotovka.jpg"
+                  alt="Парковка из щебня"
+                />
+                <!-- <div class="swiper-lazy-preloader"></div> -->
+                <div class="swiper__content">
+                  <div class="content__price">
+                    <span>от 60 000 руб.</span>
+                  </div>
+                  <div class="content__title">Водоподготовка</div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  class="swiper__img"
+                  src="../assets/images/E-1.jpg"
                   alt="Септик под ключ"
                 />
                 <div class="swiper__content">
                   <div class="content__price">
-                    <span>~ 100 000 руб.</span>
+                    <span>~ 120 000 руб.</span>
                   </div>
                   <div class="content__title">Септик под ключ</div>
                 </div>

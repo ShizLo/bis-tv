@@ -190,7 +190,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   </div>
   <router-view />
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 @use "../src/assets/styles/app.scss" as c;
 
 // .swiper {

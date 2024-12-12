@@ -25,10 +25,10 @@ export default {
     fontFamily: {
       sans: [
         // "ui-sans-serif",
-        "-apple-system",
-        "Segoe UI",
+        ///////"-apple-system",
+        ///////"Segoe UI",
         // "Helvetica",
-        "system-ui", // Работает вот эта хуйня походу
+        ////////"system-ui", // Работает вот эта хуйня походу
         // "sans-serif",
         // "Apple Color Emoji",
         // "Segoe UI Emoji",

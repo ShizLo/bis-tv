@@ -14,14 +14,14 @@
           +7 999 999-99-99
         </div>
         <a
-          class="social__item address"
+          class="social__item"
           target="_blank"
           href=""
           itemprop="address"
           itemscope
           itemtype=""
         >
-          <div class="flex">
+          <div class="item__address address">
             <img
               class="map__img"
               loading="lazy"
@@ -48,6 +48,12 @@
   padding: 30px 0px 20px 0px;
   background-color: #f5f5f5;
   margin-top: 45px;
+  @media (max-width: c.$md1) {
+    padding: 30px 0px 30px 0px;
+  }
+  @media (max-width: c.$md4) {
+    padding: 20px 0px 20px 0px;
+  }
   &__content {
     display: flex;
     flex-direction: row;
@@ -56,26 +62,38 @@
     flex-wrap: wrap-reverse;
     gap: 10px;
     margin-bottom: 30px;
-
     @media (max-width: c.$md3) {
       gap: 5px;
     }
-
     @media (max-width: c.$md4) {
       flex-wrap: wrap;
+      gap: 0;
+      // justify-content: flex-start;
+      margin-bottom: 10px;
     }
   }
   &__copy {
     margin-top: 30px;
     display: flex;
     justify-content: center;
+    @media (max-width: c.$md4) {
+      margin-top: 20px;
+      font-size: c.$fs-s;
+    }
   }
-  @media (max-width: c.$md1) {
-    padding: 30px 0px 30px 0px;
+  &__logo {
+    @media (max-width: c.$md4) {
+      width: 100%;
+      margin: 0px 0px 0px 0px;
+      justify-content: center;
+    }
   }
 }
 .map__img {
   margin: 0px 8px 0px 0px;
+  @media (max-width: c.$md4) {
+    height: 20px;
+  }
 }
 
 .phone {
@@ -88,12 +106,37 @@
 .social__item {
   font-size: 1.3em;
   font-style: normal;
+  display: flex;
+
+  .item__address {
+    display: flex;
+    @media (max-width: c.$md4) {
+      display: none;
+    }
+  }
 }
 
+.phone {
+  @media (max-width: c.$md4) {
+    display: none;
+  }
+}
+.work-clock {
+  @media (max-width: c.$md4) {
+    display: none;
+  }
+}
 .address__text {
   font-style: normal;
+  @media (max-width: c.$md4) {
+    font-size: c.$fs-s;
+  }
 }
 .logo {
-  margin: 0px 0px 15px 0px;
+  @media (max-width: c.$md4) {
+  }
+  &__img {
+    height: 30px;
+  }
 }
 </style>

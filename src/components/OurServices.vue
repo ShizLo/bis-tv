@@ -19,7 +19,7 @@ export default {
               class="services__row-item-big"
               title="Септик под ключ"
               price="87 500"
-              path="src/assets/images/content-bar-img-1"
+              path="src/assets/images/septik1"
             />
           </div>
           <div class="services__row">
@@ -27,7 +27,7 @@ export default {
               class="services__row-item-sm"
               title="Водоподготовка"
               price="30 000"
-              path="src/assets/images/content-bar-img-2"
+              path="src/assets/images/sticker3"
             />
             <ServiceCard
               class="services__row-item-sm"
@@ -70,16 +70,22 @@ export default {
 
 .services {
   &__title {
-    font-size: 28px;
+    font-size: c.$fs-xxl;
     font-weight: 600;
     background: #fff;
     display: inline-block;
     border-radius: 32px;
     padding: 3px 10px;
     color: #102938;
+    @media (max-width: c.$md2) {
+      font-size: c.$fs-xl;
+    }
+    @media (max-width: c.$md3) {
+      font-size: c.$fs-xl;
+    }
     @media (max-width: c.$md4) {
       margin-bottom: 10px;
-      font-size: 1.3rem;
+      font-size: c.$fs-l;
     }
     @media (min-width: c.$md4) {
       margin-top: 10px;
