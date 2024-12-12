@@ -78,9 +78,10 @@ export default {
   color: #102938;
   font-size: 20px;
   @media (max-width: c.$md3) {
-    padding: 15px 10px;
+    padding: 0px 10px;
   }
   @media (max-width: c.$md4) {
+    padding: 15px 10px;
     font-size: c.$fs-base;
   }
 }
