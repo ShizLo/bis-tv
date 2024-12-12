@@ -9,7 +9,9 @@ export default {
     Swiper,
     SwiperSlide,
   },
+  
   setup() {
+    
     return {
       modules: [Pagination, Navigation],
     };
@@ -25,13 +27,14 @@ export default {
       <swiper
         :slidesPerView="2"
         navigation
-        :pagination='{"dynamicBullets": true}'
+        
         :spaceBetween="10"
         :modules="modules"
         :breakpoints="{
           640: {
             slidesPerView: 3,
             spaceBetween: 10,
+            
           },
           // when window width is >= 480px
           768: {
@@ -117,6 +120,7 @@ export default {
             <p class="content_title">Парковка, заезд</p>
           </div>
         </swiper-slide>
+        <div class="swiper-pagination"></div>
       </swiper>
     </div>
   </section>

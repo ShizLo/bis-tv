@@ -15,7 +15,7 @@ export default {
                 <form class="form-submit" style="padding-bottom: 0;">
                     <div class="form__title">Оставьте заявку</div>
                     <input type="hidden" name="subject" value="Оставьте заявку">
-                    <p>Напишите нам свой вопрос или позвоните по номеру +7 981 999-99-96</p>
+                    <p>Напишите нам свой вопрос или позвоните по номеру <span>+7 981 999-99-96</span></p>
                     <div class="flex-input">
                         <div class="col">
                             <input type="text" name="Ваше имя" value="" id="input-name" placeholder="Ваше имя">
