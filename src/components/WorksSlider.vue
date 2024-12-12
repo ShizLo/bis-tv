@@ -47,8 +47,7 @@ export default {
             spaceBetween: 10,
           },
         }"
-        class="mySwiper"
-      >
+        class="mySwiper">
         <swiper-slide>
           <img
             src="../assets/images/landshaft.jpg"
@@ -89,7 +88,6 @@ export default {
             <p class="content_title">Электричество</p>
           </div>
         </swiper-slide>
-
         <swiper-slide>
           <img
             src="../assets/images/work-swiper-5.jpeg"

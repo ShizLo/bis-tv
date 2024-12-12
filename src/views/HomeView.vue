@@ -28,85 +28,9 @@
                 ></path>
               </g>
             </svg>
-          </button>
+          </button> 
         </div>
-        <div class="swiper-container text-left">
-          <div class="swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img
-                  class="swiper__img"
-                  src="../assets/images/IMG_3848.jpeg"
-                  alt="Озеленение участка"
-                />
-                <div class="swiper__content">
-                  <div class="content__price">
-                    <!-- <span>от 900 руб./м²</span> -->
-                    <span>от 150 000 руб</span>
-                  </div>
-                  <div class="content__title">Установка забора</div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="swiper__img"
-                  src="../assets/images/vint.jpg"
-                  alt="Септик под ключ"
-                />
-                <div class="swiper__content">
-                  <div class="content__price">
-                    <span>от 100 000 руб.</span>
-                  </div>
-                  <div class="content__title">Свайное поле</div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="swiper__img"
-                  src="../assets/images/parkovka.jpg"
-                  alt="Парковка из щебня"
-                />
-                <!-- <div class="swiper-lazy-preloader"></div> -->
-                <div class="swiper__content">
-                  <div class="content__price">
-                    <span>от 1 900 руб./м²</span>
-                  </div>
-                  <div class="content__title">Парковка</div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="swiper__img"
-                  src="../assets/images/vodopodgotovka.jpg"
-                  alt="Парковка из щебня"
-                />
-                <!-- <div class="swiper-lazy-preloader"></div> -->
-                <div class="swiper__content">
-                  <div class="content__price">
-                    <span>от 60 000 руб.</span>
-                  </div>
-                  <div class="content__title">Водоподготовка</div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="swiper__img"
-                  src="../assets/images/E-1.jpg"
-                  alt="Септик под ключ"
-                />
-                <div class="swiper__content">
-                  <div class="content__price">
-                    <span>~ 120 000 руб.</span>
-                  </div>
-                  <div class="content__title">Септик под ключ</div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-          </div>
-        </div>
+        <BannerSlider /> 
       </div>
     </div>
   </div>
@@ -121,6 +45,7 @@
 <script>
 import swiper from "../assets/js/swiper";
 import OurServices from "../components/OurServices.vue";
+import BannerSlider from "../components/Sliders/BannerSlider.vue"
 import WorksSlider from "../components/WorksSlider.vue";
 import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
@@ -133,6 +58,7 @@ export default {
   components: {
     OurServices,
     WorksSlider,
+    BannerSlider,
     Partners,
     AboutUs,
     GlobalForm,
@@ -155,11 +81,7 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/app.scss" as c;
 
-.test {
-  background-color: red !important;
-  opacity: 1;
-  width: 40px;
-}
+
 .banner__button:hover {
   background: #102938;
   color: #f5f5f5;
@@ -189,47 +111,8 @@ export default {
   padding: 0 30px 30px;
 }
 
-.swiper-container {
-  width: 100%;
-  height: 360px;
-  border-radius: 8px;
-  overflow: hidden;
-  @media (max-width: c.$md3) {
-    border-radius: 0;
-  }
-  @media (max-width: c.$md4) {
-    height: 300px;
-  }
-}
-.swiper {
-  max-width: 100%;
-  height: 100%;
-  margin: auto;
-  margin: auto;
-  &__content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 30px 30px 22px;
-    @media (max-width: c.$md3) {
-      padding: 25px 10px 22px;
-    }
-  }
-}
-.swiper-slide {
-  position: relative;
-}
-.swiper__img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
+
+
 .content__price {
   font-size: 1rem;
   font-weight: 600;
@@ -246,15 +129,7 @@ export default {
   color: #fff;
   width: calc(100% - 68px);
 }
-.swiper__content::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 20%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
-}
+
 .banner-wrapper {
   background-color: #f5f5f5;
   @media (max-width: c.$md4) {
