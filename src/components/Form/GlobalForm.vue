@@ -12,7 +12,7 @@ export default {
           <div class="form__title">Оставьте заявку</div>
           <input type="hidden" name="subject" value="Оставьте заявку" />
           <p>Задайте свой вопрос или позвоните по номеру</p>
-          <a class="list__item link__phone" href="tel:+7 981 937-13-76">
+          <a class="link__phone phone" href="tel:+7 981 937-13-76">
             +7 981 999-99-96
           </a>
 
@@ -69,6 +69,12 @@ export default {
     flex-direction: column;
   }
 }
+.phone {
+  font-size: 20px;
+  @media (max-width: c.$md4) {
+    font-size: c.$fs-m;
+  }
+}
 .col:first-child {
   flex-grow: 1;
   order: 1;
@@ -113,9 +119,15 @@ textarea {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  @media (max-width: c.$md4) {
+    font-size: c.$fs-base;
+  }
 }
 .global-form {
   margin-top: 2rem;
+  @media (max-width: c.$md4) {
+    margin-top: 15px;
+  }
 }
 :focus,
 a,
@@ -138,13 +150,16 @@ textarea {
   color: #102938;
   @media (max-width: c.$md4) {
     font-size: c.$fs-l;
+    margin-bottom: 10px;
   }
 }
 .form-submit p {
-  padding-bottom: 24px;
+  //   padding-bottom: 24px;
   color: #102938;
   font-size: 22px;
   @media (max-width: c.$md4) {
+    margin-bottom: 5px;
+    line-height: 1.3;
     font-size: c.$fs-m;
   }
 }
@@ -160,6 +175,9 @@ textarea {
   cursor: pointer;
   transition: all 0.3s ease 0s;
   font-size: 20px;
+  @media (max-width: c.$md4) {
+    font-size: c.$fs-base;
+  }
 }
 .button_mtp {
   margin-top: 20px;
@@ -177,5 +195,8 @@ textarea {
   border: 3px solid #e4e9ec;
   border-radius: 6px;
   box-sizing: border-box;
+  @media (max-width: c.$md4) {
+    padding: 28px 25px 1px;
+  }
 }
 </style>
