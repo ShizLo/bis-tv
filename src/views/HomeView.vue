@@ -108,7 +108,7 @@ export default {
 
 
 .banner-wrapper {
-  background-color: #f5f5f5;
+  background-color: c.$color-background;
   @media (max-width: c.$md4) {
     background-color: #fff;
   }

@@ -75,7 +75,7 @@ export default {
 }
 .about-us-text__right_area-text p {
   padding-bottom: 24px;
-  color: #102938;
+  color: c.$color-text;
   font-size: 20px;
   @media (max-width: c.$md3) {
     padding: 0px 10px;
@@ -91,15 +91,14 @@ export default {
 .about-us-text__header {
   font-size: c.$fs-xxl;
   font-weight: 600;
-  background: #fff;
   display: inline-block;
   border-radius: 32px;
   padding: 3px 10px;
-  color: #102938;
+  color: c.$color-title;
 }
 
 .about-us-text__title_settings {
-  background-color: #f5f5f5;
+  background-color: c.$color-background;
   font-weight: 600;
   font-size: c.$fs-l;
   line-height: 130%;

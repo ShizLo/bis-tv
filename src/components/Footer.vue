@@ -46,7 +46,7 @@
 
 .footer {
   padding: 30px 0px 20px 0px;
-  background-color: #f5f5f5;
+  background-color: c.$color-background;
   margin-top: 45px;
   @media (max-width: c.$md1) {
     padding: 30px 0px 30px 0px;

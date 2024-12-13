@@ -98,7 +98,7 @@ export default {
   height: 100%;
   overflow: hidden;
   border-radius: 0.5rem;
-  background-color: rgb(245 245 245);
+  background-color: c.$color-background;
   transition-property: color, background-color, border-color,
     text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
     backdrop-filter, -webkit-backdrop-filter;

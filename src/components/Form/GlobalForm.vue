@@ -138,10 +138,9 @@ textarea {
 .form__title {
   font-size: 30px;
   font-weight: 600;
-  background: #fff;
   display: inline-block;
   border-radius: 32px;
-  color: #102938;
+  color: c.$color-title;
   @media (max-width: c.$md4) {
     font-size: c.$fs-l;
     margin-bottom: 10px;
@@ -162,7 +161,7 @@ textarea {
   padding: 11px 14px;
   align-items: center;
   border-radius: 4px;
-  border: 1px solid #102938;
+  border: 1px solid c.$color-border;
   background: rgba(245, 245, 245, 0);
   color: #102938;
   text-align: center;
@@ -186,7 +185,7 @@ textarea {
   color: #102938;
   text-align: left;
   padding: 28px 33px 1px;
-  border: 3px solid #e4e9ec;
+  border: 3px solid c.$color-border;
   border-radius: 6px;
   box-sizing: border-box;
   @media (max-width: c.$md4) {
