@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import swiper from "../assets/js/swiper";
 import OurServices from "../components/OurServices.vue";
 import BannerSlider from "../components/Sliders/BannerSlider.vue"
 import WorksSlider from "../components/WorksSlider.vue";
@@ -51,8 +50,6 @@ import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
 import Footer from "../components/Footer.vue";
 import GlobalForm from "../components/Form/GlobalForm.vue";
-
-import "../assets/styles/swiper-home.css";
 
 export default {
   components: {
@@ -71,11 +68,6 @@ export default {
   data: () => ({
     //
   }),
-  mounted() {
-    this.$nextTick(function () {
-      swiper.init();
-    });
-  },
 };
 </script>
 <style lang="scss" scoped>
@@ -113,22 +105,7 @@ export default {
 
 
 
-.content__price {
-  font-size: 1rem;
-  font-weight: 600;
-  background: #fff;
-  display: inline-block;
-  border-radius: 32px;
-  padding: 3px 10px;
-  color: #102938;
-}
-.content__title {
-  z-index: 10;
-  font-weight: 600;
-  font-size: 1.6rem;
-  color: #fff;
-  width: calc(100% - 68px);
-}
+
 
 .banner-wrapper {
   background-color: #f5f5f5;

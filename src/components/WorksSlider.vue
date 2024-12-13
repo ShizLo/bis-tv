@@ -1,6 +1,7 @@
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Navigation } from "swiper/modules";
+import 'swiper/css';
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
@@ -25,26 +26,21 @@ export default {
     </div>
     <div class="_container">
       <swiper
-        :slidesPerView="2"
+        :slidesPerView="1"
         navigation
-        :pagination='{"dynamicBullets": true}'
         :spaceBetween="10"
         :modules="modules"
         :breakpoints="{
           640: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-            
+            slidesPerView: 2,
           },
           // when window width is >= 480px
           768: {
-            slidesPerView: 4,
-            spaceBetween: 10,
+            slidesPerView: 3,
           },
           // when window width is >= 640px
           1024: {
             slidesPerView: 5,
-            spaceBetween: 10,
           },
         }"
         class="mySwiper">
@@ -98,7 +94,6 @@ export default {
             <p class="content_title">Забор из штакетника</p>
           </div>
         </swiper-slide>
-        <div class="swiper-pagination"></div>
       </swiper>
     </div>
   </section>

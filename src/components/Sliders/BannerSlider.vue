@@ -1,7 +1,6 @@
 <script>
 import swiper from "../../assets/js/swiper";
 import "../../assets/styles/swiper-home.css"
-// import "/assets/styles/swiper-home.css";
 
 export default {
   props: {},
@@ -160,4 +159,74 @@ export default {
   height: 20%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
 }
+.content__price {
+  font-size: 1rem;
+  font-weight: 600;
+  background: #fff;
+  display: inline-block;
+  border-radius: 32px;
+  padding: 3px 10px;
+  color: #102938;
+}
+.content__title {
+  z-index: 10;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #fff;
+  width: calc(100% - 68px);
+}
+/* Кнопки */
+.swiper-button-prev {
+  color: #fff;
+}
+.swiper-button-next {
+  color: #fff;
+}
+
+/* Буллеты */
+.swiper .swiper-pagination {
+  bottom: 0;
+}
+.swiper .swiper-pagination-bullet {
+  width: 30px;
+  border-radius: 8px;
+  height: 4px;
+  background-color: #fff;
+}
+.swiper .swiper-pagination-bullet-active {
+  position: relative;
+  width: 60px;
+  border-radius: 8px;
+  height: 4px;
+  /* opacity: 0.2; */
+  z-index: 11;
+  /* background-color: #fff; */
+}
+.swiper .swiper-pagination-bullet-active::after {
+  content: "";
+  position: absolute;
+  z-index: 12;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+  height: 100%;
+  width: 0;
+  opacity: 1;
+  /* background-color: red; */
+
+  transition: background-color 0.4s linear;
+
+  animation: progress-css 1s ease-in forwards;
+}
+
+.swiper .swiper-pagination-bullet-active::after {
+  /* Включает анимацию булитов */
+  /* width: 100%;  */
+  background-color: red;
+  transition: background-color 4s linear;
+  transition-property: width, background-color;
+}
+
 </style>

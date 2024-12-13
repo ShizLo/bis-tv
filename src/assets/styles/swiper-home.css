@@ -1,9 +1,9 @@
 /* Кнопки */
 .swiper-button-prev {
-  color: #fff;
+  color: #fff !important;
 }
 .swiper-button-next {
-  color: #fff;
+  color: #fff !important;
 }
 
 /* Буллеты */

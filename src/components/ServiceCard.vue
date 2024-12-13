@@ -107,7 +107,7 @@ export default {
   transition-delay: 150ms;
   @media (min-width: c.$md1) {
     &:hover {
-      background-color: rgb(31 182 255);
+      background-color: rgb(93, 201, 255);
     }
   }
   &-link {
