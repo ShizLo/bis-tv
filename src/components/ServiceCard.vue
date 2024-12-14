@@ -4,17 +4,30 @@ export default {
     title: String,
     price: String,
     path: String,
+    hoverColor: String,
   },
-  computed: {
-    style() {
-      return "background: url(" + this.path + ".webp)"; // какой же сука Великий костыль))
-    },
+  data() {
+    return {
+      style: {
+        '--background': "url(" + this.path + ".webp)",
+        '--hoverColor': this.hoverColor
+      }
+    }
   },
+  // computed: {
+  //   style() {
+  //     return "background: url(" + this.path + ".webp)"; // какой же сука Великий костыль))
+  //   },
+  //   hover() {
+
+  //   }
+  // },
+  
 };
 </script>
 <template>
-  <div class="services__item">
-    <a class="services__item-link item" href="#" :style="style">
+  <div class="services__item" :style="style">
+    <a class="services__item-link item" :style="style">
       <div class="item__description content__description">
         <div class="item__title content__title">
           <span>{{ title }}</span>
@@ -106,7 +119,7 @@ export default {
   transition-delay: 150ms;
   @media (min-width: c.$md1) {
     &:hover {
-      background-color: rgb(93, 201, 255);
+      background-color: var(--hoverColor);
     }
   }
   &-link {
@@ -131,6 +144,7 @@ export default {
 }
 
 .item {
+  background: var(--background);
   &__title {
     font-weight: 600;
     line-height: 120%;

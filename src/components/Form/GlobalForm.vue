@@ -5,7 +5,7 @@ export default {
 };
 </script>
 <template>
-  <section class="global-form">
+  <section id="section" class="global-form">
     <div class="_container global-form_mt">
       <div class="form-bl brd">
         <form class="form-submit" style="padding-bottom: 0">

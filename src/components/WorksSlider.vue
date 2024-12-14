@@ -1,6 +1,6 @@
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Pagination, Navigation } from "swiper/modules";
+import { Keyboard, Scrollbar, Navigation, Pagination } from "swiper/modules";
 import 'swiper/css';
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -14,7 +14,7 @@ export default {
   setup() {
     
     return {
-      modules: [Pagination, Navigation],
+      modules: [Keyboard, Scrollbar, Navigation, Pagination],
     };
   },
 };
@@ -26,17 +26,17 @@ export default {
     </div>
     <div class="_container">
       <swiper
-        :slidesPerView="1"
-        navigation
+      :slidesPerView= 2
+      :scrollbar="true"
         :spaceBetween="10"
         :modules="modules"
         :breakpoints="{
           640: {
-            slidesPerView: 2,
+            slidesPerView: 3,
           },
           // when window width is >= 480px
           768: {
-            slidesPerView: 3,
+            slidesPerView: 4,
           },
           // when window width is >= 640px
           1024: {

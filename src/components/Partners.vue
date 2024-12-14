@@ -5,7 +5,7 @@
       <!-- <div class="columns-3 partners__items"> -->
       <div class="partners__items">
         <div class="partners__item">
-          <a class="partners__link" target="_blank">
+          <a class="partners__link" target="_blank" href="https://scouthouse.ru/">
             <span class="partners__wrapper">
               <img
                 width="381"
@@ -21,7 +21,7 @@
           </a>
         </div>
         <div class="partners__item">
-          <a class="partners__link" target="_blank">
+          <a class="partners__link" target="_blank" href="https://novodacha.com/">
             <span class="partners__wrapper">
               <img
                 width="381"
@@ -37,7 +37,7 @@
           </a>
         </div>
         <div class="partners__item">
-          <a class="partners__link" target="_blank">
+          <a class="partners__link" target="_blank" href="https://holtsovhouse.ru/">
             <span class="partners__wrapper">
               <img
                 width="381"
@@ -106,6 +106,11 @@
       }
     }
   }
+  &__item:hover {
+    transform: scale(1.02);
+    transition: transform 0.5s ease-in-out;
+  }
+  
   &__link {
     position: relative;
     display: flex;

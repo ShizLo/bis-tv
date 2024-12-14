@@ -7,7 +7,8 @@
           <h1 class="banner__text">
             Инженерные коммуникации и благоустройство участка
           </h1>
-          <button class="banner__button">
+          <a href="#section">
+          <button class="banner__button" >
             Обсудить задачу
             <svg
               class="banner__button-icon"
@@ -28,7 +29,8 @@
                 ></path>
               </g>
             </svg>
-          </button> 
+          </button>
+        </a>
         </div>
         <BannerSlider /> 
       </div>
@@ -38,7 +40,7 @@
   <WorksSlider />
   <Partners />
   <AboutUs />
-  <GlobalForm />
+  <GlobalForm id="section"/>
   <Footer />
 </template>
 
