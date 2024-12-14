@@ -33,71 +33,70 @@ export default {
           <img class="catalog__list-item_header-icon" alt="Услуги" src="../assets/icons/design_services.svg" />
           Услуги
         </span>
-
         <ul class="catalog__list-item_body">
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
               <a class="catalog__link" @click="formVisible()">Септик под ключ</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" href="/pogreba/">Установка погреба</a>
+              <a class="catalog__link" @click="formVisible()">Установка погреба</a>
             </div>
 
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" href="/vodosnabzhenie/">Водоснабжение </a>
+              <a class="catalog__link" @click="formVisible()">Водоснабжение </a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" href="/skvazhina-na-vodu/">Скважина на воду </a>
+              <a class="catalog__link" @click="formVisible()">Скважина на воду </a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" href="/skvazhina-na-vodu/obustroistvo/">Обустройство скважины</a>
+              <a class="catalog__link" @click="formVisible()">Обустройство скважины</a>
             </div>
 
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" href="/kolodec/">Колодец </a>
+              <a class="catalog__link" @click="formVisible()">Колодец </a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" href="/sistema-ochistki-vodi/">Система очистки воды </a>
+              <a class="catalog__link" @click="formVisible()">Система очистки воды </a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" href="/svajnij-fundament/">Свайный фундамент</a>
+              <a class="catalog__link" @click="formVisible()">Свайный фундамент</a>
             </div>
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" href="/blagoustrojstvo/">Благоустройство </a>
+              <a class="catalog__link" @click="formVisible()">Благоустройство </a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" href="/blagoustrojstvo/drenazh-ychastka/">Дренаж </a>
+              <a class="catalog__link" @click="formVisible()">Дренаж </a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" href="/blagoustrojstvo/livnevaja-kanalizacija/">Ливневая канализация </a>
+              <a class="catalog__link" @click="formVisible()">Ливневая канализация </a>
             </div>
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" href="/blagoustrojstvo/otmostka-vokrug-doma/">Отмостка вокруг дома</a>
+              <a class="catalog__link" @click="formVisible()">Отмостка вокруг дома</a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" href="/kupeli/">Установка купели</a>
+              <a class="catalog__link" @click="formVisible()">Установка купели</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" href="/videonabljudenie/">Видеонаблюдение </a>
+              <a class="catalog__link" @click="formVisible()">Видеонаблюдение </a>
             </div>
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" href="/katok/">Каток на участке </a>
+              <a class="catalog__link" @click="formVisible()">Каток на участке </a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" href="/ykrashenie-doma/">Световое оформление дома и участка</a>
+              <a class="catalog__link" @click="formVisible()">Световое оформление дома и участка</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" href="/terrasi/">Строительство террас </a>
+              <a class="catalog__link" @click="formVisible()">Строительство террас </a>
             </div>
           </li>
         </ul>
@@ -206,7 +205,9 @@ export default {
       }
       &_body {
         width: 100%;
-        display: grid;
+        // display: grid;
+        display: flex;
+        flex-wrap: wrap;
         grid-template-columns: repeat(4, 1fr);
         grid-auto-flow: row;
         gap: 2px 33px;
