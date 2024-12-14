@@ -5,9 +5,9 @@ export default {
 };
 </script>
 <template>
-  <div class="form-feedback">
-    <div class="form-feedback__container">
-      <button class="form-feedback__close-btn" @click="$emit('someEvent')">
+  <div class="feedback">
+    <div class="feedback__container">
+      <button class="feedback__close-btn" @click="$emit('someEvent')">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M1.20868 14.5405L14.2902 1.45898M14.2902 14.5405L1.20875 1.45899"
@@ -17,24 +17,17 @@ export default {
           ></path>
         </svg>
       </button>
-      <p class="form-feedback__title">Свяжемся с вами для консультации</p>
-      <form class="form-feedback__form" onsubmit="return true; ym(38077235,'reachGoal','submitted');">
-        <div class="form-feedback__group">
-          <input class="form-feedback__group-input hover-group-input" type="text" name="Имя" placeholder="Имя" id="modalName2" />
+      <p class="feedback__title title">Свяжемся с вами для консультации</p>
+      <div class="feedback__form">
+        <div class="feedback__group">
+          <input class="feedback__group-input hover-group-input" type="text" name="Имя" placeholder="Имя" />
         </div>
-        <div class="form-feedback__group">
-          <input
-            class="form-feedback__group-input phone_mask hover-group-input"
-            type="tel"
-            placeholder="Телефон"
-            name="Телефон"
-            id="modalTelephone2"
-            required=""
-          />
+        <div class="feedback__group">
+          <input class="feedback__group-input phone_mask hover-group-input" type="tel" placeholder="Телефон" name="Телефон" required="" />
         </div>
-        <button type="submit" class="form-feedback__send-btn btn" data-id="#consultationForm2" data-form="">ОТПРАВИТЬ</button>
-      </form>
-      <p class="form-feedback__bottom-text">
+        <button type="submit" class="feedback__send-btn btn" data-id="#consultationForm2" data-form="">ОТПРАВИТЬ</button>
+      </div>
+      <p class="feedback__bottom-text">
         Нажимая кнопку «отправить», вы соглашаетесь с
         <a href="/politika-konfidencialnosti/">Политикой конфиденциальности</a>
       </p>
@@ -42,7 +35,7 @@ export default {
   </div>
 </template>
 <style lang="scss" scoped>
-.form-feedback {
+.feedback {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -76,26 +69,27 @@ export default {
   &__form {
     width: 45%;
   }
+  &__title {
+    margin: 0 0 20px;
+    &.title {
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+  }
+  &__group {
+    background-color: #f5f5f5;
+    border: 1px solid #e8eaec;
+    margin: 0 0 20px;
+    border-radius: 4px;
+    position: relative;
+    height: 56px;
+    padding: 0 14px;
+    transition: 0.2s;
+  }
 }
-
-.form-feedback__title {
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 20px;
-}
-.form-feedback__group {
-  background-color: #f5f5f5;
-  border: 1px solid #e8eaec;
-  margin: 0 0 20px;
-  border-radius: 4px;
-  position: relative;
-  height: 56px;
-  padding: 0 14px;
-  transition: 0.2s;
-}
-.form-feedback__group-input,
-input.form-feedback__group-input {
+.feedback__group-input,
+input.feedback__group-input {
   background: 0 0;
   border: none !important;
   outline: 0;
@@ -103,14 +97,14 @@ input.form-feedback__group-input {
   padding: 0;
   height: 50px;
 }
-.form-feedback__bottom-text,
-.form-feedback__bottom-text a {
+.feedback__bottom-text,
+.feedback__bottom-text a {
   color: #88959c;
   font-size: 14px;
   font-weight: 400;
   line-height: 130%;
 }
-.form-feedback__send-btn {
+.feedback__send-btn {
   height: 56px;
   font-size: 16px;
   font-weight: 600;
@@ -120,7 +114,7 @@ input.form-feedback__group-input {
   text-align: center;
   border-radius: 4px;
   width: 100%;
-  background: linear-gradient(86deg, #ffb096 0, #ff6bbb 39%, #ac6bed 100%), linear-gradient(87deg, #ffb096 0, #ff6bbb 39%, #ac6bed 100%);
+  background: linear-gradient(86deg, #c2e7ed 0, #064179 39%, #5ab4ce 100%), linear-gradient(87deg, #c2e7ed 0, #064179 39%, #5ab4ce 100%);
   color: #fff;
   margin: 0 0 15px;
 }
@@ -132,7 +126,7 @@ textarea {
   width: 100%;
   height: 100%;
   color: #333;
-  font: bold 16px "Roboto Flex", Arial;
+  font-size: 18px;
   vertical-align: top;
   /* padding: 10px 0 4px; */
   border: none;
@@ -145,7 +139,7 @@ textarea {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-.form-feedback__close-btn {
+.feedback__close-btn {
   position: absolute;
   right: 20px;
   top: 20px;
@@ -153,7 +147,7 @@ textarea {
   height: 16px;
   cursor: pointer;
 }
-.form-feedback__group label {
+.feedback__group label {
   position: absolute;
   top: 15px;
   left: 14px;

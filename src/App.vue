@@ -9,14 +9,45 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
         <a class="header__logo logo" href="">
           <img class="logo__img" loading="lazy" width="" height="" src="./assets/icons/logo-bis2.svg" alt="" />
         </a>
+        <div @click="burgerMenu()" class="burger-md">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav class="menu-mobile">
+          <div class="menu__content">
+            <div class="menu__header">
+              <div @click="burgerMenu()" class="burger-md burger-md-active _active">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <a class="menu__logo logo" href="">
+                <img class="logo__img" loading="lazy" width="" height="" src="./assets/icons/logo-bis2.svg" alt="" />
+              </a>
+            </div>
+            <div class="menu-mobile__body">
+              <div class="menu-mobile__item">
+                <div class="menu-mobile__item_header">
+                  <img class="menu-mobile__item-icon" alt="Услуги" src="./assets/icons/design_services.svg" />
+                  <span class="menu-mobile__item-title">Наши услуги</span>
+                </div>
+                <div class="menu-mobile__item_body">
+                  <a class="menu-mobile__item_body-link">Септик под ключ</a>
+                  <a class="menu-mobile__item_body-link">Установка заборов</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
         <nav class="header__nav nav">
           <ul role="list" class="nav__list">
             <li class="nav__item">
               <button class="nav__button button" @click="catalogVisible()">
-                <div id="list_burger" class="nav__burger burger">
-                  <span class="burger__line burger__line-first"></span>
-                  <span class="burger__line burger__line-second"></span>
-                  <span class="burger__line burger__line-third"></span>
+                <div class="nav__burger burger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
                 </div>
                 Каталог
               </button>
@@ -176,6 +207,14 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   &__logo {
     display: flex;
     align-items: center;
+    @media (max-width: c.$md2) {
+      position: absolute;
+      left: 38%;
+    }
+    @media (max-width: c.$md4) {
+      position: absolute;
+      left: 29%;
+    }
   }
   &__block {
     display: flex;
@@ -204,13 +243,78 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   }
 }
 .logo {
-  width: 186px;
-  height: 39px;
+  // width: 186px;
+  // height: 39px;
   &__img {
     height: 40px;
+    @media (max-width: c.$md4) {
+      height: 30px;
+    }
   }
 }
+.menu {
+  &-mobile {
+    display: none;
+    @media (max-width: c.$md2) {
+      z-index: 10;
+      transform: translate(0px, -100%);
+      transition: transform 0.8s ease 0s;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: auto;
+      padding: 33px 10px 30px 10px;
+      background-color: rgba(255, 255, 255, 1);
+      &._active {
+        transform: translate(0px, 0%);
+        display: block;
+      }
+    }
+    &__body {
+      padding-top: 20px;
+    }
+    &__item {
+      margin: 0px 0px 300px 0px;
+      &_header {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      &-icon {
+        width: 24px;
+        height: 24px;
+      }
+      &-title {
+        font-size: c.$fs-l;
+        font-weight: 500;
+      }
+      &_body {
+        display: flex;
+        flex-wrap: wrap;
+        &-link {
+          width: 100%;
+        }
+      }
+    }
+  }
+  &__content {
+  }
+  &__header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
 
+  // &__link {
+  //   font-size: 20px;
+  //   font-weight: 500;
+  //   transition: color 0.3s ease 0s;
+  //   text-decoration: none;
+  //   color: #000;
+  // }
+}
 .nav__list {
   display: flex;
   justify-content: space-between;
@@ -274,34 +378,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   gap: 12px;
   padding: 11px 20px 11px 50px;
 }
-// .burger {
-//   width: 20px;
-//   height: 14px;
-//   transition: all 0.3s ease 0s;
-//   cursor: pointer;
-//   position: relative;
-// }
-// .burger__line {
-//   position: absolute;
-//   width: 20px;
-//   height: 2px;
-//   border: none;
-//   background: #102938;
-//   border-radius: 2px;
-//   transition: transform 0.2s, transform-origin 0.2s;
-// }
-// .burger__line-first {
-//   top: 0;
-//   left: 0;
-// }
-// .burger__line-second {
-//   top: 6px;
-//   left: 0;
-// }
-// .burger__line-third {
-//   bottom: 0;
-//   left: 0;
-// }
+
 .list__item {
   display: flex;
   justify-content: center;
@@ -448,7 +525,8 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   cursor: pointer;
 }
 
-.burger {
+.burger,
+.burger-md {
   display: block;
   position: absolute;
   // top: 18px;
@@ -489,6 +567,19 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     }
   }
 }
+.burger-md {
+  display: none;
+  left: 10px;
+  top: calc(42%);
+  // z-index: 11;
+  @media (max-width: c.$md2) {
+    display: block;
+  }
+}
+.burger-md-active {
+  top: calc(20%);
+  left: 89%;
+}
 </style>
 
 <script>
@@ -524,6 +615,14 @@ export default {
       const burger = document.querySelector(".burger");
       if (burger) {
         burger.classList.toggle("_active");
+      }
+    },
+    burgerMenu() {
+      const burger = document.querySelector(".burger-md");
+      if (burger) {
+        const munuBody = document.querySelector(".menu-mobile");
+        burger.classList.toggle("_active");
+        munuBody.classList.toggle("_active");
       }
     },
   },
