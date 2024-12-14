@@ -13,11 +13,11 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
           <ul role="list" class="nav__list">
             <li class="nav__item">
               <button class="nav__button button" @click="catalogVisible()">
-                <span id="list_burger" class="nav__burger burger">
+                <div id="list_burger" class="nav__burger burger">
                   <span class="burger__line burger__line-first"></span>
                   <span class="burger__line burger__line-second"></span>
                   <span class="burger__line burger__line-third"></span>
-                </span>
+                </div>
                 Каталог
               </button>
               <div class="catalog" :class="catalogIsVisible === 1 ? 'nav__window' : ''">
@@ -266,41 +266,42 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   padding: 10px;
 }
 .nav__button {
+  position: relative;
   min-width: 126px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  padding: 11px 20px 11px 15px;
+  padding: 11px 20px 11px 50px;
 }
-.burger {
-  width: 20px;
-  height: 14px;
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  position: relative;
-}
-.burger__line {
-  position: absolute;
-  width: 20px;
-  height: 2px;
-  border: none;
-  background: #102938;
-  border-radius: 2px;
-  transition: transform 0.2s, transform-origin 0.2s;
-}
-.burger__line-first {
-  top: 0;
-  left: 0;
-}
-.burger__line-second {
-  top: 6px;
-  left: 0;
-}
-.burger__line-third {
-  bottom: 0;
-  left: 0;
-}
+// .burger {
+//   width: 20px;
+//   height: 14px;
+//   transition: all 0.3s ease 0s;
+//   cursor: pointer;
+//   position: relative;
+// }
+// .burger__line {
+//   position: absolute;
+//   width: 20px;
+//   height: 2px;
+//   border: none;
+//   background: #102938;
+//   border-radius: 2px;
+//   transition: transform 0.2s, transform-origin 0.2s;
+// }
+// .burger__line-first {
+//   top: 0;
+//   left: 0;
+// }
+// .burger__line-second {
+//   top: 6px;
+//   left: 0;
+// }
+// .burger__line-third {
+//   bottom: 0;
+//   left: 0;
+// }
 .list__item {
   display: flex;
   justify-content: center;
@@ -446,6 +447,48 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   padding: 8px 0;
   cursor: pointer;
 }
+
+.burger {
+  display: block;
+  position: absolute;
+  // top: 18px;
+  // right: 10px;
+  left: 10px;
+  top: calc(36%);
+  width: 30px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 5;
+  span {
+    transition: all 0.3s ease 0s;
+    top: calc(50% - 1px);
+    left: 0px;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    &:first-child {
+      top: 0px;
+    }
+    &:last-child {
+      top: auto;
+      bottom: 0px;
+    }
+  }
+  &._active {
+    span {
+      transform: scale(0);
+      &:first-child {
+        transform: rotate(-45deg);
+        top: calc(50% - 1px);
+      }
+      &:last-child {
+        transform: rotate(45deg);
+        bottom: calc(50% - 1px);
+      }
+    }
+  }
+}
 </style>
 
 <script>
@@ -477,6 +520,10 @@ export default {
         this.catalogIsVisible = 0;
       } else {
         this.catalogIsVisible = 1;
+      }
+      const burger = document.querySelector(".burger");
+      if (burger) {
+        burger.classList.toggle("_active");
       }
     },
   },

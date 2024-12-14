@@ -30,7 +30,7 @@ export default {
     <ul class="catalog__list">
       <li class="catalog__list-item">
         <span class="catalog__list-item_header">
-          <img class="catalog__list-item_header-icon" width="20" height="20" alt="Услуги" src="../assets/icons/uslugi1.svg" />
+          <img class="catalog__list-item_header-icon" alt="Услуги" src="../assets/icons/design_services.svg" />
           Услуги
         </span>
 
@@ -104,7 +104,13 @@ export default {
       </li>
       <li class="catalog__list-item">
         <a href="/service" class="catalog__list-item_header">
-          <img class="catalog__list-item_header-icon" width="20" height="20" alt="Sewera Сервис" src="../assets/icons/serviceicon.svg" />
+          <img
+            class="catalog__list-item_header-icon"
+            width="20"
+            height="20"
+            alt="Sewera Сервис"
+            src="../assets/icons/cleaning_services.svg"
+          />
           Сервис
         </a>
         <ul class="catalog__list-item_body">
@@ -191,9 +197,9 @@ export default {
         color: #102938;
         font-size: 1.2rem;
         &-icon {
-          width: 20px;
+          width: 24px;
           min-width: 20px;
-          height: 20px;
+          height: 24px;
           margin-right: 10px;
           object-fit: contain;
         }
