@@ -15,50 +15,20 @@ export default {
       <div class="services__items">
         <div class="services__column">
           <div class="services__row">
-            <ServiceCard
-              class="services__row-item-big"
-              title="Септик под ключ"
-              price="87 500"
-              path="src/assets/images/septik1"
-            />
+            <ServiceCard class="services__row-item-big" title="Септик под ключ" price="87 500" path="src/assets/images/services-1" />
           </div>
           <div class="services__row">
-            <ServiceCard
-              class="services__row-item-sm"
-              title="Водоподготовка"
-              price="30 000"
-              path="src/assets/images/sticker3"
-            />
-            <ServiceCard
-              class="services__row-item-sm"
-              title="Колодец"
-              price="11 000"
-              path="src/assets/images/content-bar-img-3"
-            />
+            <ServiceCard class="services__row-item-sm" title="Водоподготовка" price="30 000" path="src/assets/images/services-2++" />
+            <ServiceCard class="services__row-item-sm" title="Колодец" price="11 000" path="src/assets/images/services-4" />
           </div>
         </div>
         <div class="services__column">
           <div class="services__row">
-            <ServiceCard
-              class="services__row-item-sm"
-              title="Благоустройство"
-              price="210"
-              path="src/assets/images/content-bar-img-4"
-            />
-            <ServiceCard
-              class="services__row-item-sm"
-              title="Скважины"
-              price="3650"
-              path="src/assets/images/content-bar-img-6"
-            />
+            <ServiceCard class="services__row-item-sm" title="Свайное поле" price="210" path="src/assets/images/services-5+" />
+            <ServiceCard class="services__row-item-sm" title="Скважины" price="3650" path="src/assets/images/services-3" />
           </div>
           <div class="services__row">
-            <ServiceCard
-              class="services__row-item-big"
-              title="Водоснабжение"
-              price="90 000"
-              path="src/assets/images/content-bar-img-5"
-            />
+            <ServiceCard class="services__row-item-big" title="Заборы" price="90 000" path="src/assets/images/services-6" />
           </div>
         </div>
       </div>

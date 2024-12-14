@@ -7,14 +7,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     <div class="header">
       <div class="header__block">
         <a class="header__logo logo" href="">
-          <img
-            class="logo__img"
-            loading="lazy"
-            width=""
-            height=""
-            src="./assets/icons/logo-bis2.svg"
-            alt=""
-          />
+          <img class="logo__img" loading="lazy" width="" height="" src="./assets/icons/logo-bis2.svg" alt="" />
         </a>
         <nav class="header__nav nav">
           <ul role="list" class="nav__list">
@@ -27,23 +20,17 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                 </span>
                 Каталог
               </button>
-              <div
-                class="catalog"
-                :class="catalogIsVisible === 1 ? 'nav__window' : ''"
-              >
+              <div class="catalog" :class="catalogIsVisible === 1 ? 'nav__window' : ''">
                 <NavigationCatalog />
               </div>
             </li>
             <li class="nav__item nav__arrow">
-              <div @click="submenuVisible()" class="flex items-center">
+              <!-- <div @click="submenuVisible()" class="flex items-center">
                 <span class="nav__link">О комании</span>
                 <ChevronDownIcon class="size-5" aria-hidden="true" />
-              </div>
+              </div> -->
 
-              <div
-                :class="activeMenu === 1 ? 'nav__window' : ''"
-                class="sub-menu"
-              >
+              <div :class="activeMenu === 1 ? 'nav__window' : ''" class="sub-menu">
                 <div class="sub-menu__wrap">
                   <ul class="sub-menu__list">
                     <li class="sub-menu__item">
@@ -74,10 +61,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                   <div class="sub-menu__blog blog">
                     <div class="blog__wrap blog__wrap_positioned">
                       <span class="blog__title">БИС: про жизнь за городом</span>
-                      <p class="blog__description">
-                        Наш блог c полезным контентом для тех, кто живет за
-                        городом
-                      </p>
+                      <p class="blog__description">Наш блог c полезным контентом для тех, кто живет за городом</p>
                       <div class="blog__links">
                         <a class="blog__link" href="" target="_blank">
                           <img
@@ -113,25 +97,14 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                     </div>
                     <div class="blog__wrap blog__wrap_positioned">
                       <span class="blog__title">Мы на YouTube</span>
-                      <p class="blog__description">
-                        Канал БИС про жизнь за городом
-                      </p>
+                      <p class="blog__description">Канал БИС про жизнь за городом</p>
                       <a target="_blank" href="" class="youtube-btn">
-                        <svg
-                          width="24"
-                          height="17"
-                          viewBox="0 0 24 17"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
+                        <svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M23.5002 2.82667C23.2236 1.81191 22.4116 1.01446 21.3783 0.742827C19.5054 0.25 12 0.25 12 0.25C12 0.25 4.49457 0.25 2.62364 0.742827C1.59039 1.01446 0.7784 1.81191 0.501811 2.82667C0 4.6641 0 8.5 0 8.5C0 8.5 0 12.3359 0.501811 14.1733C0.7784 15.1881 1.59039 15.9855 2.62364 16.2572C4.49457 16.75 12 16.75 12 16.75C12 16.75 19.5054 16.75 21.3764 16.2572C22.4096 15.9855 23.2216 15.1881 23.4982 14.1733C24 12.3359 24 8.5 24 8.5C24 8.5 24 4.6641 23.4982 2.82667H23.5002Z"
                             fill="#FF0000"
                           ></path>
-                          <path
-                            d="M9.60059 12.0352V4.96484L15.8377 8.5L9.60059 12.0352Z"
-                            fill="white"
-                          ></path>
+                          <path d="M9.60059 12.0352V4.96484L15.8377 8.5L9.60059 12.0352Z" fill="white"></path>
                         </svg>
                         <span>Подписаться</span>
                       </a>
@@ -175,14 +148,8 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
           </li>
           <!-- <li class="list__item"></li> -->
           <li class="list__item">
-            <a class="list__item link__phone" href="tel:+7 981 937-13-76">
-              +7 981 999-99-96
-            </a>
-            <a
-              class="list__item link__phone-mobile"
-              href="tel:+7 981 937-13-76"
-            >
-            </a>
+            <a class="list__item link__phone" href="tel:+7 981 937-13-76"> +7 981 999-99-96 </a>
+            <a class="list__item link__phone-mobile" href="tel:+7 981 937-13-76"> </a>
           </li>
         </ul>
       </div>
@@ -215,6 +182,11 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     flex-wrap: wrap;
     gap: 30px;
     align-items: center;
+  }
+  &__block-links {
+    @media (max-width: c.$md4) {
+      margin-right: 4px;
+    }
   }
   &__nav {
     @media (max-width: c.$md2) {

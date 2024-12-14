@@ -99,8 +99,7 @@ export default {
   overflow: hidden;
   border-radius: 0.5rem;
   background-color: c.$color-background;
-  transition-property: color, background-color, border-color,
-    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
     backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
@@ -119,11 +118,15 @@ export default {
     width: 100%;
     // padding: 1rem;
     background-size: contain !important;
-    background-position-x: right !important;
-    background-position-y: bottom !important;
+    // background-position-x: right !important;
+    // background-position-y: bottom
+    background-position: 95% 100% !important;
     background-repeat: no-repeat !important;
-    // background-size: 80% auto;
+    background-size: 100% auto !important;
     cursor: pointer;
+    @media (max-width: c.$md4) {
+      background-size: 90% auto !important;
+    }
   }
 }
 
@@ -162,8 +165,7 @@ export default {
       content: "";
       width: 14px;
       height: 14px;
-      background: url(../../public/content-bar-arrow-price.svg) center / contain
-        no-repeat;
+      background: url(../../public/content-bar-arrow-price.svg) center / contain no-repeat;
     }
     @media (max-width: c.$md4) {
       font-size: 14px;
