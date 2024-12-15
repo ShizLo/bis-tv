@@ -9,10 +9,10 @@ export default {
   data() {
     return {
       style: {
-        '--background': "url(" + this.path + ".webp)",
-        '--hoverColor': this.hoverColor
-      }
-    }
+        "--background": "url(" + this.path + ".webp)",
+        "--hoverColor": this.hoverColor,
+      },
+    };
   },
   // computed: {
   //   style() {
@@ -22,14 +22,13 @@ export default {
 
   //   }
   // },
-  
 };
 </script>
 <template>
   <div class="services__item" :style="style">
     <a class="services__item-link item" :style="style">
       <div class="item__description content__description">
-        <div class="item__title content__title">
+        <div class="item__title title">
           <span>{{ title }}</span>
         </div>
         <div class="item__price content__price">
@@ -139,6 +138,12 @@ export default {
     cursor: pointer;
     @media (max-width: c.$md4) {
       background-size: 90% auto !important;
+    }
+    @media (max-width: c.$md3) {
+      background-size: 65% auto !important;
+    }
+    @media (max-width: c.$md4) {
+      background-size: 100% auto !important;
     }
   }
 }

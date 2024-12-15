@@ -4,35 +4,26 @@
       <!-- <div class="columns-2 py-8 flex"> -->
       <div class="banner">
         <div class="banner__block-text text-left">
-          <h1 class="banner__text">
-            Инженерные коммуникации и благоустройство участка
-          </h1>
+          <h1 class="banner__text">Инженерные коммуникации и благоустройство участка</h1>
           <a href="#section">
-          <button class="banner__button" >
-            Обсудить задачу
-            <svg
-              class="banner__button-icon"
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g id="Frame 1864">
-                <path
-                  id="Vector"
-                  d="M1.75 7.29163H12.25M12.25 7.29163L7 12.5416M12.25 7.29163L7 2.04163"
-                  stroke="#102938"
-                  stroke-width="1.4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </g>
-            </svg>
-          </button>
-        </a>
+            <button class="banner__button">
+              Обсудить задачу
+              <svg class="banner__button-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="Frame 1864">
+                  <path
+                    id="Vector"
+                    d="M1.75 7.29163H12.25M12.25 7.29163L7 12.5416M12.25 7.29163L7 2.04163"
+                    stroke="#102938"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </g>
+              </svg>
+            </button>
+          </a>
         </div>
-        <BannerSlider /> 
+        <BannerSlider />
       </div>
     </div>
   </div>
@@ -40,13 +31,13 @@
   <WorksSlider />
   <Partners />
   <AboutUs />
-  <GlobalForm id="section"/>
+  <GlobalForm id="section" />
   <Footer />
 </template>
 
 <script>
 import OurServices from "../components/OurServices.vue";
-import BannerSlider from "../components/Sliders/BannerSlider.vue"
+import BannerSlider from "../components/Sliders/BannerSlider.vue";
 import WorksSlider from "../components/WorksSlider.vue";
 import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
@@ -75,12 +66,14 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/app.scss" as c;
 
-
+.banner__button {
+}
 .banner__button:hover {
   background: #102938;
   color: #f5f5f5;
-  border-color: #102938;
+  border-color: #d48a00;
 }
+
 // .banner__button > svg:hover {
 //   fill: #f5f5f5;
 // }
@@ -104,10 +97,6 @@ export default {
   gap: 25px;
   padding: 0 30px 30px;
 }
-
-
-
-
 
 .banner-wrapper {
   background-color: c.$color-background;
@@ -159,7 +148,7 @@ export default {
     align-items: center;
     gap: 8px;
     border-radius: 4px;
-    border: 1px solid #102938;
+    border: 1px solid #d48a00;
     background: rgba(245, 245, 245, 0);
     color: #102938;
     text-align: center;

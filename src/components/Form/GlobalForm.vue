@@ -2,52 +2,55 @@
 export default {
   props: {},
   computed: {},
+  data() {
+    return {
+      name: "",
+      email: "",
+      questiion: "",
+    };
+  },
+  methods: {
+    sendMessage() {
+      var my_text = this.name + " " + this.email + " " + this.questiion;
+      var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
+      var chat_id2 = -1002378962422;
+      var chat_id = -1002383432249;
+      var url2 = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id2}&text=${my_text}`;
+      var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
+      let api2 = new XMLHttpRequest();
+      let api = new XMLHttpRequest();
+      api2.open("GET", url2, true);
+      api.open("GET", url, true);
+      api2.send();
+      api.send();
+      this.name = "";
+      this.email = "";
+      this.questiion = "";
+    },
+  },
 };
 </script>
 <template>
   <section id="section" class="global-form">
     <div class="_container global-form_mt">
       <div class="form-bl brd">
-        <form class="form-submit" style="padding-bottom: 0">
+        <div class="form-submit" style="padding-bottom: 0">
           <div class="form__title">Оставьте заявку</div>
-          <input type="hidden" name="subject" value="Оставьте заявку" />
-          <p>Задайте свой вопрос или позвоните по номеру</p>
-          <a class="link__phone phone" href="tel:+7 981 937-13-76">
-            +7 981 999-99-96
-          </a>
+          <p>Позвоните сейчас или запишитесь на бесплатную консультацию</p>
+          <a class="link__phone phone" href="tel:+7 981 937-13-76"> +7 981 999-99-96 </a>
           <div class="flex-input">
             <div class="col">
-              <input
-                type="text"
-                name="Ваше имя"
-                value=""
-                id="input-name"
-                placeholder="Ваше имя"
-              />
+              <input v-model="name" type="text" name="Ваше имя" value="" id="input-name" placeholder="Ваше имя" />
             </div>
             <div class="col">
-              <input
-                type="email"
-                name="Ваша почта"
-                value=""
-                placeholder="Ваша почта"
-                id="input-email"
-                required=""
-              />
+              <input v-model="email" type="text" name="Ваша почта" value="" placeholder="Ваша почта или телефон" id="input-email" />
             </div>
             <div class="col">
-              <textarea
-                name="Задайте ваш вопрос"
-                placeholder="Задайте ваш вопрос"
-              ></textarea>
+              <textarea v-model="questiion" name="Задайте ваш вопрос" placeholder="Задайте ваш вопрос"></textarea>
             </div>
           </div>
-          <input
-            class="form__button button_mtp"
-            type="submit"
-            value="Отправить"
-          />
-        </form>
+          <input @click="sendMessage()" class="form__button button_mtp" type="submit" value="Отправить" />
+        </div>
       </div>
     </div>
   </section>
@@ -161,7 +164,7 @@ textarea {
   padding: 11px 14px;
   align-items: center;
   border-radius: 4px;
-  border: 1px solid c.$color-border;
+  border: 1px solid #d48a00;
   background: rgba(245, 245, 245, 0);
   color: #102938;
   text-align: center;
@@ -190,6 +193,7 @@ textarea {
   box-sizing: border-box;
   @media (max-width: c.$md4) {
     padding: 28px 25px 1px;
+    padding: 20px 17px 1px 17px;
   }
 }
 </style>

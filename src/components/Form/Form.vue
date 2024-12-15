@@ -2,6 +2,32 @@
 export default {
   props: {},
   computed: {},
+  data() {
+    return {
+      name: "",
+      email: "",
+      questiion: "",
+    };
+  },
+  methods: {
+    sendMessage() {
+      var my_text = this.name + " " + this.email + " " + this.questiion;
+      var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
+      var chat_id2 = -1002378962422;
+      var chat_id = -1002383432249;
+      var url2 = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id2}&text=${my_text}`;
+      var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
+      let api2 = new XMLHttpRequest();
+      let api = new XMLHttpRequest();
+      api2.open("GET", url2, true);
+      api.open("GET", url, true);
+      api2.send();
+      api.send();
+      this.name = "";
+      this.email = "";
+      this.questiion = "";
+    },
+  },
 };
 </script>
 <template>
@@ -20,12 +46,21 @@ export default {
       <p class="feedback__title title">Свяжемся с вами для консультации</p>
       <div class="feedback__form">
         <div class="feedback__group">
-          <input class="feedback__group-input hover-group-input" type="text" name="Имя" placeholder="Имя" />
+          <input v-model="name" class="feedback__group-input hover-group-input" type="text" name="Имя" placeholder="Имя" />
         </div>
         <div class="feedback__group">
-          <input class="feedback__group-input phone_mask hover-group-input" type="tel" placeholder="Телефон" name="Телефон" required="" />
+          <input
+            v-model="email"
+            class="feedback__group-input phone_mask hover-group-input"
+            type="tel"
+            placeholder="Телефон"
+            name="Телефон"
+            required=""
+          />
         </div>
-        <button type="submit" class="feedback__send-btn btn" data-id="#consultationForm2" data-form="">ОТПРАВИТЬ</button>
+        <button @click="sendMessage()" type="submit" class="feedback__send-btn btn" data-id="#consultationForm2" data-form="">
+          ОТПРАВИТЬ
+        </button>
       </div>
       <p class="feedback__bottom-text">
         Нажимая кнопку «отправить», вы соглашаетесь с

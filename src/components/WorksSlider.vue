@@ -63,13 +63,13 @@ export default {
         class="mySwiper"
       >
         <swiper-slide>
-          <img src="../assets/images/landshaft.jpg" alt="Автополив, озеленение, освещение" class="swiper__img lazyloaded" />
+          <img src="../assets/images/landshaft.jpg" alt="Озеленение, освещение" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Озеленение, освещение</p>
           </div>
         </swiper-slide>
         <swiper-slide>
-          <img src="../assets/images/work-swiper-3.jpg" alt="Свайное поле" class="swiper__img lazyloaded" />
+          <img src="../assets/images/work-swiper-3.jpg" alt="Заезд на участок и свайное поле" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Заезд на участок и свайное поле</p>
           </div>
@@ -81,15 +81,39 @@ export default {
           </div>
         </swiper-slide>
         <swiper-slide>
-          <img src="../assets/images/work-swiper-4.jpg" alt="Электричество" class="swiper__img lazyloaded" />
+          <img src="../assets/images/work-swiper-8.jpg" alt="Уличное освещение" class="swiper__img lazyloaded" />
           <div class="content__slide">
-            <p class="content_title">Электричество</p>
+            <p class="content_title">Уличное освещение</p>
           </div>
         </swiper-slide>
         <swiper-slide>
           <img src="../assets/images/work-swiper-5.jpeg" alt="Забор из штакетника" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Забор из штакетника</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <img src="../assets/images/work-swiper-6.jpg" alt="Забор из гиттера" class="swiper__img lazyloaded" />
+          <div class="content__slide">
+            <p class="content_title">Забор из гиттера</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <img src="../assets/images/work-swiper-9.jpeg" alt="Откатные ворота" class="swiper__img lazyloaded" />
+          <div class="content__slide">
+            <p class="content_title">Откатные ворота</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <img src="../assets/images/work-swiper-7.jpg" alt="Расчистка участка" class="swiper__img lazyloaded" />
+          <div class="content__slide">
+            <p class="content_title">Расчистка участка</p>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <img src="../assets/images/work-swiper-4.jpg" alt="Электричество" class="swiper__img lazyloaded" />
+          <div class="content__slide">
+            <p class="content_title">Электричество</p>
           </div>
         </swiper-slide>
         <div class="swiper-button-prev"></div>
@@ -158,17 +182,23 @@ export default {
 }
 .content_title {
   font-weight: 400;
-  font-size: 100%;
+  font-size: 23px;
   line-height: normal;
   color: #fff;
   text-shadow: 3px -3px 8px black;
   text-align: left;
   padding: 15px;
-  @media (max-width: c.$md3) {
-    font-size: 1rem;
+  @media (max-width: c.$md1) {
+    font-size: 22px;
   }
-  // @media (max-width: c.$md2) {
-  // font-size: 1rem;
-  // }
+  @media (max-width: c.$md2) {
+    font-size: 20px;
+  }
+  @media (max-width: c.$md3) {
+    font-size: 20px;
+  }
+  @media (max-width: c.$md4) {
+    font-size: 20px;
+  }
 }
 </style>

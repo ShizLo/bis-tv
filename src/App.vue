@@ -7,7 +7,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     <div class="header">
       <div class="header__block">
         <a class="header__logo logo" href="">
-          <img class="logo__img" loading="lazy" width="" height="" src="./assets/icons/logo-bis2.svg" alt="" />
+          <img class="logo__img" loading="lazy" width="" height="" src="./assets/images/bis-logo3.png" alt="" />
         </a>
         <div @click="burgerMenu()" class="burger-md">
           <span></span>
@@ -23,7 +23,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                 <span></span>
               </div>
               <a class="menu__logo logo" href="">
-                <img class="logo__img" loading="lazy" width="" height="" src="./assets/icons/logo-bis2.svg" alt="" />
+                <img class="logo__img" loading="lazy" width="" height="" src="./assets/images/bis-logo3.png" alt="" />
               </a>
             </div>
             <div class="menu-mobile__body">
@@ -35,6 +35,59 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                 <div class="menu-mobile__item_body">
                   <a class="menu-mobile__item_body-link">Септик под ключ</a>
                   <a class="menu-mobile__item_body-link">Установка заборов</a>
+                  <a class="menu-mobile__item_body-link">Водоснабжение</a>
+                </div>
+              </div>
+              <div class="menu-mobile__item">
+                <div class="menu-mobile__item_header">
+                  <img class="menu-mobile__item-icon" alt="Услуги" src="./assets/icons/cleaning_services.svg" />
+                  <span class="menu-mobile__item-title">БИС Сервис</span>
+                </div>
+                <div class="menu-mobile__item_body">
+                  <a class="menu-mobile__item_body-link">Сертики и ЛОС</a>
+                  <a class="menu-mobile__item_body-link">Система очистки воды</a>
+                  <a class="menu-mobile__item_body-link">Уборка участка</a>
+                </div>
+              </div>
+
+              <!-- <div class="mobible-phone__item">
+                <a class="mobible-phone__item-link" href="tel:+7 981 937-13-76"> +7 981 999-99-96 </a>
+              </div> -->
+              <div class="callback-mobile">
+                <div class="menu-mobile__item-title">Запишитесь на консультацию</div>
+                <div class="callback-mobile__form">
+                  <input v-model="name" class="callback-mobile-input" type="text" name="Ваше имя" value="" placeholder="Телефон" />
+                  <button @click="sendMessage()" class="form__button callback-mobile-button" type="submit">
+                    <img src="./assets/icons/arrow-right2.svg" alt="" />
+                  </button>
+                </div>
+              </div>
+              <div class="contacts-mobile">
+                <div class="contacts-mobile__item cotacts-telegram">
+                  <a class="contacts-mobile__link link__telegram" href="" target="_blank">
+                    <img
+                      class="link__icon"
+                      loading="lazy"
+                      width="25"
+                      height="25"
+                      src="./assets/icons/header-telegram.svg"
+                      alt="Иконка Telegram"
+                    />
+                    <span>Telegram</span>
+                  </a>
+                </div>
+                <div class="contacts-mobile__item contacts-whatsapp">
+                  <a class="contacts-mobile__link link__whatsup" href="" target="_blank">
+                    <img
+                      class="link__icon"
+                      loading="lazy"
+                      width="25"
+                      height="25"
+                      src="./assets/icons/header-whatsapp.svg"
+                      alt="Иконка WhatsApp"
+                    />
+                    <span>WhatsApp</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -213,7 +266,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     }
     @media (max-width: c.$md4) {
       position: absolute;
-      left: 29%;
+      left: 34%;
     }
   }
   &__block {
@@ -225,6 +278,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   &__block-links {
     @media (max-width: c.$md4) {
       margin-right: 4px;
+      display: none;
     }
   }
   &__nav {
@@ -246,9 +300,13 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   // width: 186px;
   // height: 39px;
   &__img {
-    height: 40px;
+    height: 70px;
+
+    margin-left: 10px;
+
     @media (max-width: c.$md4) {
-      height: 30px;
+      height: 70px;
+      margin-left: 0px;
     }
   }
 }
@@ -265,7 +323,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
       top: 0;
       left: 0;
       overflow: auto;
-      padding: 33px 10px 30px 10px;
+      padding: 15px 10px 30px 10px;
       background-color: rgba(255, 255, 255, 1);
       &._active {
         transform: translate(0px, 0%);
@@ -276,18 +334,21 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
       padding-top: 20px;
     }
     &__item {
-      margin: 0px 0px 300px 0px;
+      margin: 0px 0px 20px 0px;
       &_header {
         display: flex;
         align-items: center;
         gap: 5px;
+        background-color: #f0f4f9;
+        padding: 3px 5px 3px 7px;
+        border-radius: 6px;
       }
       &-icon {
         width: 24px;
         height: 24px;
       }
       &-title {
-        font-size: c.$fs-l;
+        font-size: 19px;
         font-weight: 500;
       }
       &_body {
@@ -304,7 +365,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   &__header {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: left;
   }
 
   // &__link {
@@ -314,6 +375,51 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   //   text-decoration: none;
   //   color: #000;
   // }
+}
+
+.contacts-mobile {
+  gap: 15px;
+  display: flex;
+  &__item {
+    width: 50%;
+    padding: 5px 2px 5px 2px;
+    background: #f0f4f9;
+    border-radius: 6px;
+  }
+  &__link {
+    display: flex;
+  }
+  &__link > .link__icon {
+    margin: 0px 10px;
+  }
+}
+.mobible-phone__item {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  &-link {
+    // font-size: 20px;
+    padding: 5px 10px 5px 10px;
+    background: #f0f4f9;
+    border-radius: 6px;
+  }
+}
+.callback-mobile {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  background: #f0f4f9;
+  padding: 10px 10px 10px 15px;
+  border-radius: 6px;
+  &__form {
+    display: flex;
+  }
+  &-input {
+    font-size: 18px;
+  }
+  &-button {
+    border-color: #d48a00;
+    margin-left: 15px;
+  }
 }
 .nav__list {
   display: flex;
@@ -544,7 +650,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: #000;
+    background-color: #d48a00;
     &:first-child {
       top: 0px;
     }

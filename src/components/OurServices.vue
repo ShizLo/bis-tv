@@ -133,7 +133,7 @@ export default {
         height: 270px;
       }
       @media (max-width: c.$md3) {
-        height: 160px;
+        height: 180px;
       }
     }
     &-item-sm {
