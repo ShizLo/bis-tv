@@ -1,9 +1,17 @@
 /* Кнопки */
+@use "./app.scss" as c;
+
 .swiper-button-prev {
   color: #fff !important;
+  @media (max-width: c.$md2) {
+    display: none !important;
+  }
 }
 .swiper-button-next {
   color: #fff !important;
+  @media (max-width: c.$md2) {
+    display: none !important;
+  }
 }
 
 /* Буллеты */

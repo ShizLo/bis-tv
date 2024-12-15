@@ -1,7 +1,7 @@
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Keyboard, Scrollbar, Navigation, Pagination } from "swiper/modules";
-import 'swiper/css';
+import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
@@ -10,9 +10,8 @@ export default {
     Swiper,
     SwiperSlide,
   },
-  
+
   setup() {
-    
     return {
       modules: [Keyboard, Scrollbar, Navigation, Pagination],
     };
@@ -26,74 +25,75 @@ export default {
     </div>
     <div class="_container">
       <swiper
-      :slidesPerView= 2
-      :scrollbar="true"
+        :scrollbar="true"
         :spaceBetween="10"
         :modules="modules"
         :breakpoints="{
-          640: {
-            slidesPerView: 3,
+          320: {
+            slidesPerView: 1.08,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+          },
+          479.98: {
+            slidesPerView: 3.08,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
           },
           // when window width is >= 480px
-          768: {
+          991.98: {
             slidesPerView: 4,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
           },
           // when window width is >= 640px
           1024: {
             slidesPerView: 5,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
           },
         }"
-        class="mySwiper">
+        class="mySwiper"
+      >
         <swiper-slide>
-          <img
-            src="../assets/images/landshaft.jpg"
-            alt="Автополив, озеленение, освещение"
-            class="swiper__img lazyloaded"
-          />
+          <img src="../assets/images/landshaft.jpg" alt="Автополив, озеленение, освещение" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Озеленение, освещение</p>
           </div>
         </swiper-slide>
         <swiper-slide>
-          <img
-            src="../assets/images/work-swiper-3.jpg"
-            alt="Свайное поле"
-            class="swiper__img lazyloaded"
-          />
+          <img src="../assets/images/work-swiper-3.jpg" alt="Свайное поле" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Заезд на участок и свайное поле</p>
           </div>
         </swiper-slide>
         <swiper-slide>
-          <img
-            src="../assets/images/work-swiper-2.jpg"
-            alt="Дорожки, посадка и выравнивание"
-            class="swiper__img lazyloaded"
-          />
+          <img src="../assets/images/work-swiper-2.jpg" alt="Дорожки, посадка и выравнивание" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Дорожки, посадка и выравнивание</p>
           </div>
         </swiper-slide>
         <swiper-slide>
-          <img
-            src="../assets/images/work-swiper-4.jpg"
-            alt="Электричество"
-            class="swiper__img lazyloaded"
-          />
+          <img src="../assets/images/work-swiper-4.jpg" alt="Электричество" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Электричество</p>
           </div>
         </swiper-slide>
         <swiper-slide>
-          <img
-            src="../assets/images/work-swiper-5.jpeg"
-            alt="Забор из штакетника"
-            class="swiper__img lazyloaded"
-          />
+          <img src="../assets/images/work-swiper-5.jpeg" alt="Забор из штакетника" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Забор из штакетника</p>
           </div>
         </swiper-slide>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </swiper>
     </div>
   </section>

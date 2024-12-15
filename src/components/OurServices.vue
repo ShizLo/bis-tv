@@ -15,20 +15,56 @@ export default {
       <div class="services__items">
         <div class="services__column">
           <div class="services__row">
-            <ServiceCard class="services__row-item-big" title="Септик под ключ" price="87 500" path="src/assets/images/services-1" hoverColor="rgb(214, 221, 235)"/>
+            <ServiceCard
+              class="services__row-item-big"
+              title="Септик под ключ"
+              price="87 500"
+              path="src/assets/images/services-1"
+              hoverColor="rgb(214, 221, 235)"
+            />
           </div>
           <div class="services__row">
-            <ServiceCard class="services__row-item-sm" title="Водоподготовка" price="30 000" path="src/assets/images/services-2++" hoverColor="rgb(243, 253, 186)"/>
-            <ServiceCard class="services__row-item-sm" title="Колодец" price="11 000" path="src/assets/images/services-4" hoverColor="rgb(190, 182, 238)"/>
+            <ServiceCard
+              class="services__row-item-sm"
+              title="Водоподготовка"
+              price="30 000"
+              path="src/assets/images/services-2++"
+              hoverColor="rgb(243, 253, 186)"
+            />
+            <ServiceCard
+              class="services__row-item-sm"
+              title="Колодец"
+              price="11 000"
+              path="src/assets/images/services-4"
+              hoverColor="rgb(190, 182, 238)"
+            />
           </div>
         </div>
         <div class="services__column">
           <div class="services__row">
-            <ServiceCard class="services__row-item-sm" title="Свайное поле" price="210" path="src/assets/images/services-5+" hoverColor="rgb(170, 214, 199)"/>
-            <ServiceCard class="services__row-item-sm" title="Скважины" price="3650" path="src/assets/images/services-3" hoverColor="rgb(245, 226, 207)"/>
+            <ServiceCard
+              class="services__row-item-sm"
+              title="Свайное поле"
+              price="210"
+              path="src/assets/images/services-5+"
+              hoverColor="rgb(170, 214, 199)"
+            />
+            <ServiceCard
+              class="services__row-item-sm"
+              title="Скважины"
+              price="3650"
+              path="src/assets/images/services-3"
+              hoverColor="rgb(245, 226, 207)"
+            />
           </div>
           <div class="services__row">
-            <ServiceCard class="services__row-item-big" title="Заборы" price="90 000" path="src/assets/images/services-6" hoverColor="rgb(217, 221, 133)"/>
+            <ServiceCard
+              class="services__row-item-big"
+              title="Заборы"
+              price="90 000"
+              path="src/assets/images/services-6"
+              hoverColor="rgb(217, 221, 133)"
+            />
           </div>
         </div>
       </div>
@@ -39,6 +75,7 @@ export default {
 @use "../assets/styles/app.scss" as c;
 
 .services {
+  margin-top: 15px;
   &__title {
     font-size: c.$fs-xxl;
     font-weight: 600;
@@ -96,7 +133,7 @@ export default {
         height: 270px;
       }
       @media (max-width: c.$md3) {
-        height: 145px;
+        height: 160px;
       }
     }
     &-item-sm {

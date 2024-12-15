@@ -1,6 +1,6 @@
 <script>
 import swiper from "../../assets/js/swiper";
-import "../../assets/styles/swiper-home.css"
+import "../../assets/styles/swiper-home.scss";
 
 export default {
   props: {},
@@ -19,85 +19,63 @@ export default {
 };
 </script>
 <template>
-
-    <div class="swiper-container text-left">
-          <div class="swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img
-                  class="swiper__img"
-                  src="../../assets/images/IMG_3848.jpeg"
-                  alt="Озеленение участка"
-                />
-                <div class="swiper__content">
-                  <div class="content__price">
-                    <!-- <span>от 900 руб./м²</span> -->
-                    <span>от 150 000 руб</span>
-                  </div>
-                  <div class="content__title">Установка забора</div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="swiper__img"
-                  src="../../assets/images/vint.jpg"
-                  alt="Септик под ключ"
-                />
-                <div class="swiper__content">
-                  <div class="content__price">
-                    <span>от 100 000 руб.</span>
-                  </div>
-                  <div class="content__title">Свайное поле</div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="swiper__img"
-                  src="../../assets/images/parkovka.jpg"
-                  alt="Парковка из щебня"
-                />
-                <!-- <div class="swiper-lazy-preloader"></div> -->
-                <div class="swiper__content">
-                  <div class="content__price">
-                    <span>от 1 900 руб./м²</span>
-                  </div>
-                  <div class="content__title">Парковка</div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="swiper__img"
-                  src="../../assets/images/vodopodgotovka.jpg"
-                  alt="Парковка из щебня"
-                />
-                <!-- <div class="swiper-lazy-preloader"></div> -->
-                <div class="swiper__content">
-                  <div class="content__price">
-                    <span>от 60 000 руб.</span>
-                  </div>
-                  <div class="content__title">Водоподготовка</div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <img
-                  class="swiper__img"
-                  src="../../assets/images/E-1.jpg"
-                  alt="Септик под ключ"
-                />
-                <div class="swiper__content">
-                  <div class="content__price">
-                    <span>~ 120 000 руб.</span>
-                  </div>
-                  <div class="content__title">Септик под ключ</div>
-                </div>
-              </div>
+  <div class="swiper-container text-left">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img class="swiper__img" src="../../assets/images/IMG_3848.jpeg" alt="Озеленение участка" />
+          <div class="swiper__content">
+            <div class="content__price">
+              <!-- <span>от 900 руб./м²</span> -->
+              <span>от 150 000 руб</span>
             </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <div class="content__title">Установка забора</div>
           </div>
         </div>
-
+        <div class="swiper-slide">
+          <img class="swiper__img" src="../../assets/images/vint.jpg" alt="Септик под ключ" />
+          <div class="swiper__content">
+            <div class="content__price">
+              <span>от 100 000 руб.</span>
+            </div>
+            <div class="content__title">Свайное поле</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img class="swiper__img" src="../../assets/images/parkovka.jpg" alt="Парковка из щебня" />
+          <!-- <div class="swiper-lazy-preloader"></div> -->
+          <div class="swiper__content">
+            <div class="content__price">
+              <span>от 1 900 руб./м²</span>
+            </div>
+            <div class="content__title">Парковка</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img class="swiper__img" src="../../assets/images/vodopodgotovka.jpg" alt="Парковка из щебня" />
+          <!-- <div class="swiper-lazy-preloader"></div> -->
+          <div class="swiper__content">
+            <div class="content__price">
+              <span>от 60 000 руб.</span>
+            </div>
+            <div class="content__title">Водоподготовка</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img class="swiper__img" src="../../assets/images/E-1.jpg" alt="Септик под ключ" />
+          <div class="swiper__content">
+            <div class="content__price">
+              <span>~ 120 000 руб.</span>
+            </div>
+            <div class="content__title">Септик под ключ</div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
 </template>
 <style lang="scss" scoped>
 @use "../../assets/styles/app.scss" as c;
@@ -107,7 +85,6 @@ export default {
     padding: 0;
   }
 }
-
 
 .swiper-container {
   width: 100%;
@@ -228,5 +205,4 @@ export default {
   transition: background-color 4s linear;
   transition-property: width, background-color;
 }
-
 </style>
