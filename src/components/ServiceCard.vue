@@ -27,7 +27,11 @@ export default {
 </script>
 <template>
   <div class="services__item" :style="style">
-    <a class="services__item-link item" :style="style">
+    <a class="services__item-link item" :style="style" v-scroll-to="{ 
+              el: '#GlobalForm',
+              easing: [.6, .80, .30, 1.9],
+              duration: 2000 
+              }">
       <div class="item__description content__description">
         <div class="item__title content__title">
           <span>{{ title }}</span>

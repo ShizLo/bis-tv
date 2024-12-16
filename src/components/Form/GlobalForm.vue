@@ -54,7 +54,9 @@ export default {
 </template>
 <style lang="scss" coped>
 @use "../../assets/styles/app.scss" as c;
-
+// .global-form:target {
+//   background-color: #102938;
+// }
 .flex-input {
   display: flex;
   flex-wrap: wrap;

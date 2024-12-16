@@ -7,7 +7,11 @@
           <h1 class="banner__text">
             Инженерные коммуникации и благоустройство участка
           </h1>
-          <a href="#section">
+          <a href="#GlobalForm" v-scroll-to="{ 
+              el: '#GlobalForm',
+              easing: [.6, .80, .30, 1.9],
+              duration: 2000 
+              }">
           <button class="banner__button" >
             Обсудить задачу
             <svg
@@ -40,7 +44,7 @@
   <WorksSlider />
   <Partners />
   <AboutUs />
-  <GlobalForm id="section"/>
+  <GlobalForm id="GlobalForm" class="target"/>
   <Footer />
 </template>
 
@@ -70,12 +74,17 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+  },
 };
 </script>
 <style lang="scss" scoped>
 @use "../assets/styles/app.scss" as c;
 
-
+// .target:target {
+//   transform: scale(1.05);
+//   animation-duration: 10s;
+// }
 .banner__button:hover {
   background: #102938;
   color: #f5f5f5;
