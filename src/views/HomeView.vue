@@ -7,11 +7,7 @@
           <h1 class="banner__text">
             Инженерные коммуникации и благоустройство участка
           </h1>
-          <a href="#GlobalForm" v-scroll-to="{ 
-              el: '#GlobalForm',
-              easing: [.6, .80, .30, 1.9],
-              duration: 2000 
-              }">
+          <a href="#section">
           <button class="banner__button" >
             Обсудить задачу
             <svg
@@ -36,7 +32,7 @@
           </button>
         </a>
         </div>
-        <BannerSlider /> 
+        <BannerSlider />
       </div>
     </div>
   </div>
@@ -44,13 +40,13 @@
   <WorksSlider />
   <Partners />
   <AboutUs />
-  <GlobalForm id="GlobalForm" class="target"/>
+  <GlobalForm id="section"/>
   <Footer />
 </template>
 
 <script>
 import OurServices from "../components/OurServices.vue";
-import BannerSlider from "../components/Sliders/BannerSlider.vue"
+import BannerSlider from "../components/Sliders/BannerSlider.vue";
 import WorksSlider from "../components/WorksSlider.vue";
 import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
@@ -81,15 +77,13 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/app.scss" as c;
 
-// .target:target {
-//   transform: scale(1.05);
-//   animation-duration: 10s;
-// }
+
 .banner__button:hover {
   background: #102938;
   color: #f5f5f5;
-  border-color: #102938;
+  border-color: #d48a00;
 }
+
 // .banner__button > svg:hover {
 //   fill: #f5f5f5;
 // }
@@ -113,10 +107,6 @@ export default {
   gap: 25px;
   padding: 0 30px 30px;
 }
-
-
-
-
 
 .banner-wrapper {
   background-color: c.$color-background;
@@ -168,7 +158,7 @@ export default {
     align-items: center;
     gap: 8px;
     border-radius: 4px;
-    border: 1px solid #102938;
+    border: 1px solid #d48a00;
     background: rgba(245, 245, 245, 0);
     color: #102938;
     text-align: center;

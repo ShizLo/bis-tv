@@ -23,7 +23,7 @@ export default {
     <div class="swiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/IMG_3848.jpeg" alt="Озеленение участка" />
+          <img class="swiper__img" src="../../assets/images/IMG_3848.jpeg" alt="Установка забора" />
           <div class="swiper__content">
             <div class="content__price">
               <!-- <span>от 900 руб./м²</span> -->
@@ -33,7 +33,7 @@ export default {
           </div>
         </div>
         <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/vint.jpg" alt="Септик под ключ" />
+          <img class="swiper__img" src="../../assets/images/vint.jpg" alt="Свайное поле" />
           <div class="swiper__content">
             <div class="content__price">
               <span>от 100 000 руб.</span>
@@ -42,7 +42,17 @@ export default {
           </div>
         </div>
         <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/parkovka.jpg" alt="Парковка из щебня" />
+          <img class="swiper__img" src="../../assets/images/baner-slider-1.jpeg" alt="Откатные ворота и калитка" />
+          <!-- <div class="swiper-lazy-preloader"></div> -->
+          <div class="swiper__content">
+            <div class="content__price">
+              <span>от 65 000 руб</span>
+            </div>
+            <div class="content__title">Откатные ворота</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img class="swiper__img" src="../../assets/images/parkovka.jpg" alt="Парковка" />
           <!-- <div class="swiper-lazy-preloader"></div> -->
           <div class="swiper__content">
             <div class="content__price">
@@ -52,7 +62,7 @@ export default {
           </div>
         </div>
         <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/vodopodgotovka.jpg" alt="Парковка из щебня" />
+          <img class="swiper__img" src="../../assets/images/vodopodgotovka.jpg" alt="Водоподготовка" />
           <!-- <div class="swiper-lazy-preloader"></div> -->
           <div class="swiper__content">
             <div class="content__price">
