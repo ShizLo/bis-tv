@@ -18,7 +18,7 @@ export default {
             <ServiceCard
               class="services__row-item-big"
               title="Септик под ключ"
-              price="87 500"
+              price="От 180 000"
               path="src/assets/images/services-1"
               hoverColor="rgb(214, 221, 235)"
             />
@@ -44,8 +44,8 @@ export default {
           <div class="services__row">
             <ServiceCard
               class="services__row-item-sm"
-              title="Свайное поле"
-              price="210"
+              title="Фундамент"
+              price="От 100 000"
               path="src/assets/images/services-5+"
               hoverColor="rgb(170, 214, 199)"
             />

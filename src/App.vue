@@ -36,12 +36,13 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                   <a class="menu-mobile__item_body-link">Септик под ключ</a>
                   <a class="menu-mobile__item_body-link">Установка заборов</a>
                   <a class="menu-mobile__item_body-link">Водоснабжение</a>
+                  <a class="menu-mobile__item_body-link">Благоустройство участка</a>
                 </div>
               </div>
               <div class="menu-mobile__item">
                 <div class="menu-mobile__item_header">
                   <img class="menu-mobile__item-icon" alt="Услуги" src="./assets/icons/cleaning_services.svg" />
-                  <span class="menu-mobile__item-title">БИС Сервис</span>
+                  <span class="menu-mobile__item-title">Наш сервис</span>
                 </div>
                 <div class="menu-mobile__item_body">
                   <a class="menu-mobile__item_body-link">Сертики и ЛОС</a>
@@ -88,6 +89,12 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                     />
                     <span>WhatsApp</span>
                   </a>
+                </div>
+              </div>
+              <div class="address-mobile">
+                <div class="address-mobile__text">
+                  Санкт-Петербург, ул. <br />
+                  Ежедневно с 9 до 18 часов
                 </div>
               </div>
             </div>
@@ -391,6 +398,14 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   }
   &__link > .link__icon {
     margin: 0px 10px;
+  }
+}
+.address-mobile {
+  background: #f0f4f9;
+  border-radius: 6px;
+  margin-top: 14px;
+  &__text {
+    padding: 10px 10px 10px 15px;
   }
 }
 .mobible-phone__item {

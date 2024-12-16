@@ -26,17 +26,21 @@ export default {
 </script>
 <template>
   <div class="services__item" :style="style">
-    <a class="services__item-link item" :style="style" v-scroll-to="{ 
-              el: '#GlobalForm',
-              easing: [.6, .80, .30, 1.9],
-              duration: 2000 
-              }">
+    <a
+      class="services__item-link item"
+      :style="style"
+      v-scroll-to="{
+        el: '#GlobalForm',
+        easing: [0.6, 0.8, 0.3, 1.9],
+        duration: 2000,
+      }"
+    >
       <div class="item__description content__description">
         <div class="item__title title">
           <span>{{ title }}</span>
         </div>
         <div class="item__price content__price">
-          <span>От {{ price }} руб.</span>
+          <span>{{ price }} руб.</span>
         </div>
       </div>
       <!-- <div class="flex flex-col justify-end items-start">
