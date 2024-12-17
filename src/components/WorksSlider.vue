@@ -99,7 +99,7 @@ export default {
           </div>
         </swiper-slide>
         <swiper-slide>
-          <img src="../assets/images/work-swiper-9.jpeg" alt="Откатные ворота" class="swiper__img lazyloaded" />
+          <img src="../assets/images/work-swiper-9.jpg" alt="Откатные ворота" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Откатные ворота</p>
           </div>

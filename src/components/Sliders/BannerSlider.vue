@@ -23,7 +23,7 @@ export default {
     <div class="swiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/IMG_3848.jpeg" alt="Установка забора" />
+          <img class="swiper__img" src="../../assets/images/swiper-slide-1.webp" alt="Установка забора" />
           <div class="swiper__content">
             <div class="content__price">
               <!-- <span>от 900 руб./м²</span> -->
@@ -31,9 +31,10 @@ export default {
             </div>
             <div class="content__title">Установка забора</div>
           </div>
+          <div class="swiper-lazy-preloader"></div>
         </div>
         <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/vint.jpg" alt="Свайное поле" />
+          <img class="swiper__img" src="../../assets/images/swiper-slide-2.webp" alt="Свайное поле" />
           <div class="swiper__content">
             <div class="content__price">
               <span>от 100 000 руб.</span>
@@ -42,8 +43,8 @@ export default {
           </div>
         </div>
         <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/baner-slider-1.jpeg" alt="Откатные ворота и калитка" />
-          <!-- <div class="swiper-lazy-preloader"></div> -->
+          <img class="swiper__img" src="../../assets/images/swiper-slide-3.webp" alt="Откатные ворота и калитка" />
+
           <div class="swiper__content">
             <div class="content__price">
               <span>от 65 000 руб</span>
@@ -52,7 +53,7 @@ export default {
           </div>
         </div>
         <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/parkovka.jpg" alt="Парковка" />
+          <img class="swiper__img" src="../../assets/images/swiper-slide-4.webp" alt="Парковка" />
           <!-- <div class="swiper-lazy-preloader"></div> -->
           <div class="swiper__content">
             <div class="content__price">
@@ -62,7 +63,7 @@ export default {
           </div>
         </div>
         <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/vodopodgotovka.jpg" alt="Водоподготовка" />
+          <img class="swiper__img" src="../../assets/images/swiper-slide-5.webp" alt="Водоподготовка" />
           <!-- <div class="swiper-lazy-preloader"></div> -->
           <div class="swiper__content">
             <div class="content__price">
@@ -72,7 +73,7 @@ export default {
           </div>
         </div>
         <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/E-1.jpg" alt="Септик под ключ" />
+          <img class="swiper__img" src="../../assets/images/swiper-slide-6.webp" alt="Септик под ключ" />
           <div class="swiper__content">
             <div class="content__price">
               <span>~ 120 000 руб.</span>
