@@ -7,7 +7,7 @@
           <h1 class="banner__text">
             Инженерные коммуникации и благоустройство участка
           </h1>
-          <a href="#GlobalForm" v-scroll-to="{ 
+          <a href="#GlobalForm" @click="ссс()" v-scroll-to="{ 
             el: '#GlobalForm',
             easing: [.6, .80, .30, 1.9],
             duration: 2000 
@@ -76,6 +76,10 @@ export default {
     //
   }),
   methods: {
+    ссс() {
+      let element = document.querySelector('#section');
+      console.log(element)
+    }
   },
 };
 </script>
