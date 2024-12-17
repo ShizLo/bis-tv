@@ -4,24 +4,30 @@ export default {
     title: String,
     price: String,
     path: String,
-    hoverColor: String,
+    hoverColors: String,
   },
   data() {
+    // let x = "url("+`${config.imagePath}`+ this.path+")"
+    let imagePath = "url("+this.path+")";
+    let hoverColor = this.hoverColors
+    // console.log(imagePath)
     return {
-      style: {
-        // "--background": "url(`${@}`" + this.path +")",
-        "--background": "url("+ new URL(`${this.pa}`, import.meta.resolve('../../')).href +")",
-        "--hoverColor": this.hoverColor,
-      },
+      imagePath, hoverColor
+      // style: {
+      //   // "--background": "url(`${@}`" + this.path +")",
+      //   "--background": `${config.imagePath}`+ this.path,
+      //   // "--background": "url("+ new URL(`${this.pa}`, import.meta.resolve('../../')).href +")",
+      //   "--hoverColor": this.hoverColor,
+      // },
     };
   },
 };
 </script>
 <template>
-  <div class="services__item" :style="style">
+  <div class="services__item" >
     <a
       class="services__item-link item"
-      :style="style"
+      
       v-scroll-to="{
         el: '#GlobalForm',
         easing: [0.6, 0.8, 0.3, 1.9],
@@ -55,7 +61,7 @@ export default {
   transition-delay: 150ms;
   @media (min-width: c.$md1) {
     &:hover {
-      background-color: var(--hoverColor);
+      background-color: v-bind(hoverColor);
     }
   }
   &-link {
@@ -86,8 +92,7 @@ export default {
 }
 
 .item {
-  // background: `url(${require(var(--background))})`;
-  background: var(--background);
+  background: v-bind(imagePath);
   &__title {
     font-weight: 600;
     line-height: 120%;
