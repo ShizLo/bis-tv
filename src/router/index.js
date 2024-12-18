@@ -1,13 +1,20 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import PolicyView from "../views/PolicyView.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "HomeView",
       component: HomeView,
+    },
+    {
+      path: "/privacy-policy",
+      name: "PolicyView",
+      component: PolicyView,
     },
     // {
     //   path: "/about",

@@ -2,12 +2,12 @@
 import { ref } from "vue";
 import ServiceCard from "./ServiceCard.vue";
 import ServiceSmallCard from "./ServiceSmallCard.vue";
-import service1 from "../assets/images/services-1.webp"
-import service2 from "../assets/images/services-2++.webp"
-import service3 from "../assets/images/services-3.webp"
-import service4 from "../assets/images/services-4.webp"
-import service5 from "../assets/images/services-5+.webp"
-import service6 from "../assets/images/services-6.webp"
+import service1 from "../assets/images/services-1.webp";
+import service2 from "../assets/images/services-2++.webp";
+import service3 from "../assets/images/services-3.webp";
+import service4 from "../assets/images/services-4.webp";
+import service5 from "../assets/images/services-5+.webp";
+import service6 from "../assets/images/services-6.webp";
 
 export default {
   components: {
@@ -15,18 +15,22 @@ export default {
     ServiceSmallCard,
   },
   setup() {
-    let imgService1 = ref(service1)
-    let  imgService2 = ref(service2)
-    let  imgService3 = ref(service3)
-    let  imgService4 = ref(service4)
-    let  imgService5 = ref(service5)
-    let  imgService6 = ref(service6)
+    let imgService1 = ref(service1);
+    let imgService2 = ref(service2);
+    let imgService3 = ref(service3);
+    let imgService4 = ref(service4);
+    let imgService5 = ref(service5);
+    let imgService6 = ref(service6);
 
     return {
-      imgService1, imgService2, imgService3, imgService4, imgService5, imgService6
-    }
-  }
-  
+      imgService1,
+      imgService2,
+      imgService3,
+      imgService4,
+      imgService5,
+      imgService6,
+    };
+  },
 };
 </script>
 <template>
@@ -38,24 +42,24 @@ export default {
           <div class="services__row">
             <ServiceCard
               class="services__row-item-big"
-              title="asdasd"
-              price="asdasd"
+              title="Септик под ключ"
+              price="От 180 000"
               v-bind:path="imgService1"
               hoverColors="rgb(214, 221, 235)"
             />
           </div>
-          <div class="services__row ">
+          <div class="services__row">
             <ServiceCard
               class="services__row-item-sm"
               title="Водоподготовка"
-              price="30 000"
+              price="От 60 000"
               v-bind:path="imgService2"
               hoverColors="rgb(243, 253, 186)"
             />
             <ServiceCard
               class="services__row-item-sm"
               title="Колодец"
-              price="11 000"
+              price="От 50 000"
               v-bind:path="imgService4"
               hoverColors="rgb(190, 182, 238)"
             />
@@ -73,7 +77,7 @@ export default {
             <ServiceCard
               class="services__row-item-sm"
               title="Скважины"
-              price="3650"
+              price="От 85 000"
               v-bind:path="imgService3"
               hoverColors="rgb(245, 226, 207)"
             />
@@ -82,7 +86,7 @@ export default {
             <ServiceCard
               class="services__row-item-big"
               title="Заборы"
-              price="90 000"
+              price="От 90 000"
               v-bind:path="imgService6"
               hoverColors="rgb(217, 221, 133)"
             />

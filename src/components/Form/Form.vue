@@ -64,7 +64,7 @@ export default {
       </div>
       <p class="feedback__bottom-text">
         Нажимая кнопку «отправить», вы соглашаетесь с
-        <a href="/politika-konfidencialnosti/">Политикой конфиденциальности</a>
+        <router-link :to="{ name: 'PolicyView' }"> Политикой конфиденциальности.</router-link>
       </p>
     </div>
   </div>

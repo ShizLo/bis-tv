@@ -87,19 +87,19 @@ export default {
           </div>
         </swiper-slide>
         <swiper-slide>
-          <img src="../assets/images/work-swiper-5.jpeg" alt="Забор из штакетника" class="swiper__img lazyloaded" />
+          <img src="../assets/images/work-swiper-5.jpg" alt="Забор из штакетника" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Забор из штакетника</p>
           </div>
         </swiper-slide>
         <swiper-slide>
-          <img src="../assets/images/work-swiper-6.jpg" alt="Забор из гиттера" class="swiper__img lazyloaded" />
+          <img src="../assets/images/work-swiper-6+.jpg" alt="Забор из гиттера" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Забор из гиттера</p>
           </div>
         </swiper-slide>
         <swiper-slide>
-          <img src="../assets/images/work-swiper-9.jpg" alt="Откатные ворота" class="swiper__img lazyloaded" />
+          <img src="../assets/images/work-swiper-9+.jpg" alt="Откатные ворота" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Откатные ворота</p>
           </div>

@@ -6,13 +6,15 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   <div class="py-2 _container">
     <div class="header">
       <div class="header__block">
-        <a class="header__logo logo" href="">
+        <a class="header__logo logo" href="/">
           <img class="logo__img" loading="lazy" width="" height="" src="./assets/images/bis-logo3.png" alt="" />
         </a>
-        <div @click="burgerMenu()" class="burger-md">
-          <span></span>
-          <span></span>
-          <span></span>
+        <div @click="burgerMenu()" class="burger__item">
+          <div class="burger-md">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
         <nav class="menu-mobile">
           <div class="menu__content">
@@ -22,6 +24,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                 <span></span>
                 <span></span>
               </div>
+
               <a class="menu__logo logo" href="">
                 <img class="logo__img" loading="lazy" width="" height="" src="./assets/images/bis-logo3.png" alt="" />
               </a>
@@ -62,10 +65,16 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                     <img src="./assets/icons/arrow-right2.svg" alt="" />
                   </button>
                 </div>
+                <div class="feedback-mobile">
+                  <p class="feedback-mobile__text">
+                    Нажимая кнопку «отправить», вы соглашаетесь с
+                    <router-link :to="{ name: 'PolicyView' }"> Политикой конфиденциальности.</router-link>
+                  </p>
+                </div>
               </div>
               <div class="contacts-mobile">
                 <div class="contacts-mobile__item cotacts-telegram">
-                  <a class="contacts-mobile__link link__telegram" href="" target="_blank">
+                  <a class="contacts-mobile__link link__telegram" href="/" target="_blank">
                     <img
                       class="link__icon"
                       loading="lazy"
@@ -78,7 +87,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                   </a>
                 </div>
                 <div class="contacts-mobile__item contacts-whatsapp">
-                  <a class="contacts-mobile__link link__whatsup" href="" target="_blank">
+                  <a class="contacts-mobile__link link__whatsup" href="/" target="_blank">
                     <img
                       class="link__icon"
                       loading="lazy"
@@ -93,7 +102,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
               </div>
               <div class="address-mobile">
                 <div class="address-mobile__text">
-                  Санкт-Петербург, ул. <br />
+                  г. Санкт-Петербург<br />
                   Ежедневно с 9 до 18 часов
                 </div>
               </div>
@@ -115,11 +124,11 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                 <NavigationCatalog />
               </div>
             </li>
-            <li class="nav__item nav__arrow">
-              <!-- <div @click="submenuVisible()" class="flex items-center">
+            <!-- <li class="nav__item nav__arrow">
+              <div @click="submenuVisible()" class="flex items-center">
                 <span class="nav__link">О комании</span>
                 <ChevronDownIcon class="size-5" aria-hidden="true" />
-              </div> -->
+              </div>
 
               <div :class="activeMenu === 1 ? 'nav__window' : ''" class="sub-menu">
                 <div class="sub-menu__wrap">
@@ -203,8 +212,8 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
                   </div>
                 </div>
               </div>
-            </li>
-            <!-- Дополнить класс выше -->
+            </li> -->
+
             <li class="nav__item">
               <a class="nav__link-contacts" href="">Контакты</a>
             </li>
@@ -239,7 +248,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
           </li>
           <!-- <li class="list__item"></li> -->
           <li class="list__item">
-            <a class="list__item link__phone" href="tel:+7 981 937-13-76"> +7 981 999-99-96 </a>
+            <a class="list__item link__phone" href="tel:+7 911 277-56-07"> +7 911 277-56-07</a>
             <a class="list__item link__phone-mobile" href="tel:+7 981 937-13-76"> </a>
           </li>
         </ul>
@@ -247,6 +256,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     </div>
   </div>
   <router-view />
+  <Footer />
 </template>
 <style lang="scss" scoped>
 @use "../src/assets/styles/app.scss" as c;
@@ -266,14 +276,21 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   gap: 8px;
   &__logo {
     display: flex;
+    margin: 0 auto;
+    // max-width: 0 auto;
     align-items: center;
     @media (max-width: c.$md2) {
       position: absolute;
-      left: 38%;
+      left: 0;
+      width: 100%;
+      justify-content: center;
     }
     @media (max-width: c.$md4) {
       position: absolute;
-      left: 34%;
+      // left: 33%;
+      left: 0;
+      width: 100%;
+      justify-content: center;
     }
   }
   &__block {
@@ -303,16 +320,21 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     }
   }
 }
+.menu__logo {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
 .logo {
   // width: 186px;
   // height: 39px;
   &__img {
-    height: 70px;
+    height: 100px;
 
-    margin-left: 10px;
+    // margin-left: 10px;
 
     @media (max-width: c.$md4) {
-      height: 70px;
+      height: 80px;
       margin-left: 0px;
     }
   }
@@ -357,12 +379,15 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
       &-title {
         font-size: 19px;
         font-weight: 500;
+        margin: 0px 0px 5px 0px;
       }
       &_body {
         display: flex;
         flex-wrap: wrap;
+
         &-link {
           width: 100%;
+          padding-left: 10px;
         }
       }
     }
@@ -383,13 +408,23 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   //   color: #000;
   // }
 }
-
+.burger__item {
+  @media (max-width: c.$md4) {
+    padding: 30px 40px 40px 30px;
+  }
+}
+.feedback-mobile {
+  margin-top: 8px;
+  &__text {
+    font-size: 10px;
+  }
+}
 .contacts-mobile {
   gap: 15px;
   display: flex;
   &__item {
     width: 50%;
-    padding: 5px 2px 5px 2px;
+    padding: 10px 2px 10px 2px;
     background: #f0f4f9;
     border-radius: 6px;
   }
@@ -529,10 +564,6 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
       background-size: contain;
     }
   }
-}
-.footer {
-  margin-top: 45px;
-  background: #f0f4f9;
 }
 .sub-menu {
   display: none;
@@ -705,10 +736,12 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
 
 <script>
 import NavigationCatalog from "./components/NavigationCatalog.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   components: {
     NavigationCatalog,
+    Footer,
   },
   name: "App",
   setup() {

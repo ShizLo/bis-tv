@@ -37,7 +37,7 @@ export default {
         <div class="form-submit" style="padding-bottom: 0">
           <div class="form__title">Оставьте заявку</div>
           <p>Позвоните сейчас или запишитесь на бесплатную консультацию</p>
-          <a class="link__phone phone" href="tel:+7 981 937-13-76"> +7 981 999-99-96 </a>
+          <a class="link__phone phone" href="tel:+7 911 277-56-07"> +7 911 277-56-07</a>
           <div class="flex-input">
             <div class="col">
               <input v-model="name" type="text" name="Ваше имя" value="" id="input-name" placeholder="Ваше имя" />
@@ -50,6 +50,12 @@ export default {
             </div>
           </div>
           <input @click="sendMessage()" class="form__button button_mtp" type="submit" value="Отправить" />
+          <div class="feedback">
+            <p class="feedback__text">
+              Нажимая кнопку «отправить», вы соглашаетесь с
+              <router-link :to="{ name: 'PolicyView' }"> Политикой конфиденциальности.</router-link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -163,7 +169,7 @@ textarea {
 }
 .form__button {
   font-weight: 500;
-  padding: 11px 14px;
+  padding: 10px 14px;
   align-items: center;
   border-radius: 4px;
   border: 1px solid #d48a00;
@@ -179,7 +185,7 @@ textarea {
 }
 .button_mtp {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 2px;
 }
 .form__button:hover {
   background: #102938;
@@ -190,12 +196,19 @@ textarea {
   color: #102938;
   text-align: left;
   padding: 28px 33px 1px;
-  border: 3px solid c.$color-border;
+  border: 1px solid #d48a00;
   border-radius: 6px;
   box-sizing: border-box;
   @media (max-width: c.$md4) {
     padding: 28px 25px 1px;
     padding: 20px 17px 1px 17px;
+  }
+}
+.feedback {
+  margin: 2px 0px 18px 0px;
+
+  & p {
+    font-size: 12px;
   }
 }
 </style>

@@ -8,11 +8,12 @@ export default {
   },
   data() {
     // let x = "url("+`${config.imagePath}`+ this.path+")"
-    let imagePath = "url("+this.path+")";
-    let hoverColor = this.hoverColors
+    let imagePath = "url(" + this.path + ")";
+    let hoverColor = this.hoverColors;
     // console.log(imagePath)
     return {
-      imagePath, hoverColor
+      imagePath,
+      hoverColor,
       // style: {
       //   // "--background": "url(`${@}`" + this.path +")",
       //   "--background": `${config.imagePath}`+ this.path,
@@ -24,10 +25,9 @@ export default {
 };
 </script>
 <template>
-  <div class="services__item" >
+  <div class="services__item">
     <a
       class="services__item-link item"
-      
       v-scroll-to="{
         el: '#GlobalForm',
         easing: [0.6, 0.8, 0.3, 1.9],
@@ -123,12 +123,12 @@ export default {
     color: #102938;
     text-align: center;
     border-radius: 4px;
-    &::after {
-      content: "";
-      width: 14px;
-      height: 14px;
-      background: url(../../public/content-bar-arrow-price.svg) center / contain no-repeat;
-    }
+    // &::after {
+    //   content: "";
+    //   width: 14px;
+    //   height: 14px;
+    //   background: url(../../public/content-bar-arrow-price.svg) center / contain no-repeat;
+    // }
     @media (max-width: c.$md4) {
       font-size: 14px;
       margin: 8px 0px 0px 8px;
