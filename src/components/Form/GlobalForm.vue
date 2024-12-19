@@ -3,7 +3,6 @@ export default {
   props: {},
   computed: {},
   data() {
-    
     return {
       name: "",
       email: "",
@@ -27,12 +26,11 @@ export default {
       this.name = "";
       this.email = "";
       this.questiion = "";
-      document.querySelectorAll('.form__button').forEach(element => {
-      element.addEventListener('touchstart', () => element.classList.add('on-hover'));
-      element.addEventListener('touchend', () => element.classList.remove('on-hover'));
-})
+      document.querySelectorAll(".form__button").forEach((element) => {
+        element.addEventListener("touchstart", () => element.classList.add("on-hover"));
+        element.addEventListener("touchend", () => element.classList.remove("on-hover"));
+      });
     },
-    
   },
 };
 </script>
@@ -179,7 +177,7 @@ textarea {
   padding: 10px 14px;
   align-items: center;
   border-radius: 4px;
-  border: 1px solid #d48a00;
+  border: 1px solid #ea5b0c;
   background: rgba(245, 245, 245, 0);
   color: #102938;
   text-align: center;
@@ -189,7 +187,6 @@ textarea {
   @media (max-width: c.$md4) {
     font-size: c.$fs-base;
   }
- 
 }
 .button_mtp {
   margin-top: 20px;
@@ -213,7 +210,7 @@ textarea {
   color: #102938;
   text-align: left;
   padding: 28px 33px 1px;
-  border: 1px solid #d48a00;
+  border: 1px solid #ea5b0c;
   border-radius: 6px;
   box-sizing: border-box;
   @media (max-width: c.$md4) {

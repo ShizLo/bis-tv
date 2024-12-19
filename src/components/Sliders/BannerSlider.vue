@@ -76,7 +76,7 @@ export default {
           <img class="swiper__img" src="../../assets/images/swiper-slide-6.webp" alt="Септик под ключ" />
           <div class="swiper__content">
             <div class="content__price">
-              <span>~ 120 000 руб.</span>
+              <span>от 120 000 руб.</span>
             </div>
             <div class="content__title">Септик под ключ</div>
           </div>
@@ -155,6 +155,7 @@ export default {
   border-radius: 32px;
   padding: 3px 10px;
   color: #102938;
+  border: 0.5px solid #ea5b0c;
 }
 .content__title {
   z-index: 10;
@@ -179,7 +180,7 @@ export default {
   width: 30px;
   border-radius: 8px;
   height: 4px;
-  background-color: #fff;
+  background-color: #ea5b0c;
 }
 .swiper .swiper-pagination-bullet-active {
   position: relative;
@@ -188,7 +189,7 @@ export default {
   height: 4px;
   /* opacity: 0.2; */
   z-index: 11;
-  /* background-color: #fff; */
+  // background-color: #ea5b0c;
 }
 .swiper .swiper-pagination-bullet-active::after {
   content: "";
@@ -200,9 +201,10 @@ export default {
   flex-direction: column;
   /* width: 100%; */
   height: 100%;
-  width: 0;
+  // width: 0;
   opacity: 1;
-  /* background-color: red; */
+
+  // #ea5b0c
 
   transition: background-color 0.4s linear;
 
@@ -211,7 +213,7 @@ export default {
 
 .swiper .swiper-pagination-bullet-active::after {
   /* Включает анимацию булитов */
-  /* width: 100%;  */
+  width: 60px;
   background-color: red;
   transition: background-color 4s linear;
   transition-property: width, background-color;

@@ -25,7 +25,6 @@ export default {
     </div>
     <div class="_container">
       <swiper
-        :scrollbar="true"
         :spaceBetween="10"
         :modules="modules"
         :breakpoints="{

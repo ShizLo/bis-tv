@@ -3,12 +3,20 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 import NavigationCatalog from "./components/NavigationCatalog.vue";
 </script>
 <template>
-  <div class="py-2 _container" @click="catalogDisable()">
-    <div class="header">
+  <section class="header">
+    <div class="header__container py-2 _container" @click="catalogDisable()">
       <div class="header__block">
         <a class="header__logo logo" href="/">
-          <img class="logo__img" loading="lazy" width="" height="" src="./assets/images/bis-logo3.png" alt="" />
+          <img
+            class="logo__img"
+            loading="lazy"
+            width=""
+            height=""
+            src="../src/assets/icons/logo-v6.svg"
+            alt="Благоустройство и инженерные сети"
+          />
         </a>
+        <div></div>
         <div @click="burgerMenu()" class="burger__item">
           <div class="burger-md">
             <span></span>
@@ -26,7 +34,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
               </div>
 
               <a class="menu__logo logo" href="">
-                <img class="logo__img" loading="lazy" width="" height="" src="./assets/images/bis-logo3.png" alt="" />
+                <img class="logo__img" loading="lazy" width="" height="" src="../src/assets/icons/logo-v6.svg" alt="" />
               </a>
             </div>
             <div class="menu-mobile__body">
@@ -247,14 +255,14 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
             </a>
           </li>
           <!-- <li class="list__item"></li> -->
-          <li class="list__item">
+          <li class="list__item item-phone">
             <a class="list__item link__phone" href="tel:+7 911 277-56-07"> +7 911 277-56-07</a>
             <a class="list__item link__phone-mobile" href="tel:+7 981 937-13-76"> </a>
           </li>
         </ul>
       </div>
     </div>
-  </div>
+  </section>
   <router-view />
   <Footer />
 </template>
@@ -266,14 +274,25 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
 //   height: 300px;
 // }
 .header {
-  position: relative;
-  width: 100%;
-  min-height: 100px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
+  margin-bottom: 2px;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    background-color: #ea5b0c;
+  }
+  &__container {
+    position: relative;
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
   &__logo {
     display: flex;
     margin: 0 auto;
@@ -300,10 +319,10 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     align-items: center;
   }
   &__block-links {
-    @media (max-width: c.$md4) {
-      margin-right: 4px;
-      display: none;
-    }
+    // @media (max-width: c.$md4) {
+    //   margin-right: 4px;
+    //   display: none;
+    // }
   }
   &__nav {
     @media (max-width: c.$md2) {
@@ -467,7 +486,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     font-size: 18px;
   }
   &-button {
-    border-color: #d48a00;
+    border-color: #ea5b0c;
     margin-left: 15px;
   }
 }
@@ -539,6 +558,17 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: c.$md4) {
+    display: none;
+  }
+  &.item-phone {
+    @media (max-width: c.$md4) {
+      display: block;
+      position: absolute;
+      right: 4%;
+      top: 36%;
+    }
+  }
 }
 .link__phone {
   /* font-family: "Roboto Flex"; */
@@ -555,10 +585,10 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
       display: flex;
     }
     &:before {
-      width: 20px;
-      height: 20px;
+      width: 25px;
+      height: 25px;
       content: "";
-      background-image: url(../src/assets/icons/header-new-phone.svg);
+      background-image: url(../src/assets/icons/header-phone.svg);
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -696,7 +726,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: #d48a00;
+    background-color: #ea5b0c;
     &:first-child {
       top: 0px;
     }
@@ -721,8 +751,8 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
 }
 .burger-md {
   display: none;
-  left: 10px;
-  top: calc(42%);
+  left: 17px;
+  top: calc(40%);
   // z-index: 11;
   @media (max-width: c.$md2) {
     display: block;
@@ -780,13 +810,12 @@ export default {
       }
     },
     catalogDisable() {
-        let x = document.querySelectorAll('.catalog')
-        console.log(x)
-        addEventListener.onClick
-        // this.catalogIsVisible = 0;
-        // console.log(this.catalogIsVisible)
-      
-    }
+      let x = document.querySelectorAll(".catalog");
+      console.log(x);
+      addEventListener.onClick;
+      // this.catalogIsVisible = 0;
+      // console.log(this.catalogIsVisible)
+    },
   },
   mounted() {
     this.$nextTick(function () {});

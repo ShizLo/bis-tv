@@ -73,10 +73,10 @@ export default {
       console.log(element);
     },
     hoverMobile() {
-      document.querySelectorAll('.banner__button').forEach(element => {
-      element.addEventListener('touchstart', () => element.classList.add('on-hover'));
-      element.addEventListener('touchend', () => element.classList.remove('on-hover'));
-      })
+      document.querySelectorAll(".banner__button").forEach((element) => {
+        element.addEventListener("touchstart", () => element.classList.add("on-hover"));
+        element.addEventListener("touchend", () => element.classList.remove("on-hover"));
+      });
     },
   },
 };
@@ -183,7 +183,7 @@ export default {
     align-items: center;
     gap: 8px;
     border-radius: 4px;
-    border: 1px solid #d48a00;
+    border: 1px solid #ea5b0c;
     background: rgba(245, 245, 245, 0);
     color: #102938;
     text-align: center;
