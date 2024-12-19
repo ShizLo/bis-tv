@@ -3,6 +3,7 @@ export default {
   props: {},
   computed: {},
   data() {
+    
     return {
       name: "",
       email: "",
@@ -26,7 +27,12 @@ export default {
       this.name = "";
       this.email = "";
       this.questiion = "";
+      document.querySelectorAll('.form__button').forEach(element => {
+      element.addEventListener('touchstart', () => element.classList.add('on-hover'));
+      element.addEventListener('touchend', () => element.classList.remove('on-hover'));
+})
     },
+    
   },
 };
 </script>
@@ -66,6 +72,7 @@ export default {
 // .global-form:target {
 //   background-color: #102938;
 // }
+
 .flex-input {
   display: flex;
   flex-wrap: wrap;
@@ -182,16 +189,26 @@ textarea {
   @media (max-width: c.$md4) {
     font-size: c.$fs-base;
   }
+ 
 }
 .button_mtp {
   margin-top: 20px;
   margin-bottom: 2px;
 }
-.form__button:hover {
+@media (min-width: c.$md1) {
+  .form__button:hover {
+    background: #102938;
+    color: #f5f5f5;
+    border-color: #102938;
+  }
+}
+.on-hover:hover {
   background: #102938;
+  transition: 10ms;
   color: #f5f5f5;
   border-color: #102938;
 }
+// }
 .form-bl.brd {
   color: #102938;
   text-align: left;

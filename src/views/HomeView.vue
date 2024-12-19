@@ -14,7 +14,7 @@
               duration: 2000,
             }"
           >
-            <button class="banner__button">
+            <button class="banner__button" @click="hoverMobile()">
               Обсудить задачу
               <svg class="banner__button-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="Frame 1864">
@@ -72,18 +72,43 @@ export default {
       let element = document.querySelector("#section");
       console.log(element);
     },
+    hoverMobile() {
+      document.querySelectorAll('.banner__button').forEach(element => {
+      element.addEventListener('touchstart', () => element.classList.add('on-hover'));
+      element.addEventListener('touchend', () => element.classList.remove('on-hover'));
+      })
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
 @use "../assets/styles/app.scss" as c;
 
-.banner__button:hover {
-  background: #c4b9a6;
+@media (min-width: c.$md1) {
+  .banner__button:hover {
+    background: #102938;
+    color: #f5f5f5;
+    border-color: #102938;
+  }
+}
+.on-hover:hover {
+  background: #102938;
+  transition: 10ms;
   color: #f5f5f5;
-  border-color: #d48a00;
+  border-color: #102938;
 }
 
+// .banner__button:hover {
+//   background: #c4b9a6;
+//   color: #f5f5f5;
+//   border-color: #d48a00;
+//   @media (max-width: c.$md1) {
+//   &:hover {
+//     background: c.$color-background;
+//     color: c.$color-text;
+//   }
+// }
+// }
 // .banner__button > svg:hover {
 //   fill: #f5f5f5;
 // }

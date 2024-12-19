@@ -3,7 +3,7 @@ import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 import NavigationCatalog from "./components/NavigationCatalog.vue";
 </script>
 <template>
-  <div class="py-2 _container">
+  <div class="py-2 _container" @click="catalogDisable()">
     <div class="header">
       <div class="header__block">
         <a class="header__logo logo" href="/">
@@ -779,6 +779,14 @@ export default {
         munuBody.classList.toggle("_active");
       }
     },
+    catalogDisable() {
+        let x = document.querySelectorAll('.catalog')
+        console.log(x)
+        addEventListener.onClick
+        // this.catalogIsVisible = 0;
+        // console.log(this.catalogIsVisible)
+      
+    }
   },
   mounted() {
     this.$nextTick(function () {});
