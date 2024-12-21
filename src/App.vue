@@ -1,10 +1,104 @@
-<script setup>
+<!-- <script setup>
 import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 import NavigationCatalog from "./components/NavigationCatalog.vue";
+</script> -->
+
+<script>
+import NavigationCatalog from "./components/NavigationCatalog.vue";
+import Footer from "./components/Footer.vue";
+import { useRouter, useRoute } from "vue-router";
+import { ref, watch } from "vue";
+import { reactive, computed } from "vue";
+
+export default {
+  components: {
+    NavigationCatalog,
+    Footer,
+  },
+  name: "App",
+  setup() {
+    const route = useRoute();
+    const path = ref(computed(() => route.path));
+
+    const catalogIsVisible = reactive({
+      value: false,
+    });
+    watch(path, (newX) => {
+      if (path != newX) {
+        // console.log(pathchange);
+        if (catalogIsVisible.value === true) {
+          catalogVisible();
+        }
+      }
+    });
+    function catalogVisible() {
+      if (catalogIsVisible.value === true) {
+        catalogIsVisible.value = false;
+      } else {
+        catalogIsVisible.value = true;
+        console.log(catalogIsVisible.value);
+      }
+      const burger = document.querySelector(".burger");
+      if (burger) {
+        burger.classList.toggle("_active");
+      }
+    }
+    return { path, catalogIsVisible, catalogVisible };
+  },
+
+  // data: () => ({
+  //   // activeMenu: 0, // Активация меню "О компании"
+  //   // catalogIsVisible: 0,
+  // }),
+
+  methods: {
+    //   // Активация меню "О компании"
+    //   submenuVisible() {
+    //     if (this.activeMenu === 1) {
+    //       this.activeMenu = 0;
+    //     } else {
+    //       this.activeMenu = 1;
+    //     }
+    //   },
+
+    // catalogVisible() {
+    //   console.log(this.pathchange);
+    //   if (this.catalogIsVisible === 1) {
+    //     this.catalogIsVisible = 0;
+    //   } else {
+    //     this.catalogIsVisible = 1;
+    //   }
+    //   const burger = document.querySelector(".burger");
+    //   if (burger) {
+    //     burger.classList.toggle("_active");
+    //   }
+    // },
+
+    burgerMenu() {
+      const burger = document.querySelector(".burger-md");
+      if (burger) {
+        const munuBody = document.querySelector(".menu-mobile");
+        burger.classList.toggle("_active");
+        munuBody.classList.toggle("_active");
+      }
+    },
+    //   catalogDisable() {
+    //     let x = document.querySelectorAll(".catalog");
+    //     // console.log(x);
+    //     addEventListener.onClick;
+    //     // this.catalogIsVisible = 0;
+    //     // console.log(this.catalogIsVisible)
+    //   },
+  },
+  mounted() {
+    this.$nextTick(function () {});
+  },
+};
 </script>
+
 <template>
   <section class="header">
-    <div class="header__container py-2 _container" @click="catalogDisable()">
+    <div class="header__container _container">
       <div class="header__block">
         <a class="header__logo logo" href="/">
           <img
@@ -120,15 +214,16 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
         <nav class="header__nav nav">
           <ul role="list" class="nav__list">
             <li class="nav__item">
-              <button class="nav__button button" @click="catalogVisible()">
+              <button class="nav__button button" @click="catalogVisible">
                 <div class="nav__burger burger">
                   <span></span>
                   <span></span>
                   <span></span>
                 </div>
                 Каталог
+                <!-- catalogIsVisible == 1 ? 'nav__window' : '' -->
               </button>
-              <div class="catalog" :class="catalogIsVisible === 1 ? 'nav__window' : ''">
+              <div class="catalog" :class="catalogIsVisible.value == true ? 'nav__window' : ''">
                 <NavigationCatalog />
               </div>
             </li>
@@ -283,14 +378,19 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
     background-color: #ea5b0c;
   }
   &__container {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     position: relative;
     width: 100%;
-    min-height: 100px;
+    min-height: 116px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     gap: 8px;
+    @media (max-width: c.$md4) {
+      min-height: 100px;
+    }
   }
 
   &__logo {
@@ -315,7 +415,7 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   &__block {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
     align-items: center;
   }
   &__block-links {
@@ -763,62 +863,3 @@ import NavigationCatalog from "./components/NavigationCatalog.vue";
   left: 89%;
 }
 </style>
-
-<script>
-import NavigationCatalog from "./components/NavigationCatalog.vue";
-import Footer from "./components/Footer.vue";
-
-export default {
-  components: {
-    NavigationCatalog,
-    Footer,
-  },
-  name: "App",
-  setup() {
-    return {};
-  },
-  data: () => ({
-    activeMenu: 0, // Активация меню "О компании"
-    catalogIsVisible: 0,
-  }),
-  methods: {
-    // Активация меню "О компании"
-    submenuVisible() {
-      if (this.activeMenu === 1) {
-        this.activeMenu = 0;
-      } else {
-        this.activeMenu = 1;
-      }
-    },
-    catalogVisible() {
-      if (this.catalogIsVisible === 1) {
-        this.catalogIsVisible = 0;
-      } else {
-        this.catalogIsVisible = 1;
-      }
-      const burger = document.querySelector(".burger");
-      if (burger) {
-        burger.classList.toggle("_active");
-      }
-    },
-    burgerMenu() {
-      const burger = document.querySelector(".burger-md");
-      if (burger) {
-        const munuBody = document.querySelector(".menu-mobile");
-        burger.classList.toggle("_active");
-        munuBody.classList.toggle("_active");
-      }
-    },
-    catalogDisable() {
-      let x = document.querySelectorAll(".catalog");
-      console.log(x);
-      addEventListener.onClick;
-      // this.catalogIsVisible = 0;
-      // console.log(this.catalogIsVisible)
-    },
-  },
-  mounted() {
-    this.$nextTick(function () {});
-  },
-};
-</script>

@@ -1,18 +1,31 @@
 <script>
+import { computed } from "vue";
 import Form from "../components/Form/Form.vue";
+import { useRouter, useRoute } from "vue-router";
+import { ref, watch } from "vue";
 
 export default {
   components: {
     Form,
   },
   setup() {
-    return {};
+    const route = useRoute();
+    const path = ref(computed(() => route.path));
+    watch(path, (newX) => {
+      if (path != newX) {
+        // console.log("Преход");
+      }
+    });
+    return { path };
   },
+
   data: () => ({
     formIsVisible: 0,
+    // routepath: this.path,
   }),
   methods: {
     formVisible() {
+      console.log(this.path);
       if (this.formIsVisible === 1) {
         this.formIsVisible = 0;
       } else {
