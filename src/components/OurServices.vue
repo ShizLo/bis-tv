@@ -8,6 +8,8 @@ import service3 from "../assets/images/services-3.webp";
 import service4 from "../assets/images/services-4.webp";
 import service5 from "../assets/images/services-5+.webp";
 import service6 from "../assets/images/services-6.webp";
+import service7 from "../assets/images/services-7.webp";
+import service8 from "../assets/images/services-8.webp";
 
 export default {
   components: {
@@ -21,6 +23,8 @@ export default {
     let imgService4 = ref(service4);
     let imgService5 = ref(service5);
     let imgService6 = ref(service6);
+    let imgService7 = ref(service7);
+    let imgService8 = ref(service8);
 
     return {
       imgService1,
@@ -29,6 +33,8 @@ export default {
       imgService4,
       imgService5,
       imgService6,
+      imgService7,
+      imgService8,
     };
   },
 };
@@ -51,16 +57,16 @@ export default {
           <div class="services__row">
             <ServiceCard
               class="services__row-item-sm"
-              title="Водоподготовка"
+              title="Водоснабжение"
               price="От 60 000"
               v-bind:path="imgService2"
               hoverColors="rgb(243, 253, 186)"
             />
             <ServiceCard
               class="services__row-item-sm"
-              title="Колодец"
+              title="Ливневка"
               price="От 50 000"
-              v-bind:path="imgService4"
+              v-bind:path="imgService7"
               hoverColors="rgb(190, 182, 238)"
             />
           </div>
@@ -76,16 +82,16 @@ export default {
             />
             <ServiceCard
               class="services__row-item-sm"
-              title="Скважины"
+              title="Электромонтаж"
               price="От 85 000"
-              v-bind:path="imgService3"
+              v-bind:path="imgService8"
               hoverColors="rgb(245, 226, 207)"
             />
           </div>
           <div class="services__row">
             <ServiceCard
               class="services__row-item-big"
-              title="Заборы"
+              title="Установка заборов"
               price="От 90 000"
               v-bind:path="imgService6"
               hoverColors="rgb(217, 221, 133)"
