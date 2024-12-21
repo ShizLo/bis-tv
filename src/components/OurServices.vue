@@ -9,7 +9,7 @@ import service4 from "../assets/images/services-4.webp";
 import service5 from "../assets/images/services-5+.webp";
 import service6 from "../assets/images/services-6.webp";
 import service7 from "../assets/images/services-7.webp";
-import service8 from "../assets/images/services-8.webp";
+import service8 from "../assets/images/services-8++.webp";
 
 export default {
   components: {
@@ -51,7 +51,7 @@ export default {
               title="Септик под ключ"
               price="От 180 000"
               v-bind:path="imgService1"
-              hoverColors="rgb(214, 221, 235)"
+              hoverColors="rgb(170, 214, 199)"
             />
           </div>
           <div class="services__row">
@@ -60,14 +60,14 @@ export default {
               title="Водоснабжение"
               price="От 60 000"
               v-bind:path="imgService2"
-              hoverColors="rgb(243, 253, 186)"
+              hoverColors="rgb(204, 209, 255)"
             />
             <ServiceCard
               class="services__row-item-sm"
               title="Ливневка"
               price="От 50 000"
               v-bind:path="imgService7"
-              hoverColors="rgb(190, 182, 238)"
+              hoverColors="rgb(204, 209, 255)"
             />
           </div>
         </div>
@@ -78,14 +78,14 @@ export default {
               title="Фундамент"
               price="От 100 000"
               v-bind:path="imgService5"
-              hoverColors="rgb(170, 214, 199)"
+              hoverColors="rgb(255, 229, 204)"
             />
             <ServiceCard
               class="services__row-item-sm"
               title="Электромонтаж"
-              price="От 85 000"
+              price="От 20 000"
               v-bind:path="imgService8"
-              hoverColors="rgb(245, 226, 207)"
+              hoverColors="rgb(243, 253, 180)"
             />
           </div>
           <div class="services__row">
@@ -94,7 +94,7 @@ export default {
               title="Установка заборов"
               price="От 90 000"
               v-bind:path="imgService6"
-              hoverColors="rgb(217, 221, 133)"
+              hoverColors="rgb(255, 229, 204)"
             />
           </div>
         </div>

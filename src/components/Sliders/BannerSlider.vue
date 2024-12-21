@@ -27,7 +27,7 @@ export default {
           <div class="swiper__content">
             <div class="content__price">
               <!-- <span>от 900 руб./м²</span> -->
-              <span>от 150 000 руб</span>
+              <span>от 90 000 руб</span>
             </div>
             <div class="content__title">Установка забора</div>
           </div>
@@ -76,7 +76,7 @@ export default {
           <img class="swiper__img" src="../../assets/images/swiper-slide-6.webp" alt="Септик под ключ" />
           <div class="swiper__content">
             <div class="content__price">
-              <span>от 120 000 руб.</span>
+              <span>от 180 000 руб.</span>
             </div>
             <div class="content__title">Септик под ключ</div>
           </div>
