@@ -54,8 +54,8 @@ export default {
       const elem = document.getElementById("catalog");
       const elem1 = document.getElementById("nav__button");
       if (!elem.contains(e.target) && !elem1.contains(e.target)) {
-        if (this.catalogIsVisible === 1) {
-          this.catalogIsVisible = 0;
+        if (this.catalog.active == true) {
+          this.catalog.active = false;
           const burger = document.querySelector(".burger");
           if (burger) {
             burger.classList.toggle("_active");
