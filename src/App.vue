@@ -49,6 +49,21 @@ export default {
   mounted() {
     this.$nextTick(function () {});
   },
+  created: function () {
+    document.addEventListener("click", (e) => {
+      const elem = document.getElementById("catalog");
+      const elem1 = document.getElementById("nav__button");
+      if (!elem.contains(e.target) && !elem1.contains(e.target)) {
+        if (this.catalogIsVisible === 1) {
+          this.catalogIsVisible = 0;
+          const burger = document.querySelector(".burger");
+          if (burger) {
+            burger.classList.toggle("_active");
+          }
+        }
+      }
+    });
+  },
 };
 </script>
 
@@ -166,7 +181,7 @@ export default {
         <nav class="header__nav nav">
           <ul role="list" class="nav__list">
             <li class="nav__item">
-              <button class="nav__button button" @click="clickMenu">
+              <button id="nav__button" class="nav__button button" @click="clickMenu">
                 <div class="nav__burger burger">
                   <span></span>
                   <span></span>
@@ -174,7 +189,7 @@ export default {
                 </div>
                 Каталог
               </button>
-              <div class="catalog" :class="catalog.active == true ? 'nav__window' : ''">
+              <div id="catalog" class="catalog" :class="catalog.active == true ? 'nav__window' : ''">
                 <NavigationCatalog />
               </div>
             </li>
