@@ -1,8 +1,3 @@
-<!-- <script setup>
-import { ChevronDownIcon } from "@heroicons/vue/20/solid";
-import NavigationCatalog from "./components/NavigationCatalog.vue";
-</script> -->
-
 <script>
 import NavigationCatalog from "./components/NavigationCatalog.vue";
 import Footer from "./components/Footer.vue";
@@ -18,77 +13,38 @@ export default {
   name: "App",
   setup() {
     const route = useRoute();
-    const path = ref(computed(() => route.path));
+    const path = ref(computed(() => route.path)); // Отслеживает путь
 
-    const catalogIsVisible = reactive({
-      value: false,
+    const catalog = reactive({
+      active: false,
     });
+    // При изменении пути вызывает функцию clickMenu()
     watch(path, (newX) => {
       if (path != newX) {
-        // console.log(pathchange);
-        if (catalogIsVisible.value === true) {
-          catalogVisible();
+        if (catalog.active === true) {
+          clickMenu();
         }
       }
     });
-    function catalogVisible() {
-      if (catalogIsVisible.value === true) {
-        catalogIsVisible.value = false;
+    function clickMenu() {
+      // Отображает каталог
+      if (catalog.active === true) {
+        catalog.active = false;
       } else {
-        catalogIsVisible.value = true;
-        console.log(catalogIsVisible.value);
+        catalog.active = true;
       }
-      const burger = document.querySelector(".burger");
-      if (burger) {
-        burger.classList.toggle("_active");
+      const burger1 = document.querySelector(".burger");
+      if (burger1) {
+        burger1.classList.toggle("_active");
       }
-    }
-    return { path, catalogIsVisible, catalogVisible };
-  },
-
-  // data: () => ({
-  //   // activeMenu: 0, // Активация меню "О компании"
-  //   // catalogIsVisible: 0,
-  // }),
-
-  methods: {
-    //   // Активация меню "О компании"
-    //   submenuVisible() {
-    //     if (this.activeMenu === 1) {
-    //       this.activeMenu = 0;
-    //     } else {
-    //       this.activeMenu = 1;
-    //     }
-    //   },
-
-    // catalogVisible() {
-    //   console.log(this.pathchange);
-    //   if (this.catalogIsVisible === 1) {
-    //     this.catalogIsVisible = 0;
-    //   } else {
-    //     this.catalogIsVisible = 1;
-    //   }
-    //   const burger = document.querySelector(".burger");
-    //   if (burger) {
-    //     burger.classList.toggle("_active");
-    //   }
-    // },
-
-    burgerMenu() {
       const burger = document.querySelector(".burger-md");
       if (burger) {
         const munuBody = document.querySelector(".menu-mobile");
         burger.classList.toggle("_active");
         munuBody.classList.toggle("_active");
       }
-    },
-    //   catalogDisable() {
-    //     let x = document.querySelectorAll(".catalog");
-    //     // console.log(x);
-    //     addEventListener.onClick;
-    //     // this.catalogIsVisible = 0;
-    //     // console.log(this.catalogIsVisible)
-    //   },
+    }
+    return { path, catalog, clickMenu };
   },
   mounted() {
     this.$nextTick(function () {});
@@ -111,7 +67,7 @@ export default {
           />
         </a>
         <div></div>
-        <div @click="burgerMenu()" class="burger__item">
+        <div @click="clickMenu" class="burger__item">
           <div class="burger-md">
             <span></span>
             <span></span>
@@ -121,7 +77,7 @@ export default {
         <nav class="menu-mobile">
           <div class="menu__content">
             <div class="menu__header">
-              <div @click="burgerMenu()" class="burger-md burger-md-active _active">
+              <div @click="clickMenu" class="burger-md burger-md-active _active">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -155,10 +111,6 @@ export default {
                   <a class="menu-mobile__item_body-link">Уборка участка</a>
                 </div>
               </div>
-
-              <!-- <div class="mobible-phone__item">
-                <a class="mobible-phone__item-link" href="tel:+7 981 937-13-76"> +7 981 999-99-96 </a>
-              </div> -->
               <div class="callback-mobile">
                 <div class="menu-mobile__item-title">Запишитесь на консультацию</div>
                 <div class="callback-mobile__form">
@@ -214,109 +166,18 @@ export default {
         <nav class="header__nav nav">
           <ul role="list" class="nav__list">
             <li class="nav__item">
-              <button class="nav__button button" @click="catalogVisible">
+              <button class="nav__button button" @click="clickMenu">
                 <div class="nav__burger burger">
                   <span></span>
                   <span></span>
                   <span></span>
                 </div>
                 Каталог
-                <!-- catalogIsVisible == 1 ? 'nav__window' : '' -->
               </button>
-              <div class="catalog" :class="catalogIsVisible.value == true ? 'nav__window' : ''">
+              <div class="catalog" :class="catalog.active == true ? 'nav__window' : ''">
                 <NavigationCatalog />
               </div>
             </li>
-            <!-- <li class="nav__item nav__arrow">
-              <div @click="submenuVisible()" class="flex items-center">
-                <span class="nav__link">О комании</span>
-                <ChevronDownIcon class="size-5" aria-hidden="true" />
-              </div>
-
-              <div :class="activeMenu === 1 ? 'nav__window' : ''" class="sub-menu">
-                <div class="sub-menu__wrap">
-                  <ul class="sub-menu__list">
-                    <li class="sub-menu__item">
-                      <a class="sub-menu__link" href="">О нас</a>
-                    </li>
-                    <li class="sub-menu__item">
-                      <a class="sub-menu__link" href="">Отзывы</a>
-                    </li>
-                    <li class="sub-menu__item">
-                      <a class="sub-menu__link" href="">Наши видео</a>
-                    </li>
-                    <li class="sub-menu__item">
-                      <a class="sub-menu__link" href="">Доставка</a>
-                    </li>
-                    <li class="sub-menu__item">
-                      <a class="sub-menu__link" href="">Оплата</a>
-                    </li>
-                    <li class="sub-menu__item">
-                      <a class="sub-menu__link" href="">Гарантии</a>
-                    </li>
-                    <li class="sub-menu__item">
-                      <a class="sub-menu__link" href="">Полезное</a>
-                    </li>
-                    <li class="sub-menu__item">
-                      <a class="sub-menu__link" href="">Вакансии</a>
-                    </li>
-                  </ul>
-                  <div class="sub-menu__blog blog">
-                    <div class="blog__wrap blog__wrap_positioned">
-                      <span class="blog__title">БИС: про жизнь за городом</span>
-                      <p class="blog__description">Наш блог c полезным контентом для тех, кто живет за городом</p>
-                      <div class="blog__links">
-                        <a class="blog__link" href="" target="_blank">
-                          <img
-                            loading="lazy"
-                            width="34"
-                            height="34"
-                            src="../src/assets/icons/blog-telegram.svg"
-                            alt="Иконка Telegram"
-                            class="blog__icon"
-                          />
-                        </a>
-                        <a class="blog__link" href="" target="_blank">
-                          <img
-                            loading="lazy"
-                            width="34"
-                            height="34"
-                            src="../src/assets/icons/blog-vk.svg"
-                            alt="Иконка Вконтакте"
-                            class="blog__icon"
-                          />
-                        </a>
-                        <a class="blog__link" href="" target="_blank">
-                          <img
-                            loading="lazy"
-                            width="34"
-                            height="34"
-                            src="../src/assets/icons/blog-dzen.svg"
-                            alt="Иконка Дзен"
-                            class="blog__icon"
-                          />
-                        </a>
-                      </div>
-                    </div>
-                    <div class="blog__wrap blog__wrap_positioned">
-                      <span class="blog__title">Мы на YouTube</span>
-                      <p class="blog__description">Канал БИС про жизнь за городом</p>
-                      <a target="_blank" href="" class="youtube-btn">
-                        <svg width="24" height="17" viewBox="0 0 24 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M23.5002 2.82667C23.2236 1.81191 22.4116 1.01446 21.3783 0.742827C19.5054 0.25 12 0.25 12 0.25C12 0.25 4.49457 0.25 2.62364 0.742827C1.59039 1.01446 0.7784 1.81191 0.501811 2.82667C0 4.6641 0 8.5 0 8.5C0 8.5 0 12.3359 0.501811 14.1733C0.7784 15.1881 1.59039 15.9855 2.62364 16.2572C4.49457 16.75 12 16.75 12 16.75C12 16.75 19.5054 16.75 21.3764 16.2572C22.4096 15.9855 23.2216 15.1881 23.4982 14.1733C24 12.3359 24 8.5 24 8.5C24 8.5 24 4.6641 23.4982 2.82667H23.5002Z"
-                            fill="#FF0000"
-                          ></path>
-                          <path d="M9.60059 12.0352V4.96484L15.8377 8.5L9.60059 12.0352Z" fill="white"></path>
-                        </svg>
-                        <span>Подписаться</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li> -->
-
             <li class="nav__item">
               <a class="nav__link-contacts" href="">Контакты</a>
             </li>
@@ -814,9 +675,9 @@ export default {
   // top: 18px;
   // right: 10px;
   left: 10px;
-  top: calc(36%);
+  top: calc(33%);
   width: 30px;
-  height: 18px;
+  height: 20px;
   cursor: pointer;
   z-index: 5;
   span {

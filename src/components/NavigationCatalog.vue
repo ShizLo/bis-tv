@@ -9,23 +9,14 @@ export default {
     Form,
   },
   setup() {
-    const route = useRoute();
-    const path = ref(computed(() => route.path));
-    watch(path, (newX) => {
-      if (path != newX) {
-        // console.log("Преход");
-      }
-    });
-    return { path };
+    return {};
   },
 
   data: () => ({
     formIsVisible: 0,
-    // routepath: this.path,
   }),
   methods: {
     formVisible() {
-      console.log(this.path);
       if (this.formIsVisible === 1) {
         this.formIsVisible = 0;
       } else {

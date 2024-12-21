@@ -37,7 +37,7 @@ export default {
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M1.20868 14.5405L14.2902 1.45898M14.2902 14.5405L1.20875 1.45899"
-            stroke="#102938"
+            stroke="#102937"
             stroke-width="2"
             stroke-linecap="round"
           ></path>
