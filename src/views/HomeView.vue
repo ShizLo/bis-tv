@@ -1,40 +1,39 @@
 <template>
-  <div class="banner-wrapper">
-    <div class="_container">
+  <section class="banner">
+    <div class="banner__container _container">
       <!-- <div class="columns-2 py-8 flex"> -->
-      <div class="banner">
-        <div class="banner__block-text text-left">
-          <h1 class="banner__text">Инженерные коммуникации и благоустройство участка</h1>
-          <a
-            href="#GlobalForm"
-            @click="ссс()"
-            v-scroll-to="{
-              el: '#GlobalForm',
-              easing: [0.6, 0.8, 0.3, 1.9],
-              duration: 2000,
-            }"
-          >
-            <button class="banner__button" @click="hoverMobile()">
-              Обсудить задачу
-              <svg class="banner__button-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="Frame 1864">
-                  <path
-                    id="Vector"
-                    d="M1.75 7.29163H12.25M12.25 7.29163L7 12.5416M12.25 7.29163L7 2.04163"
-                    stroke="#102938"
-                    stroke-width="1.4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></path>
-                </g>
-              </svg>
-            </button>
-          </a>
-        </div>
-        <BannerSlider />
+
+      <div class="banner__block-text text-left">
+        <h1 class="banner__text">Инженерные коммуникации и благоустройство участка</h1>
+        <a
+          href="#GlobalForm"
+          @click="ссс()"
+          v-scroll-to="{
+            el: '#GlobalForm',
+            easing: [0.6, 0.8, 0.3, 1.9],
+            duration: 2000,
+          }"
+        >
+          <button class="banner__button" @click="hoverMobile()">
+            Обсудить задачу
+            <svg class="banner__button-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="Frame 1864">
+                <path
+                  id="Vector"
+                  d="M1.75 7.29163H12.25M12.25 7.29163L7 12.5416M12.25 7.29163L7 2.04163"
+                  stroke="#102938"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </a>
       </div>
+      <BannerSlider />
     </div>
-  </div>
+  </section>
   <OurServices />
   <WorksSlider />
   <Partners />
@@ -133,20 +132,34 @@ export default {
   padding: 0 30px 30px;
 }
 
-.banner-wrapper {
+.banner {
   background-color: c.$color-background;
   @media (max-width: c.$md4) {
     background-color: #fff;
   }
 }
 .banner {
-  display: flex;
-  padding: 20px 0px 20px 0px;
-
-  @media (max-width: c.$md2) {
-    flex-wrap: wrap-reverse;
-    padding: 0px 0px 0px 0px;
+  @media (min-width: c.$md2) {
+    &::after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      background-color: #ea5b0c;
+    }
   }
+
+  &__container {
+    display: flex;
+    // padding: 20px 0px 20px 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    @media (max-width: c.$md2) {
+      flex-wrap: wrap-reverse;
+      padding: 0px 0px 0px 0px;
+    }
+  }
+
   &__block-text {
     display: flex;
     width: 100%;

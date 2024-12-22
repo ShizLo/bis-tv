@@ -21,11 +21,11 @@ export default {
 <template>
   <section class="works-slider">
     <div class="_container _container-settings">
-      <h2 class="content-bar__h2">Наши работы по благоустройству</h2>
+      <h2 class="content-bar__h2">Наши работы</h2>
     </div>
     <div class="_container">
       <swiper
-        :spaceBetween="10"
+        :spaceBetween="5"
         :modules="modules"
         :breakpoints="{
           320: {
@@ -109,12 +109,12 @@ export default {
             <p class="content_title">Расчистка участка</p>
           </div>
         </swiper-slide>
-        <swiper-slide>
+        <!-- <swiper-slide>
           <img src="../assets/images/work-swiper-4.jpg" alt="Электричество" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Электричество</p>
           </div>
-        </swiper-slide>
+        </swiper-slide> -->
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       </swiper>
@@ -138,7 +138,7 @@ export default {
   color: #102938;
   line-height: 1.2;
   @media (max-width: c.$md4) {
-    font-size: 1.3rem;
+    font-size: c.$fs-xxl;
   }
 }
 .swiper {
@@ -178,17 +178,28 @@ export default {
   width: 100%;
   flex-direction: column;
   justify-content: flex-end;
+  &::before {
+    content: " ";
+    bottom: 0;
+    height: 90px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    position: absolute;
+    width: 100%;
+    left: 0;
+    color: #fff;
+  }
 }
 .content_title {
   font-weight: 400;
-  font-size: 23px;
+  font-size: 20px;
   line-height: normal;
   color: #fff;
-  text-shadow: 3px -3px 8px black;
+  // text-shadow: 3px -3px 8px black;
   text-align: left;
   padding: 15px;
+  z-index: 10;
   @media (max-width: c.$md1) {
-    font-size: 22px;
+    font-size: 20px;
   }
   @media (max-width: c.$md2) {
     font-size: 20px;

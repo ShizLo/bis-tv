@@ -102,8 +102,15 @@ export default {
   height: 360px;
   border-radius: 8px;
   overflow: hidden;
-  @media (max-width: c.$md3) {
+  @media (max-width: c.$md2) {
     border-radius: 0;
+    &::after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      background-color: #ea5b0c;
+    }
   }
   @media (max-width: c.$md4) {
     height: 300px;

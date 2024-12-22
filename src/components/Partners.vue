@@ -5,15 +5,19 @@
       <!-- <div class="columns-3 partners__items"> -->
       <div class="partners__items">
         <div class="partners__item">
+          <a class="partners__link" target="_blank" href="https://holtsovhouse.ru/">
+            <span class="partners__wrapper">
+              <img width="381" height="200" loading="lazy" src="../assets/images/holtsovhouse.webp" alt="" />
+            </span>
+            <div class="partners__cover">
+              <div class="partners__name">HoltsovHouse</div>
+            </div>
+          </a>
+        </div>
+        <div class="partners__item">
           <a class="partners__link" target="_blank" href="https://scouthouse.ru/">
             <span class="partners__wrapper">
-              <img
-                width="381"
-                height="200"
-                loading="lazy"
-                src="../assets/images/ScoutHouse.webp"
-                alt=""
-              />
+              <img width="381" height="200" loading="lazy" src="../assets/images/ScoutHouse.webp" alt="" />
             </span>
             <div class="partners__cover">
               <div class="partners__name">ScoutHouse</div>
@@ -23,32 +27,10 @@
         <div class="partners__item">
           <a class="partners__link" target="_blank" href="https://novodacha.com/">
             <span class="partners__wrapper">
-              <img
-                width="381"
-                height="200"
-                loading="lazy"
-                src="../assets/images/IMG_4429-min.webp"
-                alt=""
-              />
+              <img width="381" height="200" loading="lazy" src="../assets/images/IMG_4429-min.webp" alt="" />
             </span>
             <div class="partners__cover">
               <div class="partners__name">NovoDacha</div>
-            </div>
-          </a>
-        </div>
-        <div class="partners__item">
-          <a class="partners__link" target="_blank" href="https://holtsovhouse.ru/">
-            <span class="partners__wrapper">
-              <img
-                width="381"
-                height="200"
-                loading="lazy"
-                src="../assets/images/holtsovhouse.webp"
-                alt=""
-              />
-            </span>
-            <div class="partners__cover">
-              <div class="partners__name">HoltsovHouse</div>
             </div>
           </a>
         </div>
@@ -71,7 +53,7 @@
     padding-top: 32px;
     padding-bottom: 16px;
     @media (max-width: c.$md4) {
-      font-size: 1.3rem;
+      font-size: c.$fs-xxl;
     }
   }
   &__items {
@@ -90,19 +72,20 @@
   &__item {
     display: flex;
     flex: 1 1 30%;
-    margin: 0px 1% 0px 0px;
+    // margin: 0px 1% 0px 0px;
+
     &:last-child {
       margin: 0px 0px 0px 0px;
     }
     @media (max-width: c.$md1) {
-      flex: 1 1 50%;
+      flex: 1 1 48%;
       margin: 0px 0px 0px 0px;
       &:first-child {
-        padding: 0px 1% 0px 0px;
+        margin: 0px 1% 0px 0px;
       }
       &:last-child {
         max-width: 622px;
-        padding: 1% 0px 0px 0px;
+        margin: 1% 0px 0px 0px;
       }
     }
   }
@@ -110,7 +93,7 @@
     transform: scale(1.02);
     transition: transform 0.5s ease-in-out;
   }
-  
+
   &__link {
     position: relative;
     display: flex;

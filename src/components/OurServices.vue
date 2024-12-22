@@ -116,14 +116,14 @@ export default {
     padding: 3px 10px;
     color: #102938;
     @media (max-width: c.$md2) {
-      font-size: c.$fs-xl;
+      font-size: c.$fs-xxl;
     }
     @media (max-width: c.$md3) {
-      font-size: c.$fs-xl;
+      font-size: c.$fs-xxl;
     }
     @media (max-width: c.$md4) {
       margin-bottom: 10px;
-      font-size: c.$fs-l;
+      font-size: c.$fs-xxl;
     }
     @media (min-width: c.$md4) {
       margin-top: 10px;
