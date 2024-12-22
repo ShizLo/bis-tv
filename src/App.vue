@@ -40,8 +40,10 @@ export default {
       const burger = document.querySelector(".burger-md");
       if (burger) {
         const munuBody = document.querySelector(".menu-mobile");
+        const burgerItem = document.querySelector(".burger__item");
         burger.classList.toggle("_active");
         munuBody.classList.toggle("_active");
+        burgerItem.classList.toggle("_right");
       }
     }
     return { path, catalog, clickMenu };
@@ -81,7 +83,6 @@ export default {
             alt="Благоустройство и инженерные сети"
           />
         </a>
-        <div></div>
         <div @click="clickMenu" class="burger__item">
           <div class="burger-md">
             <span></span>
@@ -92,12 +93,13 @@ export default {
         <nav class="menu-mobile">
           <div class="menu__content">
             <div class="menu__header">
-              <div @click="clickMenu" class="burger-md burger-md-active _active">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-
+              <!-- <div class="burger-close">
+                <div @click="clickMenu" class="burger-md burger-md-active _active">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div> -->
               <a class="menu__logo logo" href="">
                 <img class="logo__img" loading="lazy" width="" height="" src="../src/assets/icons/logo-v6.svg" alt="" />
               </a>
@@ -109,10 +111,17 @@ export default {
                   <span class="menu-mobile__item-title">Наши услуги</span>
                 </div>
                 <div class="menu-mobile__item_body">
+                  <a class="menu-mobile__item_body-link">Проект участка</a>
+                  <a class="menu-mobile__item_body-link">Вынос границ и топографическая съемка</a>
                   <a class="menu-mobile__item_body-link">Септик под ключ</a>
-                  <a class="menu-mobile__item_body-link">Установка заборов</a>
                   <a class="menu-mobile__item_body-link">Водоснабжение</a>
-                  <a class="menu-mobile__item_body-link">Благоустройство участка</a>
+                  <a class="menu-mobile__item_body-link">Система очистки воды</a>
+                  <a class="menu-mobile__item_body-link">Свайный фундамент</a>
+                  <a class="menu-mobile__item_body-link">Установка заборов</a>
+                  <a class="menu-mobile__item_body-link">Ливневка и дренаж</a>
+                  <a class="menu-mobile__item_body-link">Благоустройство</a>
+                  <a class="menu-mobile__item_body-link">Электромонтажные работы</a>
+                  <a class="menu-mobile__item_body-link">Освещение участка</a>
                 </div>
               </div>
               <div class="menu-mobile__item">
@@ -121,9 +130,13 @@ export default {
                   <span class="menu-mobile__item-title">Наш сервис</span>
                 </div>
                 <div class="menu-mobile__item_body">
-                  <a class="menu-mobile__item_body-link">Сертики и ЛОС</a>
-                  <a class="menu-mobile__item_body-link">Система очистки воды</a>
-                  <a class="menu-mobile__item_body-link">Уборка участка</a>
+                  <a class="menu-mobile__item_body-link">Обслуживание ЛОС</a>
+                  <a class="menu-mobile__item_body-link">Обслуживание бойлеров</a>
+                  <a class="menu-mobile__item_body-link">Обслуживание системы водоочистки</a>
+                  <a class="menu-mobile__item_body-link">Обслуживание системы водоподготовки</a>
+                  <a class="menu-mobile__item_body-link">Обслуживание электросетей</a>
+                  <a class="menu-mobile__item_body-link">ТО и сервис генераторов</a>
+                  <a class="menu-mobile__item_body-link">Разморозка водопровода</a>
                 </div>
               </div>
               <div class="callback-mobile">
@@ -293,6 +306,9 @@ export default {
     flex-wrap: wrap;
     gap: 20px;
     align-items: center;
+    @media (max-width: c.$md2) {
+      gap: 0;
+    }
   }
   &__block-links {
     // @media (max-width: c.$md4) {
@@ -336,24 +352,26 @@ export default {
 }
 .menu {
   &-mobile {
-    display: none;
+    // position: relative;
+
+    z-index: 10;
+    transform: translate(0px, -100%);
+    transition: transform 0.8s ease 0s;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    padding: 15px 10px 30px 10px;
+    background-color: rgba(255, 255, 255, 1);
     @media (max-width: c.$md2) {
-      z-index: 10;
-      transform: translate(0px, -100%);
-      transition: transform 0.8s ease 0s;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: auto;
-      padding: 15px 10px 30px 10px;
-      background-color: rgba(255, 255, 255, 1);
       &._active {
         transform: translate(0px, 0%);
-        display: block;
+        // display: block;
       }
     }
+
     &__body {
       padding-top: 20px;
     }
@@ -366,6 +384,7 @@ export default {
         background-color: #f0f4f9;
         padding: 3px 5px 3px 7px;
         border-radius: 6px;
+        margin-bottom: 10px;
       }
       &-icon {
         width: 24px;
@@ -374,7 +393,7 @@ export default {
       &-title {
         font-size: 19px;
         font-weight: 500;
-        margin: 0px 0px 5px 0px;
+        margin: 0px 0px 0px 0px;
       }
       &_body {
         display: flex;
@@ -382,7 +401,7 @@ export default {
 
         &-link {
           width: 100%;
-          padding-left: 10px;
+          padding-left: 15px;
         }
       }
     }
@@ -405,9 +424,24 @@ export default {
 }
 .burger__item {
   @media (max-width: c.$md4) {
-    padding: 30px 40px 40px 30px;
+  }
+  @media (max-width: c.$md2) {
+    position: absolute;
+    padding: 35px;
+    left: 0;
+    &._right {
+      left: 93%;
+    }
+  }
+  @media (max-width: c.$md3) {
+  }
+  @media (max-width: c.$md4) {
+    &._right {
+      left: 82%;
+    }
   }
 }
+
 .feedback-mobile {
   margin-top: 8px;
   &__text {
@@ -689,12 +723,13 @@ export default {
   position: absolute;
   // top: 18px;
   // right: 10px;
+
   left: 10px;
   top: calc(33%);
   width: 30px;
   height: 20px;
   cursor: pointer;
-  z-index: 5;
+  z-index: 11;
   span {
     transition: all 0.3s ease 0s;
     top: calc(50% - 1px);
@@ -737,5 +772,15 @@ export default {
 .burger-md-active {
   top: calc(20%);
   left: 89%;
+
+  // position: absolute;
+  // right: 0;
+  // top: 0;
+}
+.burger-close {
+  // position: absolute;
+  // padding: 35px;
+  // right: 0;
+  // top: 0;
 }
 </style>

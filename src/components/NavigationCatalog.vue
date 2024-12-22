@@ -40,67 +40,48 @@ export default {
         <ul class="catalog__list-item_body">
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Септик под ключ</a>
+              <a class="catalog__link" @click="formVisible()">Проект участка</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Установка погреба</a>
+              <a class="catalog__link" @click="formVisible()">Топографическая съемка</a>
             </div>
 
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Водоснабжение </a>
+              <a class="catalog__link" @click="formVisible()">Септик под ключ </a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Скважина на воду </a>
+              <a class="catalog__link" @click="formVisible()">Водоснабжение</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Обустройство скважины</a>
+              <a class="catalog__link" @click="formVisible()">Система очистки воды</a>
             </div>
 
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Колодец </a>
-            </div>
-          </li>
-          <li class="catalog__list-item_body-item">
-            <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Система очистки воды </a>
-            </div>
-            <div class="catalog__item" data-test="1">
               <a class="catalog__link" @click="formVisible()">Свайный фундамент</a>
             </div>
-            <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Благоустройство </a>
-            </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
+              <a class="catalog__link" @click="formVisible()">Установка заборов</a>
+            </div>
+            <div class="catalog__item" data-test="1">
+              <a class="catalog__link" @click="formVisible()">Ливневая канализация</a>
+            </div>
+            <div class="catalog__item" data-test="2">
               <a class="catalog__link" @click="formVisible()">Дренаж </a>
             </div>
-            <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Ливневая канализация </a>
-            </div>
-            <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Отмостка вокруг дома</a>
-            </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Установка купели</a>
+              <a class="catalog__link" @click="formVisible()">Благоустройство</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Видеонаблюдение </a>
+              <a class="catalog__link" @click="formVisible()">Электромонтажные работы</a>
             </div>
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Каток на участке </a>
-            </div>
-          </li>
-          <li class="catalog__list-item_body-item">
-            <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Световое оформление дома и участка</a>
-            </div>
-            <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Строительство террас </a>
+              <a class="catalog__link" @click="formVisible()">Освещение участка</a>
             </div>
           </li>
         </ul>
@@ -119,46 +100,38 @@ export default {
         <ul class="catalog__list-item_body">
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" href="/service/">Обслуживание дома</a>
+              <a class="catalog__link" @click="formVisible()">Обслуживание ЛОС</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" href="/service/obluzhivanie-septikov/">Септики и ЛОСы</a>
+              <a class="catalog__link" @click="formVisible()">Обслуживание бойлеров</a>
             </div>
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" href="/service/obsluzhivanie-sistem-vodopodgotovki/">Система очистки воды</a>
+              <a class="catalog__link" @click="formVisible()">Система водоочистки</a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" href="/service/obsluzhivanie-skvazhini/">Скважина на воду</a>
+              <a class="catalog__link" @click="formVisible()">Система водоподготовки</a>
             </div>
 
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" href="/service/obsluzhivanie-sistem-vodosnabzhenija/">Система водоснабжения</a>
+              <a class="catalog__link" @click="formVisible()">Система водоснабжения</a>
             </div>
 
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" href="/service/obsluzhivanie-sistem-otoplenija/">Система отопления</a>
+              <a class="catalog__link" @click="formVisible()">Уборка участка</a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" href="/service/obsluzhivanie-sistemi-avtopoliva/">Система автополива</a>
+              <a class="catalog__link" @click="formVisible()">ТО и сервис генераторов</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" href="/service/yxod-za-gazonom/">Уход за газоном</a>
+              <a class="catalog__link" @click="formVisible()">Уход за газоном</a>
             </div>
 
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" href="/service/yborka-zagorodnogo-doma/">Уборка участка</a>
-            </div>
-          </li>
-          <li class="catalog__list-item_body-item">
-            <div class="catalog__item" data-test="0">
-              <a class="catalog__link" href="/service/cleaning-zagorodnogo-doma/">Уборка частного дома</a>
-            </div>
-            <div class="catalog__item" data-test="1">
-              <a class="catalog__link" href="/service/rabota-s-elektrikoy/">Электромонтажные работы</a>
+              <a class="catalog__link" @click="formVisible()">Разморозка водопровода</a>
             </div>
           </li>
         </ul>

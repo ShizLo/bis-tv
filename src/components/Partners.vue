@@ -72,7 +72,7 @@
   &__item {
     display: flex;
     flex: 1 1 30%;
-    // margin: 0px 1% 0px 0px;
+    margin: 0px 1% 0px 0px;
 
     &:last-child {
       margin: 0px 0px 0px 0px;
