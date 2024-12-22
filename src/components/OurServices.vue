@@ -54,6 +54,8 @@ export default {
               hoverColors="rgb(170, 214, 199)"
             />
           </div>
+          <!-- Гарантия качества Индивидуальный подход Работа под ключ -->
+
           <div class="services__row">
             <ServiceCard
               class="services__row-item-sm"
