@@ -1,8 +1,6 @@
 <template>
   <section class="banner">
     <div class="banner__container _container">
-      <!-- <div class="columns-2 py-8 flex"> -->
-
       <div class="banner__block-text text-left">
         <h1 class="banner__text">Инженерные коммуникации и благоустройство участка</h1>
         <a

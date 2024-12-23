@@ -79,7 +79,7 @@ export default {
             loading="lazy"
             width=""
             height=""
-            src="../src/assets/icons/logo-v6.svg"
+            src="../src/assets/icons/logo-foot.svg"
             alt="Благоустройство и инженерные сети"
           />
         </a>
@@ -101,7 +101,7 @@ export default {
                 </div>
               </div> -->
               <a class="menu__logo logo" href="">
-                <img class="logo__img" loading="lazy" width="" height="" src="../src/assets/icons/logo-v6.svg" alt="" />
+                <img class="logo__img" loading="lazy" width="" height="" src="../src/assets/icons/logo-foot.svg" alt="" />
               </a>
             </div>
             <div class="menu-mobile__body">
