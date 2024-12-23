@@ -1,35 +1,22 @@
 <script>
 import { computed } from "vue";
-import Form from "../components/Form/Form.vue";
 import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
 
 export default {
   components: {
-    Form,
   },
   setup() {
     return {};
   },
-
-  data: () => ({
-    formIsVisible: 0,
-  }),
   methods: {
-    formVisible() {
-      if (this.formIsVisible === 1) {
-        this.formIsVisible = 0;
-      } else {
-        this.formIsVisible = 1;
-      }
-    },
+    
   },
   props: {},
   computed: {},
 };
 </script>
 <template>
-  <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''" @someEvent="formVisible" />
   <div class="catalog__wrap">
     <ul class="catalog__list">
       <li class="catalog__list-item">
@@ -40,48 +27,48 @@ export default {
         <ul class="catalog__list-item_body">
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Проект участка</a>
+              <a class="catalog__link" @click="$emit('visible')">Проект участка</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Топографическая съемка</a>
+              <a class="catalog__link" @click="$emit('visible')">Топографическая съемка</a>
             </div>
 
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Септик под ключ </a>
+              <a class="catalog__link" @click="$emit('visible')">Септик под ключ </a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Водоснабжение</a>
+              <a class="catalog__link" @click="$emit('visible')">Водоснабжение</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Система очистки воды</a>
+              <a class="catalog__link" @click="$emit('visible')">Система очистки воды</a>
             </div>
 
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Свайный фундамент</a>
+              <a class="catalog__link" @click="$emit('visible')">Свайный фундамент</a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Установка заборов</a>
+              <a class="catalog__link" @click="$emit('visible')">Установка заборов</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Ливневая канализация</a>
+              <a class="catalog__link" @click="$emit('visible')">Ливневая канализация</a>
             </div>
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Дренаж </a>
+              <a class="catalog__link" @click="$emit('visible')">Дренаж </a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Благоустройство</a>
+              <a class="catalog__link" @click="$emit('visible')">Благоустройство</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Электромонтажные работы</a>
+              <a class="catalog__link" @click="$emit('visible')">Электромонтажные работы</a>
             </div>
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Освещение участка</a>
+              <a class="catalog__link" @click="$emit('visible')">Освещение участка</a>
             </div>
           </li>
         </ul>
@@ -100,38 +87,38 @@ export default {
         <ul class="catalog__list-item_body">
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Обслуживание ЛОС</a>
+              <a class="catalog__link" @click="$emit('visible')">Обслуживание ЛОС</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Обслуживание бойлеров</a>
+              <a class="catalog__link" @click="$emit('visible')">Обслуживание бойлеров</a>
             </div>
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Система водоочистки</a>
+              <a class="catalog__link" @click="$emit('visible')">Система водоочистки</a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">Система водоподготовки</a>
+              <a class="catalog__link" @click="$emit('visible')">Система водоподготовки</a>
             </div>
 
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Система водоснабжения</a>
+              <a class="catalog__link" @click="$emit('visible')">Система водоснабжения</a>
             </div>
 
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Уборка участка</a>
+              <a class="catalog__link" @click="$emit('visible')">Уборка участка</a>
             </div>
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="formVisible()">ТО и сервис генераторов</a>
+              <a class="catalog__link" @click="$emit('visible')">ТО и сервис генераторов</a>
             </div>
             <div class="catalog__item" data-test="1">
-              <a class="catalog__link" @click="formVisible()">Уход за газоном</a>
+              <a class="catalog__link" @click="$emit('visible')">Уход за газоном</a>
             </div>
 
             <div class="catalog__item" data-test="2">
-              <a class="catalog__link" @click="formVisible()">Разморозка водопровода</a>
+              <a class="catalog__link" @click="$emit('visible')">Разморозка водопровода</a>
             </div>
           </li>
         </ul>
@@ -145,6 +132,9 @@ export default {
   display: block;
   opacity: 1;
 }
+
+
+
 .catalog {
   &__wrap {
     display: flex;

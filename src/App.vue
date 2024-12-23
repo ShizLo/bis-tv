@@ -1,6 +1,7 @@
 <script>
 import NavigationCatalog from "./components/NavigationCatalog.vue";
 import Footer from "./components/Footer.vue";
+import Form from "./components/Form/Form.vue";
 import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
 import { reactive, computed } from "vue";
@@ -9,15 +10,18 @@ export default {
   components: {
     NavigationCatalog,
     Footer,
+    Form,
   },
   name: "App",
   setup() {
     const route = useRoute();
     const path = ref(computed(() => route.path)); // Отслеживает путь
+    let formIsVisible = ref(0);
 
     const catalog = reactive({
       active: false,
     });
+    
     // При изменении пути вызывает функцию clickMenu()
     watch(path, (newX) => {
       if (path != newX) {
@@ -46,7 +50,40 @@ export default {
         burgerItem.classList.toggle("_right");
       }
     }
-    return { path, catalog, clickMenu };
+    function toggleBodyScroll(lock) {
+      document.body.style.overflow = lock ? 'hidden' : '';
+      document.getElementById('nav__button').style.zIndex = lock ? '-1' : '';
+      document.getElementById('nav__button').style.overflow = lock ? 'hidden' : '';
+      // document.querySelector('swiper-container').style.zIndex = lock ? '-1' : '';
+      // document.querySelector('swiper-container').style.overflow = lock ? 'hidden' : '';
+    }
+    function formVisible() {
+      const burger1 = document.querySelector(".burger");
+      if (formIsVisible.value === 1) {
+        formIsVisible.value = 0;
+        toggleBodyScroll(false); 
+      } else {
+        formIsVisible.value = 1;
+        toggleBodyScroll(true);
+        if (catalog.active === true) {
+          if (burger1) {
+            burger1.classList.toggle("_active");
+          }
+        catalog.active = false;
+        } else {
+        burger1.classList.toggle("_active");
+        catalog.active = true;
+          }
+      }
+    }
+    return { path, catalog, clickMenu, formVisible, formIsVisible };
+  },
+  
+  data: () => ({
+    
+  }),
+  methods: {
+    
   },
   mounted() {
     this.$nextTick(function () {});
@@ -70,7 +107,9 @@ export default {
 </script>
 
 <template>
+  
   <section class="header">
+    <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''"  @someEvent="formVisible" />
     <div class="header__container _container">
       <div class="header__block">
         <a class="header__logo logo" href="/">
@@ -203,7 +242,9 @@ export default {
                 Каталог
               </button>
               <div id="catalog" class="catalog" :class="catalog.active == true ? 'nav__window' : ''">
-                <NavigationCatalog />
+                <NavigationCatalog 
+                @visible="formVisible"
+                />
               </div>
             </li>
             <li class="nav__item">
@@ -257,6 +298,10 @@ export default {
 //   width: 600px;
 //   height: 300px;
 // }
+.form-feedback__show {
+  display: block;
+  opacity: 1;
+}
 .header {
   margin-bottom: 2px;
   &::after {
