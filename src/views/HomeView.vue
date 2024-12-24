@@ -47,6 +47,8 @@ import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
 import GlobalForm from "../components/Form/GlobalForm.vue";
 
+import Form from "../components/Form/Form.vue";
+
 export default {
   name: "HomeView",
   components: {
@@ -56,6 +58,7 @@ export default {
     Partners,
     AboutUs,
     GlobalForm,
+    Form,
   },
 
   setup() {
@@ -65,10 +68,6 @@ export default {
     //
   }),
   methods: {
-    ссс() {
-      let element = document.querySelector("#section");
-      console.log(element);
-    },
     hoverMobile() {
       document.querySelectorAll(".banner__button").forEach((element) => {
         element.addEventListener("touchstart", () => element.classList.add("on-hover"));

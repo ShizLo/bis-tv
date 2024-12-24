@@ -54,8 +54,6 @@ export default {
       document.body.style.overflow = lock ? 'hidden' : '';
       document.getElementById('nav__button').style.zIndex = lock ? '-1' : '';
       document.getElementById('nav__button').style.overflow = lock ? 'hidden' : '';
-      // document.querySelector('swiper-container').style.zIndex = lock ? '-1' : '';
-      // document.querySelector('swiper-container').style.overflow = lock ? 'hidden' : '';
     }
     function formVisible() {
       const burger1 = document.querySelector(".burger");
@@ -92,24 +90,28 @@ export default {
     document.addEventListener("click", (e) => {
       const elem = document.getElementById("catalog");
       const elem1 = document.getElementById("nav__button");
+      
       if (!elem.contains(e.target) && !elem1.contains(e.target)) {
+        
         if (this.catalog.active == true) {
           this.catalog.active = false;
+          
           const burger = document.querySelector(".burger");
           if (burger) {
             burger.classList.toggle("_active");
           }
         }
       }
-    });
+    },);
   },
 };
 </script>
 
 <template>
-  
+  <Transition name="fade" mode="out-in" appear>
+  <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''"  @someEvent="formVisible" />
+</Transition>
   <section class="header">
-    <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''"  @someEvent="formVisible" />
     <div class="header__container _container">
       <div class="header__block">
         <a class="header__logo logo" href="/">
@@ -293,6 +295,23 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../src/assets/styles/app.scss" as c;
+
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.3s ease-out;
+}
+
+.fade-enter-from {
+    transform: translateY(100vh);
+    opacity: 0;
+}
+
+.fade-leave-to {
+    transform: translateY(0vh);
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
 
 // .swiper {
 //   width: 600px;

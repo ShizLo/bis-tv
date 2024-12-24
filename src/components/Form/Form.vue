@@ -33,10 +33,9 @@ export default {
 };
 </script>
 <template>
-  <div class="containers">
-    <div class="reveal-modal">
-      <button class="feedback__close-btn" @click="$emit('someEvent')">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="container-modal" @click.self="$emit('someEvent')">
+    <!-- <button class="feedback__close-btn">
+        <svg width="22" height="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M1.20868 14.5405L14.2902 1.45898M14.2902 14.5405L1.20875 1.45899"
             stroke="#102937"
@@ -44,7 +43,9 @@ export default {
             stroke-linecap="round"
           ></path>
         </svg>
-      </button>
+      </button> -->
+    <div class="reveal-modal"  >
+      
       <p class="feedback__title title">Свяжемся с вами для консультации</p>
       <div class="feedback__form">
         <div class="feedback__group">
@@ -60,42 +61,68 @@ export default {
             required=""
           />
         </div>
-        <button @click="sendMessage()" type="submit" class="feedback__send-btn btn" data-id="#consultationForm2" data-form="">
+        <button @click="sendMessage()" @click.self="$emit('someEvent')"  type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">
           ОТПРАВИТЬ
         </button>
       </div>
       <p class="feedback__bottom-text">
         Нажимая кнопку «отправить», вы соглашаетесь с
-        <router-link :to="{ name: 'PolicyView' }"> Политикой конфиденциальности.</router-link>
+        <router-link :to="{ name: 'PolicyView' }" @click.self="$emit('someEvent')"> Политикой конфиденциальности.</router-link>
       </p>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
-.containers {
+@use "../../assets/styles/app.scss" as c;
+.form__button {
+  font-weight: 500;
+  padding: 10px 14px;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #ea5b0c;
+  background: rgba(245, 245, 245, 0);
+  color: #102938;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  font-size: 20px;
+  @media (max-width: c.$md4) {
+    font-size: c.$fs-base;
+  }
+}
+
+.container-modal {
     width: 100%;
     height: 100%;
     top: 0;
     position: absolute;
     // visibility: hidden;
+    z-index: 2;
     display: none;
-    background-color: rgba(22,22,22,0.5); /* complimenting your modal colors */
+    background-color: rgba(22,22,22,0.5); 
+    /* complimenting your modal colors */
 }
 .reveal-modal {
   display: flex;
     position: relative;
-    /* margin-bottom: 10px; */
-    padding-bottom: 50px;
+    padding-bottom: 20px;
+    padding-top: 50px;
     margin: 0 auto;
     top: 30%;
     background-color: white;
-    width: 35%;
+    width: 700px;
     flex-direction: column;
-    align-content: center;
     align-items: center;
-    padding-top: 50px;
     z-index: 100;
     border-radius: 10px;
+    -webkit-box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
+-moz-box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
+box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
+@media (max-width: c.$md3) {
+  width: 500px;
+  }
 }
 .modal-backdrop {
     position: fixed;
@@ -190,7 +217,9 @@ export default {
     cursor: pointer;
   }
   &__form {
-    width: 45%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
   }
   &__title {
     margin: 0 0 20px;
@@ -198,6 +227,7 @@ export default {
       font-size: 34px;
       font-weight: 600;
       line-height: 1.2;
+      text-align: center;
     }
   }
   &__group {
@@ -223,9 +253,11 @@ input.feedback__group-input {
 .feedback__bottom-text,
 .feedback__bottom-text a {
   color: #88959c;
+  margin-top: 20px;
   font-size: 14px;
   font-weight: 400;
   line-height: 130%;
+  text-align: center;
 }
 .feedback__send-btn {
   height: 56px;
