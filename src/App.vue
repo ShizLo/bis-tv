@@ -21,7 +21,7 @@ export default {
     const catalog = reactive({
       active: false,
     });
-    
+
     // При изменении пути вызывает функцию clickMenu()
     watch(path, (newX) => {
       if (path != newX) {
@@ -51,9 +51,9 @@ export default {
       }
     }
     function toggleBodyScroll(lock) {
-      document.body.style.overflow = lock ? 'hidden' : '';
-      document.getElementById('nav__button').style.zIndex = lock ? '-1' : '';
-      document.getElementById('nav__button').style.overflow = lock ? 'hidden' : '';
+      document.body.style.overflow = lock ? "hidden" : "";
+      document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
+      document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
       // document.querySelector('swiper-container').style.zIndex = lock ? '-1' : '';
       // document.querySelector('swiper-container').style.overflow = lock ? 'hidden' : '';
     }
@@ -61,7 +61,7 @@ export default {
       const burger1 = document.querySelector(".burger");
       if (formIsVisible.value === 1) {
         formIsVisible.value = 0;
-        toggleBodyScroll(false); 
+        toggleBodyScroll(false);
       } else {
         formIsVisible.value = 1;
         toggleBodyScroll(true);
@@ -69,22 +69,18 @@ export default {
           if (burger1) {
             burger1.classList.toggle("_active");
           }
-        catalog.active = false;
+          catalog.active = false;
         } else {
-        burger1.classList.toggle("_active");
-        catalog.active = true;
-          }
+          burger1.classList.toggle("_active");
+          catalog.active = true;
+        }
       }
     }
     return { path, catalog, clickMenu, formVisible, formIsVisible };
   },
-  
-  data: () => ({
-    
-  }),
-  methods: {
-    
-  },
+
+  data: () => ({}),
+  methods: {},
   mounted() {
     this.$nextTick(function () {});
   },
@@ -107,9 +103,8 @@ export default {
 </script>
 
 <template>
-  
   <section class="header">
-    <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''"  @someEvent="formVisible" />
+    <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''" @someEvent="formVisible" />
     <div class="header__container _container">
       <div class="header__block">
         <a class="header__logo logo" href="/">
@@ -242,9 +237,7 @@ export default {
                 Каталог
               </button>
               <div id="catalog" class="catalog" :class="catalog.active == true ? 'nav__window' : ''">
-                <NavigationCatalog 
-                @visible="formVisible"
-                />
+                <NavigationCatalog @visible="formVisible" />
               </div>
             </li>
             <li class="nav__item">
@@ -282,7 +275,7 @@ export default {
           <!-- <li class="list__item"></li> -->
           <li class="list__item item-phone">
             <a class="list__item link__phone" href="tel:+7 911 277-56-07"> +7 911 277-56-07</a>
-            <a class="list__item link__phone-mobile" href="tel:+7 981 937-13-76"> </a>
+            <a class="list__item link__phone-mobile" href="tel:+7 911 277-56-07"> </a>
           </li>
         </ul>
       </div>
