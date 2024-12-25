@@ -76,7 +76,7 @@ export default {
         }
       }
     }
-    return { path, catalog, clickMenu, formVisible, formIsVisible };
+    return { path, catalog, clickMenu, formVisible, formIsVisible};
   },
 
   data: () => ({}),
@@ -108,6 +108,8 @@ export default {
 <template>
   
   <section class="header">
+    <!-- <notifications position="center top"/> -->
+    
     <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''"  @someEvent="formVisible" />
     <div class="header__container _container">
       <div class="header__block">
@@ -290,8 +292,32 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../src/assets/styles/app.scss" as c;
+.my-notification {
+  /*...*/
+  font-size: 200px;
+  // style for title line
+  
+  font-size: 200px;
+  // style for content
+  .notification-content {
+    font-size: 200px;
+  }
 
-
+  // additional styling hook when using`type` parameter, i.e. this.$notify({ type: 'success', message: 'Yay!' })
+  &.success {
+    /*...*/font-size: 200px;
+    background-color: green;
+  }
+  &.info {
+    /*...*/font-size: 200px;
+  }
+  &.error {
+    /*...*/font-size: 200px;
+  }
+}
+.notification-title {
+    font-size: 200px !important;
+  }
 .fade-enter-active,
 .fade-leave-active {
     transition: all 0.3s ease-out;

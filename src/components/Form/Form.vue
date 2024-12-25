@@ -1,14 +1,18 @@
 <script>
-
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 export default {
   props: {},
   computed: {},
+ 
   data() {
     return {
       name: "",
       email: "",
       questiion: "",
+      toastId: '',
+          toastIds: [],
     };
   },
   methods: {
@@ -21,19 +25,42 @@ export default {
       var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
       let api2 = new XMLHttpRequest();
       let api = new XMLHttpRequest();
-      api2.open("GET", url2, true);
-      api.open("GET", url, true);
-      api2.send();
-      api.send();
+      // api2.open("GET", url2, true);
+      // api.open("GET", url, true);
+      // api2.send();
+      // api.send();
+      if (this.name==="" || this.email==="") {
+        const toastId = toast.error(
+            'Заполните все поля',
+            {
+              rtl: false,
+              limit: 3,
+              position: toast.POSITION.BOTTOM_RIGHT,
+            },
+          );
+          this.toastIds.push(toastId);
+      } else {
+        const toastId = toast.success(
+            'Заявка отправлена',
+            {
+              rtl: false,
+              limit: 3,
+              position: toast.POSITION.BOTTOM_RIGHT,
+            },
+          );
+          this.toastIds.push(toastId);
+      }
       this.name = "";
       this.email = "";
       this.questiion = "";
+      
     },
   },
 };
 </script>
 <template>
   <div class="container-modal" @click.self="$emit('someEvent')">
+    
     <!-- <button class="feedback__close-btn">
         <svg width="22" height="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -61,7 +88,10 @@ export default {
             required=""
           />
         </div>
-        <button @click="sendMessage()" @click.self="$emit('someEvent')"  type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">
+        <!-- <button @click="sendMessage()" @click.self="$emit('someEvent',this.test)" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">
+          ОТПРАВИТЬ
+        </button> -->
+        <button @click="sendMessage()" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">
           ОТПРАВИТЬ
         </button>
       </div>
