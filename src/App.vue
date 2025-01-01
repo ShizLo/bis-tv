@@ -1,6 +1,6 @@
 <script>
 import NavigationCatalog from "./components/NavigationCatalog.vue";
-import Footer from "./components/Footer.vue";
+import FooterBot from "./components/FooterBot.vue";
 import Form from "./components/Form/Form.vue";
 import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
@@ -9,7 +9,7 @@ import { reactive, computed } from "vue";
 export default {
   components: {
     NavigationCatalog,
-    Footer,
+    FooterBot,
     Form,
   },
   name: "App",
@@ -51,9 +51,9 @@ export default {
       }
     }
     function toggleBodyScroll(lock) {
-      document.body.style.overflow = lock ? 'hidden' : '';
-      document.getElementById('nav__button').style.zIndex = lock ? '-1' : '';
-      document.getElementById('nav__button').style.overflow = lock ? 'hidden' : '';
+      document.body.style.overflow = lock ? "hidden" : "";
+      document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
+      document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
       // document.querySelector('swiper-container').style.zIndex = lock ? '-1' : '';
       // document.querySelector('swiper-container').style.overflow = lock ? 'hidden' : '';
     }
@@ -76,7 +76,7 @@ export default {
         }
       }
     }
-    return { path, catalog, clickMenu, formVisible, formIsVisible};
+    return { path, catalog, clickMenu, formVisible, formIsVisible };
   },
 
   data: () => ({}),
@@ -88,29 +88,27 @@ export default {
     document.addEventListener("click", (e) => {
       const elem = document.getElementById("catalog");
       const elem1 = document.getElementById("nav__button");
-      
+
       if (!elem.contains(e.target) && !elem1.contains(e.target)) {
-        
         if (this.catalog.active == true) {
           this.catalog.active = false;
-          
+
           const burger = document.querySelector(".burger");
           if (burger) {
             burger.classList.toggle("_active");
           }
         }
       }
-    },);
+    });
   },
 };
 </script>
 
 <template>
-  
   <section class="header">
     <!-- <notifications position="center top"/> -->
-    
-    <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''"  @someEvent="formVisible" />
+
+    <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''" @someEvent="formVisible" />
     <div class="header__container _container">
       <div class="header__block">
         <a class="header__logo logo" href="/">
@@ -288,7 +286,7 @@ export default {
     </div>
   </section>
   <router-view />
-  <Footer />
+  <FooterBot />
 </template>
 <style lang="scss" scoped>
 @use "../src/assets/styles/app.scss" as c;
@@ -296,7 +294,7 @@ export default {
   /*...*/
   font-size: 200px;
   // style for title line
-  
+
   font-size: 200px;
   // style for content
   .notification-content {
@@ -305,33 +303,36 @@ export default {
 
   // additional styling hook when using`type` parameter, i.e. this.$notify({ type: 'success', message: 'Yay!' })
   &.success {
-    /*...*/font-size: 200px;
+    /*...*/
+    font-size: 200px;
     background-color: green;
   }
   &.info {
-    /*...*/font-size: 200px;
+    /*...*/
+    font-size: 200px;
   }
   &.error {
-    /*...*/font-size: 200px;
+    /*...*/
+    font-size: 200px;
   }
 }
 .notification-title {
-    font-size: 200px !important;
-  }
+  font-size: 200px !important;
+}
 .fade-enter-active,
 .fade-leave-active {
-    transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .fade-enter-from {
-    transform: translateY(100vh);
-    opacity: 0;
+  transform: translateY(100vh);
+  opacity: 0;
 }
 
 .fade-leave-to {
-    transform: translateY(0vh);
-    opacity: 0;
-    transition: all 0.3s ease-out;
+  transform: translateY(0vh);
+  opacity: 0;
+  transition: all 0.3s ease-out;
 }
 
 // .swiper {

@@ -1,3 +1,16 @@
+<script>
+export default {
+  components: {},
+  setup() {
+    return {};
+  },
+
+  data: () => ({}),
+  methods: {},
+  mounted() {},
+  created: function () {},
+};
+</script>
 <template>
   <section class="footer">
     <div class="footer__header _container">
@@ -25,7 +38,10 @@
     <div class="footer__content _container">
       <div class="footer-row">
         <div class="footer-col">
-          <div class="footer__title footer__title-text">БИС: Инженерные системы и благоустройство участка</div>
+          <div class="footer__title footer__title-text">
+            БИС: Благоустройство и <br />
+            инженерные сети
+          </div>
           <div class="footer__legal">
             <div class="legal__item">
               <router-link class="item-policy" :to="{ name: 'PolicyView' }"> Политика конфиденциальности</router-link>
@@ -93,6 +109,12 @@
               <span class="item-text">WhatsApp</span>
             </a>
           </div>
+          <div class="contacts__item">
+            <a class="item-whatsup" href="/" target="_blank">
+              <img class="item-icon" loading="lazy" width="25" height="25" src="../assets/icons/footer-mail.svg" alt="Иконка WhatsApp" />
+              <span class="item-text">info@bis-spb.ru</span>
+            </a>
+          </div>
         </div>
         <!-- <div class="footer-col"></div> -->
       </div>
@@ -107,19 +129,8 @@
 .footer {
   position: relative;
   margin-top: 50px;
-
   background: linear-gradient(#fff 10%, #f5f5f5 15%, #ea5b0c 52%, rgb(125, 35, 7) 97%);
-  // background-color: #f5f5f5;
-  z-index: -5;
-  // padding: 20px 0px;
-  // &::before {
-  //   content: "";
-  //   width: 100%;
-  //   height: 2px;
-  //   position: absolute;
-  //   top: 0;
-  //   background-color: #ea5b0c;
-  // }
+  // z-index: -5;
   @media (max-width: c.$md1) {
     padding: 30px 0px 0px 0px;
   }
@@ -159,17 +170,8 @@
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center top;
-      z-index: -2;
+      // z-index: 0;
     }
-    // @media (max-width: c.$md4) {
-    //   &::before {
-    //     content: "";
-    //     width: 100%;
-    //     height: 0;
-    //     padding-top: 50%;
-    //     background: url(../assets/icons/logo-foot-6+.svg) center / contain no-repeat;
-    //   }
-    // }
   }
   &__content {
     display: flex;
@@ -223,10 +225,12 @@
     @media (max-width: c.$md3) {
       display: none;
     }
+
     .item-policy {
       color: #fff;
     }
   }
+
   &-col {
     width: 25%;
     // display: flex;
@@ -267,22 +271,8 @@
   }
 }
 .link__telegram {
-  // &::before {
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   content: "";
-  // }
 }
 .link__whatsup {
-  // &::before {
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   content: "";
-  //   padding: 12.5px;
-  //   background-color: #fff;
-  // }
 }
 .services {
   padding-left: 10px;
@@ -331,7 +321,6 @@
     font-weight: 500;
     @media (max-width: c.$md3) {
       font-size: 15px;
-      // padding-left: 7px;
       padding-top: 5px;
       padding-bottom: 5px;
       &::after {
@@ -395,7 +384,6 @@
     font-weight: 500;
     @media (max-width: c.$md3) {
       font-size: 15px;
-      // padding-left: 7px;
       padding-top: 5px;
       padding-bottom: 5px;
       &::after {
@@ -487,24 +475,6 @@
     }
   }
 }
-
-// .service {
-//   &__header {
-//     font-size: 20px;
-//     font-weight: 500;
-//     color: #fff;
-//     @media (max-width: c.$md4) {
-//       border: 1px solid #fff;
-//       border-radius: 6px;
-//       padding-left: 13px;
-//     }
-//   }
-//   &__item {
-//     color: #fff;
-//     font-size: 17px;
-//     padding: 2px 0px;
-//   }
-// }
 .map__img {
   margin: 0px 8px 0px 0px;
   @media (max-width: c.$md4) {
@@ -524,6 +494,7 @@
   font-style: normal;
   display: flex;
   align-self: center;
+  z-index: 1;
   &.item__address {
     display: flex;
   }
