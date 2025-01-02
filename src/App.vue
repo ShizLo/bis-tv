@@ -1,6 +1,6 @@
 <script>
 import NavigationCatalog from "./components/NavigationCatalog.vue";
-import FooterBot from "./components/FooterBot.vue";
+import Footer from "./components/Footer.vue";
 import Form from "./components/Form/Form.vue";
 import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
@@ -9,7 +9,7 @@ import { reactive, computed } from "vue";
 export default {
   components: {
     NavigationCatalog,
-    FooterBot,
+    Footer,
     Form,
   },
   name: "App",
@@ -286,7 +286,7 @@ export default {
     </div>
   </section>
   <router-view />
-  <FooterBot />
+  <Footer />
 </template>
 <style lang="scss" scoped>
 @use "../src/assets/styles/app.scss" as c;
