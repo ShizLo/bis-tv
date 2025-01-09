@@ -54,8 +54,6 @@ export default {
               hoverColors="rgb(170, 214, 199)"
             />
           </div>
-          <!-- Гарантия качества Индивидуальный подход Работа под ключ -->
-
           <div class="services__row">
             <ServiceCard
               class="services__row-item-sm"
@@ -184,39 +182,4 @@ export default {
     }
   }
 }
-// .parent {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr 1fr;
-//   grid-template-rows: 1.4fr 0.2fr 1.4fr;
-//   gap: 10px 10px;
-//   grid-auto-flow: row;
-//   grid-template-areas:
-//     "serviceCard serviceCard smallCard1 smallCard2"
-//     "serviceCard serviceCard serviceCard1 serviceCard1"
-//     "smallCard3 smallCard4 serviceCard1 serviceCard1";
-// }
-
-// .serviceCard {
-//   grid-area: serviceCard;
-// }
-
-// .serviceCard1 {
-//   grid-area: serviceCard1;
-// }
-
-// .smallCard1 {
-//   grid-area: smallCard1;
-// }
-
-// .smallCard2 {
-//   grid-area: smallCard2;
-// }
-
-// .smallCard3 {
-//   grid-area: smallCard3;
-// }
-
-// .smallCard4 {
-//   grid-area: smallCard4;
-// }
 </style>

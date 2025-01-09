@@ -3,83 +3,86 @@ import { swiper_banner } from "../../assets/js/swiper";
 import "../../assets/styles/swiper-home.scss";
 
 export default {
-  props: {},
-  computed: {},
+  props: {
+    bannerText: String,
+    bannerPrice: Array,
+  },
   setup() {
     return {};
   },
   data: () => ({}),
   mounted() {
+    console.log("Монтировано");
     swiper_banner.init(".swiper-banner");
+  },
+  updated() {
+    console.log("Я обновился");
+  },
+  unmounted() {
+    console.log("Размонтировано");
+  },
+  methods: {
+    hoverMobile() {
+      document.querySelectorAll(".banner__button").forEach((element) => {
+        element.addEventListener("touchstart", () => element.classList.add("on-hover"));
+        element.addEventListener("touchend", () => element.classList.remove("on-hover"));
+      });
+    },
   },
 };
 </script>
 <template>
-  <div class="swiper-container text-left">
-    <div class="swiper-banner">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/swiper-slide-1.webp" alt="Установка забора" />
-          <div class="swiper-banner__content">
-            <div class="content__price">
-              <span>от 90 000 руб</span>
+  <section class="banner">
+    <div class="banner__container _container">
+      <div class="banner__block-text text-left">
+        <h1 class="banner__text">{{ bannerText }}</h1>
+        <a
+          href="#GlobalForm"
+          @click="ссс()"
+          v-scroll-to="{
+            el: '#GlobalForm',
+            easing: [0.6, 0.8, 0.3, 1.9],
+            duration: 2000,
+          }"
+        >
+          <button class="banner__button" @click="hoverMobile()">
+            Обсудить задачу
+            <svg class="banner__button-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="Frame 1864">
+                <path
+                  id="Vector"
+                  d="M1.75 7.29163H12.25M12.25 7.29163L7 12.5416M12.25 7.29163L7 2.04163"
+                  stroke="#102938"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </a>
+      </div>
+      <div class="swiper-container text-left">
+        <div class="swiper-banner">
+          <div class="swiper-wrapper">
+            <div v-for="item in bannerPrice" class="swiper-slide">
+              <img class="swiper__img" :src="item.url" :alt="item.name" />
+              <div class="swiper-banner__content">
+                <div class="content__price">
+                  <span>{{ item.price }}</span>
+                </div>
+                <div class="content__title">{{ item.name }}</div>
+              </div>
+              <div class="swiper-lazy-preloader"></div>
             </div>
-            <div class="content__title">Установка забора</div>
           </div>
-          <div class="swiper-lazy-preloader"></div>
-        </div>
-        <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/swiper-slide-2.webp" alt="Свайное поле" />
-          <div class="swiper-banner__content">
-            <div class="content__price">
-              <span>от 100 000 руб.</span>
-            </div>
-            <div class="content__title">Свайное поле</div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/swiper-slide-3.webp" alt="Откатные ворота и калитка" />
-
-          <div class="swiper-banner__content">
-            <div class="content__price">
-              <span>от 65 000 руб</span>
-            </div>
-            <div class="content__title">Откатные ворота</div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/swiper-slide-4.webp" alt="Парковка" />
-          <div class="swiper-banner__content">
-            <div class="content__price">
-              <span>от 1 900 руб./м²</span>
-            </div>
-            <div class="content__title">Парковка</div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/swiper-slide-5.webp" alt="Водоподготовка" />
-          <div class="swiper-banner__content">
-            <div class="content__price">
-              <span>от 60 000 руб.</span>
-            </div>
-            <div class="content__title">Водоподготовка</div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img class="swiper__img" src="../../assets/images/swiper-slide-6.webp" alt="Септик под ключ" />
-          <div class="swiper-banner__content">
-            <div class="content__price">
-              <span>от 180 000 руб.</span>
-            </div>
-            <div class="content__title">Септик под ключ</div>
-          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
       </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
     </div>
-  </div>
+  </section>
 </template>
 <style lang="scss" scoped>
 @use "../../assets/styles/app.scss" as c;
@@ -227,5 +230,115 @@ export default {
   background-color: red;
   transition: background-color 4s linear;
   transition-property: width, background-color;
+}
+
+//@use "../assets/styles/app.scss" as c;
+
+@media (min-width: c.$md1) {
+  .banner__button:hover {
+    background: #102938;
+    color: #f5f5f5;
+    border-color: #102938;
+  }
+}
+.on-hover:hover {
+  background: #102938;
+  transition: 10ms;
+  color: #f5f5f5;
+  border-color: #102938;
+}
+
+@media (max-width: c.$md3) {
+  ._container {
+    padding: 0;
+  }
+}
+.banner-gallery__elems {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+  padding: 0 30px 30px;
+}
+
+.banner {
+  background-color: c.$color-background;
+  @media (max-width: c.$md4) {
+    background-color: #fff;
+  }
+}
+.banner {
+  @media (min-width: c.$md2) {
+    &::after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      background-color: #ea5b0c;
+    }
+  }
+
+  &__container {
+    display: flex;
+    // padding: 20px 0px 20px 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    @media (max-width: c.$md2) {
+      flex-wrap: wrap-reverse;
+      padding: 0px 0px 0px 0px;
+    }
+  }
+
+  &__block-text {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+
+    @media (max-width: c.$md2) {
+      padding: 20px 10px;
+      gap: 15px;
+    }
+    @media (max-width: c.$md4) {
+      padding-bottom: 10px;
+    }
+  }
+  &__text {
+    font-weight: 600;
+    line-height: 120%;
+    font-size: 2rem; //40
+    color: #102938;
+    @media (max-width: c.$md2) {
+      font-size: 1.5rem;
+    }
+    @media (max-width: c.$md4) {
+      text-align: center;
+    }
+  }
+  &__button {
+    font-weight: 500;
+    display: flex;
+    height: 48px;
+    padding: 11px 14px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    border: 1px solid #ea5b0c;
+    background: rgba(245, 245, 245, 0);
+    color: #102938;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    @media (max-width: c.$md3) {
+      align-self: flex-end;
+    }
+  }
 }
 </style>

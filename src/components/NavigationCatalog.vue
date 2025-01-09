@@ -4,14 +4,11 @@ import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
 
 export default {
-  components: {
-  },
+  components: {},
   setup() {
     return {};
   },
-  methods: {
-    
-  },
+  methods: {},
   props: {},
   computed: {},
 };
@@ -51,7 +48,8 @@ export default {
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <a class="catalog__link" @click="$emit('visible')">Установка заборов</a>
+              <!-- <a class="catalog__link" @click="$emit('visible')">Установка заборов</a> -->
+              <router-link class="catalog__link" :to="{ name: 'FenceView' }">Установка заборов</router-link>
             </div>
             <div class="catalog__item" data-test="1">
               <a class="catalog__link" @click="$emit('visible')">Ливневая канализация</a>
@@ -132,8 +130,6 @@ export default {
   display: block;
   opacity: 1;
 }
-
-
 
 .catalog {
   &__wrap {
