@@ -1,42 +1,29 @@
 /* Кнопки */
 @use "./app.scss" as c;
 
-.swiper-button-prev {
-  color: #fff !important;
-  @media (max-width: c.$md2) {
-    display: none !important;
-  }
-}
-.swiper-button-next {
-  color: #fff !important;
-  @media (max-width: c.$md2) {
-    display: none !important;
-  }
-}
-
 /* Буллеты */
-.swiper .swiper-pagination {
+.swiper-banner .swiper-pagination {
   bottom: 0;
 }
-.swiper .swiper-pagination-bullet {
+.swiper-banner .swiper-pagination-bullet {
   width: 30px;
   border-radius: 8px;
   height: 4px;
   background-color: #fff;
 }
-.swiper .swiper-pagination-bullet-active {
+.swiper-banner .swiper-pagination-bullet-active {
   position: relative;
   width: 60px;
   border-radius: 8px;
   height: 4px;
   /* opacity: 0.2; */
-  z-index: 11;
+  // z-index: 11;
   /* background-color: #fff; */
 }
-.swiper .swiper-pagination-bullet-active::after {
+.swiper-banner .swiper-pagination-bullet-active::after {
   content: "";
   position: absolute;
-  z-index: 12;
+  // z-index: 12;
   top: 0;
   left: 0;
   display: flex;
@@ -53,7 +40,7 @@
   animation: progress-css 1s ease-in forwards;
 }
 
-.swiper .swiper-pagination-bullet-active::after {
+.swiper-banner .swiper-pagination-bullet-active::after {
   /* Включает анимацию булитов */
   width: 100%;
   background-color: #ea5b0c;

@@ -1,5 +1,5 @@
 <script>
-import swiper from "../../assets/js/swiper";
+import { swiper_banner } from "../../assets/js/swiper";
 import "../../assets/styles/swiper-home.scss";
 
 export default {
@@ -8,25 +8,20 @@ export default {
   setup() {
     return {};
   },
-  data: () => ({
-    //
-  }),
+  data: () => ({}),
   mounted() {
-    this.$nextTick(function () {
-      swiper.init();
-    });
+    swiper_banner.init(".swiper-banner");
   },
 };
 </script>
 <template>
   <div class="swiper-container text-left">
-    <div class="swiper">
+    <div class="swiper-banner">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <img class="swiper__img" src="../../assets/images/swiper-slide-1.webp" alt="Установка забора" />
-          <div class="swiper__content">
+          <div class="swiper-banner__content">
             <div class="content__price">
-              <!-- <span>от 900 руб./м²</span> -->
               <span>от 90 000 руб</span>
             </div>
             <div class="content__title">Установка забора</div>
@@ -35,7 +30,7 @@ export default {
         </div>
         <div class="swiper-slide">
           <img class="swiper__img" src="../../assets/images/swiper-slide-2.webp" alt="Свайное поле" />
-          <div class="swiper__content">
+          <div class="swiper-banner__content">
             <div class="content__price">
               <span>от 100 000 руб.</span>
             </div>
@@ -45,7 +40,7 @@ export default {
         <div class="swiper-slide">
           <img class="swiper__img" src="../../assets/images/swiper-slide-3.webp" alt="Откатные ворота и калитка" />
 
-          <div class="swiper__content">
+          <div class="swiper-banner__content">
             <div class="content__price">
               <span>от 65 000 руб</span>
             </div>
@@ -54,8 +49,7 @@ export default {
         </div>
         <div class="swiper-slide">
           <img class="swiper__img" src="../../assets/images/swiper-slide-4.webp" alt="Парковка" />
-          <!-- <div class="swiper-lazy-preloader"></div> -->
-          <div class="swiper__content">
+          <div class="swiper-banner__content">
             <div class="content__price">
               <span>от 1 900 руб./м²</span>
             </div>
@@ -64,8 +58,7 @@ export default {
         </div>
         <div class="swiper-slide">
           <img class="swiper__img" src="../../assets/images/swiper-slide-5.webp" alt="Водоподготовка" />
-          <!-- <div class="swiper-lazy-preloader"></div> -->
-          <div class="swiper__content">
+          <div class="swiper-banner__content">
             <div class="content__price">
               <span>от 60 000 руб.</span>
             </div>
@@ -74,7 +67,7 @@ export default {
         </div>
         <div class="swiper-slide">
           <img class="swiper__img" src="../../assets/images/swiper-slide-6.webp" alt="Септик под ключ" />
-          <div class="swiper__content">
+          <div class="swiper-banner__content">
             <div class="content__price">
               <span>от 180 000 руб.</span>
             </div>
@@ -116,7 +109,8 @@ export default {
     height: 300px;
   }
 }
-.swiper {
+.swiper-banner {
+  position: relative;
   max-width: 100%;
   height: 100%;
   margin: auto;
@@ -145,14 +139,15 @@ export default {
   width: 100%;
   object-fit: cover;
 }
-.swiper__content::before {
+.swiper-banner__content::before {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 20%;
+  height: 25%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+  z-index: 2;
 }
 .content__price {
   font-size: 1rem;
@@ -164,44 +159,52 @@ export default {
   color: #102938;
   border: 0.5px solid #ea5b0c;
 }
-.content__title {
-  z-index: 10;
+.swiper-banner .content__title {
+  z-index: 3;
   font-weight: 600;
   font-size: 1.6rem;
   color: #fff;
   width: calc(100% - 68px);
 }
 /* Кнопки */
-.swiper-button-prev {
+.swiper-banner .swiper-button-prev {
   color: #fff;
+  z-index: 2;
+  @media (max-width: c.$md2) {
+    display: none;
+  }
 }
-.swiper-button-next {
+.swiper-banner .swiper-button-next {
   color: #fff;
+  z-index: 2;
+  @media (max-width: c.$md2) {
+    display: none;
+  }
 }
-
 /* Буллеты */
-.swiper .swiper-pagination {
+.swiper-banner .swiper-pagination {
   bottom: 0;
+  z-index: 2;
 }
-.swiper .swiper-pagination-bullet {
+.swiper-banner .swiper-pagination-bullet {
   width: 30px;
   border-radius: 8px;
   height: 4px;
   background-color: #ea5b0c;
 }
-.swiper .swiper-pagination-bullet-active {
+.swiper-banner .swiper-pagination-bullet-active {
   position: relative;
   width: 60px;
   border-radius: 8px;
   height: 4px;
   /* opacity: 0.2; */
-  z-index: 11;
+  // z-index: 11;
   // background-color: #ea5b0c;
 }
-.swiper .swiper-pagination-bullet-active::after {
+.swiper-banner .swiper-pagination-bullet-active::after {
   content: "";
   position: absolute;
-  z-index: 12;
+  // z-index: 12;
   top: 0;
   left: 0;
   display: flex;
@@ -218,7 +221,7 @@ export default {
   animation: progress-css 1s ease-in forwards;
 }
 
-.swiper .swiper-pagination-bullet-active::after {
+.swiper-banner .swiper-pagination-bullet-active::after {
   /* Включает анимацию булитов */
   width: 60px;
   background-color: red;

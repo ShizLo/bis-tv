@@ -1,23 +1,7 @@
 import Swiper from "swiper/bundle";
 import { Navigation, Pagination } from "swiper/modules";
 
-const swiper = new Swiper(".swiper", {
-  on: {
-    init: function () {
-      console.log("swiper initialized");
-    },
-    slideChange: () => {
-      // Здесь мы переключаем старый слайд на новый и нужно обновить прогресс-бар. Без таймаута стиль не обновляется.
-      // document
-      //   .querySelector(".swiper-pagination-bullet-active::after")
-      //   .classList.remove("active");
-      // setTimeout(() => {
-      //   document
-      //     .querySelector(".swiper-pagination-bullet-active::after")
-      //     .classList.add("active");
-      // }, 50);
-    },
-  },
+export const swiper_banner = new Swiper({
   direction: "horizontal",
   slidesPerView: 1, // колво слайдов на показ
   // spaceBetween: 30, // отступ между слайдами
@@ -50,17 +34,3 @@ const swiper = new Swiper(".swiper", {
   },
   modules: [Navigation, Pagination],
 });
-
-// const webp = require("webp-converter");
-// import webp from "webp-converter";
-// const result = webp.cwebp(
-//   "../src/assets/images/parkovka.jpg",
-//   "../src/assets/images/parkovka.webp",
-//   "-q 80",
-//   (logging = "-v")
-// );
-// result.then((response) => {
-//   console.log(response);
-// });
-
-export default swiper;

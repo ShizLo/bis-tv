@@ -124,6 +124,18 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/app.scss" as c;
 
+.mySwiper .swiper-button-prev {
+  color: #fff;
+  @media (max-width: c.$md2) {
+    display: none;
+  }
+}
+.mySwiper .swiper-button-next {
+  color: #fff;
+  @media (max-width: c.$md2) {
+    display: none;
+  }
+}
 ._container-settings {
   padding-bottom: 16px;
   padding-top: 32px;

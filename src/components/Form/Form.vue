@@ -1,18 +1,18 @@
 <script>
-import { toast } from 'vue3-toastify';
-import 'vue3-toastify/dist/index.css';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 export default {
   props: {},
   computed: {},
- 
+
   data() {
     return {
       name: "",
       email: "",
       questiion: "",
-      toastId: '',
-          toastIds: [],
+      toastId: "",
+      toastIds: [],
     };
   },
   methods: {
@@ -25,42 +25,34 @@ export default {
       var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
       let api2 = new XMLHttpRequest();
       let api = new XMLHttpRequest();
-      // api2.open("GET", url2, true);
-      // api.open("GET", url, true);
-      // api2.send();
-      // api.send();
-      if (this.name==="" || this.email==="") {
-        const toastId = toast.error(
-            'Заполните все поля',
-            {
-              rtl: false,
-              limit: 3,
-              position: toast.POSITION.BOTTOM_RIGHT,
-            },
-          );
-          this.toastIds.push(toastId);
+      api2.open("GET", url2, true);
+      api.open("GET", url, true);
+      api2.send();
+      api.send();
+      if (this.name === "" || this.email === "") {
+        const toastId = toast.error("Заполните все поля", {
+          rtl: false,
+          limit: 3,
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+        this.toastIds.push(toastId);
       } else {
-        const toastId = toast.success(
-            'Заявка отправлена',
-            {
-              rtl: false,
-              limit: 3,
-              position: toast.POSITION.BOTTOM_RIGHT,
-            },
-          );
-          this.toastIds.push(toastId);
+        const toastId = toast.success("Заявка отправлена", {
+          rtl: false,
+          limit: 3,
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+        this.toastIds.push(toastId);
       }
       this.name = "";
       this.email = "";
       this.questiion = "";
-      
     },
   },
 };
 </script>
 <template>
   <div class="container-modal" @click.self="$emit('someEvent')">
-    
     <!-- <button class="feedback__close-btn">
         <svg width="22" height="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -71,8 +63,7 @@ export default {
           ></path>
         </svg>
       </button> -->
-    <div class="reveal-modal"  >
-      
+    <div class="reveal-modal">
       <p class="feedback__title title">Свяжемся с вами для консультации</p>
       <div class="feedback__form">
         <div class="feedback__group">
@@ -91,12 +82,10 @@ export default {
         <!-- <button @click="sendMessage()" @click.self="$emit('someEvent',this.test)" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">
           ОТПРАВИТЬ
         </button> -->
-        <button @click="sendMessage()" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">
-          ОТПРАВИТЬ
-        </button>
+        <button @click="sendMessage()" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">ОТПРАВИТЬ</button>
       </div>
       <p class="feedback__bottom-text">
-        Нажимая кнопку «отправить», вы соглашаетесь с
+        Нажимая кнопку «отправить», Вы соглашаетесь с
         <router-link :to="{ name: 'PolicyView' }" @click.self="$emit('someEvent')"> Политикой конфиденциальности.</router-link>
       </p>
     </div>
@@ -124,96 +113,95 @@ export default {
 }
 
 .container-modal {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    position: absolute;
-    // visibility: hidden;
-    z-index: 2;
-    display: none;
-    background-color: rgba(22,22,22,0.5); 
-    /* complimenting your modal colors */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  // visibility: hidden;
+  z-index: 99;
+  display: none;
+  background-color: rgba(22, 22, 22, 0.5);
+  /* complimenting your modal colors */
 }
 .reveal-modal {
   display: flex;
-    position: relative;
-    padding-bottom: 20px;
-    padding-top: 50px;
-    margin: 0 auto;
-    top: 30%;
-    background-color: white;
-    width: 700px;
-    flex-direction: column;
-    align-items: center;
-    z-index: 100;
-    border-radius: 10px;
-    -webkit-box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
--moz-box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
-box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
-@media (max-width: c.$md3) {
-  width: 500px;
+  position: relative;
+  padding-bottom: 20px;
+  padding-top: 50px;
+  margin: 0 auto;
+  top: 30%;
+  background-color: white;
+  width: 700px;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
+  -moz-box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
+  box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
+  @media (max-width: c.$md3) {
+    width: 500px;
   }
 }
 .modal-backdrop {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .modal {
-    background: #FFFFFF;
-    box-shadow: 2px 2px 20px 1px;
-    overflow-x: auto;
-    display: flex;
-    flex-direction: column;
-  }
+.modal {
+  background: #ffffff;
+  box-shadow: 2px 2px 20px 1px;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+}
 
-  .modal-header,
-  .modal-footer {
-    padding: 15px;
-    display: flex;
-  }
+.modal-header,
+.modal-footer {
+  padding: 15px;
+  display: flex;
+}
 
-  .modal-header {
-    border-bottom: 1px solid #eeeeee;
-    color: #4AAE9B;
-    justify-content: space-between;
-  }
+.modal-header {
+  border-bottom: 1px solid #eeeeee;
+  color: #4aae9b;
+  justify-content: space-between;
+}
 
-  .modal-footer {
-    border-top: 1px solid #eeeeee;
-    justify-content: flex-end;
-  }
+.modal-footer {
+  border-top: 1px solid #eeeeee;
+  justify-content: flex-end;
+}
 
-  .modal-body {
-    position: relative;
-    padding: 20px 10px;
-  }
+.modal-body {
+  position: relative;
+  padding: 20px 10px;
+}
 
-  .btn-close {
-    border: none;
-    font-size: 20px;
-    padding: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #4AAE9B;
-    background: transparent;
-  }
+.btn-close {
+  border: none;
+  font-size: 20px;
+  padding: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #4aae9b;
+  background: transparent;
+}
 
-  .btn-green {
-    color: white;
-    background: #4AAE9B;
-    border: 1px solid #4AAE9B;
-    border-radius: 2px;
-  }
-  ///////////////////////////////////////////////////////
-
+.btn-green {
+  color: white;
+  background: #4aae9b;
+  border: 1px solid #4aae9b;
+  border-radius: 2px;
+}
+///////////////////////////////////////////////////////
 
 .feedback {
   position: fixed;
