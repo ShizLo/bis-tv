@@ -106,8 +106,6 @@ export default {
 
 <template>
   <section class="header">
-    <!-- <notifications position="center top"/> -->
-
     <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''" @someEvent="formVisible" />
     <div class="header__container _container">
       <div class="header__block">

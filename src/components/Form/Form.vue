@@ -1,23 +1,99 @@
 <script>
-import { toast } from "vue3-toastify";
-import "vue3-toastify/dist/index.css";
+import { ref, onUpdated } from 'vue';
 
 export default {
   props: {},
   computed: {},
+  setup() {
+    let errorName = ref("");
+    let errorTel = ref("");
+
+    let isSuccesTel = ref(false)
+    let isSuccesName= ref(false)
+    
+    onUpdated(() => {
+      let nameInput = document.querySelector('input[name="name"]')
+      let telInput = document.querySelector('input[name="telephone"]')
+
+      const inputs = document.querySelectorAll('.feedback__group')
+
+      let nameError = document.querySelector('input[name="name"]').nextElementSibling
+      let telError = document.querySelector('input[name="telephone"]').nextElementSibling
+
+      const maskOptions = {
+        mask: '+{7}(000)000-00-00',
+        lazy: false
+      };
+      const maskTel = IMask(telInput, maskOptions);
+      maskTel.on('complete', () => {
+
+        inputs[1].classList.remove('error')
+        inputs[1].classList.add('success')
+        telError.classList.remove('name-error')
+        isSuccesTel.value = true
+      },
+      maskTel.on('accept', () => {
+          inputs[1].classList.remove('success')
+          inputs[1].classList.add('error')
+          errorTel.value = "Заполните поле"
+          telError.classList.add('name-error')
+        })
+      );
+      nameInput.addEventListener('keydown', function (e) { // Будет перехватывать все числа при руч ввномоде.
+        if (e.key.match(/[0-9]/)) {                     // Тажке нужна, чтобы replace не сбрасывал каретку, срабатывая каждый раз.
+          inputs[0].classList.add('error')
+          nameError.classList.add('name-error')
+          errorName.value = "Ввод цифр невозможен"
+          return e.preventDefault()
+        }
+        else {
+          nameError.classList.remove('name-error')
+          inputs[0].classList.add('success')
+          isSuccesName.value = true
+          inputs[0].classList.remove('error')
+        };
+      });
+
+      nameInput.addEventListener('input', function (e) {  // На случай, если умудрились ввести через копипаст или авто-дополнение.
+        nameInput.value = nameInput.value.replace(/[0-9]/g, "");
+      });
+      nameInput.addEventListener('blur', function (e) {
+        nameError.classList.remove('name-error')
+      })
+      
+        nameInput.addEventListener('blur', function (e) {
+          if(nameInput.value.length == 0) {
+        
+        nameError.classList.add('name-error')
+        errorName.value = "Заполните поле"
+        inputs[0].classList.add('error')
+          }
+      })
+     
+    })
+    return {
+      errorName,
+      errorTel,
+      isSuccesName,
+      isSuccesTel,
+    }
+  },
 
   data() {
     return {
       name: "",
       email: "",
       questiion: "",
-      toastId: "",
-      toastIds: [],
     };
   },
   methods: {
     sendMessage() {
-      var my_text = this.name + " " + this.email + " " + this.questiion;
+      let nameError = document.querySelector('input[name="name"]').nextElementSibling
+        let telError = document.querySelector('input[name="telephone"]').nextElementSibling
+        const inputs = document.querySelectorAll('.feedback__group')
+
+      if (this.isSuccesName && this.isSuccesTel) {
+        var my_text = this.name + " " + this.email + " " + this.questiion;
       var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
       var chat_id2 = -1002378962422;
       var chat_id = -1002383432249;
@@ -29,30 +105,32 @@ export default {
       api.open("GET", url, true);
       api2.send();
       api.send();
-      if (this.name === "" || this.email === "") {
-        const toastId = toast.error("Заполните все поля", {
-          rtl: false,
-          limit: 3,
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-        this.toastIds.push(toastId);
-      } else {
-        const toastId = toast.success("Заявка отправлена", {
-          rtl: false,
-          limit: 3,
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-        this.toastIds.push(toastId);
-      }
       this.name = "";
       this.email = "";
       this.questiion = "";
+      this.isSuccesName = false
+      this.isSuccesTel = false
+      // telError.classList.add('send-message')
+      // this.errorTel = "Сообщение отправлено"
+      // console.log('succes')
+      } else {
+        
+        telError.classList.add('name-error')
+        inputs[1].classList.add('error')
+        nameError.classList.add('name-error')
+        this.errorName = "Заполните поле"
+        inputs[0].classList.add('error')
+        this.errorTel = "Заполните поле"
+      }
+      
+
     },
   },
 };
 </script>
 <template>
   <div class="container-modal" @click.self="$emit('someEvent')">
+
     <!-- <button class="feedback__close-btn">
         <svg width="22" height="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -64,35 +142,53 @@ export default {
         </svg>
       </button> -->
     <div class="reveal-modal">
+
       <p class="feedback__title title">Свяжемся с вами для консультации</p>
       <div class="feedback__form">
         <div class="feedback__group">
-          <input v-model="name" class="feedback__group-input hover-group-input" type="text" name="Имя" placeholder="Имя" />
+          <input v-model="name" class="feedback__group-input hover-group-input" type="text" name="name"
+            placeholder="Имя" maxlength="20" />
+          <span>{{ errorName }}</span>
         </div>
         <div class="feedback__group">
-          <input
-            v-model="email"
-            class="feedback__group-input phone_mask hover-group-input"
-            type="tel"
-            placeholder="Телефон"
-            name="Телефон"
-            required=""
-          />
+          <input v-model="email" class="feedback__group-input phone_mask hover-group-input" type="tel"
+            placeholder="Телефон" name="telephone" required="" />
+          <span>{{ errorTel }}</span>
         </div>
-        <!-- <button @click="sendMessage()" @click.self="$emit('someEvent',this.test)" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">
+        <button @click="sendMessage()" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">
           ОТПРАВИТЬ
-        </button> -->
-        <button @click="sendMessage()" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">ОТПРАВИТЬ</button>
+        </button>
       </div>
       <p class="feedback__bottom-text">
-        Нажимая кнопку «отправить», Вы соглашаетесь с
-        <router-link :to="{ name: 'PolicyView' }" @click.self="$emit('someEvent')"> Политикой конфиденциальности.</router-link>
+        Нажимая кнопку «отправить», вы соглашаетесь с
+        <router-link :to="{ name: 'PolicyView' }" @click.self="$emit('someEvent')"> Политикой
+          конфиденциальности.</router-link>
       </p>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
 @use "../../assets/styles/app.scss" as c;
+
+@keyframes shake {
+  0% { margin-left: 0rem; }
+  25% { margin-left: 0.5rem; }
+  75% { margin-left: -0.5rem; }
+  100% { margin-left: 0rem; }
+}
+
+.name-error {
+  display: block !important;
+  animation: shake 0.2s ease-in-out 0s 2;
+}
+.success {
+  background-color: #dff0d8 !important;
+}
+
+.error {
+  background-color: #f2dede !important;
+}
+
 .form__button {
   font-weight: 500;
   padding: 10px 14px;
@@ -107,6 +203,7 @@ export default {
   cursor: pointer;
   transition: all 0.3s ease 0s;
   font-size: 20px;
+
   @media (max-width: c.$md4) {
     font-size: c.$fs-base;
   }
@@ -118,11 +215,12 @@ export default {
   top: 0;
   position: absolute;
   // visibility: hidden;
-  z-index: 99;
+  z-index: 3;
   display: none;
   background-color: rgba(22, 22, 22, 0.5);
   /* complimenting your modal colors */
 }
+
 .reveal-modal {
   display: flex;
   position: relative;
@@ -139,10 +237,12 @@ export default {
   -webkit-box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
   -moz-box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
   box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
+
   @media (max-width: c.$md3) {
     width: 500px;
   }
 }
+
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -156,7 +256,7 @@ export default {
 }
 
 .modal {
-  background: #ffffff;
+  background: #FFFFFF;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
   display: flex;
@@ -171,7 +271,7 @@ export default {
 
 .modal-header {
   border-bottom: 1px solid #eeeeee;
-  color: #4aae9b;
+  color: #4AAE9B;
   justify-content: space-between;
 }
 
@@ -191,17 +291,19 @@ export default {
   padding: 20px;
   cursor: pointer;
   font-weight: bold;
-  color: #4aae9b;
+  color: #4AAE9B;
   background: transparent;
 }
 
 .btn-green {
   color: white;
-  background: #4aae9b;
-  border: 1px solid #4aae9b;
+  background: #4AAE9B;
+  border: 1px solid #4AAE9B;
   border-radius: 2px;
 }
+
 ///////////////////////////////////////////////////////
+
 
 .feedback {
   position: fixed;
@@ -214,6 +316,7 @@ export default {
   left: 0;
   display: none;
   opacity: 0;
+
   &__container {
     background-color: #fff;
     display: flex;
@@ -226,6 +329,7 @@ export default {
     flex-direction: column;
     justify-content: center;
   }
+
   &__close-btn {
     position: absolute;
     right: 20px;
@@ -234,13 +338,16 @@ export default {
     height: 16px;
     cursor: pointer;
   }
+
   &__form {
     width: 60%;
     display: flex;
     flex-direction: column;
   }
+
   &__title {
     margin: 0 0 20px;
+
     &.title {
       font-size: 34px;
       font-weight: 600;
@@ -248,17 +355,24 @@ export default {
       text-align: center;
     }
   }
+
   &__group {
     background-color: #f5f5f5;
     border: 1px solid #e8eaec;
-    margin: 0 0 20px;
+    margin: 0 0 25px;
     border-radius: 4px;
     position: relative;
     height: 56px;
     padding: 0 14px;
     transition: 0.2s;
   }
+
+  &__group>span {
+    color: red;
+    display: none;
+  }
 }
+
 .feedback__group-input,
 input.feedback__group-input {
   background: 0 0;
@@ -268,6 +382,7 @@ input.feedback__group-input {
   padding: 0;
   height: 50px;
 }
+
 .feedback__bottom-text,
 .feedback__bottom-text a {
   color: #88959c;
@@ -277,6 +392,7 @@ input.feedback__group-input {
   line-height: 130%;
   text-align: center;
 }
+
 .feedback__send-btn {
   height: 56px;
   font-size: 16px;
@@ -291,6 +407,7 @@ input.feedback__group-input {
   color: #fff;
   margin: 0 0 15px;
 }
+
 input[type="email"],
 input[type="password"],
 input[type="tel"],
@@ -312,6 +429,7 @@ textarea {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .feedback__close-btn {
   position: absolute;
   right: 20px;
@@ -320,6 +438,7 @@ textarea {
   height: 16px;
   cursor: pointer;
 }
+
 .feedback__group label {
   position: absolute;
   top: 15px;
