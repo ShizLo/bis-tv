@@ -178,7 +178,7 @@ export default {
               <div class="callback-mobile">
                 <div class="menu-mobile__item-title">Запишитесь на консультацию</div>
                 <div class="callback-mobile__form">
-                  <input v-model="name" class="callback-mobile-input" type="text" name="Ваше имя" value="" placeholder="Телефон" />
+                  <input class="callback-mobile-input" type="text" name="Ваше имя" value="" placeholder="Телефон" />
                   <button @click="sendMessage()" class="form__button callback-mobile-button" type="submit">
                     <img src="./assets/icons/arrow-right2.svg" alt="" />
                   </button>

@@ -1,35 +1,44 @@
-<script setup>
-import Swiper from "swiper/bundle";
-
-import { onMounted, onUnmounted, reactive } from "vue";
-
-import { swiper_banner_setting } from "../../assets/js/swiper";
+<script>
+import { swiper_banner } from "../../assets/js/swiper";
 import "../../assets/styles/swiper-home.scss";
 
-const props = defineProps({
-  bannerText: {
-    typeof: String,
+export default {
+  props: {
+    bannerText: String,
+    bannerPrice: Array,
   },
-  bannerPrice: {
-    typeof: Array,
+  // setup() {
+  //   return {};
+  // },
+  data: () => ({}),
+  mounted() {
+    console.log("Монтировано");
+
+    // swiper_banner.update(".swiper-banner");
+    // swiper_banner.autoplay.start();
+    this.$nextTick(function () {
+      swiper_banner.init(".swiper-banner");
+      // debugger;
+      // swiper_banner.destroy(true, true);
+      // swiper_banner.autoplay.start();
+    });
   },
-});
-
-const swiper = new Swiper(".swiper-banner", swiper_banner_setting);
-
-onMounted(() => {
-  swiper.init();
-});
-onUnmounted(() => {
-  swiper.destroy();
-});
-
-function hoverMobile() {
-  document.querySelectorAll(".banner__button").forEach((element) => {
-    element.addEventListener("touchstart", () => element.classList.add("on-hover"));
-    element.addEventListener("touchend", () => element.classList.remove("on-hover"));
-  });
-}
+  updated() {
+    console.log("Я обновился");
+  },
+  beforeUnmount() {
+    console.log("Размонтировано");
+    swiper_banner.destroy(true, true);
+  },
+  methods: {
+    hoverMobile() {
+      document.querySelectorAll(".banner__button").forEach((element) => {
+        element.addEventListener("touchstart", () => element.classList.add("on-hover"));
+        element.addEventListener("touchend", () => element.classList.remove("on-hover"));
+      });
+    },
+  },
+};
 </script>
 
 <template>

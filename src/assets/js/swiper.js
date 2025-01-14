@@ -1,7 +1,7 @@
 import Swiper from "swiper/bundle";
 import { Navigation, Pagination } from "swiper/modules";
 
-export const swiper_banner = new Swiper({
+export const swiper_banner_setting = {
   direction: "horizontal",
   slidesPerView: 1, // колво слайдов на показ
   // spaceBetween: 30, // отступ между слайдами
@@ -17,7 +17,7 @@ export const swiper_banner = new Swiper({
   // },
   // autoHeight: true, // авто высота изображения
   autoplay: {
-    delay: 4000,
+    delay: 2000,
     // Отключить после ручного переключения
     disableOnInteraction: true,
     // Остановится на последнем слайде
@@ -33,4 +33,7 @@ export const swiper_banner = new Swiper({
     prevEl: ".swiper-button-prev",
   },
   modules: [Navigation, Pagination],
-});
+};
+
+// export const swiper_banner = new Swiper(".swiper-banner", swiper_banner_setting);
+// debugger;
