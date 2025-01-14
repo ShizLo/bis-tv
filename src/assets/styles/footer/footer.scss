@@ -1,12 +1,12 @@
-@use "./app.scss" as c;
+@use "../main" as *;
 
 .footer {
   margin-top: 50px;
   background: linear-gradient(#fff 10%, #f5f5f5 15%, #ea5b0c 52%, rgb(125, 35, 7) 97%);
-  @media (max-width: c.$md1) {
+  @media (max-width: $md1) {
     padding: 30px 0px 0px 0px;
   }
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     margin: 40px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
   }
@@ -20,16 +20,16 @@
     padding-top: 353px; // 353px
     padding-bottom: 20px;
     color: #fff;
-    @media (max-width: c.$md1) {
+    @media (max-width: $md1) {
       padding-top: 21.5rem;
     }
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       padding-top: 15rem;
     }
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       padding-top: 12.5rem;
     }
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       padding-top: 10rem;
       padding-bottom: 0px;
     }
@@ -51,10 +51,10 @@
     background: linear-gradient(rgb(255, 102, 0), rgb(125, 35, 7));
     padding-bottom: 40px;
     padding-top: 25px;
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       padding-top: 50px;
     }
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       padding-top: 0px;
       padding-bottom: 20px;
     }
@@ -62,13 +62,13 @@
   &__title {
     padding-left: 20px;
     margin: 0px 0px 25px 0px;
-    @media (max-width: c.$md1) {
+    @media (max-width: $md1) {
       padding: 0px 5px 0px 20px;
     }
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       padding: 0px 5px 0px 0px;
     }
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       margin: 0px 0px 20px 0px;
     }
 
@@ -76,11 +76,11 @@
       color: #fff;
       font-size: 20px;
       font-weight: 500;
-      @media (max-width: c.$md3) {
+      @media (max-width: $md3) {
         line-height: 1.3;
       }
     }
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       padding-left: 0px;
       font-size: 24px;
       text-align: center;
@@ -88,13 +88,13 @@
   }
   &__legal {
     padding-left: 20px;
-    @media (max-width: c.$md1) {
+    @media (max-width: $md1) {
       padding: 0px 5px 0px 20px;
     }
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       padding: 0px 5px 0px 0px;
     }
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       display: none;
     }
 
@@ -105,7 +105,7 @@
 
   &__column {
     width: 25%;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       width: 100%;
       margin: 0px 0px 10px 0px;
     }
@@ -113,19 +113,19 @@
   &-row {
     width: 100%;
     display: flex;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       display: block;
     }
   }
   &__logo {
     padding-left: 20px;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       display: none;
     }
   }
   &__menu {
     padding-left: 10px;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       // margin: 0px 0px 20px 0px;
       padding-left: 0;
     }
@@ -139,7 +139,7 @@
     color: #fff;
     position: relative;
     margin-bottom: 5px;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       border: 1px solid #fff;
       border-radius: 6px;
       padding-left: 13px;
@@ -163,7 +163,7 @@
     }
   }
   &__items {
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       margin: 0px 12px;
       transition: max-height 1s ease 0s;
       overflow: hidden;
@@ -178,7 +178,7 @@
   &__item {
     padding: 2px 0px;
     position: relative;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       padding-top: 5px;
       padding-bottom: 5px;
       &::after {
@@ -200,7 +200,7 @@
   color: #fff;
   font-weight: 500;
   font-size: 17px;
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     font-size: 15px;
   }
   &__icon {
@@ -217,14 +217,14 @@
   &__item {
     position: relative;
   }
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     display: none;
   }
 }
 
 .contacts {
   padding-left: 10px;
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     margin: 0px 0px 25px 0px;
     padding-left: 0;
   }
@@ -234,7 +234,7 @@
     color: #fff;
     position: relative;
     margin-bottom: 5px;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       border: 1px solid #fff;
       border-radius: 6px;
       padding-left: 13px;
@@ -279,7 +279,7 @@
       align-content: center;
     }
 
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       font-size: 15px;
       padding-left: 7px;
       padding-top: 7px;
@@ -315,17 +315,17 @@
     display: flex;
   }
   .address {
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       display: none;
     }
   }
   &.phone {
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       display: none;
     }
   }
   &.work-clock {
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       display: none;
     }
   }
@@ -335,14 +335,14 @@
   font-weight: 500;
   font-size: 24px;
   padding-left: 10px;
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     display: none;
   }
 }
 .work-clock {
   font-weight: 500;
   font-size: 24px;
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     display: none;
   }
 }
@@ -350,8 +350,8 @@
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
-  @media (max-width: c.$md4) {
-    font-size: c.$fs-s;
+  @media (max-width: $md4) {
+    font-size: $fs-s;
   }
 }
 .logo {
@@ -361,10 +361,10 @@
     height: 100px;
   }
 
-  @media (max-width: c.$md1) {
+  @media (max-width: $md1) {
     padding-left: 20px;
   }
-  @media (max-width: c.$md2) {
+  @media (max-width: $md2) {
     &__img {
       display: none;
     }
@@ -373,7 +373,7 @@
 
 .mobile-footer__coulumn {
   display: none;
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     display: block;
     margin: 40px 0px;
     width: 100%;

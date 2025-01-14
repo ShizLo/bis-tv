@@ -40,11 +40,11 @@
 </template>
 
 <style lang="scss" scoped>
-@use "../assets/styles/app.scss" as c;
+@use "../assets/styles/main.scss" as *;
 
 .partners {
   &__header {
-    font-size: c.$fs-xxl;
+    font-size: $fs-xxl;
     font-weight: 600;
     background: #fff;
     border-radius: 32px;
@@ -52,8 +52,8 @@
     color: #102938;
     padding-top: 32px;
     padding-bottom: 16px;
-    @media (max-width: c.$md4) {
-      font-size: c.$fs-xxl;
+    @media (max-width: $md4) {
+      font-size: $fs-xxl;
     }
   }
   &__items {
@@ -65,7 +65,7 @@
   &__items &__link {
     flex: 1 1 30%; /*grow | shrink | basis */
     height: 200px;
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       height: 170px;
     }
   }
@@ -77,7 +77,7 @@
     &:last-child {
       margin: 0px 0px 0px 0px;
     }
-    @media (max-width: c.$md1) {
+    @media (max-width: $md1) {
       flex: 1 1 48%;
       margin: 0px 0px 0px 0px;
       &:first-child {
@@ -124,7 +124,7 @@
     color: #fff;
     padding: 20px;
     transition: opacity 0.2s;
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       padding: 10px 10px 8px 10px;
     }
   }

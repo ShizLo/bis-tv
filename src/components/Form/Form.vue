@@ -1,5 +1,5 @@
 <script>
-import { ref, onUpdated } from 'vue';
+import { ref, onUpdated } from "vue";
 
 export default {
   props: {},
@@ -8,75 +8,76 @@ export default {
     let errorName = ref("");
     let errorTel = ref("");
 
-    let isSuccesTel = ref(false)
-    let isSuccesName= ref(false)
-    
+    let isSuccesTel = ref(false);
+    let isSuccesName = ref(false);
+
     onUpdated(() => {
-      let nameInput = document.querySelector('input[name="name"]')
-      let telInput = document.querySelector('input[name="telephone"]')
+      let nameInput = document.querySelector('input[name="name"]');
+      let telInput = document.querySelector('input[name="telephone"]');
 
-      const inputs = document.querySelectorAll('.feedback__group')
+      const inputs = document.querySelectorAll(".feedback__group");
 
-      let nameError = document.querySelector('input[name="name"]').nextElementSibling
-      let telError = document.querySelector('input[name="telephone"]').nextElementSibling
+      let nameError = document.querySelector('input[name="name"]').nextElementSibling;
+      let telError = document.querySelector('input[name="telephone"]').nextElementSibling;
 
       const maskOptions = {
-        mask: '+{7}(000)000-00-00',
-        lazy: false
+        mask: "+{7}(000)000-00-00",
+        lazy: false,
       };
       const maskTel = IMask(telInput, maskOptions);
-      maskTel.on('complete', () => {
-
-        inputs[1].classList.remove('error')
-        inputs[1].classList.add('success')
-        telError.classList.remove('name-error')
-        isSuccesTel.value = true
-      },
-      maskTel.on('accept', () => {
-          inputs[1].classList.remove('success')
-          inputs[1].classList.add('error')
-          errorTel.value = "Заполните поле"
-          telError.classList.add('name-error')
+      maskTel.on(
+        "complete",
+        () => {
+          inputs[1].classList.remove("error");
+          inputs[1].classList.add("success");
+          telError.classList.remove("name-error");
+          isSuccesTel.value = true;
+        },
+        maskTel.on("accept", () => {
+          inputs[1].classList.remove("success");
+          inputs[1].classList.add("error");
+          errorTel.value = "Заполните поле";
+          telError.classList.add("name-error");
         })
       );
-      nameInput.addEventListener('keydown', function (e) { // Будет перехватывать все числа при руч ввномоде.
-        if (e.key.match(/[0-9]/)) {                     // Тажке нужна, чтобы replace не сбрасывал каретку, срабатывая каждый раз.
-          inputs[0].classList.add('error')
-          nameError.classList.add('name-error')
-          errorName.value = "Ввод цифр невозможен"
-          return e.preventDefault()
+      nameInput.addEventListener("keydown", function (e) {
+        // Будет перехватывать все числа при руч ввномоде.
+        if (e.key.match(/[0-9]/)) {
+          // Тажке нужна, чтобы replace не сбрасывал каретку, срабатывая каждый раз.
+          inputs[0].classList.add("error");
+          nameError.classList.add("name-error");
+          errorName.value = "Ввод цифр невозможен";
+          return e.preventDefault();
+        } else {
+          nameError.classList.remove("name-error");
+          inputs[0].classList.add("success");
+          isSuccesName.value = true;
+          inputs[0].classList.remove("error");
         }
-        else {
-          nameError.classList.remove('name-error')
-          inputs[0].classList.add('success')
-          isSuccesName.value = true
-          inputs[0].classList.remove('error')
-        };
       });
 
-      nameInput.addEventListener('input', function (e) {  // На случай, если умудрились ввести через копипаст или авто-дополнение.
+      nameInput.addEventListener("input", function (e) {
+        // На случай, если умудрились ввести через копипаст или авто-дополнение.
         nameInput.value = nameInput.value.replace(/[0-9]/g, "");
       });
-      nameInput.addEventListener('blur', function (e) {
-        nameError.classList.remove('name-error')
-      })
-      
-        nameInput.addEventListener('blur', function (e) {
-          if(nameInput.value.length == 0) {
-        
-        nameError.classList.add('name-error')
-        errorName.value = "Заполните поле"
-        inputs[0].classList.add('error')
-          }
-      })
-     
-    })
+      nameInput.addEventListener("blur", function (e) {
+        nameError.classList.remove("name-error");
+      });
+
+      nameInput.addEventListener("blur", function (e) {
+        if (nameInput.value.length == 0) {
+          nameError.classList.add("name-error");
+          errorName.value = "Заполните поле";
+          inputs[0].classList.add("error");
+        }
+      });
+    });
     return {
       errorName,
       errorTel,
       isSuccesName,
       isSuccesTel,
-    }
+    };
   },
 
   data() {
@@ -88,49 +89,45 @@ export default {
   },
   methods: {
     sendMessage() {
-      let nameError = document.querySelector('input[name="name"]').nextElementSibling
-        let telError = document.querySelector('input[name="telephone"]').nextElementSibling
-        const inputs = document.querySelectorAll('.feedback__group')
+      let nameError = document.querySelector('input[name="name"]').nextElementSibling;
+      let telError = document.querySelector('input[name="telephone"]').nextElementSibling;
+      const inputs = document.querySelectorAll(".feedback__group");
 
       if (this.isSuccesName && this.isSuccesTel) {
         var my_text = this.name + " " + this.email + " " + this.questiion;
-      var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
-      var chat_id2 = -1002378962422;
-      var chat_id = -1002383432249;
-      var url2 = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id2}&text=${my_text}`;
-      var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
-      let api2 = new XMLHttpRequest();
-      let api = new XMLHttpRequest();
-      api2.open("GET", url2, true);
-      api.open("GET", url, true);
-      api2.send();
-      api.send();
-      this.name = "";
-      this.email = "";
-      this.questiion = "";
-      this.isSuccesName = false
-      this.isSuccesTel = false
-      // telError.classList.add('send-message')
-      // this.errorTel = "Сообщение отправлено"
-      // console.log('succes')
+        var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
+        var chat_id2 = -1002378962422;
+        var chat_id = -1002383432249;
+        var url2 = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id2}&text=${my_text}`;
+        var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
+        let api2 = new XMLHttpRequest();
+        let api = new XMLHttpRequest();
+        api2.open("GET", url2, true);
+        api.open("GET", url, true);
+        api2.send();
+        api.send();
+        this.name = "";
+        this.email = "";
+        this.questiion = "";
+        this.isSuccesName = false;
+        this.isSuccesTel = false;
+        // telError.classList.add('send-message')
+        // this.errorTel = "Сообщение отправлено"
+        // console.log('succes')
       } else {
-        
-        telError.classList.add('name-error')
-        inputs[1].classList.add('error')
-        nameError.classList.add('name-error')
-        this.errorName = "Заполните поле"
-        inputs[0].classList.add('error')
-        this.errorTel = "Заполните поле"
+        telError.classList.add("name-error");
+        inputs[1].classList.add("error");
+        nameError.classList.add("name-error");
+        this.errorName = "Заполните поле";
+        inputs[0].classList.add("error");
+        this.errorTel = "Заполните поле";
       }
-      
-
     },
   },
 };
 </script>
 <template>
   <div class="container-modal" @click.self="$emit('someEvent')">
-
     <!-- <button class="feedback__close-btn">
         <svg width="22" height="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -142,39 +139,48 @@ export default {
         </svg>
       </button> -->
     <div class="reveal-modal">
-
       <p class="feedback__title title">Свяжемся с вами для консультации</p>
       <div class="feedback__form">
         <div class="feedback__group">
-          <input v-model="name" class="feedback__group-input hover-group-input" type="text" name="name"
-            placeholder="Имя" maxlength="20" />
+          <input v-model="name" class="feedback__group-input hover-group-input" type="text" name="name" placeholder="Имя" maxlength="20" />
           <span>{{ errorName }}</span>
         </div>
         <div class="feedback__group">
-          <input v-model="email" class="feedback__group-input phone_mask hover-group-input" type="tel"
-            placeholder="Телефон" name="telephone" required="" />
+          <input
+            v-model="email"
+            class="feedback__group-input phone_mask hover-group-input"
+            type="tel"
+            placeholder="Телефон"
+            name="telephone"
+            required=""
+          />
           <span>{{ errorTel }}</span>
         </div>
-        <button @click="sendMessage()" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">
-          ОТПРАВИТЬ
-        </button>
+        <button @click="sendMessage()" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">ОТПРАВИТЬ</button>
       </div>
       <p class="feedback__bottom-text">
         Нажимая кнопку «отправить», вы соглашаетесь с
-        <router-link :to="{ name: 'PolicyView' }" @click.self="$emit('someEvent')"> Политикой
-          конфиденциальности.</router-link>
+        <router-link :to="{ name: 'PolicyPage' }" @click.self="$emit('someEvent')"> Политикой конфиденциальности.</router-link>
       </p>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
-@use "../../assets/styles/app.scss" as c;
+@use "../../assets/styles/main.scss" as *;
 
 @keyframes shake {
-  0% { margin-left: 0rem; }
-  25% { margin-left: 0.5rem; }
-  75% { margin-left: -0.5rem; }
-  100% { margin-left: 0rem; }
+  0% {
+    margin-left: 0rem;
+  }
+  25% {
+    margin-left: 0.5rem;
+  }
+  75% {
+    margin-left: -0.5rem;
+  }
+  100% {
+    margin-left: 0rem;
+  }
 }
 
 .name-error {
@@ -204,8 +210,8 @@ export default {
   transition: all 0.3s ease 0s;
   font-size: 20px;
 
-  @media (max-width: c.$md4) {
-    font-size: c.$fs-base;
+  @media (max-width: $md4) {
+    font-size: $fs-base;
   }
 }
 
@@ -238,7 +244,7 @@ export default {
   -moz-box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
   box-shadow: 1px 1px 50px 29px rgba(34, 33, 33, 0.8);
 
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     width: 500px;
   }
 }
@@ -256,7 +262,7 @@ export default {
 }
 
 .modal {
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
   display: flex;
@@ -271,7 +277,7 @@ export default {
 
 .modal-header {
   border-bottom: 1px solid #eeeeee;
-  color: #4AAE9B;
+  color: #4aae9b;
   justify-content: space-between;
 }
 
@@ -291,19 +297,18 @@ export default {
   padding: 20px;
   cursor: pointer;
   font-weight: bold;
-  color: #4AAE9B;
+  color: #4aae9b;
   background: transparent;
 }
 
 .btn-green {
   color: white;
-  background: #4AAE9B;
-  border: 1px solid #4AAE9B;
+  background: #4aae9b;
+  border: 1px solid #4aae9b;
   border-radius: 2px;
 }
 
 ///////////////////////////////////////////////////////
-
 
 .feedback {
   position: fixed;
@@ -367,7 +372,7 @@ export default {
     transition: 0.2s;
   }
 
-  &__group>span {
+  &__group > span {
     color: red;
     display: none;
   }
@@ -418,7 +423,6 @@ textarea {
   color: #333;
   font-size: 18px;
   vertical-align: top;
-  /* padding: 10px 0 4px; */
   border: none;
   border-bottom: 2px solid #102938;
   background: 0 0;

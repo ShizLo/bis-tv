@@ -1,13 +1,32 @@
 <template>
-  <BannerSlider bannerText="Заборы и ограждения" :bannerPrice="bannerPrice" />
+  <BannerSlider bannerText="Инженерные коммуникации и благоустройство участка" :bannerPrice="bannerPrice" />
+  <OurServices />
+  <WorksSlider />
+  <Partners />
+  <AboutUs />
+  <GlobalForm id="GlobalForm" />
 </template>
 
 <script>
-import BannerSlider from "../components/Sliders/BannerSlider.vue";
+import OurServices from "../components/OurServices.vue";
+import BannerSlider from "../components/Banner.vue";
+import WorksSlider from "../components/WorksSlider.vue";
+import Partners from "../components/Partners.vue";
+import AboutUs from "../components/AboutUs.vue";
+import GlobalForm from "../components/Form/GlobalForm.vue";
+
+import Form from "../components/Form/Form.vue";
+
 export default {
-  name: "FenceView",
+  name: "HomePage",
   components: {
+    OurServices,
+    WorksSlider,
     BannerSlider,
+    Partners,
+    AboutUs,
+    GlobalForm,
+    Form,
   },
 
   setup() {

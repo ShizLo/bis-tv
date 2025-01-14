@@ -122,17 +122,17 @@ export default {
   </section>
 </template>
 <style lang="scss" scoped>
-@use "../assets/styles/app.scss" as c;
+@use "../assets/styles/main.scss" as *;
 
 .mySwiper .swiper-button-prev {
   color: #fff;
-  @media (max-width: c.$md2) {
+  @media (max-width: $md2) {
     display: none;
   }
 }
 .mySwiper .swiper-button-next {
   color: #fff;
-  @media (max-width: c.$md2) {
+  @media (max-width: $md2) {
     display: none;
   }
 }
@@ -141,7 +141,7 @@ export default {
   padding-top: 32px;
 }
 .content-bar__h2 {
-  font-size: c.$fs-xxl;
+  font-size: $fs-xxl;
   font-weight: 600;
   background: #fff;
   display: inline-block;
@@ -149,8 +149,8 @@ export default {
   padding-left: 10px;
   color: #102938;
   line-height: 1.2;
-  @media (max-width: c.$md4) {
-    font-size: c.$fs-xxl;
+  @media (max-width: $md4) {
+    font-size: $fs-xxl;
   }
 }
 .swiper {
@@ -177,7 +177,7 @@ export default {
   // height: 100%;
   height: 425px;
   object-fit: cover;
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     height: 300px;
   }
 }
@@ -210,16 +210,16 @@ export default {
   text-align: left;
   padding: 15px;
   z-index: 10;
-  @media (max-width: c.$md1) {
+  @media (max-width: $md1) {
     font-size: 20px;
   }
-  @media (max-width: c.$md2) {
+  @media (max-width: $md2) {
     font-size: 20px;
   }
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     font-size: 20px;
   }
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     font-size: 20px;
   }
 }

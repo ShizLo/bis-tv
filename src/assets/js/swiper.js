@@ -1,4 +1,3 @@
-import Swiper from "swiper/bundle";
 import { Navigation, Pagination } from "swiper/modules";
 
 export const swiper_banner_setting = {
@@ -34,6 +33,3 @@ export const swiper_banner_setting = {
   },
   modules: [Navigation, Pagination],
 };
-
-// export const swiper_banner = new Swiper(".swiper-banner", swiper_banner_setting);
-// debugger;

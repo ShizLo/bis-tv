@@ -1,0 +1,23 @@
+$fontFamily: ("-apple-system", Segoe UI, system-ui);
+
+$minWinth: 320px;
+$maxWidth: 1152px;
+$maxWidthContainer: 1264px;
+$md1: calc($maxWidthContainer + 12px);
+$md2: 991.98px;
+$md3: 767.98px;
+$md4: 479.98px;
+
+$fs-base: 16px;
+$fs-xxs: 11px;
+$fs-xs: 12px;
+$fs-s: 14px;
+$fs-m: 18px;
+$fs-l: 22px;
+$fs-xl: 24px;
+$fs-xxl: 26px;
+
+$color-title: #102938;
+$color-text: #102938;
+$color-background: #f5f5f5;
+$color-border: #e4e9ec;

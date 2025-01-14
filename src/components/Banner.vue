@@ -3,8 +3,8 @@ import Swiper from "swiper/bundle";
 
 import { onMounted, onUnmounted, reactive } from "vue";
 
-import { swiper_banner_setting } from "../../assets/js/swiper";
-import "../../assets/styles/swiper-home.scss";
+import { swiper_banner_setting } from "../assets/js/swiper";
+import "../assets/styles/banner/banner.scss";
 
 const props = defineProps({
   bannerText: {
@@ -87,9 +87,9 @@ function hoverMobile() {
 </template>
 
 <style lang="scss" scoped>
-@use "../../assets/styles/app.scss" as c;
+@use "../assets/styles/main.scss" as *;
 
-@media (max-width: c.$md3) {
+@media (max-width: $md3) {
   ._container {
     padding: 0;
   }
@@ -100,7 +100,7 @@ function hoverMobile() {
   height: 360px;
   border-radius: 8px;
   overflow: hidden;
-  @media (max-width: c.$md2) {
+  @media (max-width: $md2) {
     border-radius: 0;
     &::after {
       content: "";
@@ -110,7 +110,7 @@ function hoverMobile() {
       background-color: #ea5b0c;
     }
   }
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     height: 300px;
   }
 }
@@ -131,7 +131,7 @@ function hoverMobile() {
     justify-content: space-between;
     align-items: flex-start;
     padding: 30px 30px 22px;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       padding: 25px 10px 22px;
     }
   }
@@ -175,14 +175,14 @@ function hoverMobile() {
 .swiper-banner .swiper-button-prev {
   color: #fff;
   z-index: 2;
-  @media (max-width: c.$md2) {
+  @media (max-width: $md2) {
     display: none;
   }
 }
 .swiper-banner .swiper-button-next {
   color: #fff;
   z-index: 2;
-  @media (max-width: c.$md2) {
+  @media (max-width: $md2) {
     display: none;
   }
 }
@@ -236,7 +236,7 @@ function hoverMobile() {
 
 //@use "../assets/styles/app.scss" as c;
 
-@media (min-width: c.$md1) {
+@media (min-width: $md1) {
   .banner__button:hover {
     background: #102938;
     color: #f5f5f5;
@@ -250,7 +250,7 @@ function hoverMobile() {
   border-color: #102938;
 }
 
-@media (max-width: c.$md3) {
+@media (max-width: $md3) {
   ._container {
     padding: 0;
   }
@@ -269,13 +269,13 @@ function hoverMobile() {
 }
 
 .banner {
-  background-color: c.$color-background;
-  @media (max-width: c.$md4) {
+  background-color: $color-background;
+  @media (max-width: $md4) {
     background-color: #fff;
   }
 }
 .banner {
-  @media (min-width: c.$md2) {
+  @media (min-width: $md2) {
     &::after {
       content: "";
       width: 100%;
@@ -290,7 +290,7 @@ function hoverMobile() {
     // padding: 20px 0px 20px 0px;
     padding-top: 20px;
     padding-bottom: 20px;
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       flex-wrap: wrap-reverse;
       padding: 0px 0px 0px 0px;
     }
@@ -304,11 +304,11 @@ function hoverMobile() {
     align-items: flex-start;
     gap: 60px;
 
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       padding: 20px 10px;
       gap: 15px;
     }
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       padding-bottom: 10px;
     }
   }
@@ -317,10 +317,10 @@ function hoverMobile() {
     line-height: 120%;
     font-size: 2rem; //40
     color: #102938;
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       font-size: 1.5rem;
     }
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       text-align: center;
     }
   }
@@ -338,7 +338,7 @@ function hoverMobile() {
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease 0s;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       align-self: flex-end;
     }
   }

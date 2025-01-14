@@ -278,7 +278,7 @@
   </div>
 </template>
 <style lang="scss" scoped>
-@use "../assets/styles/app.scss" as c;
+@use "../assets/styles/main.scss" as *;
 .policy__content {
   margin-top: 30px;
   margin-bottom: 5px;
@@ -291,6 +291,6 @@
 </style>
 <script>
 export default {
-  name: "PolicyView",
+  name: "PolicyPage",
 };
 </script>

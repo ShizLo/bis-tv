@@ -57,7 +57,7 @@ export default {
           <div class="feedback">
             <p class="feedback__text">
               Нажимая кнопку «отправить», вы соглашаетесь с
-              <router-link :to="{ name: 'PolicyView' }"> Политикой конфиденциальности.</router-link>
+              <router-link :to="{ name: 'PolicyPage' }"> Политикой конфиденциальности.</router-link>
             </p>
           </div>
         </div>
@@ -66,7 +66,7 @@ export default {
   </section>
 </template>
 <style lang="scss" coped>
-@use "../../assets/styles/app.scss" as c;
+@use "../../assets/styles/main.scss" as *;
 // .global-form:target {
 //   background-color: #102938;
 // }
@@ -81,8 +81,8 @@ export default {
 }
 .phone {
   font-size: 20px;
-  @media (max-width: c.$md4) {
-    font-size: c.$fs-m;
+  @media (max-width: $md4) {
+    font-size: $fs-m;
   }
 }
 .col:first-child {
@@ -97,7 +97,7 @@ export default {
   flex-grow: 1;
   order: 2;
   margin-right: 12px;
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     margin-right: 0px;
   }
 }
@@ -105,7 +105,7 @@ export default {
   flex-grow: 10;
   order: 3;
   margin-right: 10px;
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     margin-right: 0px;
   }
 }
@@ -129,13 +129,13 @@ textarea {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  @media (max-width: c.$md4) {
-    font-size: c.$fs-base;
+  @media (max-width: $md4) {
+    font-size: $fs-base;
   }
 }
 .global-form {
   margin-top: 2rem;
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     margin-top: 15px;
   }
 }
@@ -156,9 +156,9 @@ textarea {
   font-weight: 600;
   display: inline-block;
   border-radius: 32px;
-  color: c.$color-title;
-  @media (max-width: c.$md4) {
-    font-size: c.$fs-l;
+  color: $color-title;
+  @media (max-width: $md4) {
+    font-size: $fs-l;
     margin-bottom: 10px;
   }
 }
@@ -166,10 +166,10 @@ textarea {
   //   padding-bottom: 24px;
   color: #102938;
   font-size: 22px;
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     margin-bottom: 5px;
     line-height: 1.3;
-    font-size: c.$fs-m;
+    font-size: $fs-m;
   }
 }
 .form__button {
@@ -184,15 +184,15 @@ textarea {
   cursor: pointer;
   transition: all 0.3s ease 0s;
   font-size: 20px;
-  @media (max-width: c.$md4) {
-    font-size: c.$fs-base;
+  @media (max-width: $md4) {
+    font-size: $fs-base;
   }
 }
 .button_mtp {
   margin-top: 20px;
   margin-bottom: 2px;
 }
-@media (min-width: c.$md1) {
+@media (min-width: $md1) {
   .form__button:hover {
     background: #102938;
     color: #f5f5f5;
@@ -213,7 +213,7 @@ textarea {
   border: 1px solid #ea5b0c;
   border-radius: 6px;
   box-sizing: border-box;
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     padding: 28px 25px 1px;
     padding: 20px 17px 1px 17px;
   }

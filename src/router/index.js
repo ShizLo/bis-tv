@@ -1,26 +1,25 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import PolicyView from "../views/PolicyView.vue";
-import FenceView from "../views/FenceView.vue";
+import HomePage from "../pages/HomePage.vue";
+import PolicyPage from "../pages/PolicyPage.vue";
+import FencePage from "../pages/FencePage.vue";
 
 const router = createRouter({
-  // history: createWebHistory(import.meta.env.BASE_URL),
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "HomeView",
-      component: HomeView,
+      name: "HomePage",
+      component: HomePage,
     },
     {
       path: "/privacy-policy",
-      name: "PolicyView",
-      component: PolicyView,
+      name: "PolicyPage",
+      component: PolicyPage,
     },
     {
       path: "/fence",
-      name: "FenceView",
-      component: FenceView,
+      name: "FencePage",
+      component: FencePage,
     },
   ],
   scrollBehavior(to, from, savedPosition) {

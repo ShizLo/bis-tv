@@ -28,27 +28,27 @@ export default {
   </section>
 </template>
 <style lang="scss" scoped>
-@use "../assets/styles/app.scss" as c;
+@use "../assets/styles/main.scss" as *;
 
 .about-us-text_settings {
   display: flex;
   gap: 40px;
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     flex-wrap: wrap;
     gap: 15px;
   }
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     gap: 0;
   }
 }
-@media (max-width: c.$md3) {
+@media (max-width: $md3) {
   .about-us-text__right_area-text_none {
     display: none;
   }
 }
 .about-us-text__left {
   flex-basis: 33.3%;
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     flex-basis: auto;
   }
 }
@@ -65,32 +65,32 @@ export default {
 }
 .about-us-text__right_area-text p {
   padding-bottom: 24px;
-  color: c.$color-text;
+  color: $color-text;
   font-size: 20px;
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
     padding: 0px 10px;
   }
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     padding: 15px 4px;
-    font-size: c.$fs-base;
+    font-size: $fs-base;
   }
 }
 .about-us-text__right_area-text p:last-child {
   padding-bottom: 0;
 }
 .about-us-text__header {
-  font-size: c.$fs-xxl;
+  font-size: $fs-xxl;
   font-weight: 600;
   display: inline-block;
   border-radius: 32px;
   padding: 3px 10px;
-  color: c.$color-title;
+  color: $color-title;
 }
 
 .about-us-text__title_settings {
-  background-color: c.$color-background;
+  background-color: $color-background;
   font-weight: 600;
-  font-size: c.$fs-l;
+  font-size: $fs-l;
   line-height: 130%;
   letter-spacing: 0.01em;
   color: #102938;
@@ -98,8 +98,8 @@ export default {
   padding: 15px 10px !important;
   width: fit-content;
   margin-top: 1rem;
-  @media (max-width: c.$md4) {
-    font-size: c.$fs-m;
+  @media (max-width: $md4) {
+    font-size: $fs-m;
   }
 }
 </style>

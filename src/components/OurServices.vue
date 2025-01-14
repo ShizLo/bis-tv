@@ -103,29 +103,29 @@ export default {
   </section>
 </template>
 <style lang="scss" scoped>
-@use "../assets/styles/app.scss" as c;
+@use "../assets/styles/main.scss" as *;
 
 .services {
   margin-top: 15px;
   &__title {
-    font-size: c.$fs-xxl;
+    font-size: $fs-xxl;
     font-weight: 600;
     background: #fff;
     display: inline-block;
     border-radius: 32px;
     padding: 3px 10px;
     color: #102938;
-    @media (max-width: c.$md2) {
-      font-size: c.$fs-xxl;
+    @media (max-width: $md2) {
+      font-size: $fs-xxl;
     }
-    @media (max-width: c.$md3) {
-      font-size: c.$fs-xxl;
+    @media (max-width: $md3) {
+      font-size: $fs-xxl;
     }
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       margin-bottom: 10px;
-      font-size: c.$fs-xxl;
+      font-size: $fs-xxl;
     }
-    @media (min-width: c.$md4) {
+    @media (min-width: $md4) {
       margin-top: 10px;
       margin-bottom: 10px;
     }
@@ -133,7 +133,7 @@ export default {
   &__items {
     display: flex;
     gap: 10px;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       flex-wrap: wrap;
     }
   }
@@ -143,7 +143,7 @@ export default {
     flex-wrap: wrap;
     flex: 1 1 50%;
     gap: 10px;
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       flex: 1 1 100%;
       &:last-child {
         flex-direction: column-reverse;
@@ -157,26 +157,26 @@ export default {
     &-item-big {
       width: 100%;
       height: 350px;
-      @media (max-width: c.$md1) {
+      @media (max-width: $md1) {
         height: 320px;
       }
-      @media (max-width: c.$md2) {
+      @media (max-width: $md2) {
         height: 270px;
       }
-      @media (max-width: c.$md3) {
+      @media (max-width: $md3) {
         height: 180px;
       }
     }
     &-item-sm {
       width: 50%;
       height: 230px;
-      @media (max-width: c.$md1) {
+      @media (max-width: $md1) {
         height: 200px;
       }
-      @media (max-width: c.$md2) {
+      @media (max-width: $md2) {
         height: 150px;
       }
-      @media (max-width: c.$md3) {
+      @media (max-width: $md3) {
         height: 145px;
       }
     }

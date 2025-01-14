@@ -77,7 +77,7 @@ export default {
             </div>
             <div class="footer__legal">
               <div class="legal__item">
-                <router-link class="item-policy" :to="{ name: 'PolicyView' }"> Политика конфиденциальности</router-link>
+                <router-link class="item-policy" :to="{ name: 'PolicyPage' }"> Политика конфиденциальности</router-link>
               </div>
             </div>
           </div>
@@ -163,5 +163,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use "../assets/styles/footer.scss";
+@use "../assets/styles/footer/footer.scss";
 </style>

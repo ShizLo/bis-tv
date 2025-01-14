@@ -46,20 +46,20 @@ export default {
   </div>
 </template>
 <style lang="scss" scoped>
-@use "../assets/styles/app.scss" as c;
+@use "../assets/styles/main.scss" as *;
 
 .services__item {
   display: flex;
   height: 100%;
   overflow: hidden;
   border-radius: 0.5rem;
-  background-color: c.$color-background;
+  background-color: $color-background;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
     backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   transition-delay: 150ms;
-  @media (min-width: c.$md1) {
+  @media (min-width: $md1) {
     &:hover {
       background-color: v-bind(hoverColor);
     }
@@ -71,21 +71,18 @@ export default {
     justify-content: space-between;
     height: 100%;
     width: 100%;
-    // padding: 1rem;
     background-size: contain !important;
-    // background-position-x: right !important;
-    // background-position-y: bottom
     background-position: 95% 100% !important;
     background-repeat: no-repeat !important;
     background-size: 100% auto !important;
     cursor: pointer;
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       background-size: 90% auto !important;
     }
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       background-size: 65% auto !important;
     }
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       background-size: 100% auto !important;
     }
   }
@@ -100,16 +97,16 @@ export default {
     padding: 25px 0px 0px 25px;
 
     color: #102938;
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       font-size: 1.3rem;
     }
-    @media (max-width: c.$md3) {
+    @media (max-width: $md3) {
       font-size: 1.3rem;
     }
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       font-size: 1rem;
     }
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       padding: 15px 0px 0px 15px;
     }
   }
@@ -129,7 +126,7 @@ export default {
     //   height: 14px;
     //   background: url(../../public/content-bar-arrow-price.svg) center / contain no-repeat;
     // }
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       font-size: 14px;
       margin: 8px 0px 0px 8px;
       padding: 7px 10px;

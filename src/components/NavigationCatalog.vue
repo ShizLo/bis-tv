@@ -49,7 +49,7 @@ export default {
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
               <!-- <a class="catalog__link" @click="$emit('visible')">Установка заборов</a> -->
-              <router-link class="catalog__link" :to="{ name: 'FenceView' }">Установка заборов</router-link>
+              <router-link class="catalog__link" :to="{ name: 'FencePage' }">Установка заборов</router-link>
             </div>
             <div class="catalog__item" data-test="1">
               <a class="catalog__link" @click="$emit('visible')">Ливневая канализация</a>
@@ -125,7 +125,7 @@ export default {
   </div>
 </template>
 <style lang="scss" scoped>
-@use "../assets/styles/app.scss" as c;
+@use "../assets/styles/main.scss" as *;
 .form-feedback__show {
   display: block;
   opacity: 1;
@@ -194,7 +194,7 @@ export default {
     justify-content: stretch;
     align-items: center;
     gap: 7px;
-    font-size: c.$fs-m;
+    font-size: $fs-m;
     display: flex;
     width: 100%;
     color: #102938;

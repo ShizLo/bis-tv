@@ -186,7 +186,7 @@ export default {
                 <div class="feedback-mobile">
                   <p class="feedback-mobile__text">
                     Нажимая кнопку «отправить», вы соглашаетесь с
-                    <router-link :to="{ name: 'PolicyView' }"> Политикой конфиденциальности.</router-link>
+                    <router-link :to="{ name: 'PolicyPage' }"> Политикой конфиденциальности.</router-link>
                   </p>
                 </div>
               </div>
@@ -287,7 +287,10 @@ export default {
   <Footer />
 </template>
 <style lang="scss" scoped>
-@use "../src/assets/styles/app.scss" as c;
+@use "../src/assets/styles/main.scss" as *;
+// @use "../src/assets/styles/app.scss" as *;
+// @use "../src/assets/styles/main.scss" as *;
+
 .my-notification {
   /*...*/
   font-size: 200px;
@@ -333,10 +336,6 @@ export default {
   transition: all 0.3s ease-out;
 }
 
-// .swiper {
-//   width: 600px;
-//   height: 300px;
-// }
 .form-feedback__show {
   display: block;
   opacity: 1;
@@ -361,7 +360,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     gap: 8px;
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       min-height: 100px;
     }
   }
@@ -371,13 +370,13 @@ export default {
     margin: 0 auto;
     // max-width: 0 auto;
     align-items: center;
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       position: absolute;
       left: 0;
       width: 100%;
       justify-content: center;
     }
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       position: absolute;
       // left: 33%;
       left: 0;
@@ -390,18 +389,18 @@ export default {
     flex-wrap: wrap;
     gap: 20px;
     align-items: center;
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       gap: 0;
     }
   }
   &__block-links {
-    // @media (max-width: c.$md4) {
+    // @media (max-width: $md4) {
     //   margin-right: 4px;
     //   display: none;
     // }
   }
   &__nav {
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       display: none;
     }
   }
@@ -410,7 +409,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       gap: 14px;
     }
   }
@@ -428,7 +427,7 @@ export default {
 
     // margin-left: 10px;
 
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       height: 80px;
       margin-left: 0px;
     }
@@ -449,7 +448,7 @@ export default {
     overflow: auto;
     padding: 15px 10px 30px 10px;
     background-color: rgba(255, 255, 255, 1);
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       &._active {
         transform: translate(0px, 0%);
         // display: block;
@@ -507,9 +506,9 @@ export default {
   // }
 }
 .burger__item {
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
   }
-  @media (max-width: c.$md2) {
+  @media (max-width: $md2) {
     position: absolute;
     padding: 35px;
     left: 0;
@@ -517,9 +516,9 @@ export default {
       left: 93%;
     }
   }
-  @media (max-width: c.$md3) {
+  @media (max-width: $md3) {
   }
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     &._right {
       left: 82%;
     }
@@ -652,11 +651,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: c.$md4) {
+  @media (max-width: $md4) {
     display: none;
   }
   &.item-phone {
-    @media (max-width: c.$md4) {
+    @media (max-width: $md4) {
       display: block;
       position: absolute;
       right: 4%;
@@ -670,12 +669,12 @@ export default {
   font-size: 1.45rem;
   letter-spacing: 0.7px;
   white-space: nowrap;
-  @media (max-width: c.$md2) {
+  @media (max-width: $md2) {
     display: none;
   }
   &-mobile {
     display: none;
-    @media (max-width: c.$md2) {
+    @media (max-width: $md2) {
       display: flex;
     }
     &:before {
@@ -849,7 +848,7 @@ export default {
   left: 17px;
   top: calc(40%);
   // z-index: 11;
-  @media (max-width: c.$md2) {
+  @media (max-width: $md2) {
     display: block;
   }
 }
