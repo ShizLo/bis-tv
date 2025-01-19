@@ -82,7 +82,9 @@ function wireUpTriggers() {
                   <div class="menu__item item-link">Водоснабжение</div>
                   <div class="menu__item item-link">Система очистки воды</div>
                   <div class="menu__item item-link">Свайный фундамент</div>
-                  <div class="menu__item item-link">Установка заборов</div>
+                  <div class="menu__item item-link">
+                    <router-link :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
+                  </div>
                   <div class="menu__item item-link">Ливневая канализация</div>
                   <div class="menu__item item-link">Дренаж</div>
                   <div class="menu__item item-link">Благоустройство</div>

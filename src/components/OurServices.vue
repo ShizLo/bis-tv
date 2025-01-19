@@ -1,43 +1,6 @@
-<script>
-import { ref } from "vue";
+<script setup>
 import ServiceCard from "./ServiceCard.vue";
-import ServiceSmallCard from "./ServiceSmallCard.vue";
-import service1 from "../assets/images/services-1.webp";
-import service2 from "../assets/images/services-2++.webp";
-import service3 from "../assets/images/services-3.webp";
-import service4 from "../assets/images/services-4.webp";
-import service5 from "../assets/images/services-5+.webp";
-import service6 from "../assets/images/services-6.webp";
-import service7 from "../assets/images/services-7.webp";
-import service8 from "../assets/images/services-8++.webp";
-
-export default {
-  components: {
-    ServiceCard,
-    ServiceSmallCard,
-  },
-  setup() {
-    let imgService1 = ref(service1);
-    let imgService2 = ref(service2);
-    let imgService3 = ref(service3);
-    let imgService4 = ref(service4);
-    let imgService5 = ref(service5);
-    let imgService6 = ref(service6);
-    let imgService7 = ref(service7);
-    let imgService8 = ref(service8);
-
-    return {
-      imgService1,
-      imgService2,
-      imgService3,
-      imgService4,
-      imgService5,
-      imgService6,
-      imgService7,
-      imgService8,
-    };
-  },
-};
+import { ROUTES_PATHS } from "../constants";
 </script>
 <template>
   <section class="services">
@@ -50,7 +13,7 @@ export default {
               class="services__row-item-big"
               title="Септик под ключ"
               price="От 180 000"
-              v-bind:path="imgService1"
+              pathImg="url(/images/ourServices/services-1.webp)"
               hoverColors="rgb(170, 214, 199)"
             />
           </div>
@@ -59,14 +22,14 @@ export default {
               class="services__row-item-sm"
               title="Водоснабжение"
               price="От 60 000"
-              v-bind:path="imgService2"
+              pathImg="url(/images/ourServices/services-2++.webp"
               hoverColors="rgb(204, 209, 255)"
             />
             <ServiceCard
               class="services__row-item-sm"
               title="Ливневка"
               price="От 50 000"
-              v-bind:path="imgService7"
+              pathImg="url(/images/ourServices/services-7.webp"
               hoverColors="rgb(204, 209, 255)"
             />
           </div>
@@ -77,14 +40,14 @@ export default {
               class="services__row-item-sm"
               title="Фундамент"
               price="От 100 000"
-              v-bind:path="imgService5"
+              pathImg="url(/images/ourServices/services-5+.webp"
               hoverColors="rgb(255, 229, 204)"
             />
             <ServiceCard
               class="services__row-item-sm"
               title="Электромонтаж"
               price="От 20 000"
-              v-bind:path="imgService8"
+              pathImg="url(/images/ourServices/services-8++.webp"
               hoverColors="rgb(243, 253, 180)"
             />
           </div>
@@ -93,8 +56,9 @@ export default {
               class="services__row-item-big"
               title="Установка заборов"
               price="От 90 000"
-              v-bind:path="imgService6"
+              pathImg="url(/images/ourServices/services-6.webp"
               hoverColors="rgb(255, 229, 204)"
+              :routePath="ROUTES_PATHS.FENCE"
             />
           </div>
         </div>

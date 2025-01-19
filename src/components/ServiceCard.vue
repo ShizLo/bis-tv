@@ -1,31 +1,15 @@
-<script>
-export default {
-  props: {
-    title: String,
-    price: String,
-    path: String,
-    hoverColors: String,
-  },
-  data() {
-    let imagePath = "url(" + this.path + ")";
-    let hoverColor = this.hoverColors;
-    return {
-      imagePath,
-      hoverColor,
-    };
-  },
-};
+<script setup>
+const props = defineProps({
+  title: String,
+  price: String,
+  pathImg: String,
+  hoverColors: String,
+  routePath: String,
+});
 </script>
 <template>
   <div class="services__item">
-    <a
-      class="services__item-link item"
-      v-scroll-to="{
-        el: '#GlobalForm',
-        easing: [0.6, 0.8, 0.3, 1.9],
-        duration: 2000,
-      }"
-    >
+    <router-link :style="{ 'background-image': pathImg }" class="services__item-link item" :to="{ name: routePath }">
       <div class="item__description content__description">
         <div class="item__title title">
           <span>{{ title }}</span>
@@ -34,7 +18,7 @@ export default {
           <span>{{ price }} руб.</span>
         </div>
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -53,7 +37,7 @@ export default {
   transition-delay: 150ms;
   @media (min-width: $md1) {
     &:hover {
-      background-color: v-bind(hoverColor);
+      background-color: v-bind(hoverColors);
     }
   }
   &-link {
@@ -81,7 +65,8 @@ export default {
 }
 
 .item {
-  background: v-bind(imagePath);
+  // background: v-bind(imagePath);
+  // background: v-bind(path);
   &__title {
     font-weight: 600;
     line-height: 120%;

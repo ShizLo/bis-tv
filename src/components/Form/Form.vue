@@ -81,10 +81,10 @@ function sendMessage() {
     var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
     var chat_id2 = -1002378962422;
     // ОСНОВНАЯ ГРУППА
-    // var url2 = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id2}&text=${my_text}`;
-    // let api2 = new XMLHttpRequest();
-    // api2.open("GET", url2, true);
-    // api2.send();
+    var url2 = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id2}&text=${my_text}`;
+    let api2 = new XMLHttpRequest();
+    api2.open("GET", url2, true);
+    api2.send();
 
     // ДОПОЛНИТЕЛЬНАЯ ГРУППА
     var chat_id = -1002383432249;
