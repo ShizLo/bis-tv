@@ -186,7 +186,7 @@ export default {
                 <div class="feedback-mobile">
                   <p class="feedback-mobile__text">
                     Нажимая кнопку «отправить», вы соглашаетесь с
-                    <router-link :to="{ name: 'PolicyPage' }"> Политикой конфиденциальности.</router-link>
+                    <!-- <router-link :to="{ name: 'PolicyPage' }"> Политикой конфиденциальности.</router-link> -->
                   </p>
                 </div>
               </div>
@@ -361,7 +361,7 @@ export default {
     align-items: center;
     gap: 8px;
     @media (max-width: $md4) {
-      min-height: 100px;
+      min-height: 110px;
     }
   }
 
@@ -428,7 +428,7 @@ export default {
     // margin-left: 10px;
 
     @media (max-width: $md4) {
-      height: 80px;
+      height: 95px;
       margin-left: 0px;
     }
   }

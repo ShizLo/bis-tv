@@ -7,19 +7,11 @@ export default {
     hoverColors: String,
   },
   data() {
-    // let x = "url("+`${config.imagePath}`+ this.path+")"
     let imagePath = "url(" + this.path + ")";
     let hoverColor = this.hoverColors;
-    // console.log(imagePath)
     return {
       imagePath,
       hoverColor,
-      // style: {
-      //   // "--background": "url(`${@}`" + this.path +")",
-      //   "--background": `${config.imagePath}`+ this.path,
-      //   // "--background": "url("+ new URL(`${this.pa}`, import.meta.resolve('../../')).href +")",
-      //   "--hoverColor": this.hoverColor,
-      // },
     };
   },
 };
@@ -120,12 +112,6 @@ export default {
     color: #102938;
     text-align: center;
     border-radius: 4px;
-    // &::after {
-    //   content: "";
-    //   width: 14px;
-    //   height: 14px;
-    //   background: url(../../public/content-bar-arrow-price.svg) center / contain no-repeat;
-    // }
     @media (max-width: $md4) {
       font-size: 14px;
       margin: 8px 0px 0px 8px;

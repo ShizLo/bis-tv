@@ -291,6 +291,6 @@
 </style>
 <script>
 export default {
-  name: "PolicyPage",
+  // name: "PolicyPage",
 };
 </script>

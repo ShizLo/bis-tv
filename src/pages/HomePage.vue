@@ -1,5 +1,5 @@
 <template>
-  <BannerSlider bannerText="Инженерные коммуникации и благоустройство участка" :bannerPrice="bannerPrice" />
+  <Banner bannerText="Инженерные коммуникации и благоустройство участка" :bannerPrice="bannerPrice" />
   <OurServices />
   <WorksSlider />
   <Partners />
@@ -9,7 +9,7 @@
 
 <script>
 import OurServices from "../components/OurServices.vue";
-import BannerSlider from "../components/Banner.vue";
+import Banner from "../components/Banner.vue";
 import WorksSlider from "../components/WorksSlider.vue";
 import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
@@ -22,7 +22,7 @@ export default {
   components: {
     OurServices,
     WorksSlider,
-    BannerSlider,
+    Banner,
     Partners,
     AboutUs,
     GlobalForm,
@@ -35,6 +35,11 @@ export default {
   data: () => ({
     bannerPrice: [
       {
+        url: "/images/swiperBanner/banner-1+.jpg",
+        price: "от 110 000 руб.",
+        name: "Благоустройство",
+      },
+      {
         url: "/images/swiperBanner/swiper-slide-1.webp",
         price: "от 90 000 руб.",
         name: "Установка забора",
@@ -45,7 +50,7 @@ export default {
         name: "Свайное поле",
       },
       {
-        url: "/images/swiperBanner/swiper-slide-3.webp",
+        url: "/images/swiperBanner/banner-3.jpg",
         price: "от 65 000 руб.",
         name: "Откатные ворота",
       },
@@ -60,7 +65,7 @@ export default {
         name: "Водоподготовка",
       },
       {
-        url: "/images/swiperBanner/swiper-slide-5.webp",
+        url: "/images/swiperBanner/swiper-slide-6.webp",
         price: "от 180 000 руб.",
         name: "Септик под ключ",
       },

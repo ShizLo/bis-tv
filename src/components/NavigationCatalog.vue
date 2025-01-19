@@ -1,17 +1,8 @@
-<script>
+<script setup>
 import { computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
-
-export default {
-  components: {},
-  setup() {
-    return {};
-  },
-  methods: {},
-  props: {},
-  computed: {},
-};
+import { ROUTES_PATHS } from "../constants";
 </script>
 <template>
   <div class="catalog__wrap">
@@ -48,8 +39,7 @@ export default {
           </li>
           <li class="catalog__list-item_body-item">
             <div class="catalog__item" data-test="0">
-              <!-- <a class="catalog__link" @click="$emit('visible')">Установка заборов</a> -->
-              <router-link class="catalog__link" :to="{ name: 'FencePage' }">Установка заборов</router-link>
+              <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
             </div>
             <div class="catalog__item" data-test="1">
               <a class="catalog__link" @click="$emit('visible')">Ливневая канализация</a>
