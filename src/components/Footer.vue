@@ -61,10 +61,7 @@ function wireUpTriggers() {
       <div class="footer__content">
         <div class="footer-row">
           <div class="footer__column">
-            <div class="footer__title footer__title-text">
-              БИС: Благоустройство и <br />
-              инженерные сети
-            </div>
+            <div class="footer__title footer__title-text">БИС: Благоустройство и инженерные сети</div>
             <div class="footer__legal">
               <div class="legal__item">
                 <router-link class="item-policy" :to="{ name: ROUTES_PATHS.POLICY }"> Политика конфиденциальности</router-link>

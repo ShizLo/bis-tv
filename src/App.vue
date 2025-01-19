@@ -1,107 +1,92 @@
-<script>
+<script setup>
 import NavigationCatalog from "./components/NavigationCatalog.vue";
 import Footer from "./components/Footer.vue";
 import Form from "./components/Form/Form.vue";
 import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
 import { reactive, computed } from "vue";
+import { ROUTES_PATHS } from "./constants";
 
-export default {
-  components: {
-    NavigationCatalog,
-    Footer,
-    Form,
-  },
-  name: "App",
-  setup() {
-    const route = useRoute();
-    const path = ref(computed(() => route.path)); // Отслеживает путь
-    let formIsVisible = ref(0);
+const route = useRoute();
+const router = useRouter();
+const path = ref(computed(() => route.path)); // Отслеживает путь
+let formIsVisible = ref(0);
 
-    const catalog = reactive({
-      active: false,
-    });
+const catalog = reactive({
+  active: false,
+});
 
-    // При изменении пути вызывает функцию clickMenu()
-    watch(path, (newX) => {
-      if (path != newX) {
-        if (catalog.active === true) {
-          clickMenu();
-        }
-      }
-    });
-    function clickMenu() {
-      // Отображает каталог
-      if (catalog.active === true) {
-        catalog.active = false;
-      } else {
-        catalog.active = true;
-      }
-      const burger1 = document.querySelector(".burger");
+watch(path, (newX) => {
+  console.log(router.options.history.state.back);
+  console.log(newX);
+  console.log(catalog.active);
+
+  if (router.options.history.state.back != newX && catalog.active == true) {
+    console.log("Скрфть");
+    clickMenu();
+  }
+});
+
+function clickMenu() {
+  if (catalog.active == true) {
+    catalog.active = false;
+  } else {
+    catalog.active = true;
+  }
+  const burger1 = document.querySelector(".burger");
+  if (burger1) {
+    burger1.classList.toggle("_active");
+  }
+  const burger = document.querySelector(".burger-md");
+  if (burger) {
+    const munuBody = document.querySelector(".menu-mobile");
+    const burgerItem = document.querySelector(".burger__item");
+    burger.classList.toggle("_active");
+    munuBody.classList.toggle("_active");
+    burgerItem.classList.toggle("_right");
+  }
+  console.log(catalog.active);
+}
+function toggleBodyScroll(lock) {
+  document.body.style.overflow = lock ? "hidden" : "";
+  document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
+  document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
+}
+function formVisible() {
+  const burger1 = document.querySelector(".burger");
+  if (formIsVisible.value === 1) {
+    formIsVisible.value = 0;
+    toggleBodyScroll(false);
+  } else {
+    formIsVisible.value = 1;
+    toggleBodyScroll(true);
+    if (catalog.active == true) {
       if (burger1) {
         burger1.classList.toggle("_active");
+        // catalog.active = true;
       }
-      const burger = document.querySelector(".burger-md");
+    } else {
+      burger1.classList.toggle("_active");
+      // catalog.active = false;
+    }
+  }
+}
+
+document.addEventListener("click", (e) => {
+  const elem = document.getElementById("catalog");
+  const elem1 = document.getElementById("nav__button");
+
+  if (!elem.contains(e.target) && !elem1.contains(e.target)) {
+    if (catalog.active == true) {
+      // catalog.active = false;
+
+      const burger = document.querySelector(".burger");
       if (burger) {
-        const munuBody = document.querySelector(".menu-mobile");
-        const burgerItem = document.querySelector(".burger__item");
         burger.classList.toggle("_active");
-        munuBody.classList.toggle("_active");
-        burgerItem.classList.toggle("_right");
       }
     }
-    function toggleBodyScroll(lock) {
-      document.body.style.overflow = lock ? "hidden" : "";
-      document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
-      document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
-      // document.querySelector('swiper-container').style.zIndex = lock ? '-1' : '';
-      // document.querySelector('swiper-container').style.overflow = lock ? 'hidden' : '';
-    }
-    function formVisible() {
-      const burger1 = document.querySelector(".burger");
-      if (formIsVisible.value === 1) {
-        formIsVisible.value = 0;
-        toggleBodyScroll(false);
-      } else {
-        formIsVisible.value = 1;
-        toggleBodyScroll(true);
-        if (catalog.active === true) {
-          if (burger1) {
-            burger1.classList.toggle("_active");
-          }
-          catalog.active = false;
-        } else {
-          burger1.classList.toggle("_active");
-          catalog.active = true;
-        }
-      }
-    }
-    return { path, catalog, clickMenu, formVisible, formIsVisible };
-  },
-
-  data: () => ({}),
-  methods: {},
-  mounted() {
-    this.$nextTick(function () {});
-  },
-  created: function () {
-    document.addEventListener("click", (e) => {
-      const elem = document.getElementById("catalog");
-      const elem1 = document.getElementById("nav__button");
-
-      if (!elem.contains(e.target) && !elem1.contains(e.target)) {
-        if (this.catalog.active == true) {
-          this.catalog.active = false;
-
-          const burger = document.querySelector(".burger");
-          if (burger) {
-            burger.classList.toggle("_active");
-          }
-        }
-      }
-    });
-  },
-};
+  }
+});
 </script>
 
 <template>
@@ -129,13 +114,6 @@ export default {
         <nav class="menu-mobile">
           <div class="menu__content">
             <div class="menu__header">
-              <!-- <div class="burger-close">
-                <div @click="clickMenu" class="burger-md burger-md-active _active">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div> -->
               <a class="menu__logo logo" href="">
                 <img class="logo__img" loading="lazy" width="" height="" src="../src/assets/icons/logo-foot.svg" alt="" />
               </a>
@@ -153,7 +131,7 @@ export default {
                   <a class="menu-mobile__item_body-link">Водоснабжение</a>
                   <a class="menu-mobile__item_body-link">Система очистки воды</a>
                   <a class="menu-mobile__item_body-link">Свайный фундамент</a>
-                  <a class="menu-mobile__item_body-link">Установка заборов</a>
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                   <a class="menu-mobile__item_body-link">Ливневка и дренаж</a>
                   <a class="menu-mobile__item_body-link">Благоустройство</a>
                   <a class="menu-mobile__item_body-link">Электромонтажные работы</a>
@@ -186,7 +164,7 @@ export default {
                 <div class="feedback-mobile">
                   <p class="feedback-mobile__text">
                     Нажимая кнопку «отправить», вы соглашаетесь с
-                    <!-- <router-link :to="{ name: 'PolicyPage' }"> Политикой конфиденциальности.</router-link> -->
+                    <router-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</router-link>
                   </p>
                 </div>
               </div>
@@ -274,7 +252,6 @@ export default {
               />
             </a>
           </li>
-          <!-- <li class="list__item"></li> -->
           <li class="list__item item-phone">
             <a class="list__item link__phone" href="tel:+7 911 277-56-07"> +7 911 277-56-07</a>
             <a class="list__item link__phone-mobile" href="tel:+7 911 277-56-07"> </a>
@@ -288,32 +265,21 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../src/assets/styles/main.scss" as *;
-// @use "../src/assets/styles/app.scss" as *;
-// @use "../src/assets/styles/main.scss" as *;
 
 .my-notification {
-  /*...*/
   font-size: 200px;
-  // style for title line
-
   font-size: 200px;
-  // style for content
   .notification-content {
     font-size: 200px;
   }
-
-  // additional styling hook when using`type` parameter, i.e. this.$notify({ type: 'success', message: 'Yay!' })
   &.success {
-    /*...*/
     font-size: 200px;
     background-color: green;
   }
   &.info {
-    /*...*/
     font-size: 200px;
   }
   &.error {
-    /*...*/
     font-size: 200px;
   }
 }
@@ -368,7 +334,6 @@ export default {
   &__logo {
     display: flex;
     margin: 0 auto;
-    // max-width: 0 auto;
     align-items: center;
     @media (max-width: $md2) {
       position: absolute;
@@ -378,7 +343,6 @@ export default {
     }
     @media (max-width: $md4) {
       position: absolute;
-      // left: 33%;
       left: 0;
       width: 100%;
       justify-content: center;
@@ -392,12 +356,6 @@ export default {
     @media (max-width: $md2) {
       gap: 0;
     }
-  }
-  &__block-links {
-    // @media (max-width: $md4) {
-    //   margin-right: 4px;
-    //   display: none;
-    // }
   }
   &__nav {
     @media (max-width: $md2) {
@@ -420,13 +378,8 @@ export default {
   justify-content: center;
 }
 .logo {
-  // width: 186px;
-  // height: 39px;
   &__img {
     height: 100px;
-
-    // margin-left: 10px;
-
     @media (max-width: $md4) {
       height: 95px;
       margin-left: 0px;
@@ -435,8 +388,6 @@ export default {
 }
 .menu {
   &-mobile {
-    // position: relative;
-
     z-index: 10;
     transform: translate(0px, -100%);
     transition: transform 0.8s ease 0s;
@@ -451,7 +402,6 @@ export default {
     @media (max-width: $md2) {
       &._active {
         transform: translate(0px, 0%);
-        // display: block;
       }
     }
 
@@ -465,7 +415,7 @@ export default {
         align-items: center;
         gap: 5px;
         background-color: #f0f4f9;
-        padding: 3px 5px 3px 7px;
+        padding: 8px 5px 7px 8px;
         border-radius: 6px;
         margin-bottom: 10px;
       }
@@ -485,42 +435,24 @@ export default {
         &-link {
           width: 100%;
           padding-left: 15px;
+          margin: 0px 0px 3px 0px;
         }
       }
     }
-  }
-  &__content {
   }
   &__header {
     position: relative;
     display: flex;
     justify-content: left;
   }
-
-  // &__link {
-  //   font-size: 20px;
-  //   font-weight: 500;
-  //   transition: color 0.3s ease 0s;
-  //   text-decoration: none;
-  //   color: #000;
-  // }
 }
 .burger__item {
-  @media (max-width: $md4) {
-  }
   @media (max-width: $md2) {
     position: absolute;
-    padding: 35px;
-    left: 0;
+    top: 40%;
+    left: 5%;
     &._right {
-      left: 93%;
-    }
-  }
-  @media (max-width: $md3) {
-  }
-  @media (max-width: $md4) {
-    &._right {
-      left: 82%;
+      left: 90%;
     }
   }
 }
@@ -677,6 +609,11 @@ export default {
     @media (max-width: $md2) {
       display: flex;
     }
+    @media (max-width: $md4) {
+      position: absolute;
+      right: 5%;
+      // margin-right: 10px;
+    }
     &:before {
       width: 25px;
       height: 25px;
@@ -804,9 +741,6 @@ export default {
 .burger-md {
   display: block;
   position: absolute;
-  // top: 18px;
-  // right: 10px;
-
   left: 10px;
   top: calc(33%);
   width: 30px;
@@ -831,6 +765,7 @@ export default {
   }
   &._active {
     span {
+      z-index: 1;
       transform: scale(0);
       &:first-child {
         transform: rotate(-45deg);
@@ -841,11 +776,25 @@ export default {
         bottom: calc(50% - 1px);
       }
     }
+    &::after {
+      position: relative;
+      display: block;
+      content: "";
+      top: -50%;
+      left: -50%;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background-color: #f5f5f5;
+    }
+    @media (max-width: $md4) {
+      width: 20px;
+    }
   }
 }
 .burger-md {
   display: none;
-  left: 17px;
+  left: 40%;
   top: calc(40%);
   // z-index: 11;
   @media (max-width: $md2) {
@@ -855,15 +804,5 @@ export default {
 .burger-md-active {
   top: calc(20%);
   left: 89%;
-
-  // position: absolute;
-  // right: 0;
-  // top: 0;
-}
-.burger-close {
-  // position: absolute;
-  // padding: 35px;
-  // right: 0;
-  // top: 0;
 }
 </style>
