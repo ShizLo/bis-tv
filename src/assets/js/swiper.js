@@ -14,7 +14,7 @@ export const swiper_order_setting = {
     // when window width is >= 320px
     320: {
       slidesPerView: 1.1,
-      spaceBetween: 10,
+      spaceBetween: 7,
     },
     // when window width is >= 480px
 
@@ -24,8 +24,8 @@ export const swiper_order_setting = {
       spaceBetween: 10,
     },
     1280: {
-      slidesPerView: 3,
-      spaceBetween: 30,
+      slidesPerView: 3.01,
+      spaceBetween: 10,
     },
   },
   navigation: {

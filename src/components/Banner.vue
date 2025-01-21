@@ -157,7 +157,7 @@ function hoverMobile() {
   left: 0;
   width: 100%;
   height: 25%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   z-index: 2;
 }
 .content__price {
@@ -179,6 +179,7 @@ function hoverMobile() {
   font-size: 1.6rem;
   color: #fff;
   width: calc(100% - 68px);
+  line-height: normal;
   @media (max-width: $md4) {
     font-size: 18px;
   }
@@ -335,6 +336,7 @@ function hoverMobile() {
       font-size: 1.5rem;
     }
     @media (max-width: $md4) {
+      font-size: 26px;
       text-align: center;
     }
   }
@@ -353,6 +355,7 @@ function hoverMobile() {
     gap: 8px;
     border-radius: 4px;
     border: 1px solid #ea5b0c;
+    box-shadow: 1px 1px 1px 0px rgba(34, 60, 80, 0.18);
     background: rgba(245, 245, 245, 0);
     color: #102938;
     text-align: center;

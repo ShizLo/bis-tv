@@ -202,6 +202,7 @@ textarea {
 }
 // }
 .form-bl.brd {
+  box-shadow: 0px 1px 3px 0px rgba(34, 60, 80, 0.18);
   color: #102938;
   text-align: left;
   padding: 28px 25px 1px;

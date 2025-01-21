@@ -5,8 +5,10 @@
 Устанавливаем заборы на винтовых сваях, что обеспечивает длительный срок службы."
     :bannerPrice="bannerPrice"
   />
-  <LocalService serviceTitle="Заборы и ограждения" :servicePrice="servicePrice" />
+  <OurServices :dataServices="dataServices" title="Наши услуги по заборам" />
+
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
+  <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
   <GlobalForm id="GlobalForm" />
 </template>
 
@@ -15,6 +17,8 @@ import BannerSlider from "../components/Banner.vue";
 import LocalService from "../components/LocalService.vue";
 import WorkOrder from "../components/WorkOrder.vue";
 import GlobalForm from "../components/Form/GlobalForm.vue";
+import OurServices from "../components/OurServices.vue";
+import { ROUTES_PATHS } from "../constants";
 
 export default {
   name: "FenceView",
@@ -23,6 +27,7 @@ export default {
     LocalService,
     WorkOrder,
     GlobalForm,
+    OurServices,
   },
 
   setup() {
@@ -31,15 +36,16 @@ export default {
   data: () => ({
     bannerPrice: [
       // https://www.youtube.com/watch?v=800Rb0IbLtk
-      {
-        url: "/images/fence/banner-1.jpg",
-        price: "от 8 650 за м.пог",
-        name: "Забор из профлиста",
-      },
+
       {
         url: "/images/fence/banner-2+.jpeg",
         price: "от 7 500 за м.пог",
         name: "Забор из металлического штакетника",
+      },
+      {
+        url: "/images/fence/banner-1.jpg",
+        price: "от 8 650 за м.пог",
+        name: "Забор из профлиста",
       },
       {
         url: "/images/fence/banner-3++.jpg",
@@ -63,12 +69,13 @@ export default {
       },
     ],
     servicePrice: [
-      { urlImg: "url(/images/fence/services-1.png)", price: "от 8650 м.пог", name: "Забор из профлиста" },
-      { urlImg: "url(/images/fence/services-2.png)", price: "от 7500 м.пог", name: "Забор из металлического штакетника" },
-      { urlImg: "url(/images/fence/services-3.png)", price: "от 8000 м.пог", name: "Забор из деревянного штакетника" },
-      { urlImg: "url(/images/fence/services-4.png)", price: "от 5350 м.пог", name: "Забор из сетки гиттер (3D сетка)" },
-      { urlImg: "url(/images/fence/services-5+++++.png)", price: "от 3050 м.пог", name: "Забор из сетки рабица" },
-      { urlImg: "url(/images/fence/services-6.png)", price: "от 6000 м.пог", name: "Забор и оргаждения из бруска" },
+      { urlImg: "url(/images/fence/dop-1.png)", price: "от 60 000 руб.", name: "Установка автоматики" },
+      { urlImg: "url(/images/fence/dop-2.png", price: "от 10 000 руб.", name: "Освещение участка" },
+      { urlImg: "url(/images/fence/dop-3+.png)", price: "", name: "Организация парковки и заеда" },
+      { urlImg: "url(/images/fence/dop-5+.png)", price: "", name: "Откатные ворота" },
+      { urlImg: "url(/images/fence/dop-4+.png)", price: "", name: "Распашные ворота" },
+      { urlImg: "url(/images/fence/dop-6.png", price: "", name: "Дополнительные услуги" },
+      // { urlImg: "url(/images/fence/services-6.png)", price: "от 6000 м.пог", name: "Забор и оргаждения из бруска" },
     ],
     dataOrder: [
       {
@@ -91,6 +98,63 @@ export default {
         title: "Доставка и монтаж",
         text: "Мы доставляем и монтируем Ваш заказ в удобное для Вас время. Наша команда профессиональных монтажников гарантирует качественный монтаж и безупречную работу оборудования.",
       },
+    ],
+    dataServices: [
+      [
+        [
+          {
+            class: "services__row-item-big",
+            title: "Забор из металлического штакетника",
+            price: "от 7 500 м.пог",
+            pathImg: "url(/images/fence/services-2.png)",
+            hoverColors: "rgb(170, 214, 199)",
+          },
+        ],
+        [
+          {
+            class: "services__row-item-sm",
+            title: "Забор из профлиста",
+            price: "от 8 650 м.пог",
+            pathImg: "url(/images/fence/services-1+.png)",
+            hoverColors: "rgb(204, 209, 255)",
+          },
+          {
+            class: "services__row-item-sm",
+            title: "Забор из деревянного штакетника",
+            price: "от 8 000 м.пог",
+            pathImg: "url(/images/fence/services-3.png)",
+            hoverColors: "rgb(204, 209, 255)",
+          },
+        ],
+      ],
+      [
+        [
+          {
+            class: "services__row-item-sm",
+            title: "Забор из сетки гиттер (3D сетка)",
+            price: "от 5 350 м.пог",
+            pathImg: "url(/images/fence/services-4+.png)",
+            hoverColors: "rgb(255, 229, 204)",
+          },
+          {
+            class: "services__row-item-sm",
+            title: "Забор и оргаждения из бруска",
+            price: "от 6 000 м.пог",
+            pathImg: "url(/images/fence/services-6.png)",
+            hoverColors: "rgb(243, 253, 180)",
+          },
+        ],
+        [
+          {
+            class: "services__row-item-big",
+            title: "Забор из сетки рабица",
+            price: "от 3 050 м.пог",
+            pathImg: "url(/images/fence/services-5+++++.png)",
+            hoverColors: "rgb(255, 229, 204)",
+            routePath: ROUTES_PATHS.FENCE,
+          },
+        ],
+      ],
     ],
   }),
 };

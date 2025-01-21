@@ -17,15 +17,12 @@ onUnmounted(() => {});
 <template>
   <section class="services">
     <div class="services__container _container">
-      <h2 class="services__title title-service">Наши услуги по заборам</h2>
+      <h2 class="services__title title-service">{{ serviceTitle }}</h2>
       <ul class="services__items">
         <li v-for="item in servicePrice" class="services__item item">
-          <!-- <span class="item__wrapper">
-            <img :src="item.urlImg" alt="" />
-          </span> -->
           <a :style="{ 'background-image': item.urlImg }" class="services__link">
             <div class="item__title">{{ item.name }}</div>
-            <div class="item__foot">
+            <div v-if="item.price.length > 0" class="item__foot">
               <span>{{ item.price }}</span>
             </div>
           </a>
@@ -52,19 +49,19 @@ onUnmounted(() => {});
   &__items {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 30px;
+    // grid-template-rows: 1fr 1fr;
+    gap: 20px;
     @media (max-width: $md2) {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
+      // grid-template-rows: 1fr 1fr 1fr;
     }
     @media (max-width: $md3) {
       gap: 15px;
     }
     @media (max-width: $md4) {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
-      gap: 8px;
+      // grid-template-rows: 1fr 1fr 1fr;
+      gap: 7px;
     }
   }
   &__item {
@@ -81,10 +78,10 @@ onUnmounted(() => {});
   }
   &__link {
     padding: 20px 20px;
-    // display: block;
+    display: block;
     // Изменения
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
     // justify-content: space-between;
     height: 100%;
     //background
@@ -92,7 +89,7 @@ onUnmounted(() => {});
     background-repeat: no-repeat;
     background-size: 100% auto;
     @media (max-width: $md4) {
-      padding: 13px 13px;
+      padding: 15px 10px 10px 10px;
       background-size: 120% auto;
     }
   }
@@ -100,11 +97,12 @@ onUnmounted(() => {});
 .item {
   position: relative;
   height: 190px;
+  box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
   @media (max-width: $md3) {
     height: 170px;
   }
   @media (max-width: $md4) {
-    height: 145px;
+    height: 120px;
   }
   &__wrapper {
     // background: #405460;
@@ -127,7 +125,7 @@ onUnmounted(() => {});
   }
   // background: ;
   &__title {
-    font-weight: 600;
+    font-weight: 500;
     line-height: 120%;
     font-size: 1.4rem;
     color: #102938;
@@ -138,6 +136,19 @@ onUnmounted(() => {});
     }
   }
   &__foot {
+    // background: #fff;
+    // display: inline-flex;
+    // justify-content: center;
+    // align-items: center;
+    // padding: 10px 10px;
+    // color: #102938;
+    // text-align: center;
+    // border-radius: 4px;
+    // font-size: 15px;
+    // width: 33%;
+    // font-weight: 500;
+    // border-radius: 8px;
+
     background: #fff;
     display: inline-flex;
     justify-content: center;
@@ -146,30 +157,27 @@ onUnmounted(() => {});
     color: #102938;
     text-align: center;
     border-radius: 4px;
-    font-size: 15px;
-    width: 33%;
     font-weight: 500;
-    border-radius: 8px;
     @media (max-width: $md2) {
       font-size: 14px;
-      margin: 0px 0px 0px -5px;
+      // margin: 0px 0px 0px -5px;
       // padding: 7px 10px;
       padding: 7px 7px;
-      width: 45%;
+      // width: 45%;
     }
     @media (max-width: $md3) {
       font-size: 12px;
-      margin: 0px 0px 0px -5px;
+      // margin: 0px 0px 0px -5px;
       // padding: 7px 10px;
       padding: 7px 7px;
-      width: 50%;
+      // width: 50%;
     }
     @media (max-width: $md4) {
-      font-size: 10px;
-      margin: 0px 0px 0px -5px;
+      font-size: 12px;
+      margin: 0px 0px 0px -3px;
       // padding: 7px 10px;
-      padding: 7px 7px;
-      width: 60%;
+      padding: 5px 5px;
+      // width: 60%;
     }
   }
 }

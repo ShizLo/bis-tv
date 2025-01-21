@@ -119,28 +119,53 @@ onUnmounted(() => {
 .swiper-wrapper {
   align-items: stretch;
   // overflow: visible;
+  // :first-child {
+  //   margin: 0px 1px 0px 0px;
+  // }
 }
+.swiper-wrapper > .swiper-slide__order:first-child {
+  margin-left: 3px;
+}
+
 .swiper-order {
   overflow: hidden;
+  padding-bottom: 3px;
   @media (max-width: $md4) {
     // overflow-x: visible;
     // overflow-y: hidden;
     // overflow: visible;
   }
 }
+
+// .swiper-slide {
+//   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+//   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+//   -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+// }
+// @for $i from 1 to 10 {
+//   .swiper-slide:nth-child(#{$i}):hover {
+//     z-index: $i;
+//   }
+// }
+
 .swiper-slide__order {
   background-color: $color-background;
   border-radius: 8px;
   height: auto;
   padding: 20px 20px;
+
+  // margin: 2px 0px; // -webkit-box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
+  // -moz-box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
+  box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
   @media (max-width: $md4) {
     padding: 20px 12px;
   }
 }
 
 .order {
+  margin: 0px 0px 25px 0px;
   &__title {
-    margin-top: 10px;
+    // margin-top: 10px;
     margin-bottom: 10px;
     font-size: 26px;
     font-weight: 600;
@@ -162,6 +187,12 @@ onUnmounted(() => {
     margin: 0px 10px 0px 0px;
     background-color: #fff;
     border-radius: 4px;
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(34, 60, 80, 0.18);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(34, 60, 80, 0.18);
+    box-shadow: 0px 1px 3px 0px rgba(34, 60, 80, 0.18);
+    @media (max-width: $md4) {
+      margin-left: 5px;
+    }
     img {
       @media (max-width: $md4) {
         height: 22px;

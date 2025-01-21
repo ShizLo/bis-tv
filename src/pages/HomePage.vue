@@ -1,6 +1,6 @@
 <template>
   <Banner bannerText="Инженерные коммуникации и благоустройство участка" :bannerPrice="bannerPrice" />
-  <OurServices />
+  <OurServices :dataServices="dataServices" title="Наши услуги" />
   <WorkOrder :data="dataOrder" title="Почему выбирают нас" />
   <WorksSlider />
   <Partners />
@@ -16,6 +16,7 @@ import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
 import GlobalForm from "../components/Form/GlobalForm.vue";
 import WorkOrder from "../components/WorkOrder.vue";
+import { ROUTES_PATHS } from "../constants";
 
 import Form from "../components/Form/Form.vue";
 
@@ -99,6 +100,63 @@ export default {
         title: "Прозрачная смета",
         text: "После первичной встречи на участке составляется визуализация вашего участка с привязками и размерами. Это позволяет точно составить подробную смету. Цена в большинстве случаев фиксируется или в смете указаны пункты, которые могут корректироваться  по факту.",
       },
+    ],
+    dataServices: [
+      [
+        [
+          {
+            class: "services__row-item-big",
+            title: "Септик под ключ",
+            price: "От 180 000 руб.",
+            pathImg: "url(/images/ourServices/services-1.webp)",
+            hoverColors: "rgb(170, 214, 199)",
+          },
+        ],
+        [
+          {
+            class: "services__row-item-sm",
+            title: "Водоснабжение",
+            price: "От 60 000 руб.",
+            pathImg: "url(/images/ourServices/services-2++.webp",
+            hoverColors: "rgb(204, 209, 255)",
+          },
+          {
+            class: "services__row-item-sm",
+            title: "Ливневка",
+            price: "От 50 000 руб.",
+            pathImg: "url(/images/ourServices/services-7.webp",
+            hoverColors: "rgb(204, 209, 255)",
+          },
+        ],
+      ],
+      [
+        [
+          {
+            class: "services__row-item-sm",
+            title: "Фундамент",
+            price: "От 100 000 руб.",
+            pathImg: "url(/images/ourServices/services-5+.webp",
+            hoverColors: "rgb(255, 229, 204)",
+          },
+          {
+            class: "services__row-item-sm",
+            title: "Электромонтаж",
+            price: "От 20 000 руб.",
+            pathImg: "url(/images/ourServices/services-8++.webp",
+            hoverColors: "rgb(243, 253, 180)",
+          },
+        ],
+        [
+          {
+            class: "services__row-item-big",
+            title: "Установка заборов",
+            price: "От 90 000 руб.",
+            pathImg: "url(/images/ourServices/services-6.webp",
+            hoverColors: "rgb(255, 229, 204)",
+            routePath: ROUTES_PATHS.FENCE,
+          },
+        ],
+      ],
     ],
   }),
 };
