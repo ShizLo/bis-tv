@@ -111,17 +111,8 @@ function sendMessage() {
 }
 </script>
 <template>
-  <div class="container-modal" @click.self="$emit('someEvent')">
-    <!-- <button class="feedback__close-btn">
-        <svg width="22" height="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M1.20868 14.5405L14.2902 1.45898M14.2902 14.5405L1.20875 1.45899"
-            stroke="#102937"
-            stroke-width="2"
-            stroke-linecap="round"
-          ></path>
-        </svg>
-      </button> -->
+  <!-- <div class="container-modal" @click.self="$emit('someEvent')"> -->
+  <div class="container-modal">
     <div class="reveal-modal">
       <p class="feedback__title title">Свяжемся с вами для консультации</p>
       <div class="feedback__form">
@@ -206,9 +197,8 @@ function sendMessage() {
   position: absolute;
   // visibility: hidden;
   z-index: 3;
-  display: none;
+  // display: none;
   background-color: rgba(22, 22, 22, 0.5);
-  /* complimenting your modal colors */
 }
 
 .reveal-modal {
@@ -303,8 +293,8 @@ function sendMessage() {
   justify-content: end;
   right: 0;
   left: 0;
-  display: none;
-  opacity: 0;
+  // display: none;
+  // opacity: 0;
 
   &__container {
     background-color: #fff;

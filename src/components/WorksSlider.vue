@@ -157,13 +157,14 @@ export default {
   width: 100%;
   height: 100%;
   &__img {
-    border-radius: 4px;
+    border-radius: 7px;
   }
 }
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
+  border-radius: 7px;
 
   /* Center slide text vertically */
   display: flex;
@@ -199,6 +200,7 @@ export default {
     width: 100%;
     left: 0;
     color: #fff;
+    border-radius: 7px;
   }
 }
 .content_title {

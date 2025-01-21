@@ -1,6 +1,7 @@
 <template>
   <Banner bannerText="Инженерные коммуникации и благоустройство участка" :bannerPrice="bannerPrice" />
   <OurServices />
+  <WorkOrder :data="dataOrder" title="Почему выбирают нас" />
   <WorksSlider />
   <Partners />
   <AboutUs />
@@ -14,6 +15,7 @@ import WorksSlider from "../components/WorksSlider.vue";
 import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
 import GlobalForm from "../components/Form/GlobalForm.vue";
+import WorkOrder from "../components/WorkOrder.vue";
 
 import Form from "../components/Form/Form.vue";
 
@@ -27,6 +29,7 @@ export default {
     AboutUs,
     GlobalForm,
     Form,
+    WorkOrder,
   },
 
   setup() {
@@ -68,6 +71,33 @@ export default {
         url: "/images/swiperBanner/swiper-slide-6.webp",
         price: "от 180 000 руб.",
         name: "Септик под ключ",
+      },
+    ],
+    dataOrder: [
+      {
+        urlImg: "/icons/homePage/spinner9.svg",
+        title: "Делаем полный цикл",
+        text: "Мы беремся за реализацию всего цикла от проектирования до организации газона. Большой набор услуг позволяет закрыть большую часть потребностей в 'одном окне', что позволяет не тратить время на согласования, коллаборации и экономит средства.",
+      },
+      {
+        urlImg: "/icons/homePage/user-tie.svg",
+        title: "Индивидуальный подход",
+        text: "Как не бывает двух одинаковых заказчиков, так и нет полностью идентичных участков. Наши инженеры и ландшафтный дизайнер помогут вам создать индивидуальный ландшафт и грамотно разместить коммуникации, учитывая все особенности участка.",
+      },
+      {
+        urlImg: "/icons/homePage/checkmark.svg",
+        title: "Гарантия качества",
+        text: "Гарантируем качество наших работ и оперативно реагируем в случае когда, что-то пошло не так. ",
+      },
+      {
+        urlImg: "/icons/homePage/cogs.svg",
+        title: "Служба сервиса",
+        text: "Если заказываете сервис у нас, то помимо сезонного обслуживания получаете и расширенную* гарантию. После монтажа оборудования наш специалист сам будет отслеживать и напоминать вам о необходимости провести ТО.",
+      },
+      {
+        urlImg: "/icons/homePage/clipboard.svg",
+        title: "Прозрачная смета",
+        text: "После первичной встречи на участке составляется визуализация вашего участка с привязками и размерами. Это позволяет точно составить подробную смету. Цена в большинстве случаев фиксируется или в смете указаны пункты, которые могут корректироваться  по факту.",
       },
     ],
   }),

@@ -6,7 +6,7 @@
     :bannerPrice="bannerPrice"
   />
   <LocalService serviceTitle="Заборы и ограждения" :servicePrice="servicePrice" />
-  <WorkOrder :data="dataOrder" />
+  <WorkOrder :data="dataOrder" title="Как мы работаем" />
   <GlobalForm id="GlobalForm" />
 </template>
 

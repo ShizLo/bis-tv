@@ -1,5 +1,4 @@
 <script setup>
-import NavigationCatalog from "./components/NavigationCatalog.vue";
 import Footer from "./components/Footer.vue";
 import Form from "./components/Form/Form.vue";
 import { useRouter, useRoute } from "vue-router";
@@ -10,88 +9,59 @@ import { ROUTES_PATHS } from "./constants";
 const route = useRoute();
 const router = useRouter();
 const path = ref(computed(() => route.path)); // Отслеживает путь
+
 let formIsVisible = ref(0);
 
 const catalog = reactive({
-  active: false,
+  active: false, // Открыт ли NavigationCatalog следовательно бургер тоже активен
+});
+
+const burger = reactive({
+  active: false, // Открыт ли NavigationCatalog следовательно бургер тоже активен
+});
+
+const feedbackForm = reactive({
+  // Не используется
+  //TODO: Открывать форму при нажатии кнопки "Обсудить задачу"
+  active: false, // Открыта ли форма обратной связи
 });
 
 watch(path, (newX) => {
-  console.log(router.options.history.state.back);
-  console.log(newX);
-  console.log(catalog.active);
-
   if (router.options.history.state.back != newX && catalog.active == true) {
-    console.log("Скрфть");
-    clickMenu();
+    catalog.active = false; // При смене маршура скрываем NavigationCatalog
+  }
+  if (router.options.history.state.back != newX && burger.active == true) {
+    burger.active = false; // При смене маршура скрываем NavigationCatalog
   }
 });
 
 function clickMenu() {
-  if (catalog.active == true) {
-    catalog.active = false;
-  } else {
-    catalog.active = true;
-  }
-  const burger1 = document.querySelector(".burger");
-  if (burger1) {
-    burger1.classList.toggle("_active");
-  }
-  const burger = document.querySelector(".burger-md");
-  if (burger) {
-    const munuBody = document.querySelector(".menu-mobile");
-    const burgerItem = document.querySelector(".burger__item");
-    burger.classList.toggle("_active");
-    munuBody.classList.toggle("_active");
-    burgerItem.classList.toggle("_right");
-  }
-  console.log(catalog.active);
+  catalog.active == true ? (catalog.active = false) : (catalog.active = true); // Если NavigationCatalog открыт закрываем и наооборот
 }
+
+function clickMenuMobile() {
+  burger.active == true ? (burger.active = false) : (burger.active = true);
+}
+
 function toggleBodyScroll(lock) {
+  // TODO: Использовать после того как будет реализована форма обратной связи
   document.body.style.overflow = lock ? "hidden" : "";
   document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
   document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
 }
-function formVisible() {
-  const burger1 = document.querySelector(".burger");
-  if (formIsVisible.value === 1) {
-    formIsVisible.value = 0;
-    toggleBodyScroll(false);
-  } else {
-    formIsVisible.value = 1;
-    toggleBodyScroll(true);
-    if (catalog.active == true) {
-      if (burger1) {
-        burger1.classList.toggle("_active");
-        // catalog.active = true;
-      }
-    } else {
-      burger1.classList.toggle("_active");
-      // catalog.active = false;
-    }
-  }
-}
 
 document.addEventListener("click", (e) => {
-  const elem = document.getElementById("catalog");
-  const elem1 = document.getElementById("nav__button");
-
-  if (!elem.contains(e.target) && !elem1.contains(e.target)) {
-    if (catalog.active == true) {
-      // catalog.active = false;
-
-      const burger = document.querySelector(".burger");
-      if (burger) {
-        burger.classList.toggle("_active");
-      }
-    }
+  const elemCatalog = document.querySelector(".catalog");
+  const elemButton = document.querySelector(".nav__button");
+  if (!elemCatalog.contains(e.srcElement) && !elemButton.contains(e.srcElement) && catalog.active) {
+    catalog.active = false;
   }
 });
 </script>
 
 <template>
   <section class="header">
-    <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''" @someEvent="formVisible" />
+    <Form v-show="feedbackForm.active" />
     <div class="header__container _container">
       <div class="header__block">
         <a class="header__logo logo" href="/">
@@ -104,14 +74,14 @@ document.addEventListener("click", (e) => {
             alt="Благоустройство и инженерные сети"
           />
         </a>
-        <div @click="clickMenu" class="burger__item">
-          <div class="burger-md">
+        <div @click="clickMenuMobile" class="burger__item" :class="burger.active == true ? '_right' : ''">
+          <div class="burger-md" :class="burger.active == true ? '_active' : ''">
             <span></span>
             <span></span>
             <span></span>
           </div>
         </div>
-        <nav class="menu-mobile">
+        <nav :class="burger.active == true ? '_active' : ''" class="menu-mobile">
           <div class="menu__content">
             <div class="menu__header">
               <a class="menu__logo logo" href="">
@@ -209,15 +179,121 @@ document.addEventListener("click", (e) => {
           <ul role="list" class="nav__list">
             <li class="nav__item">
               <button id="nav__button" class="nav__button button" @click="clickMenu">
-                <div class="nav__burger burger">
+                <div :class="catalog.active == true ? '_active' : ''" class="nav__burger burger">
                   <span></span>
                   <span></span>
                   <span></span>
                 </div>
                 Каталог
               </button>
-              <div id="catalog" class="catalog" :class="catalog.active == true ? 'nav__window' : ''">
-                <NavigationCatalog @visible="formVisible" />
+              <div class="catalog" v-show="catalog.active">
+                <div class="catalog__wrap">
+                  <ul class="catalog__list">
+                    <li class="catalog__list-item">
+                      <span class="catalog__list-item_header">
+                        <img class="catalog__list-item_header-icon" alt="Услуги" src="./assets/icons/design_services.svg" />
+                        Услуги
+                      </span>
+                      <ul class="catalog__list-item_body">
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">Проект участка</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Топографическая съемка</a>
+                          </div>
+
+                          <div class="catalog__item">
+                            <a class="catalog__link">Септик под ключ </a>
+                          </div>
+                        </li>
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">Водоснабжение</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Система очистки воды</a>
+                          </div>
+
+                          <div class="catalog__item">
+                            <a class="catalog__link">Свайный фундамент</a>
+                          </div>
+                        </li>
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item" data-test="0">
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Ливневая канализация</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Дренаж </a>
+                          </div>
+                        </li>
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">Благоустройство</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Электромонтажные работы</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Освещение участка</a>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="catalog__list-item">
+                      <a href="/service" class="catalog__list-item_header">
+                        <img
+                          class="catalog__list-item_header-icon"
+                          width="20"
+                          height="20"
+                          alt="Sewera Сервис"
+                          src="./assets/icons/cleaning_services.svg"
+                        />
+                        Сервис
+                      </a>
+                      <ul class="catalog__list-item_body">
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">Обслуживание ЛОС</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Обслуживание бойлеров</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Система водоочистки</a>
+                          </div>
+                        </li>
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">Система водоподготовки</a>
+                          </div>
+
+                          <div class="catalog__item">
+                            <a class="catalog__link">Система водоснабжения</a>
+                          </div>
+
+                          <div class="catalog__item">
+                            <a class="catalog__link">Уборка участка</a>
+                          </div>
+                        </li>
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">ТО и сервис генераторов</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Уход за газоном</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Разморозка водопровода</a>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </li>
             <li class="nav__item">
@@ -453,6 +529,9 @@ document.addEventListener("click", (e) => {
     left: 5%;
     &._right {
       left: 90%;
+      @media (max-width: $md4) {
+        left: 85%;
+      }
     }
   }
 }
@@ -536,7 +615,7 @@ document.addEventListener("click", (e) => {
   display: none;
 }
 .catalog {
-  display: none;
+  // display: none;
   left: 0;
   bottom: 30px;
   max-width: 1264px;
@@ -747,6 +826,9 @@ document.addEventListener("click", (e) => {
   height: 20px;
   cursor: pointer;
   z-index: 11;
+  @media (max-width: $md4) {
+    width: 27px;
+  }
   span {
     transition: all 0.3s ease 0s;
     top: calc(50% - 1px);
@@ -776,33 +858,96 @@ document.addEventListener("click", (e) => {
         bottom: calc(50% - 1px);
       }
     }
-    &::after {
-      position: relative;
-      display: block;
-      content: "";
-      top: -50%;
-      left: -50%;
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-      background-color: #f5f5f5;
-    }
+
     @media (max-width: $md4) {
       width: 20px;
+      &::after {
+        position: relative;
+        display: block;
+        content: "";
+        top: -50%;
+        left: -50%;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+      }
     }
   }
 }
-.burger-md {
-  display: none;
-  left: 40%;
-  top: calc(40%);
-  // z-index: 11;
-  @media (max-width: $md2) {
-    display: block;
-  }
+/// navigationcatalog
+.form-feedback__show {
+  display: block;
+  opacity: 1;
 }
-.burger-md-active {
-  top: calc(20%);
-  left: 89%;
+
+.catalog {
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    border-radius: 8px;
+    padding: 30px;
+    margin-top: 21px;
+    background: #fff;
+    box-shadow: 0 4px 28px 0 rgba(0, 60, 92, 0.08);
+  }
+  &__list {
+    width: 100%;
+    &-item {
+      padding-bottom: 20px;
+      padding-top: 20px;
+      border-bottom: 1px solid #e8eaec;
+      width: 100%;
+      &_header {
+        text-align: left;
+        padding: 8px 10px;
+        display: flex;
+        align-items: center;
+        color: #102938;
+        font-size: 1.2rem;
+        &-icon {
+          width: 24px;
+          min-width: 20px;
+          height: 24px;
+          margin-right: 10px;
+          object-fit: contain;
+        }
+      }
+      &_body {
+        width: 100%;
+        // display: grid;
+        display: flex;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-flow: row;
+        gap: 2px 33px;
+      }
+    }
+    &-item:first-child {
+      padding-top: 0;
+    }
+  }
+  &__item {
+    transition: border-radius 0.3s, background 0.3s;
+    &:hover {
+      border-radius: 6px;
+      background: #f5f5f5;
+    }
+  }
+  &__link {
+    padding: 8px 10px;
+    font-weight: 500;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    gap: 7px;
+    font-size: $fs-m;
+    display: flex;
+    width: 100%;
+    color: #102938;
+  }
 }
 </style>

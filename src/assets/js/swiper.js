@@ -13,7 +13,7 @@ export const swiper_order_setting = {
   breakpoints: {
     // when window width is >= 320px
     320: {
-      slidesPerView: 1.11,
+      slidesPerView: 1.1,
       spaceBetween: 10,
     },
     // when window width is >= 480px

@@ -6,6 +6,9 @@ const props = defineProps({
   data: {
     typeof: Array,
   },
+  title: {
+    typeof: String,
+  },
 });
 const swiper_order = new Swiper(".swiper-order", swiper_order_setting);
 
@@ -20,7 +23,7 @@ onUnmounted(() => {
 <template>
   <section class="order">
     <div class="order__container _container">
-      <h2 class="order__title">Как мы работаем</h2>
+      <h2 class="order__title">{{ title }}</h2>
       <div class="swiper-container">
         <div class="swiper-order">
           <div class="swiper-wrapper">
@@ -159,10 +162,19 @@ onUnmounted(() => {
     margin: 0px 10px 0px 0px;
     background-color: #fff;
     border-radius: 4px;
+    img {
+      @media (max-width: $md4) {
+        height: 22px;
+        width: 22px;
+      }
+    }
   }
   &__title {
     font-size: 1.4rem;
     font-weight: 500;
+    @media (max-width: $md4) {
+      font-size: 20px;
+    }
   }
   &__text {
     color: $color-text;
