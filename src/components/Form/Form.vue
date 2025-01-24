@@ -21,7 +21,7 @@ export default {
       let telError = document.querySelector('input[name="telephone"]').nextElementSibling;
 
       const maskOptions = {
-        mask: "+{7}(000)000-00-00",
+        mask: "+{7} (000) 000-00-00",
         lazy: false,
       };
       const maskTel = IMask(telInput, maskOptions);

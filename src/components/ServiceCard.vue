@@ -7,19 +7,11 @@ export default {
     hoverColors: String,
   },
   data() {
-    // let x = "url("+`${config.imagePath}`+ this.path+")"
     let imagePath = "url(" + this.path + ")";
     let hoverColor = this.hoverColors;
-    // console.log(imagePath)
     return {
       imagePath,
       hoverColor,
-      // style: {
-      //   // "--background": "url(`${@}`" + this.path +")",
-      //   "--background": `${config.imagePath}`+ this.path,
-      //   // "--background": "url("+ new URL(`${this.pa}`, import.meta.resolve('../../')).href +")",
-      //   "--hoverColor": this.hoverColor,
-      // },
     };
   },
 };

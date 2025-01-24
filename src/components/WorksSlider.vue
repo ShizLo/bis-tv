@@ -1,29 +1,112 @@
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Keyboard, Scrollbar, Navigation, Pagination } from "swiper/modules";
+import { ref } from "vue";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import MiniWorksSlider from "./MiniWorksSlider.vue";
 
 export default {
   components: {
     Swiper,
     SwiperSlide,
+    MiniWorksSlider,
   },
 
   setup() {
+    let formIsVisible = ref(0);
+    let workImage = ref([])
+    function isShow (visible, workName) {
+      if (visible) {
+        toggleBodyScroll(true)
+        formIsVisible.value = 1
+      }
+      else {
+        toggleBodyScroll(false)
+        formIsVisible.value = 0
+      }
+      workImage.value = workName
+    }
+    function toggleBodyScroll(lock) {
+      document.body.style.overflow = lock ? "hidden" : "";
+    }
     return {
+      isShow,
+      toggleBodyScroll,
+      formIsVisible,
+      workImage,
       modules: [Keyboard, Scrollbar, Navigation, Pagination],
     };
   },
+  data: () => ({
+    workImages: {
+        fencils: [
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "заборы",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "заборы",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "заборы",
+          },
+      ],
+      whaters: [
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "водоснабжение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "водоснабжение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "водоснабжение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "водоснабжение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "водоснабжение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "водоснабжение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "водоснабжение",
+          },
+      ]
+      }
+    
+  }),
+  
 };
 </script>
 <template>
   <section class="works-slider">
+    <MiniWorksSlider 
+        :class="formIsVisible === 1 ? 'form-feedback__show' : ''" 
+        class="mini-slider" 
+        @someEvent="isShow(false)"
+        :workImages = workImage
+        >
+      </MiniWorksSlider>
     <div class="_container _container-settings">
       <h2 class="content-bar__h2">Наши работы</h2>
     </div>
+
     <div class="_container">
+      
+
       <swiper
         :spaceBetween="5"
         :modules="modules"
@@ -61,49 +144,49 @@ export default {
         }"
         class="mySwiper"
       >
-        <swiper-slide>
-          <img src="../assets/images/landshaft.jpg" alt="Озеленение, освещение" class="swiper__img lazyloaded" />
+        <swiper-slide @click="isShow(true, workImages.whaters)">
+          <img src="../assets/images/landshaft.jpg"  alt="Озеленение, освещение" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Озеленение, освещение</p>
           </div>
         </swiper-slide>
-        <swiper-slide>
+        <swiper-slide @click="isShow(true,workImages.fencils)">
           <img src="../assets/images/work-swiper-3.jpg" alt="Заезд на участок и свайное поле" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Заезд на участок и свайное поле</p>
           </div>
         </swiper-slide>
-        <swiper-slide>
+        <swiper-slide @click="isShow(true)">
           <img src="../assets/images/work-swiper-2.jpg" alt="Дорожки, посадка и выравнивание" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Дорожки, посадка и выравнивание</p>
           </div>
         </swiper-slide>
-        <swiper-slide>
+        <swiper-slide @click="isShow(true)">
           <img src="../assets/images/work-swiper-8.jpg" alt="Уличное освещение" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Уличное освещение</p>
           </div>
         </swiper-slide>
-        <swiper-slide>
+        <swiper-slide @click="isShow(true)">
           <img src="../assets/images/work-swiper-5.jpg" alt="Забор из штакетника" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Забор из штакетника</p>
           </div>
         </swiper-slide>
-        <swiper-slide>
+        <swiper-slide @click="isShow(true)">
           <img src="../assets/images/work-swiper-6+.jpg" alt="Забор из гиттера" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Забор из гиттера</p>
           </div>
         </swiper-slide>
-        <swiper-slide>
+        <swiper-slide @click="isShow(true)">
           <img src="../assets/images/work-swiper-9+.jpg" alt="Откатные ворота" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Откатные ворота</p>
           </div>
         </swiper-slide>
-        <swiper-slide>
+        <swiper-slide @click="isShow(true)">
           <img src="../assets/images/work-swiper-7.jpg" alt="Расчистка участка" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Расчистка участка</p>
@@ -123,6 +206,14 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+
+.mini-slider {
+  display: none;
+}
+.form-feedback__show {
+  display: flex;
+  opacity: 1;
+}
 
 .mySwiper .swiper-button-prev {
   color: #fff;

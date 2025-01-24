@@ -65,6 +65,28 @@ export default {
         name: "Септик под ключ",
       },
     ],
+    workImages: [
+      {
+        url: "../assets/images/landshaft.jpg",
+        alt: "Озеленение, освещение",
+      },
+      {
+        url: "../assets/images/work-swiper-3.jpg",
+        alt: "Заезд на участок и свайное поле",
+      },
+      {
+        url: "../assets/images/work-swiper-2.jpg",
+        alt: "Дорожки, посадка и выравнивание",
+      },
+      {
+        url: "../assets/images/landshaft.jpg",
+        alt: "Озеленение, освещение",
+      },
+      {
+        url: "../assets/images/landshaft.jpg",
+        alt: "Озеленение, освещение",
+      },
+    ]
   }),
 };
 </script>
