@@ -1,143 +1,118 @@
-<script>
+<script setup>
 import { ref, onUpdated } from "vue";
+import { ROUTES_PATHS } from "../../constants";
+let name = ref("");
+let email = ref("");
+let questiion = ref("");
+let errorName = ref("");
+let errorTel = ref("");
 
-export default {
-  props: {},
-  computed: {},
-  setup() {
-    let errorName = ref("");
-    let errorTel = ref("");
+let isSuccesTel = ref(false);
+let isSuccesName = ref(false);
 
-    let isSuccesTel = ref(false);
-    let isSuccesName = ref(false);
+onUpdated(() => {
+  let nameInput = document.querySelector('input[name="name"]');
+  let telInput = document.querySelector('input[name="telephone"]');
 
-    onUpdated(() => {
-      let nameInput = document.querySelector('input[name="name"]');
-      let telInput = document.querySelector('input[name="telephone"]');
+  const inputs = document.querySelectorAll(".feedback__group");
 
-      const inputs = document.querySelectorAll(".feedback__group");
+  let nameError = document.querySelector('input[name="name"]').nextElementSibling;
+  let telError = document.querySelector('input[name="telephone"]').nextElementSibling;
 
-      let nameError = document.querySelector('input[name="name"]').nextElementSibling;
-      let telError = document.querySelector('input[name="telephone"]').nextElementSibling;
-
-      const maskOptions = {
-        mask: "+{7} (000) 000-00-00",
-        lazy: false,
-      };
-      const maskTel = IMask(telInput, maskOptions);
-      maskTel.on(
-        "complete",
-        () => {
-          inputs[1].classList.remove("error");
-          inputs[1].classList.add("success");
-          telError.classList.remove("name-error");
-          isSuccesTel.value = true;
-        },
-        maskTel.on("accept", () => {
-          inputs[1].classList.remove("success");
-          inputs[1].classList.add("error");
-          errorTel.value = "Заполните поле";
-          telError.classList.add("name-error");
-        })
-      );
-      nameInput.addEventListener("keydown", function (e) {
-        // Будет перехватывать все числа при руч ввномоде.
-        if (e.key.match(/[0-9]/)) {
-          // Тажке нужна, чтобы replace не сбрасывал каретку, срабатывая каждый раз.
-          inputs[0].classList.add("error");
-          nameError.classList.add("name-error");
-          errorName.value = "Ввод цифр невозможен";
-          return e.preventDefault();
-        } else {
-          nameError.classList.remove("name-error");
-          inputs[0].classList.add("success");
-          isSuccesName.value = true;
-          inputs[0].classList.remove("error");
-        }
-      });
-
-      nameInput.addEventListener("input", function (e) {
-        // На случай, если умудрились ввести через копипаст или авто-дополнение.
-        nameInput.value = nameInput.value.replace(/[0-9]/g, "");
-      });
-      nameInput.addEventListener("blur", function (e) {
-        nameError.classList.remove("name-error");
-      });
-
-      nameInput.addEventListener("blur", function (e) {
-        if (nameInput.value.length == 0) {
-          nameError.classList.add("name-error");
-          errorName.value = "Заполните поле";
-          inputs[0].classList.add("error");
-        }
-      });
-    });
-    return {
-      errorName,
-      errorTel,
-      isSuccesName,
-      isSuccesTel,
-    };
-  },
-
-  data() {
-    return {
-      name: "",
-      email: "",
-      questiion: "",
-    };
-  },
-  methods: {
-    sendMessage() {
-      let nameError = document.querySelector('input[name="name"]').nextElementSibling;
-      let telError = document.querySelector('input[name="telephone"]').nextElementSibling;
-      const inputs = document.querySelectorAll(".feedback__group");
-
-      if (this.isSuccesName && this.isSuccesTel) {
-        var my_text = this.name + " " + this.email + " " + this.questiion;
-        var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
-        var chat_id2 = -1002378962422;
-        var chat_id = -1002383432249;
-        var url2 = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id2}&text=${my_text}`;
-        var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
-        let api2 = new XMLHttpRequest();
-        let api = new XMLHttpRequest();
-        api2.open("GET", url2, true);
-        api.open("GET", url, true);
-        api2.send();
-        api.send();
-        this.name = "";
-        this.email = "";
-        this.questiion = "";
-        this.isSuccesName = false;
-        this.isSuccesTel = false;
-        // telError.classList.add('send-message')
-        // this.errorTel = "Сообщение отправлено"
-        // console.log('succes')
-      } else {
-        telError.classList.add("name-error");
-        inputs[1].classList.add("error");
-        nameError.classList.add("name-error");
-        this.errorName = "Заполните поле";
-        inputs[0].classList.add("error");
-        this.errorTel = "Заполните поле";
-      }
+  const maskOptions = {
+    mask: "+{7} (000) 000-00-00",
+    lazy: false,
+  };
+  const maskTel = IMask(telInput, maskOptions);
+  maskTel.on(
+    "complete",
+    () => {
+      inputs[1].classList.remove("error");
+      inputs[1].classList.add("success");
+      telError.classList.remove("name-error");
+      isSuccesTel.value = true;
     },
-  },
-};
+    maskTel.on("accept", () => {
+      inputs[1].classList.remove("success");
+      inputs[1].classList.add("error");
+      errorTel.value = "Заполните поле";
+      telError.classList.add("name-error");
+    })
+  );
+  nameInput.addEventListener("keydown", function (e) {
+    // Будет перехватывать все числа при руч ввномоде.
+    if (e.key.match(/[0-9]/)) {
+      // Тажке нужна, чтобы replace не сбрасывал каретку, срабатывая каждый раз.
+      inputs[0].classList.add("error");
+      nameError.classList.add("name-error");
+      errorName.value = "Ввод цифр невозможен";
+      return e.preventDefault();
+    } else {
+      nameError.classList.remove("name-error");
+      inputs[0].classList.add("success");
+      isSuccesName.value = true;
+      inputs[0].classList.remove("error");
+    }
+  });
+
+  nameInput.addEventListener("input", function (e) {
+    // На случай, если умудрились ввести через копипаст или авто-дополнение.
+    nameInput.value = nameInput.value.replace(/[0-9]/g, "");
+  });
+  nameInput.addEventListener("blur", function (e) {
+    nameError.classList.remove("name-error");
+  });
+
+  nameInput.addEventListener("blur", function (e) {
+    if (nameInput.value.length == 0) {
+      nameError.classList.add("name-error");
+      errorName.value = "Заполните поле";
+      inputs[0].classList.add("error");
+    }
+  });
+});
+function sendMessage() {
+  let nameError = document.querySelector('input[name="name"]').nextElementSibling;
+  let telError = document.querySelector('input[name="telephone"]').nextElementSibling;
+  const inputs = document.querySelectorAll(".feedback__group");
+
+  if (isSuccesName && isSuccesTel) {
+    var my_text = name.value + " " + email.value + " " + questiion.value;
+    var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
+    var chat_id2 = -1002378962422;
+    // ОСНОВНАЯ ГРУППА
+    var url2 = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id2}&text=${my_text}`;
+    let api2 = new XMLHttpRequest();
+    api2.open("GET", url2, true);
+    api2.send();
+
+    // ДОПОЛНИТЕЛЬНАЯ ГРУППА
+    var chat_id = -1002383432249;
+    var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
+    let api = new XMLHttpRequest();
+    api.open("GET", url, true);
+    api.send();
+    name.value = "";
+    email.value = "";
+    questiion.value = "";
+    isSuccesName = false;
+    isSuccesTel = false;
+    // telError.classList.add('send-message')
+    // this.errorTel = "Сообщение отправлено"
+    // console.log('succes')
+  } else {
+    telError.classList.add("name-error");
+    inputs[1].classList.add("error");
+    nameError.classList.add("name-error");
+    errorName = "Заполните поле";
+    inputs[0].classList.add("error");
+    errorTel = "Заполните поле";
+  }
+}
 </script>
 <template>
-  <div class="container-modal" @click.self="$emit('someEvent')">
-    <!-- <button class="feedback__close-btn">
-        <svg width="22" height="22" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M1.20868 14.5405L14.2902 1.45898M14.2902 14.5405L1.20875 1.45899"
-            stroke="#102937"
-            stroke-width="2"
-            stroke-linecap="round"
-          ></path>
-        </svg>
-      </button> -->
+  <!-- <div class="container-modal" @click.self="$emit('someEvent')"> -->
+  <div class="container-modal">
     <div class="reveal-modal">
       <p class="feedback__title title">Свяжемся с вами для консультации</p>
       <div class="feedback__form">
@@ -156,11 +131,11 @@ export default {
           />
           <span>{{ errorTel }}</span>
         </div>
-        <button @click="sendMessage()" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">ОТПРАВИТЬ</button>
+        <button @click="sendMessage" type="submit" class="form__button btn" data-id="#consultationForm2" data-form="">ОТПРАВИТЬ</button>
       </div>
       <p class="feedback__bottom-text">
         Нажимая кнопку «отправить», вы соглашаетесь с
-        <router-link :to="{ name: 'PolicyPage' }" @click.self="$emit('someEvent')"> Политикой конфиденциальности.</router-link>
+        <router-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</router-link>
       </p>
     </div>
   </div>
@@ -222,9 +197,8 @@ export default {
   position: absolute;
   // visibility: hidden;
   z-index: 3;
-  display: none;
+  // display: none;
   background-color: rgba(22, 22, 22, 0.5);
-  /* complimenting your modal colors */
 }
 
 .reveal-modal {
@@ -319,8 +293,8 @@ export default {
   justify-content: end;
   right: 0;
   left: 0;
-  display: none;
-  opacity: 0;
+  // display: none;
+  // opacity: 0;
 
   &__container {
     background-color: #fff;

@@ -1,101 +1,46 @@
-<script>
-import { ref } from "vue";
-import ServiceCard from "./ServiceCard.vue";
-import ServiceSmallCard from "./ServiceSmallCard.vue";
-import service1 from "../assets/images/services-1.webp";
-import service2 from "../assets/images/services-2++.webp";
-import service3 from "../assets/images/services-3.webp";
-import service4 from "../assets/images/services-4.webp";
-import service5 from "../assets/images/services-5+.webp";
-import service6 from "../assets/images/services-6.webp";
-import service7 from "../assets/images/services-7.webp";
-import service8 from "../assets/images/services-8++.webp";
+<script setup>
+function onHover(event, color) {
+  event.currentTarget.style.background = color;
+}
 
-export default {
-  components: {
-    ServiceCard,
-    ServiceSmallCard,
-  },
-  setup() {
-    let imgService1 = ref(service1);
-    let imgService2 = ref(service2);
-    let imgService3 = ref(service3);
-    let imgService4 = ref(service4);
-    let imgService5 = ref(service5);
-    let imgService6 = ref(service6);
-    let imgService7 = ref(service7);
-    let imgService8 = ref(service8);
+function leaveHover(event) {
+  event.currentTarget.style.background = "#f5f5f5";
+}
 
-    return {
-      imgService1,
-      imgService2,
-      imgService3,
-      imgService4,
-      imgService5,
-      imgService6,
-      imgService7,
-      imgService8,
-    };
+const props = defineProps({
+  dataServices: {
+    typeof: Array,
   },
-};
+  title: {
+    typeof: String,
+  },
+});
 </script>
 <template>
   <section class="services">
     <div class="services__container _container">
-      <h2 class="services__title title-service">Наши услуги</h2>
+      <h2 class="services__title title-service">{{ title }}</h2>
       <div class="services__items">
-        <div class="services__column">
-          <div class="services__row">
-            <ServiceCard
-              class="services__row-item-big"
-              title="Септик под ключ"
-              price="От 180 000"
-              v-bind:path="imgService1"
-              hoverColors="rgb(170, 214, 199)"
-            />
-          </div>
-          <div class="services__row">
-            <ServiceCard
-              class="services__row-item-sm"
-              title="Водоснабжение"
-              price="От 60 000"
-              v-bind:path="imgService2"
-              hoverColors="rgb(204, 209, 255)"
-            />
-            <ServiceCard
-              class="services__row-item-sm"
-              title="Ливневка"
-              price="От 50 000"
-              v-bind:path="imgService7"
-              hoverColors="rgb(204, 209, 255)"
-            />
-          </div>
-        </div>
-        <div class="services__column">
-          <div class="services__row">
-            <ServiceCard
-              class="services__row-item-sm"
-              title="Фундамент"
-              price="От 100 000"
-              v-bind:path="imgService5"
-              hoverColors="rgb(255, 229, 204)"
-            />
-            <ServiceCard
-              class="services__row-item-sm"
-              title="Электромонтаж"
-              price="От 20 000"
-              v-bind:path="imgService8"
-              hoverColors="rgb(243, 253, 180)"
-            />
-          </div>
-          <div class="services__row">
-            <ServiceCard
-              class="services__row-item-big"
-              title="Установка заборов"
-              price="От 90 000"
-              v-bind:path="imgService6"
-              hoverColors="rgb(255, 229, 204)"
-            />
+        <div v-for="columns in dataServices" class="services__column">
+          <div v-for="rows in columns" class="services__row">
+            <div
+              v-for="item in rows"
+              class="services__item"
+              v-on:mouseover="(event) => onHover(event, item.hoverColors)"
+              v-on:mouseleave="(event) => leaveHover(event)"
+              :class="item.class"
+            >
+              <router-link :style="{ 'background-image': item.pathImg }" class="services__item-link item" :to="{ name: item.routePath }">
+                <div class="item__description content__description">
+                  <div class="item__title title">
+                    <span>{{ item.title }}</span>
+                  </div>
+                  <div class="item__price content__price">
+                    <span>{{ item.price }}</span>
+                  </div>
+                </div>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -107,6 +52,7 @@ export default {
 
 .services {
   margin-top: 15px;
+  margin-bottom: 25px;
   &__title {
     font-size: $fs-xxl;
     font-weight: 600;
@@ -136,6 +82,9 @@ export default {
     @media (max-width: $md3) {
       flex-wrap: wrap;
     }
+    @media (max-width: $md4) {
+      gap: 7px;
+    }
   }
 
   &__column {
@@ -149,11 +98,17 @@ export default {
         flex-direction: column-reverse;
       }
     }
+    @media (max-width: $md4) {
+      gap: 7px;
+    }
   }
   &__row {
     display: flex;
     width: 100%;
     gap: 10px;
+    @media (max-width: $md4) {
+      gap: 7px;
+    }
     &-item-big {
       width: 100%;
       height: 350px;
@@ -166,10 +121,39 @@ export default {
       @media (max-width: $md3) {
         height: 180px;
       }
+
+      @media (max-width: $md4) {
+        height: 170px;
+      }
+      .title {
+        font-weight: 600;
+        line-height: 120%;
+        color: #102938;
+        padding: 25px 0px 0px 25px;
+        font-size: 1.4rem;
+        @media (max-width: $md2) {
+        }
+        @media (max-width: $md3) {
+        }
+        @media (max-width: $md4) {
+          font-size: 20px;
+          padding: 15px 10px 0px 10px;
+        }
+      }
+      .item__price {
+        font-weight: 500;
+        @media (max-width: $md4) {
+          font-size: 12px;
+          margin-top: 7px;
+          padding: 6px 7px;
+          border-radius: 6px;
+        }
+      }
     }
     &-item-sm {
       width: 50%;
       height: 230px;
+
       @media (max-width: $md1) {
         height: 200px;
       }
@@ -179,6 +163,107 @@ export default {
       @media (max-width: $md3) {
         height: 145px;
       }
+      @media (max-width: $md4) {
+        height: 135px;
+      }
+      .title {
+        font-weight: 600;
+        line-height: 120%;
+        font-size: 1.4rem;
+        padding: 25px 25px 0px 25px;
+        color: #102938;
+        @media (max-width: $md2) {
+          // font-size: 1.3rem;
+        }
+        @media (max-width: $md3) {
+          // font-size: 1.3rem;
+        }
+        @media (max-width: $md4) {
+          // font-size: 1rem;
+          font-size: 15px;
+          padding: 15px 10px 0px 10px;
+        }
+      }
+      .item__price {
+        font-weight: 500;
+        @media (max-width: $md4) {
+          font-size: 12px;
+        }
+      }
+      .item__price {
+        @media (max-width: $md4) {
+          font-size: 12px;
+          margin-top: 7px;
+          padding: 6px 7px;
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+}
+.services__item {
+  -webkit-box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
+  -moz-box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
+  box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
+  display: flex;
+  // height: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: $color-background;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-delay: 150ms;
+  @media (min-width: $md1) {
+    &:hover {
+      // background-color: v-bind(hoverColors);
+    }
+  }
+  &-link {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    background-size: contain !important;
+    background-position: 95% 100% !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% auto !important;
+    cursor: pointer;
+    @media (max-width: $md4) {
+      background-size: 90% auto !important;
+    }
+    @media (max-width: $md3) {
+      background-size: 65% auto !important;
+    }
+    @media (max-width: $md4) {
+      background-size: 100% auto !important;
+    }
+  }
+}
+
+.item {
+  // background: v-bind(imagePath);
+  // background: v-bind(path);
+  &__title {
+    // font-size: 1.55rem;
+  }
+  &__price {
+    background: #fff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 10px;
+    margin: 10px 0px 0px 18px;
+    color: #102938;
+    text-align: center;
+    border-radius: 4px;
+    @media (max-width: $md4) {
+      font-size: 14px;
+      margin: 8px 0px 0px 8px;
+      padding: 7px 10px;
     }
   }
 }

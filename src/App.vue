@@ -1,112 +1,67 @@
-<script>
-import NavigationCatalog from "./components/NavigationCatalog.vue";
+<script setup>
 import Footer from "./components/Footer.vue";
 import Form from "./components/Form/Form.vue";
 import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
 import { reactive, computed } from "vue";
+import { ROUTES_PATHS } from "./constants";
 
-export default {
-  components: {
-    NavigationCatalog,
-    Footer,
-    Form,
-  },
-  name: "App",
-  setup() {
-    const route = useRoute();
-    const path = ref(computed(() => route.path)); // Отслеживает путь
-    let formIsVisible = ref(0);
+const route = useRoute();
+const router = useRouter();
+const path = ref(computed(() => route.path)); // Отслеживает путь
 
-    const catalog = reactive({
-      active: false,
-    });
+let formIsVisible = ref(0);
 
-    // При изменении пути вызывает функцию clickMenu()
-    watch(path, (newX) => {
-      if (path != newX) {
-        if (catalog.active === true) {
-          clickMenu();
-        }
-      }
-    });
-    function clickMenu() {
-      // Отображает каталог
-      if (catalog.active === true) {
-        catalog.active = false;
-      } else {
-        catalog.active = true;
-      }
-      const burger1 = document.querySelector(".burger");
-      if (burger1) {
-        burger1.classList.toggle("_active");
-      }
-      const burger = document.querySelector(".burger-md");
-      if (burger) {
-        const munuBody = document.querySelector(".menu-mobile");
-        const burgerItem = document.querySelector(".burger__item");
-        burger.classList.toggle("_active");
-        munuBody.classList.toggle("_active");
-        burgerItem.classList.toggle("_right");
-      }
-    }
-    function toggleBodyScroll(lock) {
-      document.body.style.overflow = lock ? "hidden" : "";
-      document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
-      document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
-      // document.querySelector('swiper-container').style.zIndex = lock ? '-1' : '';
-      // document.querySelector('swiper-container').style.overflow = lock ? 'hidden' : '';
-    }
-    function formVisible() {
-      const burger1 = document.querySelector(".burger");
-      if (formIsVisible.value === 1) {
-        formIsVisible.value = 0;
-        toggleBodyScroll(false);
-      } else {
-        formIsVisible.value = 1;
-        toggleBodyScroll(true);
-        if (catalog.active === true) {
-          if (burger1) {
-            burger1.classList.toggle("_active");
-          }
-          catalog.active = false;
-        } else {
-          burger1.classList.toggle("_active");
-          catalog.active = true;
-        }
-      }
-    }
-    return { path, catalog, clickMenu, formVisible, formIsVisible };
-  },
+const catalog = reactive({
+  active: false, // Открыт ли NavigationCatalog следовательно бургер тоже активен
+});
 
-  data: () => ({}),
-  methods: {},
-  mounted() {
-    this.$nextTick(function () {});
-  },
-  created: function () {
-    document.addEventListener("click", (e) => {
-      const elem = document.getElementById("catalog");
-      const elem1 = document.getElementById("nav__button");
+const burger = reactive({
+  active: false, // Открыт ли NavigationCatalog следовательно бургер тоже активен
+});
 
-      if (!elem.contains(e.target) && !elem1.contains(e.target)) {
-        if (this.catalog.active == true) {
-          this.catalog.active = false;
+const feedbackForm = reactive({
+  // Не используется
+  //TODO: Открывать форму при нажатии кнопки "Обсудить задачу"
+  active: false, // Открыта ли форма обратной связи
+});
 
-          const burger = document.querySelector(".burger");
-          if (burger) {
-            burger.classList.toggle("_active");
-          }
-        }
-      }
-    });
-  },
-};
+watch(path, (newX) => {
+  if (router.options.history.state.back != newX && catalog.active == true) {
+    catalog.active = false; // При смене маршура скрываем NavigationCatalog
+  }
+  if (router.options.history.state.back != newX && burger.active == true) {
+    burger.active = false; // При смене маршура скрываем NavigationCatalog
+  }
+});
+
+function clickMenu() {
+  catalog.active == true ? (catalog.active = false) : (catalog.active = true); // Если NavigationCatalog открыт закрываем и наооборот
+}
+
+function clickMenuMobile() {
+  burger.active == true ? (burger.active = false) : (burger.active = true);
+}
+
+function toggleBodyScroll(lock) {
+  // TODO: Использовать после того как будет реализована форма обратной связи
+  document.body.style.overflow = lock ? "hidden" : "";
+  document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
+  document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
+}
+
+document.addEventListener("click", (e) => {
+  const elemCatalog = document.querySelector(".catalog");
+  const elemButton = document.querySelector(".nav__button");
+  if (!elemCatalog.contains(e.srcElement) && !elemButton.contains(e.srcElement) && catalog.active) {
+    catalog.active = false;
+  }
+});
 </script>
 
 <template>
   <section class="header">
-    <Form :class="formIsVisible === 1 ? 'form-feedback__show' : ''" @someEvent="formVisible" />
+    <Form v-show="feedbackForm.active" />
     <div class="header__container _container">
       <div class="header__block">
         <a class="header__logo logo" href="/">
@@ -119,23 +74,16 @@ export default {
             alt="Благоустройство и инженерные сети"
           />
         </a>
-        <div @click="clickMenu" class="burger__item">
-          <div class="burger-md">
+        <div @click="clickMenuMobile" class="burger__item" :class="burger.active == true ? '_right' : ''">
+          <div class="burger-md" :class="burger.active == true ? '_active' : ''">
             <span></span>
             <span></span>
             <span></span>
           </div>
         </div>
-        <nav class="menu-mobile">
+        <nav :class="burger.active == true ? '_active' : ''" class="menu-mobile">
           <div class="menu__content">
             <div class="menu__header">
-              <!-- <div class="burger-close">
-                <div @click="clickMenu" class="burger-md burger-md-active _active">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div> -->
               <a class="menu__logo logo" href="">
                 <img class="logo__img" loading="lazy" width="" height="" src="../src/assets/icons/logo-foot.svg" alt="" />
               </a>
@@ -153,7 +101,7 @@ export default {
                   <a class="menu-mobile__item_body-link">Водоснабжение</a>
                   <a class="menu-mobile__item_body-link">Система очистки воды</a>
                   <a class="menu-mobile__item_body-link">Свайный фундамент</a>
-                  <a class="menu-mobile__item_body-link">Установка заборов</a>
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                   <a class="menu-mobile__item_body-link">Ливневка и дренаж</a>
                   <a class="menu-mobile__item_body-link">Благоустройство</a>
                   <a class="menu-mobile__item_body-link">Электромонтажные работы</a>
@@ -186,7 +134,7 @@ export default {
                 <div class="feedback-mobile">
                   <p class="feedback-mobile__text">
                     Нажимая кнопку «отправить», вы соглашаетесь с
-                    <router-link :to="{ name: 'PolicyPage' }"> Политикой конфиденциальности.</router-link>
+                    <router-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</router-link>
                   </p>
                 </div>
               </div>
@@ -231,15 +179,121 @@ export default {
           <ul role="list" class="nav__list">
             <li class="nav__item">
               <button id="nav__button" class="nav__button button" @click="clickMenu">
-                <div class="nav__burger burger">
+                <div :class="catalog.active == true ? '_active' : ''" class="nav__burger burger">
                   <span></span>
                   <span></span>
                   <span></span>
                 </div>
                 Каталог
               </button>
-              <div id="catalog" class="catalog" :class="catalog.active == true ? 'nav__window' : ''">
-                <NavigationCatalog @visible="formVisible" />
+              <div class="catalog" v-show="catalog.active">
+                <div class="catalog__wrap">
+                  <ul class="catalog__list">
+                    <li class="catalog__list-item">
+                      <span class="catalog__list-item_header">
+                        <img class="catalog__list-item_header-icon" alt="Услуги" src="./assets/icons/design_services.svg" />
+                        Услуги
+                      </span>
+                      <ul class="catalog__list-item_body">
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">Проект участка</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Топографическая съемка</a>
+                          </div>
+
+                          <div class="catalog__item">
+                            <a class="catalog__link">Септик под ключ </a>
+                          </div>
+                        </li>
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">Водоснабжение</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Система очистки воды</a>
+                          </div>
+
+                          <div class="catalog__item">
+                            <a class="catalog__link">Свайный фундамент</a>
+                          </div>
+                        </li>
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item" data-test="0">
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Ливневая канализация</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Дренаж </a>
+                          </div>
+                        </li>
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">Благоустройство</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Электромонтажные работы</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Освещение участка</a>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="catalog__list-item">
+                      <a href="/service" class="catalog__list-item_header">
+                        <img
+                          class="catalog__list-item_header-icon"
+                          width="20"
+                          height="20"
+                          alt="Sewera Сервис"
+                          src="./assets/icons/cleaning_services.svg"
+                        />
+                        Сервис
+                      </a>
+                      <ul class="catalog__list-item_body">
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">Обслуживание ЛОС</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Обслуживание бойлеров</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Система водоочистки</a>
+                          </div>
+                        </li>
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">Система водоподготовки</a>
+                          </div>
+
+                          <div class="catalog__item">
+                            <a class="catalog__link">Система водоснабжения</a>
+                          </div>
+
+                          <div class="catalog__item">
+                            <a class="catalog__link">Уборка участка</a>
+                          </div>
+                        </li>
+                        <li class="catalog__list-item_body-item">
+                          <div class="catalog__item">
+                            <a class="catalog__link">ТО и сервис генераторов</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Уход за газоном</a>
+                          </div>
+                          <div class="catalog__item">
+                            <a class="catalog__link">Разморозка водопровода</a>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </li>
             <li class="nav__item">
@@ -274,7 +328,6 @@ export default {
               />
             </a>
           </li>
-          <!-- <li class="list__item"></li> -->
           <li class="list__item item-phone">
             <a class="list__item link__phone" href="tel:+7 911 277-56-07"> +7 911 277-56-07</a>
             <a class="list__item link__phone-mobile" href="tel:+7 911 277-56-07"> </a>
@@ -288,32 +341,21 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../src/assets/styles/main.scss" as *;
-// @use "../src/assets/styles/app.scss" as *;
-// @use "../src/assets/styles/main.scss" as *;
 
 .my-notification {
-  /*...*/
   font-size: 200px;
-  // style for title line
-
   font-size: 200px;
-  // style for content
   .notification-content {
     font-size: 200px;
   }
-
-  // additional styling hook when using`type` parameter, i.e. this.$notify({ type: 'success', message: 'Yay!' })
   &.success {
-    /*...*/
     font-size: 200px;
     background-color: green;
   }
   &.info {
-    /*...*/
     font-size: 200px;
   }
   &.error {
-    /*...*/
     font-size: 200px;
   }
 }
@@ -361,14 +403,13 @@ export default {
     align-items: center;
     gap: 8px;
     @media (max-width: $md4) {
-      min-height: 100px;
+      min-height: 110px;
     }
   }
 
   &__logo {
     display: flex;
     margin: 0 auto;
-    // max-width: 0 auto;
     align-items: center;
     @media (max-width: $md2) {
       position: absolute;
@@ -378,7 +419,6 @@ export default {
     }
     @media (max-width: $md4) {
       position: absolute;
-      // left: 33%;
       left: 0;
       width: 100%;
       justify-content: center;
@@ -392,12 +432,6 @@ export default {
     @media (max-width: $md2) {
       gap: 0;
     }
-  }
-  &__block-links {
-    // @media (max-width: $md4) {
-    //   margin-right: 4px;
-    //   display: none;
-    // }
   }
   &__nav {
     @media (max-width: $md2) {
@@ -420,23 +454,16 @@ export default {
   justify-content: center;
 }
 .logo {
-  // width: 186px;
-  // height: 39px;
   &__img {
     height: 100px;
-
-    // margin-left: 10px;
-
     @media (max-width: $md4) {
-      height: 80px;
+      height: 95px;
       margin-left: 0px;
     }
   }
 }
 .menu {
   &-mobile {
-    // position: relative;
-
     z-index: 10;
     transform: translate(0px, -100%);
     transition: transform 0.8s ease 0s;
@@ -451,7 +478,6 @@ export default {
     @media (max-width: $md2) {
       &._active {
         transform: translate(0px, 0%);
-        // display: block;
       }
     }
 
@@ -465,7 +491,7 @@ export default {
         align-items: center;
         gap: 5px;
         background-color: #f0f4f9;
-        padding: 3px 5px 3px 7px;
+        padding: 8px 5px 7px 8px;
         border-radius: 6px;
         margin-bottom: 10px;
       }
@@ -485,42 +511,27 @@ export default {
         &-link {
           width: 100%;
           padding-left: 15px;
+          margin: 0px 0px 3px 0px;
         }
       }
     }
-  }
-  &__content {
   }
   &__header {
     position: relative;
     display: flex;
     justify-content: left;
   }
-
-  // &__link {
-  //   font-size: 20px;
-  //   font-weight: 500;
-  //   transition: color 0.3s ease 0s;
-  //   text-decoration: none;
-  //   color: #000;
-  // }
 }
 .burger__item {
-  @media (max-width: $md4) {
-  }
   @media (max-width: $md2) {
     position: absolute;
-    padding: 35px;
-    left: 0;
+    top: 40%;
+    left: 5%;
     &._right {
-      left: 93%;
-    }
-  }
-  @media (max-width: $md3) {
-  }
-  @media (max-width: $md4) {
-    &._right {
-      left: 82%;
+      left: 90%;
+      @media (max-width: $md4) {
+        left: 85%;
+      }
     }
   }
 }
@@ -604,7 +615,7 @@ export default {
   display: none;
 }
 .catalog {
-  display: none;
+  // display: none;
   left: 0;
   bottom: 30px;
   max-width: 1264px;
@@ -676,6 +687,11 @@ export default {
     display: none;
     @media (max-width: $md2) {
       display: flex;
+    }
+    @media (max-width: $md4) {
+      position: absolute;
+      right: 5%;
+      // margin-right: 10px;
     }
     &:before {
       width: 25px;
@@ -804,15 +820,15 @@ export default {
 .burger-md {
   display: block;
   position: absolute;
-  // top: 18px;
-  // right: 10px;
-
   left: 10px;
   top: calc(33%);
   width: 30px;
   height: 20px;
   cursor: pointer;
   z-index: 11;
+  @media (max-width: $md4) {
+    width: 27px;
+  }
   span {
     transition: all 0.3s ease 0s;
     top: calc(50% - 1px);
@@ -831,6 +847,7 @@ export default {
   }
   &._active {
     span {
+      z-index: 1;
       transform: scale(0);
       &:first-child {
         transform: rotate(-45deg);
@@ -841,29 +858,96 @@ export default {
         bottom: calc(50% - 1px);
       }
     }
-  }
-}
-.burger-md {
-  display: none;
-  left: 17px;
-  top: calc(40%);
-  // z-index: 11;
-  @media (max-width: $md2) {
-    display: block;
-  }
-}
-.burger-md-active {
-  top: calc(20%);
-  left: 89%;
 
-  // position: absolute;
-  // right: 0;
-  // top: 0;
+    @media (max-width: $md4) {
+      width: 20px;
+      &::after {
+        position: relative;
+        display: block;
+        content: "";
+        top: -50%;
+        left: -50%;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+      }
+    }
+  }
 }
-.burger-close {
-  // position: absolute;
-  // padding: 35px;
-  // right: 0;
-  // top: 0;
+/// navigationcatalog
+.form-feedback__show {
+  display: block;
+  opacity: 1;
+}
+
+.catalog {
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    border-radius: 8px;
+    padding: 30px;
+    margin-top: 21px;
+    background: #fff;
+    box-shadow: 0 4px 28px 0 rgba(0, 60, 92, 0.08);
+  }
+  &__list {
+    width: 100%;
+    &-item {
+      padding-bottom: 20px;
+      padding-top: 20px;
+      border-bottom: 1px solid #e8eaec;
+      width: 100%;
+      &_header {
+        text-align: left;
+        padding: 8px 10px;
+        display: flex;
+        align-items: center;
+        color: #102938;
+        font-size: 1.2rem;
+        &-icon {
+          width: 24px;
+          min-width: 20px;
+          height: 24px;
+          margin-right: 10px;
+          object-fit: contain;
+        }
+      }
+      &_body {
+        width: 100%;
+        // display: grid;
+        display: flex;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-flow: row;
+        gap: 2px 33px;
+      }
+    }
+    &-item:first-child {
+      padding-top: 0;
+    }
+  }
+  &__item {
+    transition: border-radius 0.3s, background 0.3s;
+    &:hover {
+      border-radius: 6px;
+      background: #f5f5f5;
+    }
+  }
+  &__link {
+    padding: 8px 10px;
+    font-weight: 500;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    gap: 7px;
+    font-size: $fs-m;
+    display: flex;
+    width: 100%;
+    color: #102938;
+  }
 }
 </style>

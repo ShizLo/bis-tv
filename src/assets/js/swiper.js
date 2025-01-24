@@ -1,5 +1,40 @@
 import { Navigation, Pagination } from "swiper/modules";
 
+export const swiper_order_setting = {
+  direction: "horizontal",
+  slidesPerView: 3, // колво слайдов на показ
+  spaceBetween: 30, // отступ между слайдами
+
+  // pagination: {
+  //   el: ".swiper-pagination",
+  //   type: "bullets",
+  //   clickable: true,
+  // },
+  breakpoints: {
+    // when window width is >= 320px
+    320: {
+      slidesPerView: 1.1,
+      spaceBetween: 7,
+    },
+    // when window width is >= 480px
+
+    // when window width is >= 640px
+    767: {
+      slidesPerView: 2.11,
+      spaceBetween: 10,
+    },
+    1280: {
+      slidesPerView: 3.01,
+      spaceBetween: 10,
+    },
+  },
+  navigation: {
+    nextEl: ".s-button-next",
+    prevEl: ".s-button-prev",
+  },
+  modules: [Navigation],
+};
+
 export const swiper_banner_setting = {
   direction: "horizontal",
   slidesPerView: 1, // колво слайдов на показ

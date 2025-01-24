@@ -132,7 +132,7 @@
     content: " ";
     bottom: 0;
     height: 90px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     position: absolute;
     width: 100%;
     left: 0;
@@ -143,6 +143,9 @@
     line-height: 24px;
     position: relative;
     color: #fff;
+    @media (max-width: $md4) {
+      font-size: 18px;
+    }
   }
   &__name {
     margin: 0;

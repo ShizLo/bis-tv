@@ -10,6 +10,9 @@ const props = defineProps({
   bannerText: {
     typeof: String,
   },
+  bannerDescription: {
+    typeof: String,
+  },
   bannerPrice: {
     typeof: Array,
   },
@@ -37,9 +40,9 @@ function hoverMobile() {
     <div class="banner__container _container">
       <div class="banner__block-text text-left">
         <h1 class="banner__text">{{ bannerText }}</h1>
+        <p class="banner__description">{{ bannerDescription }}</p>
         <a
           href="#GlobalForm"
-          @click="ссс()"
           v-scroll-to="{
             el: '#GlobalForm',
             easing: [0.6, 0.8, 0.3, 1.9],
@@ -134,6 +137,9 @@ function hoverMobile() {
     @media (max-width: $md3) {
       padding: 25px 10px 22px;
     }
+    @media (max-width: $md4) {
+      padding: 25px 14px 18px;
+    }
   }
 }
 .swiper-slide {
@@ -151,7 +157,7 @@ function hoverMobile() {
   left: 0;
   width: 100%;
   height: 25%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   z-index: 2;
 }
 .content__price {
@@ -163,6 +169,9 @@ function hoverMobile() {
   padding: 3px 10px;
   color: #102938;
   border: 0.5px solid #ea5b0c;
+  @media (max-width: $md4) {
+    font-size: 14px;
+  }
 }
 .swiper-banner .content__title {
   z-index: 3;
@@ -170,6 +179,10 @@ function hoverMobile() {
   font-size: 1.6rem;
   color: #fff;
   width: calc(100% - 68px);
+  line-height: normal;
+  @media (max-width: $md4) {
+    font-size: 18px;
+  }
 }
 /* Кнопки */
 .swiper-banner .swiper-button-prev {
@@ -270,6 +283,7 @@ function hoverMobile() {
 
 .banner {
   background-color: $color-background;
+  margin: 0px 0px 25px 0px;
   @media (max-width: $md4) {
     background-color: #fff;
   }
@@ -310,6 +324,7 @@ function hoverMobile() {
     }
     @media (max-width: $md4) {
       padding-bottom: 10px;
+      gap: 12px;
     }
   }
   &__text {
@@ -321,7 +336,14 @@ function hoverMobile() {
       font-size: 1.5rem;
     }
     @media (max-width: $md4) {
+      font-size: 26px;
       text-align: center;
+    }
+  }
+  &__description {
+    padding-right: 15px;
+    @media (max-width: $md4) {
+      font-size: 14px;
     }
   }
   &__button {
@@ -333,6 +355,7 @@ function hoverMobile() {
     gap: 8px;
     border-radius: 4px;
     border: 1px solid #ea5b0c;
+    box-shadow: 1px 1px 1px 0px rgba(34, 60, 80, 0.18);
     background: rgba(245, 245, 245, 0);
     color: #102938;
     text-align: center;

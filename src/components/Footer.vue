@@ -1,48 +1,38 @@
-<script>
-export default {
-  components: {},
-  setup() {
-    var containers;
-    function initDrawers() {
-      containers = document.querySelectorAll(".footer__menu");
-      setHeights();
-      wireUpTriggers();
-      // window.addEventListener("resize", setHeights);
-    }
+<script setup>
+import { ROUTES_PATHS } from "../constants";
+var containers;
+function initDrawers() {
+  containers = document.querySelectorAll(".footer__menu");
+  setHeights();
+  wireUpTriggers();
+  // window.addEventListener("resize", setHeights); -- Пока не удалять
+}
 
-    window.addEventListener("load", initDrawers);
+window.addEventListener("load", initDrawers);
 
-    function setHeights() {
-      containers.forEach((container) => {
-        let content = container.querySelector(".menu__items");
-        content.removeAttribute("aria-hidden");
-        let heightOfContent = content.getBoundingClientRect().height;
-        container.style.setProperty("--containerHeight", `${heightOfContent}px`);
-        setTimeout((e) => {
-          container.classList.add("height-is-set");
-          content.setAttribute("aria-hidden", "true");
-        }, 0);
-      });
-    }
+function setHeights() {
+  containers.forEach((container) => {
+    let content = container.querySelector(".menu__items");
+    content.removeAttribute("aria-hidden");
+    let heightOfContent = content.getBoundingClientRect().height;
+    container.style.setProperty("--containerHeight", `${heightOfContent}px`);
+    setTimeout((e) => {
+      container.classList.add("height-is-set");
+      content.setAttribute("aria-hidden", "true");
+    }, 0);
+  });
+}
 
-    function wireUpTriggers() {
-      containers.forEach((container) => {
-        let btn = container.querySelector(".menu__header");
-        let content = container.querySelector(".menu__items");
-        btn.addEventListener("click", () => {
-          container.setAttribute("data-drawer-showing", container.getAttribute("data-drawer-showing") === "true" ? "false" : "true");
-          content.setAttribute("aria-hidden", content.getAttribute("aria-hidden") === "true" ? "false" : "true");
-        });
-      });
-    }
-    return {};
-  },
-
-  data: () => ({}),
-  methods: {},
-  mounted() {},
-  created: function () {},
-};
+function wireUpTriggers() {
+  containers.forEach((container) => {
+    let btn = container.querySelector(".menu__header");
+    let content = container.querySelector(".menu__items");
+    btn.addEventListener("click", () => {
+      container.setAttribute("data-drawer-showing", container.getAttribute("data-drawer-showing") === "true" ? "false" : "true");
+      content.setAttribute("aria-hidden", content.getAttribute("aria-hidden") === "true" ? "false" : "true");
+    });
+  });
+}
 </script>
 <template>
   <section class="footer">
@@ -71,13 +61,10 @@ export default {
       <div class="footer__content">
         <div class="footer-row">
           <div class="footer__column">
-            <div class="footer__title footer__title-text">
-              БИС: Благоустройство и <br />
-              инженерные сети
-            </div>
+            <div class="footer__title footer__title-text">БИС: Благоустройство и инженерные сети</div>
             <div class="footer__legal">
               <div class="legal__item">
-                <router-link class="item-policy" :to="{ name: 'PolicyPage' }"> Политика конфиденциальности</router-link>
+                <router-link class="item-policy" :to="{ name: ROUTES_PATHS.POLICY }"> Политика конфиденциальности</router-link>
               </div>
             </div>
           </div>
@@ -92,7 +79,9 @@ export default {
                   <div class="menu__item item-link">Водоснабжение</div>
                   <div class="menu__item item-link">Система очистки воды</div>
                   <div class="menu__item item-link">Свайный фундамент</div>
-                  <div class="menu__item item-link">Установка заборов</div>
+                  <div class="menu__item item-link">
+                    <router-link :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
+                  </div>
                   <div class="menu__item item-link">Ливневая канализация</div>
                   <div class="menu__item item-link">Дренаж</div>
                   <div class="menu__item item-link">Благоустройство</div>
@@ -151,7 +140,9 @@ export default {
                 </div>
                 <div class="mobile-address__text">г. Санкт-Петербург</div>
               </div>
-              <div class="mobile-legal__policy">Политика конфиденциальности</div>
+              <div class="mobile-legal__policy">
+                <router-link class="item-policy" :to="{ name: ROUTES_PATHS.POLICY }"> Политика конфиденциальности</router-link>
+              </div>
               <div class="mobile-legal__contract">Договор-оферта</div>
               <div class="mobile-legal__contract">Карта сайта</div>
             </div>

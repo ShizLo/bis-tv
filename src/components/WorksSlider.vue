@@ -229,7 +229,7 @@ export default {
 }
 ._container-settings {
   padding-bottom: 16px;
-  padding-top: 32px;
+  // padding-top: 32px;
 }
 .content-bar__h2 {
   font-size: $fs-xxl;
@@ -248,13 +248,14 @@ export default {
   width: 100%;
   height: 100%;
   &__img {
-    border-radius: 4px;
+    border-radius: 7px;
   }
 }
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
+  border-radius: 7px;
 
   /* Center slide text vertically */
   display: flex;
@@ -285,11 +286,12 @@ export default {
     content: " ";
     bottom: 0;
     height: 90px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
     position: absolute;
     width: 100%;
     left: 0;
     color: #fff;
+    border-radius: 7px;
   }
 }
 .content_title {
@@ -311,7 +313,10 @@ export default {
     font-size: 20px;
   }
   @media (max-width: $md4) {
-    font-size: 20px;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 15px 15px 10px 15px;
   }
 }
 </style>

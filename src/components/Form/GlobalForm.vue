@@ -1,38 +1,33 @@
-<script>
-export default {
-  props: {},
-  computed: {},
-  data() {
-    return {
-      name: "",
-      email: "",
-      questiion: "",
-    };
-  },
-  methods: {
-    sendMessage() {
-      var my_text = this.name + " " + this.email + " " + this.questiion;
-      var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
-      var chat_id2 = -1002378962422;
-      var chat_id = -1002383432249;
-      var url2 = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id2}&text=${my_text}`;
-      var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
-      let api2 = new XMLHttpRequest();
-      let api = new XMLHttpRequest();
-      api2.open("GET", url2, true);
-      api.open("GET", url, true);
-      api2.send();
-      api.send();
-      this.name = "";
-      this.email = "";
-      this.questiion = "";
-      document.querySelectorAll(".form__button").forEach((element) => {
-        element.addEventListener("touchstart", () => element.classList.add("on-hover"));
-        element.addEventListener("touchend", () => element.classList.remove("on-hover"));
-      });
-    },
-  },
-};
+<script setup>
+import { ROUTES_PATHS } from "../../constants";
+import { ref } from "vue";
+
+let name = ref("");
+let email = ref("");
+let questiion = ref("");
+
+function sendMessage() {
+  //--------------api2 основная группа
+  var my_text = name.value + " " + email.value + " " + questiion.value;
+  var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
+  var chat_id2 = -1002378962422;
+  var chat_id = -1002383432249;
+  //var url2 = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id2}&text=${my_text}`; //Основная группа
+  var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
+  //let api2 = new XMLHttpRequest();
+  let api = new XMLHttpRequest();
+  // api2.open("GET", url2, true);
+  api.open("GET", url, true);
+  // api2.send();
+  api.send();
+  name = "";
+  email = "";
+  questiion = "";
+  document.querySelectorAll(".form__button").forEach((element) => {
+    element.addEventListener("touchstart", () => element.classList.add("on-hover"));
+    element.addEventListener("touchend", () => element.classList.remove("on-hover"));
+  });
+}
 </script>
 <template>
   <section id="section" class="global-form">
@@ -53,11 +48,11 @@ export default {
               <textarea v-model="questiion" name="Задайте ваш вопрос" placeholder="Задайте ваш вопрос"></textarea>
             </div>
           </div>
-          <input @click="sendMessage()" class="form__button button_mtp" type="submit" value="Отправить" />
+          <input @click="sendMessage" class="form__button button_mtp" type="submit" value="Отправить" />
           <div class="feedback">
             <p class="feedback__text">
               Нажимая кнопку «отправить», вы соглашаетесь с
-              <router-link :to="{ name: 'PolicyPage' }"> Политикой конфиденциальности.</router-link>
+              <router-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</router-link>
             </p>
           </div>
         </div>
@@ -67,10 +62,6 @@ export default {
 </template>
 <style lang="scss" coped>
 @use "../../assets/styles/main.scss" as *;
-// .global-form:target {
-//   background-color: #102938;
-// }
-
 .flex-input {
   display: flex;
   flex-wrap: wrap;
@@ -152,24 +143,25 @@ textarea {
   height: 45px;
 }
 .form__title {
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 600;
   display: inline-block;
   border-radius: 32px;
   color: $color-title;
   @media (max-width: $md4) {
     font-size: $fs-l;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 }
 .form-submit p {
   //   padding-bottom: 24px;
   color: #102938;
-  font-size: 22px;
+  font-size: 1.2rem;
+  font-weight: 400;
   @media (max-width: $md4) {
     margin-bottom: 5px;
     line-height: 1.3;
-    font-size: $fs-m;
+    font-size: 16px;
   }
 }
 .form__button {
@@ -191,6 +183,9 @@ textarea {
 .button_mtp {
   margin-top: 20px;
   margin-bottom: 2px;
+  @media (max-width: $md4) {
+    margin-top: 15px;
+  }
 }
 @media (min-width: $md1) {
   .form__button:hover {
@@ -207,15 +202,17 @@ textarea {
 }
 // }
 .form-bl.brd {
+  box-shadow: 0px 1px 3px 0px rgba(34, 60, 80, 0.18);
   color: #102938;
   text-align: left;
-  padding: 28px 33px 1px;
-  border: 1px solid #ea5b0c;
-  border-radius: 6px;
+  padding: 28px 25px 1px;
+  // border: 1px solid #ea5b0c;
+  background-color: #f5f5f5;
+  border-radius: 8px;
   box-sizing: border-box;
   @media (max-width: $md4) {
-    padding: 28px 25px 1px;
-    padding: 20px 17px 1px 17px;
+    // padding: 28px 25px 1px;
+    padding: 20px 12px 1px 15px;
   }
 }
 .feedback {
