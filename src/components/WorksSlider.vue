@@ -29,7 +29,7 @@ export default {
         :modules="modules"
         :breakpoints="{
           320: {
-            slidesPerView: 1.08,
+            slidesPerView: 1.05,
             navigation: {
               nextEl: '.swiper-button-next',
               prevEl: '.swiper-button-prev',
@@ -124,6 +124,10 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
 
+.works-slider {
+  overflow: hidden;
+}
+
 .mySwiper .swiper-button-prev {
   color: #fff;
   @media (max-width: $md2) {
@@ -158,6 +162,9 @@ export default {
   height: 100%;
   &__img {
     border-radius: 7px;
+  }
+  @media (max-width: $md4) {
+    overflow: visible;
   }
 }
 .swiper-slide {

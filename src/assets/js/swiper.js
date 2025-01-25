@@ -13,7 +13,7 @@ export const swiper_order_setting = {
   breakpoints: {
     // when window width is >= 320px
     320: {
-      slidesPerView: 1.1,
+      slidesPerView: 1.05,
       spaceBetween: 7,
     },
     // when window width is >= 480px
@@ -25,12 +25,49 @@ export const swiper_order_setting = {
     },
     1280: {
       slidesPerView: 3.01,
-      spaceBetween: 10,
+      spaceBetween: 15,
     },
   },
   navigation: {
     nextEl: ".s-button-next",
     prevEl: ".s-button-prev",
+  },
+  modules: [Navigation],
+};
+
+export const swiper_global_setting = {
+  direction: "horizontal",
+  slidesPerView: 3, // колво слайдов на показ
+  spaceBetween: 30, // отступ между слайдами
+  loop: true,
+  // pagination: {
+  //   el: ".swiper-pagination",
+  //   type: "bullets",
+  //   clickable: true,
+  // },
+  breakpoints: {
+    // when window width is >= 320px
+    320: {
+      slidesPerView: 2.1,
+      spaceBetween: 7,
+    },
+    // when window width is >= 480px
+
+    // when window width is >= 640px
+    767: {
+      slidesPerView: 2.11,
+      spaceBetween: 10,
+    },
+    1280: {
+      slidesPerView: 4.1,
+      spaceBetween: 15,
+    },
+  },
+  navigation: {
+    // nextEl: ".s-button-next",
+    // prevEl: ".s-button-prev",
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
   modules: [Navigation],
 };
@@ -51,7 +88,7 @@ export const swiper_banner_setting = {
   // },
   // autoHeight: true, // авто высота изображения
   autoplay: {
-    delay: 2000,
+    delay: 3000,
     // Отключить после ручного переключения
     disableOnInteraction: true,
     // Остановится на последнем слайде

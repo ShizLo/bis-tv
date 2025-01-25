@@ -98,9 +98,9 @@ document.addEventListener("click", (e) => {
                   <a class="menu-mobile__item_body-link">Проект участка</a>
                   <a class="menu-mobile__item_body-link">Вынос границ и топографическая съемка</a>
                   <a class="menu-mobile__item_body-link">Септик под ключ</a>
-                  <a class="menu-mobile__item_body-link">Водоснабжение</a>
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.WATER }">Водоснабжение</router-link>
                   <a class="menu-mobile__item_body-link">Система очистки воды</a>
-                  <a class="menu-mobile__item_body-link">Свайный фундамент</a>
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                   <a class="menu-mobile__item_body-link">Ливневка и дренаж</a>
                   <a class="menu-mobile__item_body-link">Благоустройство</a>
@@ -209,14 +209,13 @@ document.addEventListener("click", (e) => {
                         </li>
                         <li class="catalog__list-item_body-item">
                           <div class="catalog__item">
-                            <a class="catalog__link">Водоснабжение</a>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.WATER }">Водоснабжение</router-link>
                           </div>
                           <div class="catalog__item">
                             <a class="catalog__link">Система очистки воды</a>
                           </div>
-
                           <div class="catalog__item">
-                            <a class="catalog__link">Свайный фундамент</a>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
                           </div>
                         </li>
                         <li class="catalog__list-item_body-item">
@@ -526,7 +525,7 @@ document.addEventListener("click", (e) => {
   @media (max-width: $md2) {
     position: absolute;
     top: 40%;
-    left: 5%;
+    left: 3%;
     &._right {
       left: 90%;
       @media (max-width: $md4) {
@@ -690,7 +689,12 @@ document.addEventListener("click", (e) => {
     }
     @media (max-width: $md4) {
       position: absolute;
-      right: 5%;
+      right: -4px;
+      padding: 11.5px;
+      background-color: #f5f5f5;
+      top: -10px;
+      box-shadow: 0.5px 0.5px 1px 0px rgba(34, 60, 80, 0.2);
+      border-radius: 6px;
       // margin-right: 10px;
     }
     &:before {
@@ -823,7 +827,7 @@ document.addEventListener("click", (e) => {
   left: 10px;
   top: calc(33%);
   width: 30px;
-  height: 20px;
+  height: 20px; //48 - 20 = 30 / 2 = 15 54 - 100 17 - x
   cursor: pointer;
   z-index: 11;
   @media (max-width: $md4) {
@@ -875,6 +879,22 @@ document.addEventListener("click", (e) => {
     }
   }
 }
+
+.burger-md::after {
+  @media (max-width: $md4) {
+    content: "";
+    width: 48px; //22.5
+    height: 48px;
+    position: absolute;
+    top: -14px;
+    left: -10.5px;
+    background-color: #f5f5f5;
+    z-index: -1;
+    border-radius: 6px;
+    box-shadow: 0.5px 0.5px 1px 0px rgba(34, 60, 80, 0.2);
+  }
+}
+
 /// navigationcatalog
 .form-feedback__show {
   display: block;

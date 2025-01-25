@@ -35,7 +35,7 @@ const props = defineProps({
                   <div class="item__title title">
                     <span>{{ item.title }}</span>
                   </div>
-                  <div class="item__price content__price">
+                  <div v-if="item.price.length > 0" class="item__price content__price">
                     <span>{{ item.price }}</span>
                   </div>
                 </div>
@@ -78,7 +78,7 @@ const props = defineProps({
   }
   &__items {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     @media (max-width: $md3) {
       flex-wrap: wrap;
     }
@@ -91,7 +91,7 @@ const props = defineProps({
     display: flex;
     flex-wrap: wrap;
     flex: 1 1 50%;
-    gap: 10px;
+    gap: 15px;
     @media (max-width: $md3) {
       flex: 1 1 100%;
       &:last-child {
@@ -105,13 +105,13 @@ const props = defineProps({
   &__row {
     display: flex;
     width: 100%;
-    gap: 10px;
+    gap: 15px;
     @media (max-width: $md4) {
       gap: 7px;
     }
     &-item-big {
       width: 100%;
-      height: 350px;
+      height: 315px;
       @media (max-width: $md1) {
         height: 320px;
       }
@@ -141,18 +141,20 @@ const props = defineProps({
         }
       }
       .item__price {
+        letter-spacing: 0.3px;
         font-weight: 500;
         @media (max-width: $md4) {
           font-size: 12px;
           margin-top: 7px;
-          padding: 6px 7px;
+          padding: 5px 7px;
           border-radius: 6px;
+          letter-spacing: normal;
         }
       }
     }
     &-item-sm {
       width: 50%;
-      height: 230px;
+      height: 210px;
 
       @media (max-width: $md1) {
         height: 200px;
@@ -173,28 +175,22 @@ const props = defineProps({
         padding: 25px 25px 0px 25px;
         color: #102938;
         @media (max-width: $md2) {
-          // font-size: 1.3rem;
         }
         @media (max-width: $md3) {
-          // font-size: 1.3rem;
         }
         @media (max-width: $md4) {
-          // font-size: 1rem;
-          font-size: 15px;
+          font-size: 16px;
           padding: 15px 10px 0px 10px;
         }
       }
       .item__price {
+        letter-spacing: 0.3px;
         font-weight: 500;
         @media (max-width: $md4) {
-          font-size: 12px;
-        }
-      }
-      .item__price {
-        @media (max-width: $md4) {
+          letter-spacing: normal;
           font-size: 12px;
           margin-top: 7px;
-          padding: 6px 7px;
+          padding: 5px 7px;
           border-radius: 6px;
         }
       }
@@ -251,11 +247,12 @@ const props = defineProps({
     // font-size: 1.55rem;
   }
   &__price {
+    box-shadow: 1px 1px 1px 0px rgba(34, 60, 80, 0.2);
     background: #fff;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    padding: 11px 10px;
+    padding: 6px 10px;
     margin: 10px 0px 0px 18px;
     color: #102938;
     text-align: center;
@@ -263,7 +260,7 @@ const props = defineProps({
     @media (max-width: $md4) {
       font-size: 14px;
       margin: 8px 0px 0px 8px;
-      padding: 7px 10px;
+      // padding: 7px 10px;
     }
   }
 }

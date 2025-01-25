@@ -72,7 +72,7 @@ function hoverMobile() {
             <div v-for="item in bannerPrice" class="swiper-slide">
               <img class="swiper__img" :src="item.url" :alt="item.name" />
               <div class="swiper-banner__content">
-                <div class="content__price">
+                <div v-if="item.price.length > 0" class="content__price">
                   <span>{{ item.price }}</span>
                 </div>
                 <div class="content__title">{{ item.name }}</div>
@@ -316,7 +316,7 @@ function hoverMobile() {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 60px;
+    gap: 20px;
 
     @media (max-width: $md2) {
       padding: 20px 10px;
