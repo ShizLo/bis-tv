@@ -12,36 +12,43 @@ export default {
   setup() {
     var swiper = new Swiper(".mySwipers", {
       spaceBetween: 10,
-      slidesPerView: 4,
+      slidesPerView: 2,
       freeMode: true,
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
+
       breakpoints: {
-          "@0.00": {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          "@0.75": {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          "@1.00": {
-            slidesPerView: 3,
-            spaceBetween: 40,
-          },
-          "@1.50": {
-            slidesPerView: 4,
-            spaceBetween: 50,
+        320: {
+          slidesPerView: 2,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
           },
         },
+        479.98: {
+          slidesPerView: 4,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        },
+        991.98: {
+          slidesPerView: 5,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        },
+      },
     });
     var swiper2 = new Swiper(".mySwipers2", {
-      spaceBetween: 10,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+      // spaceBetween: 10,
+
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
       },
-      
+
       thumbs: {
         swiper: swiper,
       },
@@ -60,17 +67,19 @@ export default {
 </script>
 <template>
   <div class="mini-slider__backgroud" @click.self="$emit('someEvent')">
-    <div class="_container mini-slide__container">
-      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper-container mySwipers2">
-        <div class="swiper-wrapper">
+    <div class="mini-slider__container">
+      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+        class=" swiper-container mySwipers2">
+        <div class=" swiper-wrapper">
           <div class="swiper-slide" v-for="item in workImages" :key="item">
-            <img :src=item.url :alt="item.alt" />
+            <img class="resize" :src=item.url :alt="item.alt" />
           </div>
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+        <!-- <div class="swiper-button-prev"></div> -->
+        <!-- <div class="swiper-button-next"></div> -->
       </div>
-      <div thumbsSlider="" class="swiper-container mySwipers">
+      <div thumbsSlider="" class=" swiper-container mySwipers">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="item in workImages" :key="item">
             <img :src=item.url :alt="item.alt" />
@@ -83,27 +92,48 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
 
-.mini-slide__container {
+.mini-slider__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 90%;
   overflow: hidden;
+  width: 1000px;
+  height: 95vh;
+  margin: 0 auto;
 
+  @media (max-width: $md2) {
+    width: 90%;
+    height: 80%;
+  };
+
+  @media (max-width: $md3) {
+    width: 90%;
+    height: 80%;
+  };
+
+  @media (max-width: $md4) {
+    width: 90%;
+    height: 80%;
+  };
 }
-.swiper-wrapper {
-  justify-content: space-around;
-}
-.swiper-container {
-  width: 50%;
-  height: 50%;
-}
+
+// .resize {
+//   max-width: 100%; /* Максимальная ширина – 100% */
+//   max-height: 500px; /* Максимальная высота – 500px */
+//   height: auto;
+//   object-fit: contain; /* Высота автоматическая */
+// }
+// .swiper-wrapper {
+//   justify-content: space-around;
+// }
+
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: rgba(22, 22, 22, 0);
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -160,19 +190,13 @@ export default {
   opacity: 1;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 ////////////////////////////////
 
 .mini-slider__backgroud {
   width: 100%;
   height: 100%;
-  //position: absolute;
+  z-index: 20;
   z-index: 3;
   background-color: rgba(22, 22, 22, 0.925);
   flex-direction: column;
