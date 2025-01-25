@@ -124,13 +124,14 @@ onUnmounted(() => {
   // }
 }
 .swiper-wrapper > .swiper-slide__order:first-child {
-  margin-left: 3px;
+  // margin-left: 3px;
 }
 
 .swiper-order {
   overflow: hidden;
   padding-bottom: 3px;
   @media (max-width: $md4) {
+    overflow: visible;
     // overflow-x: visible;
     // overflow-y: hidden;
     // overflow: visible;
@@ -158,11 +159,12 @@ onUnmounted(() => {
   // -moz-box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
   box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
   @media (max-width: $md4) {
-    padding: 20px 12px;
+    padding: 12px 12px;
   }
 }
 
 .order {
+  overflow: hidden;
   margin: 0px 0px 25px 0px;
   &__title {
     // margin-top: 10px;
@@ -181,6 +183,9 @@ onUnmounted(() => {
     display: flex;
     align-items: center;
     margin: 0px 0px 10px 0px;
+    @media (max-width: $md4) {
+      margin: 0px 0px 7px 0px;
+    }
   }
   &__icon {
     padding: 10px 10px;

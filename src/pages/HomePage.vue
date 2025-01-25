@@ -5,7 +5,8 @@
   <WorksSlider />
   <Partners />
   <AboutUs />
-  <GlobalForm id="GlobalForm" />
+  <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+  <!-- <GlobalForm id="GlobalForm" /> -->
 </template>
 
 <script>
@@ -16,6 +17,7 @@ import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
 import GlobalForm from "../components/Form/GlobalForm.vue";
 import WorkOrder from "../components/WorkOrder.vue";
+import FeedBackForm from "../components/FeedBackForm.vue";
 import { ROUTES_PATHS } from "../constants";
 
 import Form from "../components/Form/Form.vue";
@@ -31,6 +33,7 @@ export default {
     GlobalForm,
     Form,
     WorkOrder,
+    FeedBackForm,
   },
 
   setup() {
@@ -108,7 +111,7 @@ export default {
             class: "services__row-item-big",
             title: "Септик под ключ",
             price: "От 180 000 руб.",
-            pathImg: "url(/images/ourServices/services-1.webp)",
+            pathImg: "url(/images/homePage/services-1.png)",
             hoverColors: "rgb(170, 214, 199)",
           },
         ],
@@ -117,8 +120,9 @@ export default {
             class: "services__row-item-sm",
             title: "Водоснабжение",
             price: "От 60 000 руб.",
-            pathImg: "url(/images/ourServices/services-2++.webp",
+            pathImg: "url(/images/homePage/services-2.png",
             hoverColors: "rgb(204, 209, 255)",
+            routePath: ROUTES_PATHS.WATER,
           },
           {
             class: "services__row-item-sm",
@@ -137,6 +141,7 @@ export default {
             price: "От 100 000 руб.",
             pathImg: "url(/images/ourServices/services-5+.webp",
             hoverColors: "rgb(255, 229, 204)",
+            routePath: ROUTES_PATHS.FAUNDATION,
           },
           {
             class: "services__row-item-sm",
@@ -151,7 +156,7 @@ export default {
             class: "services__row-item-big",
             title: "Установка заборов",
             price: "От 90 000 руб.",
-            pathImg: "url(/images/ourServices/services-6.webp",
+            pathImg: "url(/images/homePage/services-6.png",
             hoverColors: "rgb(255, 229, 204)",
             routePath: ROUTES_PATHS.FENCE,
           },

@@ -100,6 +100,7 @@
     // height: 200px;
     border-radius: 5px;
     overflow: hidden;
+    box-shadow: 1px 1px 1px 0px rgba(34, 60, 80, 0.5);
   }
   &__wrapper {
     background: #405460;

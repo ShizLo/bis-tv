@@ -10,6 +10,11 @@
 // }
 body {
   font-family: $fontFamily;
+  // position: fixed;
+  @media (max-width: $md4) {
+    // overflow-y: hidden;
+  }
+  // overflow-x: hidden;
 }
 ._container {
   max-width: $maxWidthContainer;
