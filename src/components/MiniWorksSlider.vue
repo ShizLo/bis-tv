@@ -16,7 +16,6 @@ export default {
       freeMode: true,
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
-
       breakpoints: {
         320: {
           slidesPerView: 2,
@@ -42,11 +41,10 @@ export default {
       },
     });
     var swiper2 = new Swiper(".mySwipers2", {
-      // spaceBetween: 10,
-
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
+        type: "fraction",
       },
 
       thumbs: {
@@ -67,14 +65,23 @@ export default {
 </script>
 <template>
   <div class="mini-slider__backgroud" @click.self="$emit('someEvent')">
+
     <div class="mini-slider__container">
       <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
         class=" swiper-container mySwipers2">
         <div class=" swiper-wrapper">
+
           <div class="swiper-slide" v-for="item in workImages" :key="item">
+            <button class="form-feedback__close-btn" @click="$emit('someEvent')">
+              <svg width="30" height="30" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.20868 14.5405L14.2902 1.45898M14.2902 14.5405L1.20875 1.45899" stroke="#f5f5f5"
+                  stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+            </button>
             <img class="resize" :src=item.url :alt="item.alt" />
           </div>
         </div>
+
         <div class="swiper-pagination"></div>
         <!-- <div class="swiper-button-prev"></div> -->
         <!-- <div class="swiper-button-next"></div> -->
@@ -92,6 +99,21 @@ export default {
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
 
+.form-feedback__close-btn {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.form-feedback__close-btn svg {
+  filter: drop-shadow(1px 0px 9px black);
+}
+
+
 .mini-slider__container {
   display: flex;
   flex-direction: column;
@@ -105,18 +127,24 @@ export default {
 
   @media (max-width: $md2) {
     width: 90%;
-    height: 80%;
-  };
+    height: 90%;
+  }
+
+  ;
 
   @media (max-width: $md3) {
     width: 90%;
-    height: 80%;
-  };
+    height: 90%;
+  }
+
+  ;
 
   @media (max-width: $md4) {
     width: 90%;
-    height: 80%;
-  };
+    height: 90%;
+  }
+
+  ;
 }
 
 // .resize {
@@ -188,6 +216,15 @@ export default {
 
 .mySwipers .swiper-slide-thumb-active {
   opacity: 1;
+}
+
+.swiper-pagination {
+  display: flex;
+  font-size: 1rem;
+  color: #f5f5f5;
+  bottom: 2px;
+  width: 30px;
+  margin: 0px 50%;
 }
 
 
