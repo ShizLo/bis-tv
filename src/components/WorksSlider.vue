@@ -57,11 +57,11 @@ export default {
       ],
       checkIn: [
           {
-            url: "/images/ourServices/checkIn1.png",
+            url: "images/swiperBanner/banner-3.jpg",
             alt: "Заезд на участок",
           },
           {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
+            url: "bis-tv/dist/images/ourServices/checkIn1.png",
             alt: "Заезд на участок",
           },
           {
