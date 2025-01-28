@@ -57,7 +57,7 @@ export default {
       ],
       checkIn: [
           {
-            url: "images/swiperBanner/banner-3.jpg",
+            url: "images/swiperBanner/checkIn1.webp",
             alt: "Заезд на участок",
           },
           {
