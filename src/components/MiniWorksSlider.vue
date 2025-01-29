@@ -4,8 +4,7 @@ import Swiper from "swiper/bundle";
 import { onUpdated } from "vue";
 
 export default {
-  components: {
-  },
+  components: {},
   props: {
     workImages: Array,
   },
@@ -21,22 +20,22 @@ export default {
         320: {
           slidesPerView: 2,
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
           },
         },
         479.98: {
           slidesPerView: 4,
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
           },
         },
         991.98: {
           slidesPerView: 5,
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
           },
         },
       },
@@ -54,35 +53,31 @@ export default {
       },
     });
     onUpdated(() => {
-      swiper.init()
-      swiper2.init()
+      swiper.init();
+      swiper2.init();
     });
 
-
-    return {
-    };
+    return {};
   },
-
 };
 </script>
 <template>
   <div class="mini-slider__backgroud" @click.self="$emit('someEvent')">
     <div class="mini-slider__container">
-      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
-        class=" swiper-container mySwipers2">
-        <div class=" swiper-wrapper">
+      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper-container mySwipers2">
+        <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="item in workImages" :key="item">
-            <img class="resize" :src=item.url :alt="item.alt" />
+            <img class="resize" :src="item.url" :alt="item.alt" />
           </div>
         </div>
         <div class="swiper-pagination"></div>
-        <!-- <div class="swiper-button-prev"></div> -->
-        <!-- <div class="swiper-button-next"></div> -->
+        <!-- <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> -->
       </div>
-      <div thumbsSlider="" class=" swiper-container mySwipers">
+      <div thumbsSlider="" class="swiper-container mySwipers">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="item in workImages" :key="item">
-            <img :src=item.url :alt="item.alt" />
+            <img :src="item.url" :alt="item.alt" />
           </div>
         </div>
       </div>
@@ -106,17 +101,17 @@ export default {
   @media (max-width: $md2) {
     width: 90%;
     height: 80%;
-  };
+  }
 
   @media (max-width: $md3) {
     width: 90%;
     height: 80%;
-  };
+  }
 
   @media (max-width: $md4) {
     width: 90%;
     height: 80%;
-  };
+  }
 }
 
 // .resize {
@@ -128,7 +123,6 @@ export default {
 // .swiper-wrapper {
 //   justify-content: space-around;
 // }
-
 
 .swiper-slide {
   text-align: center;
@@ -189,7 +183,6 @@ export default {
 .mySwipers .swiper-slide-thumb-active {
   opacity: 1;
 }
-
 
 ////////////////////////////////
 

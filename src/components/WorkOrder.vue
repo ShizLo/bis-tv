@@ -45,11 +45,11 @@ onUnmounted(() => {
               </div>
             </div>
           </div>
-          <div class="s-button-prev">
-            <img width="30" height="30" src="/icons/workOrder/arrow-left2.svg" alt="" />
+          <div class="swiper-button-prev">
+            <!-- <img width="30" height="30" src="/icons/workOrder/arrow-left2.svg" alt="" /> -->
           </div>
-          <div class="s-button-next">
-            <img width="30" height="30" src="/icons/workOrder/arrow-right2.svg" alt="" />
+          <div class="swiper-button-next">
+            <!-- <img width="30" height="30" src="/icons/workOrder/arrow-right2.svg" alt="" /> -->
           </div>
         </div>
       </div>
@@ -59,6 +59,24 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+
+.swiper-order > .swiper-button-prev {
+  left: -35px;
+}
+.swiper-order > .swiper-button-next {
+  right: -35px;
+}
+
+.swiper-order > .swiper-button-prev::after {
+  padding: 18px;
+  font-size: 30px;
+  color: #ea5b0c;
+}
+.swiper-order > .swiper-button-next::after {
+  padding: 18px;
+  font-size: 30px;
+  color: #ea5b0c;
+}
 
 .s-button-prev {
   background-color: #fff;
@@ -117,15 +135,15 @@ onUnmounted(() => {
   width: 100%;
 }
 .swiper-wrapper {
-  align-items: stretch;
+  // align-items: stretch;
   // overflow: visible;
   // :first-child {
   //   margin: 0px 1px 0px 0px;
   // }
 }
-.swiper-wrapper > .swiper-slide__order:first-child {
-  // margin-left: 3px;
-}
+// .swiper-wrapper > .swiper-slide__order:last-child {
+//   margin-right: 0px;
+// }
 
 .swiper-order {
   overflow: hidden;
@@ -153,7 +171,8 @@ onUnmounted(() => {
   background-color: $color-background;
   border-radius: 8px;
   height: auto;
-  padding: 20px 20px;
+  // padding: 20px 15px;
+  padding: 15px 15px 10px 15px;
 
   // margin: 2px 0px; // -webkit-box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
   // -moz-box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
@@ -165,9 +184,9 @@ onUnmounted(() => {
 
 .order {
   overflow: hidden;
+  // overflow: visible;
   margin: 0px 0px 25px 0px;
   &__title {
-    // margin-top: 10px;
     margin-bottom: 10px;
     font-size: 26px;
     font-weight: 600;
@@ -176,6 +195,9 @@ onUnmounted(() => {
     border-radius: 32px;
     padding: 3px 10px;
     color: $color-title;
+  }
+  &__container {
+    // overflow: hidden;
   }
 }
 .item {
@@ -195,10 +217,13 @@ onUnmounted(() => {
     -webkit-box-shadow: 0px 1px 3px 0px rgba(34, 60, 80, 0.18);
     -moz-box-shadow: 0px 1px 3px 0px rgba(34, 60, 80, 0.18);
     box-shadow: 0px 1px 3px 0px rgba(34, 60, 80, 0.18);
+
     @media (max-width: $md4) {
       margin-left: 5px;
     }
     img {
+      height: 25px;
+      width: 25px;
       @media (max-width: $md4) {
         height: 22px;
         width: 22px;
@@ -206,15 +231,16 @@ onUnmounted(() => {
     }
   }
   &__title {
-    font-size: 1.4rem;
+    font-size: 22px;
     font-weight: 500;
+    line-height: normal;
     @media (max-width: $md4) {
       font-size: 20px;
     }
   }
   &__text {
     color: $color-text;
-    line-height: 1.3;
+    line-height: 1.25;
     font-weight: 400;
     font-size: 15px;
   }
