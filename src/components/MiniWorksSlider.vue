@@ -15,7 +15,6 @@ export default {
       freeMode: true,
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
-
       breakpoints: {
         320: {
           slidesPerView: 2,
@@ -41,11 +40,10 @@ export default {
       },
     });
     var swiper2 = new Swiper(".mySwipers2", {
-      // spaceBetween: 10,
-
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
+        type: "fraction",
       },
 
       thumbs: {
@@ -70,6 +68,7 @@ export default {
             <img class="resize" :src="item.url" :alt="item.alt" />
           </div>
         </div>
+
         <div class="swiper-pagination"></div>
         <!-- <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div> -->
@@ -86,6 +85,20 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+
+.form-feedback__close-btn {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.form-feedback__close-btn svg {
+  filter: drop-shadow(1px 0px 9px black);
+}
 
 .mini-slider__container {
   display: flex;
