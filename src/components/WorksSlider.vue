@@ -47,6 +47,18 @@ export default {
             alt: "Озеленение",
           },
           {
+            url: "/images/swiperBanner/banner-3.jpg",
+            alt: "Озеленение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "Озеленение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "Озеленение",
+          },
+          {
             url: "/images/swiperBanner/swiper-slide-1.webp",
             alt: "Озеленение",
           },
@@ -57,11 +69,11 @@ export default {
       ],
       checkIn: [
           {
-            url: "images/swiperBanner/checkIn1.webp",
+            url: "/images/ourServices/check-1.webp",
             alt: "Заезд на участок",
           },
           {
-            url: "bis-tv/dist/images/ourServices/checkIn1.png",
+            url: "/images/ourServices/rollbacks-1.jpg",
             alt: "Заезд на участок",
           },
           {
