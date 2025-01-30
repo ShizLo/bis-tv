@@ -1,6 +1,5 @@
 <script>
 import Swiper from "swiper/bundle";
-
 import { onUpdated } from "vue";
 
 export default {
@@ -9,71 +8,76 @@ export default {
     workImages: Array,
   },
   setup() {
-    var swiper = new Swiper(".mySwipers", {
+    var swiper1 = new Swiper(".mySwipers", {
       spaceBetween: 10,
       slidesPerView: 2,
       freeMode: true,
-      watchSlidesVisibility: true,
-      watchSlidesProgress: true,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
       breakpoints: {
         320: {
           slidesPerView: 2,
           navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: '.swiper-button-next1',
+            prevEl: '.swiper-button-prev1',
           },
         },
         479.98: {
           slidesPerView: 4,
           navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: '.swiper-button-next1',
+            prevEl: '.swiper-button-prev1',
           },
         },
         991.98: {
           slidesPerView: 5,
           navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: '.swiper-button-next1',
+            prevEl: '.swiper-button-prev1',
           },
         },
       },
     });
     var swiper2 = new Swiper(".mySwipers2", {
       pagination: {
-        el: ".swiper-pagination",
+        el: ".swiper-pagination1",
         clickable: true,
         type: "fraction",
       },
-
+      
       thumbs: {
-        swiper: swiper,
+        swiper: swiper1,
       },
     });
     onUpdated(() => {
-      swiper.init();
-      swiper2.init();
+      swiper1.init()
+      swiper2.init()
     });
-
-    return {};
+    return {
+    };
   },
 };
 </script>
 <template>
   <div class="mini-slider__backgroud" @click.self="$emit('someEvent')">
+    <button class="form-feedback__close-btn" @click="$emit('someEvent')">
+      <svg width="30" height="30" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.20868 14.5405L14.2902 1.45898M14.2902 14.5405L1.20875 1.45899" stroke="#f5f5f5" stroke-width="2"
+          stroke-linecap="round"></path>
+      </svg>
+    </button>
     <div class="mini-slider__container">
-      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper-container mySwipers2">
-        <div class="swiper-wrapper">
+      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"class="swiper-container mySwipers2">
+        <div class=" swiper-wrapper">
           <div class="swiper-slide" v-for="item in workImages" :key="item">
-            <img class="resize" :src="item.url" :alt="item.alt" />
+            <img class="resize" :src=item.url :alt="item.alt" />
           </div>
         </div>
-
-        <div class="swiper-pagination"></div>
-        <!-- <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div> -->
+        <div class="swiper-pagination swiper-pagination1"></div>
+        <div class="swiper-button-prev swiper-button-prev1"></div>
+        <div class="swiper-button-next swiper-button-next1"></div>
       </div>
-      <div thumbsSlider="" class="swiper-container mySwipers">
+      <div class=" swiper-container mySwipers">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="item in workImages" :key="item">
             <img :src="item.url" :alt="item.alt" />
@@ -85,15 +89,15 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
-
 .form-feedback__close-btn {
   position: absolute;
-  right: 20px;
+  right: 25px;
   top: 10px;
   width: 16px;
   height: 16px;
   box-sizing: border-box;
   cursor: pointer;
+  z-index: 10;
 }
 
 .form-feedback__close-btn svg {
@@ -110,32 +114,31 @@ export default {
   width: 1000px;
   height: 95vh;
   margin: 0 auto;
-
   @media (max-width: $md2) {
     width: 90%;
-    height: 80%;
-  }
-
+    height: 90%;
+    
+  };
   @media (max-width: $md3) {
     width: 90%;
-    height: 80%;
-  }
+    height: 90%;
+    .mySwipers{
+    display:none;
+  };
+  .mySwipers2 {
+  height: 95%;
+  width: 100%;
+};
+.swiper-button-prev1, .swiper-button-next1{
+  display: none;
+}
+  };
 
   @media (max-width: $md4) {
     width: 90%;
-    height: 80%;
-  }
+    height: 90%;
+  };
 }
-
-// .resize {
-//   max-width: 100%; /* Максимальная ширина – 100% */
-//   max-height: 500px; /* Максимальная высота – 500px */
-//   height: auto;
-//   object-fit: contain; /* Высота автоматическая */
-// }
-// .swiper-wrapper {
-//   justify-content: space-around;
-// }
 
 .swiper-slide {
   text-align: center;
@@ -197,7 +200,14 @@ export default {
   opacity: 1;
 }
 
-////////////////////////////////
+.swiper-pagination1 {
+  display: flex;
+  font-size: 1rem;
+  color: #f5f5f5;
+  bottom: 2px;
+  width: 30px;
+  margin: 0px 50%;
+}
 
 .mini-slider__backgroud {
   width: 100%;

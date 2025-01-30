@@ -41,6 +41,30 @@ export default {
   data: () => ({
     workImages: {
       landscaping: [
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "Озеленение",
+          },
+          {
+            url: "/images/swiperBanner/banner-3.jpg",
+            alt: "Озеленение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "Озеленение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "Озеленение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "Озеленение",
+          },
+          {
+            url: "/images/swiperBanner/swiper-slide-1.webp",
+            alt: "Озеленение",
+          },
         {
           url: "/images/workPhoto/greenPark/1.jpg",
           alt: "Свайное поле",
