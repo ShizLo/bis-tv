@@ -3,8 +3,7 @@ import Swiper from "swiper/bundle";
 import { onUpdated } from "vue";
 
 export default {
-  components: {
-  },
+  components: {},
   props: {
     workImages: Array,
   },
@@ -81,7 +80,7 @@ export default {
       <div class=" swiper-container mySwipers">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="item in workImages" :key="item">
-            <img :src=item.url :alt="item.alt" />
+            <img :src="item.url" :alt="item.alt" />
           </div>
         </div>
       </div>

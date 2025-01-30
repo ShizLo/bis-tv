@@ -655,6 +655,7 @@ document.addEventListener("click", (e) => {
   align-items: center;
   gap: 12px;
   padding: 11px 20px 11px 50px;
+  box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
 }
 
 .list__item {

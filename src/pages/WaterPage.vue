@@ -7,10 +7,10 @@
     :bannerPrice="bannerPrice"
   />
   <OurServices :dataServices="dataServices" title="Услуги по водоснабжению" />
-
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
   <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
-  <GlobalForm id="GlobalForm" />
+  <GlobalServices :data="dataGlobalService" title="Популярные услуги" />
+  <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
 </template>
 
 <script>
@@ -19,6 +19,8 @@ import LocalService from "../components/LocalService.vue";
 import WorkOrder from "../components/WorkOrder.vue";
 import GlobalForm from "../components/Form/GlobalForm.vue";
 import OurServices from "../components/OurServices.vue";
+import FeedBackForm from "../components/FeedBackForm.vue";
+import GlobalServices from "../components/GlobalServices.vue";
 import { ROUTES_PATHS } from "../constants";
 
 export default {
@@ -29,6 +31,8 @@ export default {
     WorkOrder,
     GlobalForm,
     OurServices,
+    FeedBackForm,
+    GlobalServices,
   },
 
   setup() {
@@ -68,12 +72,12 @@ export default {
       // },
     ],
     servicePrice: [
-      { urlImg: "", price: "", name: "1" },
-      { urlImg: "", price: "", name: "2" },
-      { urlImg: "", price: "", name: "3" },
-      { urlImg: "", price: "", name: "4" },
-      { urlImg: "", price: "", name: "5" },
-      { urlImg: "", price: "", name: "6" },
+      { urlImg: "", price: "", name: "Врезка в водопровод" },
+      { urlImg: "", price: "", name: "Анализ воды и подбор оборудования для очистки" },
+      { urlImg: "", price: "", name: "Уличный кран" },
+      { urlImg: "", price: "", name: "Утепление колодца" },
+      { urlImg: "", price: "", name: "Установка ковера (подземный кран)" },
+      { urlImg: "", price: "", name: "Прокладка дополнительных трас водоснабжения" },
       // { urlImg: "url(/images/fence/services-6.png)", price: "от 6000 м.пог", name: "Забор и оргаждения из бруска" },
     ],
     dataOrder: [
@@ -99,12 +103,12 @@ export default {
       },
       {
         urlImg: "/icons/waterPage/hammer.svg",
-        title: "Устанавка оборудования",
+        title: "Установка оборудования",
         text: "Монтируем систему водоочистки, бойлер и прочие инженерные системы.",
       },
       {
         urlImg: "/icons/waterPage/link.svg",
-        title: "Устанавка сантехники",
+        title: "Установка сантехники",
         text: "Устанавливаем ванны, унитазы, раковины, душевые, подключаем смесители и прочую сантехнику.",
       },
     ],
@@ -156,13 +160,63 @@ export default {
         [
           {
             class: "services__row-item-big",
-            title: "Врезка в центральный водопровод",
+            title: "Водоподготовка",
             price: "",
             pathImg: "url(/images/waterPage/water-6.png)",
             hoverColors: "rgb(255, 229, 204)",
           },
         ],
       ],
+    ],
+    dataGlobalService: [
+      {
+        urlImg: "url(/images/globalServices/services-1.webp)",
+        title: "Установка септика",
+        price: "Подробнее",
+        routePath: ROUTES_PATHS.HOME,
+      },
+      {
+        urlImg: "url(/images/globalServices/services-2.png)",
+        title: "Установка забора",
+        price: "Подробнее",
+        routePath: ROUTES_PATHS.FENCE,
+      },
+      {
+        urlImg: "url(/images/globalServices/services-5.webp)",
+        title: "Фундамент",
+        price: "Подробнее",
+        routePath: ROUTES_PATHS.FAUNDATION,
+      },
+      // {
+      //   urlImg: "url(/images/globalServices/sticker.png)",
+      //   title: "Кессон 2.0",
+      //   price: "Подробнее",
+      //   routePath: ROUTES_PATHS.WATER,
+      // },
+      // {
+      //   urlImg: "url(/images/globalServices/services-5.png)",
+      //   title: "Водоснабжение",
+      //   price: "Подробнее",
+      //   routePath: ROUTES_PATHS.WATER,
+      // },
+      {
+        urlImg: "url(/images/globalServices/services-4.png)",
+        title: "Благоустройство",
+        price: "Подробнее",
+        routePath: ROUTES_PATHS.HOME,
+      },
+      {
+        urlImg: "url(/images/globalServices/services-8++.webp)",
+        title: "Электромонтаж",
+        price: "Подробнее",
+        routePath: ROUTES_PATHS.HOME,
+      },
+      {
+        urlImg: "url(/images/globalServices/services-7.webp)",
+        title: "Ливневка",
+        price: "Подробнее",
+        routePath: ROUTES_PATHS.HOME,
+      },
     ],
   }),
 };

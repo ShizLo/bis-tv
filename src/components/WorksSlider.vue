@@ -16,17 +16,16 @@ export default {
 
   setup() {
     let formIsVisible = ref(0);
-    let workImage = ref([])
-    function isShow (visible, workName) {
+    let workImage = ref([]);
+    function isShow(visible, workName) {
       if (visible) {
-        toggleBodyScroll(true)
-        formIsVisible.value = 1
+        toggleBodyScroll(true);
+        formIsVisible.value = 1;
+      } else {
+        toggleBodyScroll(false);
+        formIsVisible.value = 0;
       }
-      else {
-        toggleBodyScroll(false)
-        formIsVisible.value = 0
-      }
-      workImage.value = workName
+      workImage.value = workName;
     }
     function toggleBodyScroll(lock) {
       document.body.style.overflow = lock ? "hidden" : "";
@@ -66,99 +65,107 @@ export default {
             url: "/images/swiperBanner/swiper-slide-1.webp",
             alt: "Озеленение",
           },
+        {
+          url: "/images/workPhoto/greenPark/1.jpg",
+          alt: "Свайное поле",
+        },
+        {
+          url: "/images/workPhoto/greenPark/2.jpg",
+          alt: "Озеленение",
+        },
+        {
+          url: "/images/workPhoto/greenPark/3.jpg",
+          alt: "Озеленение",
+        },
       ],
       checkIn: [
-          {
-            url: "/images/ourServices/check-1.webp",
-            alt: "Заезд на участок",
-          },
-          {
-            url: "/images/ourServices/rollbacks-1.jpg",
-            alt: "Заезд на участок",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Заезд на участок",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Заезд на участок",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Заезд на участок",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Заезд на участок",
-          },
+        {
+          url: "/images/workPhoto/foundation/1.JPG",
+          alt: "Свайное поле",
+        },
+        {
+          url: "/images/workPhoto/foundation/2.JPG",
+          alt: "Свайное поле",
+        },
+        {
+          url: "/images/workPhoto/foundation/3.JPG",
+          alt: "Свайное поле",
+        },
+        {
+          url: "/images/workPhoto/foundation/4.JPG",
+          alt: "Свайное поле",
+        },
+        {
+          url: "/images/workPhoto/foundation/5.JPG",
+          alt: "Свайное поле",
+        },
+        {
+          url: "/images/workPhoto/foundation/6.JPG",
+          alt: "Свайное поле",
+        },
       ],
       traks: [
-          {
-            url: "/images/fence/services-2.png",
-            alt: "Дорожки",
-          },
-          {
-            url: "/images/fence/services-1.png",
-            alt: "Дорожки",
-          },
-          {
-            url: "/images/fence/dop-1.png",
-            alt: "Дорожки",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Дорожки",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Дорожки",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Дорожки",
-          },
+        {
+          url: "/images/fence/services-2.png",
+          alt: "Дорожки",
+        },
+        {
+          url: "/images/fence/services-1.png",
+          alt: "Дорожки",
+        },
+        {
+          url: "/images/fence/dop-1.png",
+          alt: "Дорожки",
+        },
+        {
+          url: "/images/swiperBanner/swiper-slide-1.webp",
+          alt: "Дорожки",
+        },
+        {
+          url: "/images/swiperBanner/swiper-slide-1.webp",
+          alt: "Дорожки",
+        },
+        {
+          url: "/images/swiperBanner/swiper-slide-1.webp",
+          alt: "Дорожки",
+        },
       ],
       lighting: [
-      {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Освещение",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Освещение",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Освещение",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Освещение",
-          },
-      ]
-      }
-    
+        {
+          url: "/images/swiperBanner/swiper-slide-1.webp",
+          alt: "Освещение",
+        },
+        {
+          url: "/images/swiperBanner/swiper-slide-1.webp",
+          alt: "Освещение",
+        },
+        {
+          url: "/images/swiperBanner/swiper-slide-1.webp",
+          alt: "Освещение",
+        },
+        {
+          url: "/images/swiperBanner/swiper-slide-1.webp",
+          alt: "Освещение",
+        },
+      ],
+    },
   }),
-  
 };
 </script>
 <template>
   <section class="works-slider">
-    <MiniWorksSlider 
-        :class="formIsVisible === 1 ? 'form-feedback__show' : ''" 
-        class="mini-slider" 
-        @someEvent="isShow(false)"
-        :workImages = workImage
-        >
-      </MiniWorksSlider>
+    <MiniWorksSlider
+      :class="formIsVisible === 1 ? 'form-feedback__show' : ''"
+      class="mini-slider"
+      @someEvent="isShow(false)"
+      :workImages="workImage"
+    >
+    </MiniWorksSlider>
     <div class="_container _container-settings">
       <h2 class="content-bar__h2">Наши работы</h2>
     </div>
 
     <div class="_container">
-      
-
       <swiper
         :spaceBetween="5"
         :modules="modules"
@@ -197,12 +204,12 @@ export default {
         class="mySwiper"
       >
         <swiper-slide @click="isShow(true, workImages.landscaping)">
-          <img src="../assets/images/landshaft.jpg"  alt="Озеленение, освещение" class="swiper__img lazyloaded" />
+          <img src="../assets/images/landshaft.jpg" alt="Озеленение, освещение" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Озеленение, освещение</p>
           </div>
         </swiper-slide>
-        <swiper-slide @click="isShow(true,workImages.checkIn)">
+        <swiper-slide @click="isShow(true, workImages.checkIn)">
           <img src="../assets/images/work-swiper-3.jpg" alt="Заезд на участок и свайное поле" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Заезд на участок и свайное поле</p>

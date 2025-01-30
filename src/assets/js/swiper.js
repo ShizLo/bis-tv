@@ -2,7 +2,7 @@ import { Navigation, Pagination } from "swiper/modules";
 
 export const swiper_order_setting = {
   direction: "horizontal",
-  slidesPerView: 3, // колво слайдов на показ
+  slidesPerView: 4, // колво слайдов на показ
   spaceBetween: 30, // отступ между слайдами
 
   // pagination: {
@@ -24,13 +24,15 @@ export const swiper_order_setting = {
       spaceBetween: 10,
     },
     1280: {
-      slidesPerView: 3.01,
-      spaceBetween: 15,
+      slidesPerView: 4.005,
+      spaceBetween: 10,
     },
   },
   navigation: {
-    nextEl: ".s-button-next",
-    prevEl: ".s-button-prev",
+    // nextEl: ".s-button-next",
+    // prevEl: ".s-button-prev",
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
   modules: [Navigation],
 };
