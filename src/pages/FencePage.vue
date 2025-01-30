@@ -11,7 +11,6 @@
   <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
   <GlobalServices :data="dataGlobalService" title="Популярные услуги" />
   <FeedBackForm title="Закажите установку забора" id="GlobalForm" />
-  <!-- <GlobalForm id="GlobalForm" /> -->
 </template>
 
 <script>
@@ -75,7 +74,7 @@ export default {
     servicePrice: [
       { urlImg: "url(/images/fence/dop-1.png)", price: "от 60 000 руб.", name: "Установка автоматики" },
       { urlImg: "url(/images/fence/dop-2.png", price: "от 10 000 руб.", name: "Освещение участка" },
-      { urlImg: "url(/images/fence/dop-3+.png)", price: "", name: "Организация парковки и заеда" },
+      { urlImg: "url(/images/fence/dop-3+.png)", price: "", name: "Организация парковки и заезда" },
       { urlImg: "url(/images/fence/dop-5+.png)", price: "", name: "Откатные ворота" },
       { urlImg: "url(/images/fence/dop-4+.png)", price: "", name: "Распашные ворота" },
       { urlImg: "url(/images/fence/dop-6.png", price: "", name: "Дополнительные услуги" },

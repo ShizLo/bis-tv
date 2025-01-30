@@ -5,6 +5,10 @@ import { onMounted, onUnmounted, reactive } from "vue";
 
 import { swiper_banner_setting } from "../assets/js/swiper";
 import "../assets/styles/banner/banner.scss";
+import { useRouter } from "vue-router";
+import { ROUTES_PATHS } from "../constants";
+
+const router = useRouter();
 
 const props = defineProps({
   bannerText: {
@@ -32,6 +36,10 @@ function hoverMobile() {
     element.addEventListener("touchstart", () => element.classList.add("on-hover"));
     element.addEventListener("touchend", () => element.classList.remove("on-hover"));
   });
+}
+
+function goTo(path) {
+  router.push(path);
 }
 </script>
 
@@ -71,7 +79,7 @@ function hoverMobile() {
           <div class="swiper-wrapper">
             <div v-for="item in bannerPrice" class="swiper-slide">
               <img class="swiper__img" :src="item.url" :alt="item.name" />
-              <div class="swiper-banner__content">
+              <div @click="goTo(item.routerPath)" class="swiper-banner__content">
                 <div v-if="item.price.length > 0" class="content__price">
                   <span>{{ item.price }}</span>
                 </div>
@@ -103,6 +111,7 @@ function hoverMobile() {
   height: 360px;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.25);
   @media (max-width: $md2) {
     border-radius: 0;
     &::after {
@@ -165,10 +174,11 @@ function hoverMobile() {
   font-weight: 600;
   background: #fff;
   display: inline-block;
-  border-radius: 32px;
+  border-radius: 8px;
   padding: 3px 10px;
   color: #102938;
   border: 0.5px solid #ea5b0c;
+  box-shadow: 1px 1px 4px 0px rgba(34, 60, 80, 0.18);
   @media (max-width: $md4) {
     font-size: 14px;
   }
@@ -343,7 +353,8 @@ function hoverMobile() {
   &__description {
     padding-right: 15px;
     @media (max-width: $md4) {
-      font-size: 14px;
+      line-height: normal;
+      font-size: 13px;
     }
   }
   &__button {

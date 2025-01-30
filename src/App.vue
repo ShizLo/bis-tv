@@ -98,14 +98,14 @@ document.addEventListener("click", (e) => {
                   <a class="menu-mobile__item_body-link">Проект участка</a>
                   <a class="menu-mobile__item_body-link">Вынос границ и топографическая съемка</a>
                   <a class="menu-mobile__item_body-link">Септик под ключ</a>
-                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.WATER }">Водоснабжение</router-link>
-                  <a class="menu-mobile__item_body-link">Система очистки воды</a>
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.WATER }"
+                    >Водоподготовка и система очистки воды</router-link
+                  >
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                   <a class="menu-mobile__item_body-link">Ливневка и дренаж</a>
                   <a class="menu-mobile__item_body-link">Благоустройство</a>
                   <a class="menu-mobile__item_body-link">Электромонтажные работы</a>
-                  <a class="menu-mobile__item_body-link">Освещение участка</a>
                 </div>
               </div>
               <div class="menu-mobile__item">
@@ -192,57 +192,43 @@ document.addEventListener("click", (e) => {
                     <li class="catalog__list-item">
                       <span class="catalog__list-item_header">
                         <img class="catalog__list-item_header-icon" alt="Услуги" src="./assets/icons/design_services.svg" />
-                        Услуги
+                        Наши услуги
                       </span>
                       <ul class="catalog__list-item_body">
                         <li class="catalog__list-item_body-item">
                           <div class="catalog__item">
-                            <a class="catalog__link">Проект участка</a>
+                            <a class="catalog__link">Проект участка и топографическая съемка</a>
                           </div>
-                          <div class="catalog__item">
-                            <a class="catalog__link">Топографическая съемка</a>
-                          </div>
-
                           <div class="catalog__item">
                             <a class="catalog__link">Септик под ключ </a>
                           </div>
-                        </li>
-                        <li class="catalog__list-item_body-item">
                           <div class="catalog__item">
-                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.WATER }">Водоснабжение</router-link>
-                          </div>
-                          <div class="catalog__item">
-                            <a class="catalog__link">Система очистки воды</a>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.WATER }"
+                              >Водоподготовка и система очистки воды</router-link
+                            >
                           </div>
                           <div class="catalog__item">
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
                           </div>
-                        </li>
-                        <li class="catalog__list-item_body-item">
                           <div class="catalog__item" data-test="0">
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                           </div>
                           <div class="catalog__item">
-                            <a class="catalog__link">Ливневая канализация</a>
+                            <a class="catalog__link">Дренаж и ливневая канализация</a>
                           </div>
-                          <div class="catalog__item">
-                            <a class="catalog__link">Дренаж </a>
-                          </div>
-                        </li>
-                        <li class="catalog__list-item_body-item">
                           <div class="catalog__item">
                             <a class="catalog__link">Благоустройство</a>
                           </div>
                           <div class="catalog__item">
                             <a class="catalog__link">Электромонтажные работы</a>
                           </div>
-                          <div class="catalog__item">
-                            <a class="catalog__link">Освещение участка</a>
-                          </div>
                         </li>
+                        <!-- <li class="catalog__list-item_body-item"></li>
+                        <li class="catalog__list-item_body-item"></li>
+                        <li class="catalog__list-item_body-item"></li> -->
                       </ul>
                     </li>
-                    <li class="catalog__list-item">
+                    <!-- <li class="catalog__list-item">
                       <a href="/service" class="catalog__list-item_header">
                         <img
                           class="catalog__list-item_header-icon"
@@ -290,7 +276,7 @@ document.addEventListener("click", (e) => {
                           </div>
                         </li>
                       </ul>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
               </div>
@@ -920,7 +906,7 @@ document.addEventListener("click", (e) => {
     &-item {
       padding-bottom: 20px;
       padding-top: 20px;
-      border-bottom: 1px solid #e8eaec;
+
       width: 100%;
       &_header {
         text-align: left;
@@ -928,11 +914,14 @@ document.addEventListener("click", (e) => {
         display: flex;
         align-items: center;
         color: #102938;
-        font-size: 1.2rem;
+        font-size: 22px;
+        font-weight: 500;
+        border-bottom: 1px solid #e8eaec;
+        margin-bottom: 12px;
         &-icon {
-          width: 24px;
+          width: 28px;
           min-width: 20px;
-          height: 24px;
+          height: 28px;
           margin-right: 10px;
           object-fit: contain;
         }
@@ -959,7 +948,7 @@ document.addEventListener("click", (e) => {
     }
   }
   &__link {
-    padding: 8px 10px;
+    padding: 6px 10px;
     font-weight: 500;
     display: flex;
     justify-content: stretch;

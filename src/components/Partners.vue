@@ -50,7 +50,7 @@
     border-radius: 32px;
     padding: 3px 10px;
     color: #102938;
-    padding-top: 32px;
+    // padding-top: 32px;
     padding-bottom: 16px;
     @media (max-width: $md4) {
       font-size: $fs-xxl;
