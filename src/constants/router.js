@@ -5,4 +5,5 @@ export const ROUTES_PATHS = {
   WATER: "/water",
   FAUNDATION: "/foundation",
   TOPOGRAPHY: "/topography",
+  ELECTRICITY: "/electricity",
 };

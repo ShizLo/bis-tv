@@ -187,13 +187,13 @@ onUnmounted(() => {
   // overflow: visible;
   margin: 0px 0px 25px 0px;
   &__title {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
     font-size: 26px;
     font-weight: 600;
     background: #fff;
     display: inline-block;
     border-radius: 32px;
-    padding: 3px 10px;
+    padding: 0px 10px;
     color: $color-title;
   }
   &__container {
@@ -210,7 +210,7 @@ onUnmounted(() => {
     }
   }
   &__icon {
-    padding: 10px 10px;
+    padding: 8px 8px;
     margin: 0px 10px 0px 0px;
     background-color: #fff;
     border-radius: 4px;
@@ -222,8 +222,8 @@ onUnmounted(() => {
       margin-left: 5px;
     }
     img {
-      height: 25px;
-      width: 25px;
+      height: 22px;
+      width: 22px;
       @media (max-width: $md4) {
         height: 22px;
         width: 22px;
@@ -231,7 +231,7 @@ onUnmounted(() => {
     }
   }
   &__title {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
     line-height: normal;
     @media (max-width: $md4) {

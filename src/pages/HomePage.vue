@@ -1,8 +1,8 @@
 <template>
   <Banner bannerText="Инженерные коммуникации и благоустройство участка" :bannerPrice="bannerPrice" />
   <OurServices :dataServices="dataServices" title="Наши услуги" />
-  <WorkOrder :data="dataOrder" title="Почему выбирают нас" />
   <WorksSlider />
+  <WorkOrder :data="dataOrder" title="Почему выбирают нас" />
   <Partners />
   <AboutUs />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
@@ -45,36 +45,43 @@ export default {
         url: "/images/swiperBanner/banner-1+.jpg",
         price: "от 110 000 руб.",
         name: "Благоустройство",
+        routerPath: "",
       },
       {
         url: "/images/swiperBanner/swiper-slide-1.webp",
         price: "от 90 000 руб.",
         name: "Установка забора",
+        routerPath: ROUTES_PATHS.FENCE,
       },
       {
         url: "/images/swiperBanner/swiper-slide-2.webp",
         price: "от 100 000 руб.",
         name: "Свайное поле",
+        routerPath: ROUTES_PATHS.FAUNDATION,
       },
       {
         url: "/images/swiperBanner/banner-3.jpg",
         price: "от 65 000 руб.",
         name: "Откатные ворота",
+        routerPath: ROUTES_PATHS.FENCE,
       },
       {
         url: "/images/swiperBanner/swiper-slide-4.webp",
         price: "от 1 900 руб./м²",
         name: "Парковка",
+        routerPath: "",
       },
       {
         url: "/images/swiperBanner/swiper-slide-5.webp",
         price: "от 60 000 руб.",
         name: "Водоподготовка",
+        routerPath: ROUTES_PATHS.WATER,
       },
       {
         url: "/images/swiperBanner/swiper-slide-6.webp",
         price: "от 180 000 руб.",
         name: "Септик под ключ",
+        routerPath: "",
       },
     ],
     dataOrder: [

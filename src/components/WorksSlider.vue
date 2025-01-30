@@ -241,6 +241,9 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+.works-slider {
+  margin-bottom: 25px;
+}
 
 .mini-slider {
   display: none;

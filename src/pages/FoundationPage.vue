@@ -45,7 +45,7 @@ export default {
       },
       {
         url: "/images/foundationPage/slider-2.jpg",
-        price: "",
+        price: "от 80 000 руб.",
         name: "Деревянная обвязка",
       },
       // {
