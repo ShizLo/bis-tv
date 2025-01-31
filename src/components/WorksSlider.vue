@@ -42,33 +42,21 @@ export default {
     workImages: {
       landscaping: [
           {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
+            url: "/images/miniSlider/landscaping-1.jpg",
             alt: "Озеленение",
           },
           {
-            url: "/images/swiperBanner/banner-3.jpg",
+            url: "/images/miniSlider/landscaping-2.jpg",
             alt: "Озеленение",
           },
           {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
+            url: "/images/miniSlider/landscaping-3.jpg",
             alt: "Озеленение",
           },
           {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
+            url: "/images/miniSlider/landscaping-4.jpg",
             alt: "Озеленение",
           },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Озеленение",
-          },
-          {
-            url: "/images/swiperBanner/swiper-slide-1.webp",
-            alt: "Озеленение",
-          },
-        {
-          url: "/images/workPhoto/greenPark/1.jpg",
-          alt: "Свайное поле",
-        },
         {
           url: "/images/workPhoto/greenPark/2.jpg",
           alt: "Озеленение",
@@ -106,48 +94,136 @@ export default {
       ],
       traks: [
         {
-          url: "/images/fence/services-2.png",
+          url: "/images/miniSlider/traks-1.jpg",
           alt: "Дорожки",
         },
         {
-          url: "/images/fence/services-1.png",
+          url: "/images/miniSlider/traks-2.jpg",
           alt: "Дорожки",
         },
         {
-          url: "/images/fence/dop-1.png",
+          url: "/images/miniSlider/traks-3.jpg",
           alt: "Дорожки",
         },
         {
-          url: "/images/swiperBanner/swiper-slide-1.webp",
+          url: "/images/miniSlider/traks-4.jpg",
           alt: "Дорожки",
         },
         {
-          url: "/images/swiperBanner/swiper-slide-1.webp",
-          alt: "Дорожки",
-        },
-        {
-          url: "/images/swiperBanner/swiper-slide-1.webp",
+          url: "/images/miniSlider/traks-5.jpg",
           alt: "Дорожки",
         },
       ],
       lighting: [
         {
-          url: "/images/swiperBanner/swiper-slide-1.webp",
+          url: "/images/miniSlider/lighting-1.jpg",
           alt: "Освещение",
         },
         {
-          url: "/images/swiperBanner/swiper-slide-1.webp",
+          url: "/images/miniSlider/lighting-2.jpg",
           alt: "Освещение",
         },
         {
-          url: "/images/swiperBanner/swiper-slide-1.webp",
+          url: "/images/miniSlider/lighting-3.jpg",
           alt: "Освещение",
         },
         {
-          url: "/images/swiperBanner/swiper-slide-1.webp",
+          url: "/images/miniSlider/lighting-4.jpg",
+          alt: "Освещение",
+        },
+        {
+          url: "/images/miniSlider/lighting-5.jpg",
           alt: "Освещение",
         },
       ],
+      picket_fence: [
+        {
+          url: "/images/miniSlider/picket_fence-1.jpg",
+          alt: "Забор из штакетника",
+        },
+        {
+          url: "/images/miniSlider/picket_fence-2.jpg",
+          alt: "Забор из штакетника",
+        },
+        {
+          url: "/images/miniSlider/picket_fence-3.jpg",
+          alt: "Забор из штакетника",
+        },
+        {
+          url: "/images/miniSlider/picket_fence-4.jpg",
+          alt: "Забор из штакетника",
+        },
+        {
+          url: "/images/miniSlider/picket_fence-5.jpg",
+          alt: "Забор из штакетника",
+        },
+      ],
+      gitter_fence: [
+      {
+          url: "/images/miniSlider/gitter_fence-1.jpg",
+          alt: "Забор из гиттера",
+        },
+        {
+          url: "/images/miniSlider/gitter_fence-2.jpg",
+          alt: "Забор из гиттера",
+        },
+        {
+          url: "/images/miniSlider/gitter_fence-3.jpg",
+          alt: "Забор из гиттера",
+        },
+        {
+          url: "/images/miniSlider/gitter_fence-4.jpg",
+          alt: "Забор из гиттера",
+        },
+        {
+          url: "/images/miniSlider/gitter_fence-5.jpg",
+          alt: "Забор из гиттера",
+        },
+      ],
+      rollbacks: [
+      {
+          url: "/images/miniSlider/rollbacks-1.jpg",
+          alt: "Откатные ворота",
+        },
+        {
+          url: "/images/miniSlider/rollbacks-2.jpg",
+          alt: "Откатные ворота",
+        },
+        {
+          url: "/images/miniSlider/rollbacks-3.jpg",
+          alt: "Откатные ворота",
+        },
+        {
+          url: "/images/miniSlider/rollbacks-4.jpg",
+          alt: "Откатные ворота",
+        },
+        {
+          url: "/images/miniSlider/rollbacks-5.jpg",
+          alt: "Откатные ворота",
+        },
+      ],
+      settlement:[
+      {
+          url: "/images/miniSlider/settlement-1.jpg",
+          alt: "Расчистка участка",
+        },
+        {
+          url: "/images/miniSlider/settlement-2.jpg",
+          alt: "Расчистка участка",
+        },
+        {
+          url: "/images/miniSlider/settlement-3.jpg",
+          alt: "Расчистка участка",
+        },
+        {
+          url: "/images/miniSlider/settlement-4.jpg",
+          alt: "Расчистка участка",
+        },
+        {
+          url: "/images/miniSlider/settlement-5.jpg",
+          alt: "Расчистка участка",
+        },
+      ]
     },
   }),
 };
@@ -227,25 +303,25 @@ export default {
             <p class="content_title">Уличное освещение</p>
           </div>
         </swiper-slide>
-        <swiper-slide @click="isShow(true)">
+        <swiper-slide @click="isShow(true, workImages.picket_fence)">
           <img src="../assets/images/work-swiper-5.jpg" alt="Забор из штакетника" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Забор из штакетника</p>
           </div>
         </swiper-slide>
-        <swiper-slide @click="isShow(true)">
+        <swiper-slide @click="isShow(true, workImages.gitter_fence)">
           <img src="../assets/images/work-swiper-6+.jpg" alt="Забор из гиттера" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Забор из гиттера</p>
           </div>
         </swiper-slide>
-        <swiper-slide @click="isShow(true)">
+        <swiper-slide @click="isShow(true, workImages.rollbacks)">
           <img src="../assets/images/work-swiper-9+.jpg" alt="Откатные ворота" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Откатные ворота</p>
           </div>
         </swiper-slide>
-        <swiper-slide @click="isShow(true)">
+        <swiper-slide @click="isShow(true, workImages.settlement)">
           <img src="../assets/images/work-swiper-7.jpg" alt="Расчистка участка" class="swiper__img lazyloaded" />
           <div class="content__slide">
             <p class="content_title">Расчистка участка</p>
