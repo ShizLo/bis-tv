@@ -1,6 +1,6 @@
 <script>
 import Swiper from "swiper/bundle";
-import { onUpdated } from "vue";
+import { onUpdated, onBeforeUpdate } from "vue";
 
 export default {
   components: {},
@@ -8,10 +8,12 @@ export default {
     workImages: Array,
   },
   setup() {
+    
     var swiper1 = new Swiper(".mySwipers", {
       spaceBetween: 10,
       slidesPerView: 2,
       freeMode: true,
+      loop: true,
         watchSlidesVisibility: true,
         watchSlidesProgress: true,
       breakpoints: {
@@ -54,6 +56,7 @@ export default {
         swiper: swiper1,
       },
     });
+    
     onUpdated(() => {
       swiper1.init()
       swiper2.init()
@@ -66,15 +69,17 @@ export default {
 <template>
   <div class="mini-slider__backgroud" @click.self="$emit('someEvent')">
     <button class="form-feedback__close-btn" @click="$emit('someEvent')">
-      <svg xmlns="http://www.w3.org/2000/svg" stroke="#f5f5f5" viewBox="0 0 50 50" width="50px" height="50px">
+      <svg xmlns="http://www.w3.org/2000/svg" stroke="#f5f5f5" viewBox="0 0 50 50" width="40px" height="40px">
         <path fill="#f5f5f5" d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25 C 4 13.390466 13.390466 4 25 4 z M 32.990234 15.986328 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z"/></svg>
     </button>
     <div class="mini-slider__container">
       <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"class="swiper-container mySwipers2">
         <div class=" swiper-wrapper">
           <div class="swiper-slide" v-for="item in workImages" :key="item">
+            <div class="test"></div>
             <p class="swiper-slide__text">{{ item.alt }}</p>
             <img class="resize" :src=item.url :alt="item.alt" />
+            <div class="swiper-lazy-preloader"></div>
           </div>
         </div>
         <div class="swiper-pagination swiper-pagination1"></div>
@@ -93,6 +98,13 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+.test {
+  width: 100%;
+    position: absolute;
+    height: 20%;
+    top: 0%;
+    background: linear-gradient(to bottom, rgb(0 0 0 / 83%), rgb(0 0 0 / 18%));
+}
 .form-feedback__close-btn {
   position: absolute;
   right: 50px;
@@ -104,16 +116,13 @@ export default {
   z-index: 10;
 }
 
-.form-feedback__close-btn svg {
-  filter: drop-shadow(1px 0px 9px black);
-}
 .swiper-slide__text {
   position: absolute;
-    top: 90%;
-    box-shadow: 0px 22px 53px 22px rgba(0, 0, 0, 0.72);
-    color: #f5f5f5;
-  background-color: rgba(0, 0, 0, 0.455);
+  top: 10%;
+  color: #f5f5f5;
+  font-size: 1.5rem;
 }
+
 .mini-slider__container {
   display: flex;
   flex-direction: column;
@@ -121,40 +130,53 @@ export default {
   align-items: center;
   height: 90%;
   overflow: hidden;
-  width: 1000px;
+  width: 700px;
   height: 95vh;
   margin: 0 auto;
+
   @media (max-width: $md2) {
-    width: 90%;
+    width: 60%;
     height: 90%;
-    
-  };
-  @media (max-width: $md3) {
-    width: 90%;
-    height: 90%;
-    .mySwipers{
-    display:none;
-  };
-  .mySwipers2 {
-  height: 95%;
-  width: 100%;
-};
-.swiper-button-prev1, .swiper-button-next1{
-  display: none;
-};
-.mySwipers2 {
-  position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-}
   };
 
-  @media (max-width: $md4) {
-    width: 90%;
+  @media (max-width: $md3) {
+    width: 60%;
     height: 90%;
-  };
+    .mySwipers {
+      display: none;
+    }    ;
+
+    .mySwipers2 {
+      height: 95%;
+      width: 100%;
+    }
+
+    ;
+
+    .swiper-button-prev1,
+    .swiper-button-next1 {
+      display: none;
+    }
+
+    ;
+
+    .mySwipers2 {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  ;
+
+  @media (max-width: $md4) {
+    width: 60%;
+    height: 90%;
+  }
+
+  ;
 }
 
 .swiper-slide {
@@ -218,18 +240,15 @@ export default {
 }
 
 .swiper-pagination1 {
-  display: flex;
-  font-size: 1rem;
-  color: #f5f5f5;
-  bottom: 2px;
-  width: 100px;
-  justify-content: space-evenly;
   position: absolute;
-    top: 97%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.455);
-  box-shadow: 0px 22px 53px 22px rgba(0, 0, 0, 0.72);
+  color: #f5f5f5;
+  font-size: 1.5rem;
+  height: 25px;
+  font-size: 1.5rem;
+  color: #f5f5f5;
+  top: 7%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .mini-slider__backgroud {

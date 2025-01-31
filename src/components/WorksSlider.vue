@@ -275,7 +275,7 @@ export default {
 .form-feedback__show {
   display: flex;
   opacity: 1;
-  z-index: 10;
+  z-index: 11;
 }
 
 .mySwiper .swiper-button-prev {
