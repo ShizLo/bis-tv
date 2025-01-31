@@ -9,7 +9,7 @@
 
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
   <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
-  <GlobalServices :data="dataGlobalService" title="Популярные услуги" />
+  <PopularServices :data="dataGlobalService" title="Популярные услуги" />
   <GlobalForm id="GlobalForm" />
 </template>
 
@@ -19,7 +19,7 @@ import LocalService from "../components/LocalService.vue";
 import WorkOrder from "../components/WorkOrder.vue";
 import GlobalForm from "../components/Form/GlobalForm.vue";
 import OurServices from "../components/OurServices.vue";
-import GlobalServices from "../components/GlobalServices.vue";
+import PopularServices from "../components/PopularServices.vue";
 import { ROUTES_PATHS } from "../constants";
 
 export default {
@@ -30,7 +30,7 @@ export default {
     WorkOrder,
     GlobalForm,
     OurServices,
-    GlobalServices,
+    PopularServices,
   },
 
   setup() {

@@ -179,7 +179,7 @@ document.addEventListener("click", (e) => {
           <ul role="list" class="nav__list">
             <li class="nav__item">
               <button id="nav__button" class="nav__button button" @click="clickMenu">
-                <div :class="catalog.active == true ? '_active' : ''" class="nav__burger burger">
+                <div :class="catalog.active == true ? '_active' : ''" class="nav__burger">
                   <span></span>
                   <span></span>
                   <span></span>
@@ -216,11 +216,16 @@ document.addEventListener("click", (e) => {
                           <div class="catalog__item">
                             <a class="catalog__link">Дренаж и ливневая канализация</a>
                           </div>
+                          <div class="catalog__item" data-test="0">
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.ELECTRICITY }"
+                              >Электромонтаж и освещение участка</router-link
+                            >
+                          </div>
                           <div class="catalog__item">
                             <a class="catalog__link">Благоустройство</a>
                           </div>
                           <div class="catalog__item">
-                            <a class="catalog__link">Электромонтажные работы</a>
+                            <a class="catalog__link">БИС Сервис</a>
                           </div>
                         </li>
                         <!-- <li class="catalog__list-item_body-item"></li>
@@ -591,8 +596,8 @@ document.addEventListener("click", (e) => {
   justify-content: center;
   align-items: center;
   white-space: nowrap;
-  font-weight: 600;
-  font-size: 1.45rem;
+  font-weight: 500;
+  font-size: 1.4rem;
   text-align: center;
   cursor: pointer;
 }
@@ -640,7 +645,7 @@ document.addEventListener("click", (e) => {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  padding: 11px 20px 11px 50px;
+  padding: 9px 18px 9px 18px;
   box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
 }
 
@@ -805,6 +810,60 @@ document.addEventListener("click", (e) => {
   border-radius: 4px;
   padding: 8px 0;
   cursor: pointer;
+}
+
+.nav__burger {
+  display: block;
+  position: relative;
+  width: 26px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 11;
+  span {
+    transition: all 0.3s ease 0s;
+    top: calc(50% - 1px);
+    left: 0px;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ea5b0c;
+    &:first-child {
+      top: 0px;
+    }
+    &:last-child {
+      top: auto;
+      bottom: 0px;
+    }
+  }
+  &._active {
+    span {
+      z-index: 1;
+      transform: scale(0);
+      &:first-child {
+        transform: rotate(-45deg);
+        top: calc(50% - 1px);
+      }
+      &:last-child {
+        transform: rotate(45deg);
+        bottom: calc(50% - 1px);
+      }
+    }
+
+    @media (max-width: $md4) {
+      width: 20px;
+      &::after {
+        position: relative;
+        display: block;
+        content: "";
+        top: -50%;
+        left: -50%;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+      }
+    }
+  }
 }
 
 .burger,

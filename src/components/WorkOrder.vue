@@ -61,21 +61,21 @@ onUnmounted(() => {
 @use "../assets/styles/main.scss" as *;
 
 .swiper-order > .swiper-button-prev {
-  left: -35px;
+  left: -50px;
 }
 .swiper-order > .swiper-button-next {
-  right: -35px;
+  right: -50px;
 }
 
 .swiper-order > .swiper-button-prev::after {
   padding: 18px;
-  font-size: 30px;
-  color: #ea5b0c;
+  font-size: 32px;
+  color: #9d9ea0;
 }
 .swiper-order > .swiper-button-next::after {
   padding: 18px;
-  font-size: 30px;
-  color: #ea5b0c;
+  font-size: 32px;
+  color: #9d9ea0;
 }
 
 .s-button-prev {
@@ -172,7 +172,7 @@ onUnmounted(() => {
   border-radius: 8px;
   height: auto;
   // padding: 20px 15px;
-  padding: 15px 15px 10px 15px;
+  padding: 15px 15px 10px 17px;
 
   // margin: 2px 0px; // -webkit-box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
   // -moz-box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.18);
@@ -222,8 +222,8 @@ onUnmounted(() => {
       margin-left: 5px;
     }
     img {
-      height: 22px;
-      width: 22px;
+      height: 18px;
+      width: 18px;
       @media (max-width: $md4) {
         height: 22px;
         width: 22px;
@@ -240,7 +240,7 @@ onUnmounted(() => {
   }
   &__text {
     color: $color-text;
-    line-height: 1.25;
+    line-height: 1.18;
     font-weight: 400;
     font-size: 15px;
   }
