@@ -9,7 +9,7 @@
   <OurServices :dataServices="dataServices" title="Услуги по водоснабжению" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
   <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
-  <GlobalServices :data="dataGlobalService" title="Популярные услуги" />
+  <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
 </template>
 
@@ -20,8 +20,7 @@ import WorkOrder from "../components/WorkOrder.vue";
 import GlobalForm from "../components/Form/GlobalForm.vue";
 import OurServices from "../components/OurServices.vue";
 import FeedBackForm from "../components/FeedBackForm.vue";
-import GlobalServices from "../components/GlobalServices.vue";
-import { ROUTES_PATHS } from "../constants";
+import PopularServices from "../components/PopularServices.vue";
 
 export default {
   name: "FenceView",
@@ -32,7 +31,7 @@ export default {
     GlobalForm,
     OurServices,
     FeedBackForm,
-    GlobalServices,
+    PopularServices,
   },
 
   setup() {
@@ -71,47 +70,6 @@ export default {
       //   name: "Врезка в магистраль",
       // },
     ],
-    servicePrice: [
-      { urlImg: "", price: "", name: "Врезка в водопровод" },
-      { urlImg: "", price: "", name: "Анализ воды и подбор оборудования для очистки" },
-      { urlImg: "", price: "", name: "Уличный кран" },
-      { urlImg: "", price: "", name: "Утепление колодца" },
-      { urlImg: "", price: "", name: "Установка ковера (подземный кран)" },
-      { urlImg: "", price: "", name: "Прокладка дополнительных трас водоснабжения" },
-      // { urlImg: "url(/images/fence/services-6.png)", price: "от 6000 м.пог", name: "Забор и оргаждения из бруска" },
-    ],
-    dataOrder: [
-      {
-        urlImg: "/icons/waterPage/pencil2.svg",
-        title: "Проект и эскиз",
-        text: "Готовим проект или визуализацию в форме электронного эскиза, где обозначаем схему будущих работ.",
-      },
-      {
-        urlImg: "/icons/waterPage/droplet.svg",
-        title: "Источник воды",
-        text: "Если воду запланировано брать из скважины, то ее надо пробурить и обустроить, так же с колодцем.*",
-      },
-      {
-        urlImg: "/icons/waterPage/share2.svg",
-        title: "Подведение к дому",
-        text: "Прокладка магистрали воды (ПНД труба и кабель питания) от источника (скважина, колодец или центральный водопровод) к точке/точкам ввода.",
-      },
-      {
-        urlImg: "/icons/waterPage/tab.svg",
-        title: "Разводка по дому",
-        text: "Разводим воду под холодную и горячую воду по дому.",
-      },
-      {
-        urlImg: "/icons/waterPage/hammer.svg",
-        title: "Установка оборудования",
-        text: "Монтируем систему водоочистки, бойлер и прочие инженерные системы.",
-      },
-      {
-        urlImg: "/icons/waterPage/link.svg",
-        title: "Установка сантехники",
-        text: "Устанавливаем ванны, унитазы, раковины, душевые, подключаем смесители и прочую сантехнику.",
-      },
-    ],
     dataServices: [
       [
         [
@@ -127,7 +85,7 @@ export default {
           {
             class: "services__row-item-sm",
             title: "Бурение скважин",
-            price: "",
+            price: "от 3800 руб./м",
             pathImg: "url(/images/waterPage/water-2.png)",
             hoverColors: "rgb(204, 209, 255)",
           },
@@ -168,54 +126,45 @@ export default {
         ],
       ],
     ],
-    dataGlobalService: [
+    servicePrice: [
+      { urlImg: "", price: "от 30000 руб.", name: "Врезка в водопровод" },
+      { urlImg: "", price: "", name: "Анализ воды и подбор оборудования для очистки" },
+      { urlImg: "", price: "", name: "Уличный кран" },
+      { urlImg: "", price: "", name: "Утепление колодца" },
+      { urlImg: "", price: "", name: "Установка ковера (подземный кран)" },
+      { urlImg: "", price: "", name: "Прокладка дополнительных трас водоснабжения" },
+      // { urlImg: "url(/images/fence/services-6.png)", price: "от 6000 м.пог", name: "Забор и оргаждения из бруска" },
+    ],
+    dataOrder: [
       {
-        urlImg: "url(/images/globalServices/services-1.webp)",
-        title: "Установка септика",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.HOME,
+        urlImg: "/icons/waterPage/pencil2.svg",
+        title: "Проект и эскиз",
+        text: "Готовим проект или визуализацию в форме электронного эскиза, где обозначаем схему будущих работ.",
       },
       {
-        urlImg: "url(/images/globalServices/services-2.png)",
-        title: "Установка забора",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.FENCE,
+        urlImg: "/icons/waterPage/droplet.svg",
+        title: "Источник воды",
+        text: "Если воду запланировано брать из скважины, то ее надо пробурить и обустроить, так же с колодцем.*",
       },
       {
-        urlImg: "url(/images/globalServices/services-5.webp)",
-        title: "Фундамент",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.FAUNDATION,
-      },
-      // {
-      //   urlImg: "url(/images/globalServices/sticker.png)",
-      //   title: "Кессон 2.0",
-      //   price: "Подробнее",
-      //   routePath: ROUTES_PATHS.WATER,
-      // },
-      // {
-      //   urlImg: "url(/images/globalServices/services-5.png)",
-      //   title: "Водоснабжение",
-      //   price: "Подробнее",
-      //   routePath: ROUTES_PATHS.WATER,
-      // },
-      {
-        urlImg: "url(/images/globalServices/services-4.png)",
-        title: "Благоустройство",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.HOME,
+        urlImg: "/icons/waterPage/share2.svg",
+        title: "Подведение к дому",
+        text: "Прокладка магистрали воды (ПНД труба и кабель питания) от источника (скважина, колодец или центральный водопровод) к точке/точкам ввода.",
       },
       {
-        urlImg: "url(/images/globalServices/services-8++.webp)",
-        title: "Электромонтаж",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.HOME,
+        urlImg: "/icons/waterPage/tab.svg",
+        title: "Разводка по дому",
+        text: "Разводим воду под холодную и горячую воду по дому.",
       },
       {
-        urlImg: "url(/images/globalServices/services-7.webp)",
-        title: "Ливневка",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.HOME,
+        urlImg: "/icons/waterPage/hammer.svg",
+        title: "Установка оборудования",
+        text: "Монтируем систему водоочистки, бойлер и прочие инженерные системы.",
+      },
+      {
+        urlImg: "/icons/waterPage/link.svg",
+        title: "Установка сантехники",
+        text: "Устанавливаем ванны, унитазы, раковины, душевые, подключаем смесители и прочую сантехнику.",
       },
     ],
   }),

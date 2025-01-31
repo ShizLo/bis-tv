@@ -1,16 +1,15 @@
 <template>
   <BannerSlider
-    bannerText="Топографическая съемка и проектирование"
-    bannerDescription="Поиск и закрепление границ вашего участка по координатам Росреестра. Определение границ заказывают перед установкой нового забора, покупкой участка и при спорах с соседями о текущем положении границы."
+    bannerText="Заборы и ограждения"
+    bannerDescription="Забор нужен для защиты вашего дома от посторонних, а также выделить и огородить четкие границы вашей территории.
+Устанавливаем заборы на винтовых сваях, что обеспечивает длительный срок службы."
     :bannerPrice="bannerPrice"
   />
-  <OurServices :dataServices="dataServices" title="Наши услуги" />
-
+  <OurServices :dataServices="dataServices" title="Наши услуги по заборам" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <!-- <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" /> -->
-  <PopularServices :data="dataGlobalService" title="Популярные услуги" />
-  <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
-  <!-- <GlobalForm id="GlobalForm" /> -->
+  <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
+  <PopularServices title="Популярные услуги" />
+  <FeedBackForm title="Закажите установку забора" id="GlobalForm" />
 </template>
 
 <script>
@@ -76,26 +75,25 @@ export default {
         [
           {
             class: "services__row-item-big",
-            title: "Вынос в натуру границ земельного участка",
-            price: "от 6 000 руб.",
-            // pathImg: "url(/images/fence/services-2.png)",
-            pathImg: "",
+            title: "Забор из металлического штакетника",
+            price: "от 7 500 м.пог",
+            pathImg: "url(/images/fence/services-2.png)",
             hoverColors: "rgb(170, 214, 199)",
           },
         ],
         [
           {
             class: "services__row-item-sm",
-            title: "Полный ландшафтный проект",
-            price: "",
-            pathImg: "",
+            title: "Забор из профлиста",
+            price: "от 8 650 м.пог",
+            pathImg: "url(/images/fence/services-1+.png)",
             hoverColors: "rgb(204, 209, 255)",
           },
           {
             class: "services__row-item-sm",
-            title: "Эскизный проект",
-            price: "",
-            pathImg: "",
+            title: "Забор из деревянного штакетника",
+            price: "от 8 000 м.пог",
+            pathImg: "url(/images/fence/services-3.png)",
             hoverColors: "rgb(204, 209, 255)",
           },
         ],
@@ -104,25 +102,25 @@ export default {
         [
           {
             class: "services__row-item-sm",
-            title: "",
-            price: "",
-            pathImg: "",
+            title: "Забор из сетки гиттер (3D сетка)",
+            price: "от 5 350 м.пог",
+            pathImg: "url(/images/fence/services-4+.png)",
             hoverColors: "rgb(255, 229, 204)",
           },
           {
             class: "services__row-item-sm",
-            title: "",
-            price: "",
-            pathImg: "",
+            title: "Забор и оргаждения из бруска",
+            price: "от 6 000 м.пог",
+            pathImg: "url(/images/fence/services-6.png)",
             hoverColors: "rgb(243, 253, 180)",
           },
         ],
         [
           {
             class: "services__row-item-big",
-            title: "Топографическая съемка",
-            price: "от 12 000 руб.",
-            pathImg: "",
+            title: "Забор из сетки рабица",
+            price: "от 3 050 м.пог",
+            pathImg: "url(/images/fence/services-5+++++.png)",
             hoverColors: "rgb(255, 229, 204)",
             routePath: ROUTES_PATHS.FENCE,
           },
@@ -132,7 +130,7 @@ export default {
     servicePrice: [
       { urlImg: "url(/images/fence/dop-1.png)", price: "от 60 000 руб.", name: "Установка автоматики" },
       { urlImg: "url(/images/fence/dop-2.png", price: "от 10 000 руб.", name: "Освещение участка" },
-      { urlImg: "url(/images/fence/dop-3+.png)", price: "", name: "Организация парковки и заеда" },
+      { urlImg: "url(/images/fence/dop-3+.png)", price: "", name: "Организация парковки и заезда" },
       { urlImg: "url(/images/fence/dop-5+.png)", price: "", name: "Откатные ворота" },
       { urlImg: "url(/images/fence/dop-4+.png)", price: "", name: "Распашные ворота" },
       { urlImg: "url(/images/fence/dop-6.png", price: "", name: "Дополнительные услуги" },
@@ -142,22 +140,22 @@ export default {
       {
         urlImg: "/icons/workOrder/bubbles4.svg",
         title: "Заявка",
-        text: "Вы оставляете заявку или звоните в БИС, обсуждаем работы и согласовываем время выезда на участок.",
+        text: "Оставьте заявку онлайн на нашем сайте, напишите нам в мессенджер или позвоните по телефону. Наш менеджер свяжется с Вами в течении нескольких минут.",
       },
       {
-        urlImg: "/icons/topographyPage/pencil2.svg",
-        title: "Документы",
-        text: "Инженеры готовят и проверяют документы, заказывают выписку из Росреестра.",
-      },
-      {
-        urlImg: "/icons/workOrder/automobile.svg",
-        title: "Разметка",
-        text: "Инженеры выезжают к вам и размечают сертифицированным оборудованием границы участка по координатам из выписки ЕГРН.",
+        urlImg: "/icons/workOrder/calculator.svg",
+        title: "Расчёты, сметы",
+        text: "Мы проводим расчет стоимости и составляем смету, учитывая все Ваши пожелания и требования.",
       },
       {
         urlImg: "/icons/workOrder/clipboard.svg",
-        title: "Акт",
-        text: "Вы получаете акт выноса границ участка и оплачиваете услуги.*",
+        title: "Договор",
+        text: "После утверждения сметы мы заключаем договор на выполнение работ. В договоре указываются все условия и сроки выполнения работ.",
+      },
+      {
+        urlImg: "/icons/workOrder/automobile.svg",
+        title: "Доставка и монтаж",
+        text: "Доставляем и монтируем заказ в удобное для Вас время. Наша команда гарантирует качественный монтаж и безупречную работу оборудования.",
       },
     ],
   }),

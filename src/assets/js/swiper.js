@@ -25,7 +25,7 @@ export const swiper_order_setting = {
     },
     1280: {
       slidesPerView: 4.005,
-      spaceBetween: 10,
+      spaceBetween: 15,
     },
   },
   navigation: {

@@ -2,15 +2,65 @@
 import { onMounted, onUnmounted, reactive } from "vue";
 import Swiper from "swiper/bundle";
 import { swiper_global_setting } from "../assets/js/swiper";
+import { ROUTES_PATHS } from "../constants";
+
 const props = defineProps({
-  data: {
-    typeof: Array,
-  },
   title: {
     typeof: String,
   },
 });
 const swiper_global = new Swiper(".swiper-global-services", swiper_global_setting);
+
+const data = [
+  {
+    urlImg: "url(/images/globalServices/services-1.webp)",
+    title: "Установка септика",
+    price: "Подробнее",
+    routePath: ROUTES_PATHS.HOME,
+  },
+  {
+    urlImg: "url(/images/globalServices/services-2.png)",
+    title: "Установка забора",
+    price: "Подробнее",
+    routePath: ROUTES_PATHS.FENCE,
+  },
+  {
+    urlImg: "url(/images/globalServices/services-5.webp)",
+    title: "Фундамент",
+    price: "Подробнее",
+    routePath: ROUTES_PATHS.FAUNDATION,
+  },
+  {
+    urlImg: "url(/images/globalServices/sticker.png)",
+    title: "Кессон 2.0",
+    price: "Подробнее",
+    routePath: ROUTES_PATHS.WATER,
+  },
+  {
+    urlImg: "url(/images/globalServices/services-5.png)",
+    title: "Водоснабжение",
+    price: "Подробнее",
+    routePath: ROUTES_PATHS.WATER,
+  },
+  {
+    urlImg: "url(/images/globalServices/services-4.png)",
+    title: "Благоустройство",
+    price: "Подробнее",
+    routePath: ROUTES_PATHS.HOME,
+  },
+  {
+    urlImg: "url(/images/globalServices/services-8++.webp)",
+    title: "Электромонтаж",
+    price: "Подробнее",
+    routePath: ROUTES_PATHS.ELECTRICITY,
+  },
+  {
+    urlImg: "url(/images/globalServices/services-7.webp)",
+    title: "Ливневка",
+    price: "Подробнее",
+    routePath: ROUTES_PATHS.HOME,
+  },
+];
 
 onMounted(() => {
   swiper_global.init();
@@ -52,21 +102,21 @@ onUnmounted(() => {
 @use "../assets/styles/main.scss" as *;
 
 .swiper-global-services > .swiper-button-prev {
-  left: -35px;
+  left: -50px;
 }
 .swiper-global-services > .swiper-button-next {
-  right: -35px;
+  right: -50px;
 }
 
 .swiper-global-services > .swiper-button-prev::after {
   padding: 18px;
-  font-size: 30px;
-  color: #ea5b0c;
+  font-size: 32px;
+  color: #9d9ea0;
 }
 .swiper-global-services > .swiper-button-next::after {
   padding: 18px;
-  font-size: 30px;
-  color: #ea5b0c;
+  font-size: 32px;
+  color: #9d9ea0;
 }
 
 .s-button-prev {
