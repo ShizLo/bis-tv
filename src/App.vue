@@ -95,17 +95,20 @@ document.addEventListener("click", (e) => {
                   <span class="menu-mobile__item-title">Наши услуги</span>
                 </div>
                 <div class="menu-mobile__item_body">
-                  <a class="menu-mobile__item_body-link">Проект участка</a>
-                  <a class="menu-mobile__item_body-link">Вынос границ и топографическая съемка</a>
-                  <a class="menu-mobile__item_body-link">Септик под ключ</a>
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.TOPOGRAPHY }"
+                    >Проект участка и топографическая съемка</router-link
+                  >
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.HOME }">Септик под ключ</router-link>
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.WATER }"
                     >Водоподготовка и система очистки воды</router-link
                   >
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
-                  <a class="menu-mobile__item_body-link">Ливневка и дренаж</a>
-                  <a class="menu-mobile__item_body-link">Благоустройство</a>
-                  <a class="menu-mobile__item_body-link">Электромонтажные работы</a>
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.DRAINAGE }">Ливневка и дренаж</router-link>
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.ELECTRICITY }"
+                    >Электромонтажные работы</router-link
+                  >
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.HOME }">Благоустройство</router-link>
                 </div>
               </div>
               <div class="menu-mobile__item">
@@ -197,10 +200,12 @@ document.addEventListener("click", (e) => {
                       <ul class="catalog__list-item_body">
                         <li class="catalog__list-item_body-item">
                           <div class="catalog__item">
-                            <a class="catalog__link">Проект участка и топографическая съемка</a>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.TOPOGRAPHY }"
+                              >Проект участка и топографическая съемка</router-link
+                            >
                           </div>
                           <div class="catalog__item">
-                            <a class="catalog__link">Септик под ключ </a>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.HOME }">Септик под ключ</router-link>
                           </div>
                           <div class="catalog__item">
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.WATER }"
@@ -213,19 +218,19 @@ document.addEventListener("click", (e) => {
                           <div class="catalog__item" data-test="0">
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                           </div>
-                          <div class="catalog__item">
-                            <a class="catalog__link">Дренаж и ливневая канализация</a>
-                          </div>
+                          <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.DRAINAGE }"
+                            >Дренаж и ливневая канализация</router-link
+                          >
                           <div class="catalog__item" data-test="0">
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.ELECTRICITY }"
                               >Электромонтаж и освещение участка</router-link
                             >
                           </div>
                           <div class="catalog__item">
-                            <a class="catalog__link">Благоустройство</a>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.HOME }">Благоустройство</router-link>
                           </div>
                           <div class="catalog__item">
-                            <a class="catalog__link">БИС Сервис</a>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.HOME }">БИС Сервис</router-link>
                           </div>
                         </li>
                         <!-- <li class="catalog__list-item_body-item"></li>

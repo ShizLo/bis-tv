@@ -41,22 +41,22 @@ export default {
   data: () => ({
     workImages: {
       landscaping: [
-          {
-            url: "/images/miniSlider/landscaping-1.jpg",
-            alt: "Озеленение",
-          },
-          {
-            url: "/images/miniSlider/landscaping-2.jpg",
-            alt: "Озеленение",
-          },
-          {
-            url: "/images/miniSlider/landscaping-3.jpg",
-            alt: "Озеленение",
-          },
-          {
-            url: "/images/miniSlider/landscaping-4.jpg",
-            alt: "Озеленение",
-          },
+        {
+          url: "/images/miniSlider/landscaping-1.jpg",
+          alt: "Озеленение",
+        },
+        {
+          url: "/images/miniSlider/landscaping-2.jpg",
+          alt: "Озеленение",
+        },
+        {
+          url: "/images/miniSlider/landscaping-3.jpg",
+          alt: "Озеленение",
+        },
+        {
+          url: "/images/miniSlider/landscaping-4.jpg",
+          alt: "Озеленение",
+        },
         {
           url: "/images/workPhoto/greenPark/2.jpg",
           alt: "Озеленение",
@@ -159,7 +159,7 @@ export default {
         },
       ],
       gitter_fence: [
-      {
+        {
           url: "/images/miniSlider/gitter_fence-1.jpg",
           alt: "Забор из гиттера",
         },
@@ -181,7 +181,7 @@ export default {
         },
       ],
       rollbacks: [
-      {
+        {
           url: "/images/miniSlider/rollbacks-1.jpg",
           alt: "Откатные ворота",
         },
@@ -202,8 +202,8 @@ export default {
           alt: "Откатные ворота",
         },
       ],
-      settlement:[
-      {
+      settlement: [
+        {
           url: "/images/miniSlider/settlement-1.jpg",
           alt: "Расчистка участка",
         },
@@ -223,20 +223,21 @@ export default {
           url: "/images/miniSlider/settlement-5.jpg",
           alt: "Расчистка участка",
         },
-      ]
+      ],
     },
   }),
 };
 </script>
 <template>
   <section class="works-slider">
-    <MiniWorksSlider
+    <!-- <MiniWorksSlider
       :class="formIsVisible === 1 ? 'form-feedback__show' : ''"
       class="mini-slider"
       @someEvent="isShow(false)"
       :workImages="workImage"
     >
-    </MiniWorksSlider>
+    </MiniWorksSlider> -->
+    <MiniWorksSlider class="mini-slider" @someEvent="isShow(false)" :workImages="workImage"> </MiniWorksSlider>
     <div class="_container _container-settings">
       <h2 class="content-bar__h2">Наши работы</h2>
     </div>

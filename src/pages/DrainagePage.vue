@@ -1,13 +1,13 @@
 <template>
   <BannerSlider
-    bannerText="Заборы и ограждения"
-    bannerDescription="Забор нужен для защиты вашего дома от посторонних, а также выделить и огородить четкие границы вашей территории.
-Устанавливаем заборы на винтовых сваях, что обеспечивает длительный срок службы."
+    style="white-space: pre-line"
+    bannerText="Ливневые канализации 
+и дренаж участка"
+    bannerDescription="Сбор и отвод чистых вод от дренажных, водосточных систем с кровли и террасс, отведение очищенных вод из станции биологической очистки. Устройство ливневой канализации позволяет отвести поверхностные и грунтовые воды в общую систему дренажа (канавы, поселковая канализация) максимально эффективным и эстетичным образом. На низких участках возможно обустройство накопительного колодца и принудительный подъем и выброс воды дренажными насосами. Позволяет избавиться от проблем, связанных с подтоплением во время весенне-осенних периодов."
     :bannerPrice="bannerPrice"
   />
-  <OurServices :dataServices="dataServices" title="Наши услуги по заборам" />
+  <OurServices :dataServices="dataServices" title="Наши услуги" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
   <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Закажите установку забора" id="GlobalForm" />
 </template>
@@ -40,34 +40,9 @@ export default {
   data: () => ({
     bannerPrice: [
       {
-        url: "/images/fence/banner-2+.jpeg",
+        url: "",
         price: "от 7 500 за м.пог",
-        name: "Забор из металлического штакетника",
-      },
-      {
-        url: "/images/fence/banner-1.jpg",
-        price: "от 8 650 за м.пог",
-        name: "Забор из профлиста",
-      },
-      {
-        url: "/images/fence/banner-3++.jpg",
-        price: "от 8 000 за м.пог",
-        name: "Забор из деревянного штакетника",
-      },
-      {
-        url: "/images/fence/banner-4.jpg",
-        price: "от 5350 за м.пог",
-        name: "Забор из сетки гиттер",
-      },
-      {
-        url: "/images/fence/banner-5.jpg",
-        price: "от 60 000 руб.",
-        name: "Установка автоматики",
-      },
-      {
-        url: "/images/fence/banner-6.jpg",
-        price: "от 6000 за м.пог",
-        name: "Забор из бруска",
+        name: "Монтаж ливневой канализации",
       },
     ],
     dataServices: [
@@ -75,25 +50,25 @@ export default {
         [
           {
             class: "services__row-item-big",
-            title: "Забор из металлического штакетника",
-            price: "от 7 500 м.пог",
-            pathImg: "url(/images/fence/services-2.png)",
+            title: "Съемка, анализ прилегающего водоотведения, составление схемы с уклонами и высотными отметками",
+            price: "от 10 000 руб.",
+            pathImg: "",
             hoverColors: "rgb(170, 214, 199)",
           },
         ],
         [
           {
             class: "services__row-item-sm",
-            title: "Забор из профлиста",
-            price: "от 8 650 м.пог",
-            pathImg: "url(/images/fence/services-1+.png)",
+            title: "Монтаж ливневой канализации",
+            price: "",
+            pathImg: "",
             hoverColors: "rgb(204, 209, 255)",
           },
           {
             class: "services__row-item-sm",
-            title: "Забор из деревянного штакетника",
-            price: "от 8 000 м.пог",
-            pathImg: "url(/images/fence/services-3.png)",
+            title: "Видеоинспекция ливневой канализации",
+            price: "от 6 000 руб.",
+            pathImg: "",
             hoverColors: "rgb(204, 209, 255)",
           },
         ],
@@ -102,39 +77,29 @@ export default {
         [
           {
             class: "services__row-item-sm",
-            title: "Забор из сетки гиттер (3D сетка)",
-            price: "от 5 350 м.пог",
-            pathImg: "url(/images/fence/services-4+.png)",
+            title: "Обустройство дренажа",
+            price: "",
+            pathImg: "",
             hoverColors: "rgb(255, 229, 204)",
           },
           {
             class: "services__row-item-sm",
-            title: "Забор и оргаждения из бруска",
-            price: "от 6 000 м.пог",
-            pathImg: "url(/images/fence/services-6.png)",
+            title: "Монтаж дренажных насосов, колодцев для сбора воды",
+            price: "",
+            pathImg: "",
             hoverColors: "rgb(243, 253, 180)",
           },
         ],
         [
           {
             class: "services__row-item-big",
-            title: "Забор из сетки рабица",
-            price: "от 3 050 м.пог",
-            pathImg: "url(/images/fence/services-5+++++.png)",
+            title: "Прочистка существующего дренажа, ливневой канализации модернизация и реконструкция",
+            price: "",
+            pathImg: "",
             hoverColors: "rgb(255, 229, 204)",
-            routePath: ROUTES_PATHS.FENCE,
           },
         ],
       ],
-    ],
-    servicePrice: [
-      { urlImg: "url(/images/fence/dop-1.png)", price: "от 60 000 руб.", name: "Установка автоматики" },
-      { urlImg: "url(/images/fence/dop-2.png", price: "от 10 000 руб.", name: "Освещение участка" },
-      { urlImg: "url(/images/fence/dop-3+.png)", price: "", name: "Организация парковки и заезда" },
-      { urlImg: "url(/images/fence/dop-5+.png)", price: "", name: "Откатные ворота" },
-      { urlImg: "url(/images/fence/dop-4+.png)", price: "", name: "Распашные ворота" },
-      { urlImg: "url(/images/fence/dop-6.png", price: "", name: "Дополнительные услуги" },
-      // { urlImg: "url(/images/fence/services-6.png)", price: "от 6000 м.пог", name: "Забор и оргаждения из бруска" },
     ],
     dataOrder: [
       {

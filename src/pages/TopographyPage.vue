@@ -1,16 +1,14 @@
 <template>
   <BannerSlider
+    style="white-space: pre-line"
     bannerText="Топографическая съемка и проектирование"
     bannerDescription="Поиск и закрепление границ вашего участка по координатам Росреестра. Определение границ заказывают перед установкой нового забора, покупкой участка и при спорах с соседями о текущем положении границы."
     :bannerPrice="bannerPrice"
+    :desctiption="desctription"
   />
   <OurServices :dataServices="dataServices" title="Наши услуги" />
-
-  <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <!-- <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" /> -->
-  <PopularServices :data="dataGlobalService" title="Популярные услуги" />
+  <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
-  <!-- <GlobalForm id="GlobalForm" /> -->
 </template>
 
 <script>
@@ -21,7 +19,6 @@ import GlobalForm from "../components/Form/GlobalForm.vue";
 import OurServices from "../components/OurServices.vue";
 import PopularServices from "../components/PopularServices.vue";
 import FeedBackForm from "../components/FeedBackForm.vue";
-import { ROUTES_PATHS } from "../constants";
 
 export default {
   name: "FenceView",
@@ -41,34 +38,29 @@ export default {
   data: () => ({
     bannerPrice: [
       {
-        url: "/images/fence/banner-2+.jpeg",
-        price: "от 7 500 за м.пог",
-        name: "Забор из металлического штакетника",
+        url: "",
+        price: "от 12 000 руб.",
+        name: "Топографическая съемка",
       },
       {
-        url: "/images/fence/banner-1.jpg",
-        price: "от 8 650 за м.пог",
-        name: "Забор из профлиста",
+        url: "",
+        price: "от 6 000 руб.",
+        name: "Вынос в натуру границ земельного участка",
       },
       {
-        url: "/images/fence/banner-3++.jpg",
-        price: "от 8 000 за м.пог",
-        name: "Забор из деревянного штакетника",
+        url: "",
+        price: "от 6 000 руб.",
+        name: "Проектирование и ландшафтный дизайн",
       },
       {
-        url: "/images/fence/banner-4.jpg",
-        price: "от 5350 за м.пог",
-        name: "Забор из сетки гиттер",
+        url: "",
+        price: "от 65 000 руб.",
+        name: "Эскизный ландшафтный проект",
       },
       {
-        url: "/images/fence/banner-5.jpg",
-        price: "от 60 000 руб.",
-        name: "Установка автоматики",
-      },
-      {
-        url: "/images/fence/banner-6.jpg",
-        price: "от 6000 за м.пог",
-        name: "Забор из бруска",
+        url: "",
+        price: "от 85 000 руб.",
+        name: "Полный ландшафтный проект",
       },
     ],
     dataServices: [
@@ -85,36 +77,29 @@ export default {
         ],
         [
           {
-            class: "services__row-item-sm",
+            class: "services__row-item-big",
             title: "Полный ландшафтный проект",
-            price: "",
+            price: "от 85 000 руб.",
             pathImg: "",
             hoverColors: "rgb(204, 209, 255)",
           },
-          {
-            class: "services__row-item-sm",
-            title: "Эскизный проект",
-            price: "",
-            pathImg: "",
-            hoverColors: "rgb(204, 209, 255)",
-          },
+          // {
+          //   class: "services__row-item-sm",
+          //   title: "Эскизный проект",
+          //   price: "",
+          //   pathImg: "",
+          //   hoverColors: "rgb(204, 209, 255)",
+          // },
         ],
       ],
       [
         [
           {
-            class: "services__row-item-sm",
-            title: "",
-            price: "",
+            class: "services__row-item-big",
+            title: "Эскизный проект",
+            price: "от 65 000 руб.",
             pathImg: "",
             hoverColors: "rgb(255, 229, 204)",
-          },
-          {
-            class: "services__row-item-sm",
-            title: "",
-            price: "",
-            pathImg: "",
-            hoverColors: "rgb(243, 253, 180)",
           },
         ],
         [
@@ -124,7 +109,6 @@ export default {
             price: "от 12 000 руб.",
             pathImg: "",
             hoverColors: "rgb(255, 229, 204)",
-            routePath: ROUTES_PATHS.FENCE,
           },
         ],
       ],
@@ -158,6 +142,37 @@ export default {
         urlImg: "/icons/workOrder/clipboard.svg",
         title: "Акт",
         text: "Вы получаете акт выноса границ участка и оплачиваете услуги.*",
+      },
+    ],
+    desctription: [
+      {
+        title: `Топографическая съемка
+        и проектирование`,
+        text: ``,
+      },
+      {
+        title: `Вынос в натуру границ
+        земельного участка`,
+        text: `Поиск и закрепление границ вашего участка по координатам Росреестра. Определение границ заказывают перед установкой нового забора, покупкой участка и при спорах с соседями о текущем положении границы.
+        Стоимость услуги - менее 1% от цены участка или стоимости установки забора, но сэкономит нервы и возможные затраты, связанные с переносом забора.
+        Важно провести работы официально, чтобы избежать возможных споров с соседями.`,
+      },
+      {
+        title: `Проектирование
+        и ландшафтный дизайн`,
+        text: `Мы занимаемся всеми видами проектных работ, от проведения предварительных изысканий и разработки концепции дизайна, до составления пакета дизайнерских и практических документов для вынесения проекта на местность.
+        Для чего нужен проект ландшафта: наглядность - Вы сможете увидеть участок Вашей мечты до того как начнёте вкладывать деньги, а также
+        избежать ошибки и предусмотреть максимум Ваших потребностей.`,
+      },
+      {
+        title: `Эскизный
+        ландшафтный проект`,
+        text: `Эскизный ландшафтный проект отражает общую концепцию дизайна участка, расположение растений и элементов дизайна, позволяет рассчитать стоимость проведения благоустройства. Содержит комплект проектной документации для проведения ландшафтных работ на небольших участках с ровным рельефом.`,
+      },
+      {
+        title: `Полный
+        ландшафтный проект`,
+        text: `Полный ландшафтный проект содержит полный комплект проектной документации, необходимой для дальнейшего проведения работ по благоустройству на участках любой площадью, и с любым рельефом, позволяет подробно рассчитать стоимость планируемых работ и необходимых материалов.`,
       },
     ],
   }),
