@@ -18,14 +18,14 @@ export default {
     let formIsVisible = ref(0);
     let workImage = ref([]);
     function isShow(visible, workName) {
-      if (visible) {
-        toggleBodyScroll(true);
-        formIsVisible.value = 1;
-      } else {
-        toggleBodyScroll(false);
-        formIsVisible.value = 0;
-      }
-      workImage.value = workName;
+      // if (visible) {
+      //   toggleBodyScroll(true);
+      //   formIsVisible.value = 1;
+      // } else {
+      //   toggleBodyScroll(false);
+      //   formIsVisible.value = 0;
+      // }
+      // workImage.value = workName;
     }
     function toggleBodyScroll(lock) {
       document.body.style.overflow = lock ? "hidden" : "";

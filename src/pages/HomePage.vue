@@ -147,7 +147,7 @@ export default {
             class: "services__row-item-sm",
             title: "Установка заборов",
             price: "От 90 000 руб.",
-            pathImg: "url(/images/homePage/services-6.png",
+            pathImg: "url(/images/homePage/services-3.png",
             hoverColors: "rgb(255, 229, 204)",
             routePath: ROUTES_PATHS.FENCE,
           },

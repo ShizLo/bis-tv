@@ -968,7 +968,7 @@ document.addEventListener("click", (e) => {
   &__list {
     width: 100%;
     &-item {
-      padding-bottom: 20px;
+      // padding-bottom: 20px;
       padding-top: 20px;
 
       width: 100%;
@@ -978,14 +978,14 @@ document.addEventListener("click", (e) => {
         display: flex;
         align-items: center;
         color: #102938;
-        font-size: 22px;
+        font-size: 24px;
         font-weight: 500;
         border-bottom: 1px solid #e8eaec;
         margin-bottom: 12px;
         &-icon {
-          width: 28px;
+          width: 30px;
           min-width: 20px;
-          height: 28px;
+          height: 30px;
           margin-right: 10px;
           object-fit: contain;
         }
