@@ -111,7 +111,7 @@ export default {
             class: "services__row-item-sm",
             title: "Обустройство колодца",
             price: "",
-            pathImg: "url(/images/waterPage/water-5.png )",
+            pathImg: "url(/images/waterPage/water-5++++.webp )",
             hoverColors: "rgb(243, 253, 180)",
           },
         ],

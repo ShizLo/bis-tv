@@ -177,7 +177,7 @@ export default {
             class: "services__row-item-big",
             title: "Проект участка и топографическая съемка",
             price: "От 50 000 руб.",
-            pathImg: "url(/images/homePage/services-6.png",
+            pathImg: "url(/images/homePage/services-10.png",
             hoverColors: "rgb(255, 229, 204)",
             routePath: ROUTES_PATHS.TOPOGRAPHY,
           },

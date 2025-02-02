@@ -13,7 +13,7 @@
   />
   <OurServices :dataServices="dataServices" title="Услуги по электромонтажу" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <PopularServices :data="dataGlobalService" title="Популярные услуги" />
+  <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
 </template>
 
@@ -45,36 +45,93 @@ export default {
   data: () => ({
     bannerPrice: [
       {
-        url: "",
-        // url: "/images/fence/banner-2+.jpeg",
-        price: "от 25 000 руб",
-        name: "Проектирование электросетей",
-      },
-      {
-        url: "",
-        price: "",
-        name: "Сборка электрощитков",
-      },
-      {
-        url: "",
-        price: "",
+        url: "/images/electricityPage/banner-3+.jpg",
+        price: "от 15 000 руб",
         name: "Монтаж уличного освещения",
       },
+      // {
+      //   url: "",
+      //   // url: "/images/fence/banner-2+.jpeg",
+      //   price: "от 25 000 руб",
+      //   name: "Проектирование электросетей",
+      // },
+      // {
+      //   url: "",
+      //   price: "",
+      //   name: "Сборка электрощитков",
+      // },
       {
-        url: "",
+        url: "/images/electricityPage/banner-4.jpg",
         price: "от 25 000 руб.",
         name: "Монтаж опоры/трубостойки",
       },
       {
-        url: "",
-        price: "",
+        url: "/images/electricityPage/banner-5.jpg",
+        price: "от 150 000 руб.",
         name: "Установка стабилизаторов",
       },
       {
-        url: "",
-        price: "",
-        name: "Монтаж приборов",
+        url: "/images/electricityPage/banner-6.jpg",
+        price: "от 32 000 руб.",
+        name: "Монтаж щита и воздушной линии",
       },
+    ],
+
+    dataServices: [
+      [
+        [
+          {
+            class: "services__row-item-big",
+            title: "Проектирование электросетей",
+            price: "от 25 000 руб.",
+            pathImg: "url(/images/electricityPage/service-1.webp)",
+            hoverColors: "rgb(170, 214, 199)",
+          },
+        ],
+        [
+          {
+            class: "services__row-item-sm",
+            title: "Мотаж опоры трубостойки",
+            price: "",
+            pathImg: "url(/images/electricityPage/service-2+.webp)",
+            hoverColors: "rgb(204, 209, 255)",
+          },
+          {
+            class: "services__row-item-sm",
+            title: "Монтаж приборов",
+            price: "",
+            pathImg: "url(/images/electricityPage/service-3.webp)",
+            hoverColors: "rgb(204, 209, 255)",
+          },
+        ],
+      ],
+      [
+        [
+          {
+            class: "services__row-item-sm",
+            title: "Установка стабилизаторов",
+            price: "от 180 000 руб.",
+            pathImg: "url(/images/electricityPage/service-4.webp)",
+            hoverColors: "rgb(255, 229, 204)",
+          },
+          {
+            class: "services__row-item-sm",
+            title: "Монтаж уличного освещения",
+            price: "от 15 000 руб.",
+            pathImg: "url(/images/electricityPage/service-5.webp)",
+            hoverColors: "rgb(243, 253, 180)",
+          },
+        ],
+        [
+          {
+            class: "services__row-item-big",
+            title: "Монтаж щита и воздушной линии",
+            price: "от 32 000 руб.",
+            pathImg: "url(/images/electricityPage/service-6.webp)",
+            hoverColors: "rgb(255, 229, 204)",
+          },
+        ],
+      ],
     ],
     dataOrder: [
       {
@@ -96,112 +153,6 @@ export default {
         urlImg: "/icons/workOrder/automobile.svg",
         title: "Доставка и монтаж",
         text: "Доставляем и монтируем заказ в удобное для Вас время. Наша команда гарантирует качественный монтаж и безупречную работу оборудования.",
-      },
-    ],
-    dataServices: [
-      [
-        [
-          {
-            class: "services__row-item-big",
-            title: "Проектирование электросетей",
-            price: "от 25 000 руб.",
-            pathImg: "",
-            hoverColors: "rgb(170, 214, 199)",
-          },
-        ],
-        [
-          {
-            class: "services__row-item-sm",
-            title: "Мотаж опоры трубостойки",
-            price: "",
-            pathImg: "",
-            hoverColors: "rgb(204, 209, 255)",
-          },
-          {
-            class: "services__row-item-sm",
-            title: "Монтаж приборов",
-            price: "",
-            pathImg: "",
-            hoverColors: "rgb(204, 209, 255)",
-          },
-        ],
-      ],
-      [
-        [
-          {
-            class: "services__row-item-sm",
-            title: "Установка стабилизаторов",
-            price: "",
-            pathImg: "",
-            hoverColors: "rgb(255, 229, 204)",
-          },
-          {
-            class: "services__row-item-sm",
-            title: "Монтаж уличного освещения",
-            price: "",
-            pathImg: "",
-            hoverColors: "rgb(243, 253, 180)",
-          },
-        ],
-        [
-          {
-            class: "services__row-item-big",
-            title: "Монтаж щита и воздушной линии",
-            price: "от 32 000 руб.",
-            pathImg: "",
-            hoverColors: "rgb(255, 229, 204)",
-          },
-        ],
-      ],
-    ],
-    dataGlobalService: [
-      {
-        urlImg: "url(/images/globalServices/services-1.webp)",
-        title: "Установка септика",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.HOME,
-      },
-      {
-        urlImg: "url(/images/globalServices/services-2.png)",
-        title: "Установка забора",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.FENCE,
-      },
-      {
-        urlImg: "url(/images/globalServices/services-5.webp)",
-        title: "Фундамент",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.FAUNDATION,
-      },
-      {
-        urlImg: "url(/images/globalServices/sticker.png)",
-        title: "Кессон 2.0",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.WATER,
-      },
-      {
-        urlImg: "url(/images/globalServices/services-5.png)",
-        title: "Водоснабжение",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.WATER,
-      },
-      {
-        urlImg: "url(/images/globalServices/services-4.png)",
-        title: "Благоустройство",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.HOME,
-      },
-      // {
-      //   urlImg: "url(/images/globalServices/services-8++.webp)",
-      //   title: "Электромонтаж",
-      //   price: "Подробнее",
-      //   routePath: ROUTES_PATHS.HOME,
-      // },
-      {
-        urlImg: "url(/images/globalServices/services-7.webp)",
-        title: "Ливневка",
-        price: "Подробнее",
-        routePath: ROUTES_PATHS.HOME,
       },
     ],
   }),
