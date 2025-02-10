@@ -88,19 +88,21 @@ function goTo(path) {
         </a>
         <p class="banner__description _visibility-mobile">{{ bannerDescription }}</p>
         <p v-if="desctiption" class="banner__description _visibility">{{ desctiption[swiperBanner.slideIndex].text }}</p>
+        <h1 v-else-if="bannerDescription" class="banner__description _visibility">{{ bannerDescription }}</h1>
       </div>
       <div class="swiper-container text-left">
         <div class="swiper-banner">
           <div class="swiper-wrapper">
             <div v-for="item in bannerPrice" class="swiper-slide">
-              <img class="swiper__img" :src="item.url" :alt="item.name" />
+              <img class="swiper__img" loading="lazy" :src="item.url" :alt="item.name" />
+              <div class="swiper-lazy-preloader-white"></div>
               <div @click="goTo(item.routerPath)" class="swiper-banner__content">
                 <div v-if="item.price.length > 0" class="content__price">
                   <span>{{ item.price }}</span>
                 </div>
                 <div class="content__title">{{ item.name }}</div>
               </div>
-              <div class="swiper-lazy-preloader"></div>
+              <!-- <div class="swiper-lazy-preloader"></div> -->
             </div>
           </div>
           <div class="swiper-pagination"></div>

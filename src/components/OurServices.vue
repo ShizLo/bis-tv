@@ -30,7 +30,11 @@ const props = defineProps({
               v-on:mouseleave="(event) => leaveHover(event)"
               :class="item.class"
             >
-              <router-link :style="{ 'background-image': item.pathImg }" class="services__item-link item" :to="{ name: item.routePath }">
+              <router-link
+                :style="{ 'background-image': 'url(' + item.pathImg + ')' }"
+                class="services__item-link item"
+                :to="{ name: item.routePath }"
+              >
                 <div class="item__description content__description">
                   <div class="item__title title">
                     <span>{{ item.title }}</span>

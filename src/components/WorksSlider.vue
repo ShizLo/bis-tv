@@ -342,8 +342,17 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+
 .works-slider {
   margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.mySwiper {
+  overflow: hidden;
+  @media (max-width: $md4) {
+    overflow: visible;
+  }
 }
 
 .mini-slider {
@@ -357,11 +366,12 @@ export default {
 
 .mySwiper .swiper-button-prev {
   color: #fff;
+
   @media (max-width: $md2) {
     display: none;
   }
 }
-.mySwiper .swiper-button-next {
+.mySwiper > .swiper-button-next {
   color: #fff;
   @media (max-width: $md2) {
     display: none;
