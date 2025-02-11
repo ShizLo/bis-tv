@@ -1,4 +1,5 @@
 <script setup>
+import {reactive} from "vue";
 import { ROUTES_PATHS } from "../constants";
 
 //<Импорт компонентов>================================================================================
@@ -162,6 +163,27 @@ const dataOrder = [
     text: "После первичной встречи на участке составляется визуализация вашего участка с привязками и размерами. Это позволяет точно составить подробную смету. Цена в большинстве случаев фиксируется или в смете указаны пункты, корректируемые по факту.",
   },
 ];
+function visibleForm() {
+      if (!feedbackForm.active) {
+        feedbackForm.active = true
+        toggleBodyScroll(true)
+      } else {
+        feedbackForm.active = false
+        toggleBodyScroll(false)
+      }
+     
+    }
+    function toggleBodyScroll(lock) {
+  // TODO: Использовать после того как будет реализована форма обратной связи
+  document.body.style.overflow = lock ? "hidden" : "";
+  document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
+  document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
+}
+    const feedbackForm = reactive({
+  // Не используется
+  //TODO: Открывать форму при нажатии кнопки "Обсудить задачу"
+  active: false, // Открыта ли форма обратной связи
+});
 </script>
 
 <template>
@@ -170,7 +192,10 @@ const dataOrder = [
     bannerText="Инженерные коммуникации 
   и благоустройство участка"
     :bannerPrice="bannerPrice"
+    @isVisible="visibleForm()"
   />
+  <Form v-show="feedbackForm.active" 
+  @isVisible="visibleForm()"/>
   <OurServices :dataServices="dataServices" title="Наши услуги" />
   <BisService title="БИС Сервис" />
   <WorksSlider />
