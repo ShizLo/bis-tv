@@ -1,6 +1,9 @@
 <script>
-import Swiper from "swiper/bundle";
+import {Swiper} from "swiper/bundle";
 import { onUpdated, onBeforeUpdate } from "vue";
+
+
+
 
 export default {
   components: {},
@@ -9,12 +12,12 @@ export default {
   },
   setup() {
     
-    var swiper1 = new Swiper(".mySwipers", {
+    var swiperThumbs = new Swiper(".mySwipers", {
       spaceBetween: 10,
       slidesPerView: 2,
-      freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
+    slideToClickedSlide: true,
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
       breakpoints: {
         320: {
           slidesPerView: 2,
@@ -39,30 +42,35 @@ export default {
         },
       },
     });
-    var swiper2 = new Swiper(".mySwipers2", {
+   
+    var swiperLarge = new Swiper(".mySwipers2", {
       pagination: {
         el: ".swiper-pagination1",
-        clickable: true,
         type: "fraction",
+        
         renderFraction: function (currentClass, totalClass) {
       return '<span class="">фото </span>'+'<span class="' + currentClass + '"></span>' +
               ' из ' +
               '<span class="' + totalClass + '"></span>';
   }
+  
       },
       
       thumbs: {
-        swiper: swiper1,
+        swiper: swiperThumbs,
       },
     });
+    
     function offSwiper() {
       
     }
+    
     onUpdated(() => {
-      swiper1.init()
-      swiper2.init()
+      swiperThumbs.init()
+      swiperLarge.init()     
     });
-    return {offSwiper
+    return {
+      offSwiper,
     };
   },
 };
@@ -74,20 +82,19 @@ export default {
         <path fill="#f5f5f5" d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25 C 4 13.390466 13.390466 4 25 4 z M 32.990234 15.986328 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z"/></svg>
     </button>
     <div class="mini-slider__container">
-      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"class="swiper-container mySwipers2">
+      <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper-container mySwipers2">
         <div class=" swiper-wrapper">
           <div class="swiper-slide" v-for="item in workImages" :key="item">
             <div class="test"></div>
             <p class="swiper-slide__text">{{ item.alt }}</p>
             <img class="resize" :src=item.url :alt="item.alt" />
-            <div class="swiper-lazy-preloader"></div>
           </div>
         </div>
         <div class="swiper-pagination swiper-pagination1"></div>
         <div class="swiper-button-prev swiper-button-prev1"></div>
         <div class="swiper-button-next swiper-button-next1"></div>
       </div>
-      <div class=" swiper-container mySwipers">
+      <div thumbsSlider="" class=" swiper-container mySwipers">
         <div class="swiper-wrapper">
           <div class="swiper-slide" v-for="item in workImages" :key="item">
             <img :src="item.url" :alt="item.alt" />
@@ -99,6 +106,7 @@ export default {
 </template>
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+
 .test {
   width: 100%;
     position: absolute;

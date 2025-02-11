@@ -4,7 +4,10 @@
     bannerText="Инженерные коммуникации 
   и благоустройство участка"
     :bannerPrice="bannerPrice"
+    @isVisible="visibleForm()"
   />
+  <Form v-show="feedbackForm.active" 
+        @isVisible="visibleForm()"/>
   <OurServices :dataServices="dataServices" title="Наши услуги" />
   <WorksSlider />
   <WorkOrder :data="dataOrder" title="Почему выбирают нас" />
@@ -17,6 +20,7 @@
 <script>
 import OurServices from "../components/OurServices.vue";
 import Banner from "../components/Banner.vue";
+import Form from "../components/Form/Form.vue";
 import WorksSlider from "../components/WorksSlider.vue";
 import Partners from "../components/Partners.vue";
 import AboutUs from "../components/AboutUs.vue";
@@ -24,8 +28,7 @@ import GlobalForm from "../components/Form/GlobalForm.vue";
 import WorkOrder from "../components/WorkOrder.vue";
 import FeedBackForm from "../components/FeedBackForm.vue";
 import { ROUTES_PATHS } from "../constants";
-
-import Form from "../components/Form/Form.vue";
+import { reactive } from "vue";
 
 export default {
   name: "HomePage",
@@ -42,7 +45,28 @@ export default {
   },
 
   setup() {
-    return {};
+    function visibleForm() {
+      if (!feedbackForm.active) {
+        feedbackForm.active = true
+        toggleBodyScroll(true)
+      } else {
+        feedbackForm.active = false
+        toggleBodyScroll(false)
+      }
+     
+    }
+    function toggleBodyScroll(lock) {
+  // TODO: Использовать после того как будет реализована форма обратной связи
+  document.body.style.overflow = lock ? "hidden" : "";
+  document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
+  document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
+}
+    const feedbackForm = reactive({
+  // Не используется
+  //TODO: Открывать форму при нажатии кнопки "Обсудить задачу"
+  active: false, // Открыта ли форма обратной связи
+});
+    return {visibleForm,toggleBodyScroll, feedbackForm};
   },
   data: () => ({
     bannerPrice: [

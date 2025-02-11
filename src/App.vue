@@ -20,11 +20,11 @@ const burger = reactive({
   active: false, // Открыт ли NavigationCatalog следовательно бургер тоже активен
 });
 
-const feedbackForm = reactive({
-  // Не используется
-  //TODO: Открывать форму при нажатии кнопки "Обсудить задачу"
-  active: false, // Открыта ли форма обратной связи
-});
+// const feedbackForm = reactive({
+//   // Не используется
+//   //TODO: Открывать форму при нажатии кнопки "Обсудить задачу"
+//   active: false, // Открыта ли форма обратной связи
+// });
 
 watch(path, (newX) => {
   if (router.options.history.state.back != newX && catalog.active == true) {
@@ -43,12 +43,16 @@ function clickMenuMobile() {
   burger.active == true ? (burger.active = false) : (burger.active = true);
 }
 
-function toggleBodyScroll(lock) {
-  // TODO: Использовать после того как будет реализована форма обратной связи
-  document.body.style.overflow = lock ? "hidden" : "";
-  document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
-  document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
+function clickForm() {
+
 }
+
+// function toggleBodyScroll(lock) {
+//   // TODO: Использовать после того как будет реализована форма обратной связи
+//   document.body.style.overflow = lock ? "hidden" : "";
+//   document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
+//   document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
+// }
 
 document.addEventListener("click", (e) => {
   const elemCatalog = document.querySelector(".catalog");
@@ -61,7 +65,7 @@ document.addEventListener("click", (e) => {
 
 <template>
   <section class="header">
-    <Form v-show="feedbackForm.active" />
+    <!-- <Form v-show="feedbackForm.active" /> -->
     <div class="header__container _container">
       <div class="header__block">
         <a class="header__logo logo" href="/">
