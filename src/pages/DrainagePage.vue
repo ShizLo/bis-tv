@@ -1,18 +1,4 @@
-<template>
-  <BannerSlider
-    bannerText="Заборы и ограждения"
-    bannerDescription="Забор нужен для защиты вашего дома от посторонних, а также выделить и огородить четкие границы вашей территории.
-Устанавливаем заборы на винтовых сваях, что обеспечивает длительный срок службы."
-    :bannerPrice="bannerPrice"
-  />
-  <OurServices :dataServices="dataServices" title="Наши услуги по заборам" />
-  <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
-  <PopularServices title="Популярные услуги" />
-  <FeedBackForm title="Закажите установку забора" id="GlobalForm" />
-</template>
-
-<script>
+<script setup>
 import BannerSlider from "../components/Banner.vue";
 import LocalService from "../components/LocalService.vue";
 import WorkOrder from "../components/WorkOrder.vue";
@@ -22,143 +8,114 @@ import PopularServices from "../components/PopularServices.vue";
 import FeedBackForm from "../components/FeedBackForm.vue";
 import { ROUTES_PATHS } from "../constants";
 
-export default {
-  name: "FenceView",
-  components: {
-    BannerSlider,
-    LocalService,
-    WorkOrder,
-    GlobalForm,
-    OurServices,
-    PopularServices,
-    FeedBackForm,
-  },
+//<Импорт картинок блок наши услуги>================================================================================
+// import img_service_1 from "";
+import img_service_2 from "../assets/images/drainagePage/services-1.webp";
+import img_service_3 from "../assets/images/drainagePage/services-3.webp";
+import img_service_4 from "../assets/images/drainagePage/services-4.webp";
+import img_service_5 from "../assets/images/drainagePage/services-5.webp";
+// import img_service_6 from "";
+//</Импорт картинок>===============================================================================
 
-  setup() {
-    return {};
+const bannerPrice = [
+  {
+    url: "/images/drainagePage/banner-1.webp",
+    price: "от 80 000 руб.",
+    name: "Обустройство дренажа",
   },
-  data: () => ({
-    bannerPrice: [
+];
+const dataServices = [
+  [
+    [
       {
-        url: "/images/fence/banner-2+.jpeg",
-        price: "от 7 500 за м.пог",
-        name: "Забор из металлического штакетника",
-      },
-      {
-        url: "/images/fence/banner-1.jpg",
-        price: "от 8 650 за м.пог",
-        name: "Забор из профлиста",
-      },
-      {
-        url: "/images/fence/banner-3++.jpg",
-        price: "от 8 000 за м.пог",
-        name: "Забор из деревянного штакетника",
-      },
-      {
-        url: "/images/fence/banner-4.jpg",
-        price: "от 5350 за м.пог",
-        name: "Забор из сетки гиттер",
-      },
-      {
-        url: "/images/fence/banner-5.jpg",
-        price: "от 60 000 руб.",
-        name: "Установка автоматики",
-      },
-      {
-        url: "/images/fence/banner-6.jpg",
-        price: "от 6000 за м.пог",
-        name: "Забор из бруска",
+        class: "services__row-item-big",
+        title: "Cхема с уклонами и высотными отметками",
+        price: "от 10 000 руб.",
+        pathImg: "",
+        hoverColors: "rgb(170, 214, 199)",
       },
     ],
-    dataServices: [
-      [
-        [
-          {
-            class: "services__row-item-big",
-            title: "Забор из металлического штакетника",
-            price: "от 7 500 м.пог",
-            pathImg: "url(/images/fence/services-2.png)",
-            hoverColors: "rgb(170, 214, 199)",
-          },
-        ],
-        [
-          {
-            class: "services__row-item-sm",
-            title: "Забор из профлиста",
-            price: "от 8 650 м.пог",
-            pathImg: "url(/images/fence/services-1+.png)",
-            hoverColors: "rgb(204, 209, 255)",
-          },
-          {
-            class: "services__row-item-sm",
-            title: "Забор из деревянного штакетника",
-            price: "от 8 000 м.пог",
-            pathImg: "url(/images/fence/services-3.png)",
-            hoverColors: "rgb(204, 209, 255)",
-          },
-        ],
-      ],
-      [
-        [
-          {
-            class: "services__row-item-sm",
-            title: "Забор из сетки гиттер (3D сетка)",
-            price: "от 5 350 м.пог",
-            pathImg: "url(/images/fence/services-4+.png)",
-            hoverColors: "rgb(255, 229, 204)",
-          },
-          {
-            class: "services__row-item-sm",
-            title: "Забор и оргаждения из бруска",
-            price: "от 6 000 м.пог",
-            pathImg: "url(/images/fence/services-6.png)",
-            hoverColors: "rgb(243, 253, 180)",
-          },
-        ],
-        [
-          {
-            class: "services__row-item-big",
-            title: "Забор из сетки рабица",
-            price: "от 3 050 м.пог",
-            pathImg: "url(/images/fence/services-5+++++.png)",
-            hoverColors: "rgb(255, 229, 204)",
-            routePath: ROUTES_PATHS.FENCE,
-          },
-        ],
-      ],
-    ],
-    servicePrice: [
-      { urlImg: "url(/images/fence/dop-1.png)", price: "от 60 000 руб.", name: "Установка автоматики" },
-      { urlImg: "url(/images/fence/dop-2.png", price: "от 10 000 руб.", name: "Освещение участка" },
-      { urlImg: "url(/images/fence/dop-3+.png)", price: "", name: "Организация парковки и заезда" },
-      { urlImg: "url(/images/fence/dop-5+.png)", price: "", name: "Откатные ворота" },
-      { urlImg: "url(/images/fence/dop-4+.png)", price: "", name: "Распашные ворота" },
-      { urlImg: "url(/images/fence/dop-6.png", price: "", name: "Дополнительные услуги" },
-      // { urlImg: "url(/images/fence/services-6.png)", price: "от 6000 м.пог", name: "Забор и оргаждения из бруска" },
-    ],
-    dataOrder: [
+    [
       {
-        urlImg: "/icons/workOrder/bubbles4.svg",
-        title: "Заявка",
-        text: "Оставьте заявку онлайн на нашем сайте, напишите нам в мессенджер или позвоните по телефону. Наш менеджер свяжется с Вами в течении нескольких минут.",
+        class: "services__row-item-sm",
+        title: "Монтаж ливневой канализации",
+        price: "от 50 000 руб.",
+        pathImg: img_service_2,
+        hoverColors: "rgb(204, 209, 255)",
       },
       {
-        urlImg: "/icons/workOrder/calculator.svg",
-        title: "Расчёты, сметы",
-        text: "Мы проводим расчет стоимости и составляем смету, учитывая все Ваши пожелания и требования.",
-      },
-      {
-        urlImg: "/icons/workOrder/clipboard.svg",
-        title: "Договор",
-        text: "После утверждения сметы мы заключаем договор на выполнение работ. В договоре указываются все условия и сроки выполнения работ.",
-      },
-      {
-        urlImg: "/icons/workOrder/automobile.svg",
-        title: "Доставка и монтаж",
-        text: "Доставляем и монтируем заказ в удобное для Вас время. Наша команда гарантирует качественный монтаж и безупречную работу оборудования.",
+        class: "services__row-item-sm",
+        title: "Видеоинспекция ливневой канализации",
+        price: "от 6 000 руб.",
+        pathImg: img_service_3,
+        hoverColors: "rgb(204, 209, 255)",
       },
     ],
-  }),
-};
+  ],
+  [
+    [
+      {
+        class: "services__row-item-sm",
+        title: "Обустройство дренажа",
+        price: "от 80 000 руб.",
+        pathImg: img_service_4,
+        hoverColors: "rgb(255, 229, 204)",
+      },
+      {
+        class: "services__row-item-sm",
+        title: "Монтаж дренажных насосов",
+        price: "",
+        pathImg: img_service_5,
+        hoverColors: "rgb(243, 253, 180)",
+      },
+    ],
+    [
+      {
+        class: "services__row-item-big",
+        title: "Прочистка дренажа, ливневой канализации модернизация и реконструкция",
+        price: "",
+        pathImg: "",
+        hoverColors: "rgb(255, 229, 204)",
+      },
+    ],
+  ],
+];
+const dataOrder = [
+  {
+    urlImg: "/icons/workOrder/bubbles4.svg",
+    title: "Заявка",
+    text: "Оставьте заявку онлайн на нашем сайте, напишите нам в мессенджер или позвоните по телефону. Наш менеджер свяжется с Вами в течении нескольких минут.",
+  },
+  {
+    urlImg: "/icons/workOrder/calculator.svg",
+    title: "Расчёты, сметы",
+    text: "Мы проводим расчет стоимости и составляем смету, учитывая все Ваши пожелания и требования.",
+  },
+  {
+    urlImg: "/icons/workOrder/clipboard.svg",
+    title: "Договор",
+    text: "После утверждения сметы мы заключаем договор на выполнение работ. В договоре указываются все условия и сроки выполнения работ.",
+  },
+  {
+    urlImg: "/icons/workOrder/automobile.svg",
+    title: "Доставка и монтаж",
+    text: "Доставляем и монтируем заказ в удобное для Вас время. Наша команда гарантирует качественный монтаж и безупречную работу оборудования.",
+  },
+];
 </script>
+
+<template>
+  <BannerSlider
+    style="white-space: pre-line"
+    bannerText="Ливневые канализации 
+и дренаж участка"
+    bannerDescription="Сбор и отвод чистых вод от дренажных, водосточных систем с кровли и террасс, отведение очищенных вод из станции биологической очистки. Устройство ливневой канализации позволяет отвести поверхностные и грунтовые воды в общую систему дренажа (канавы, поселковая канализация) максимально эффективным и эстетичным образом. На низких участках возможно обустройство накопительного колодца и принудительный подъем и выброс воды дренажными насосами."
+    :bannerPrice="bannerPrice"
+  />
+  <OurServices :dataServices="dataServices" title="Наши услуги" />
+  <WorkOrder :data="dataOrder" title="Как мы работаем" />
+  <PopularServices title="Популярные услуги" />
+  <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
+</template>
+
 <style lang="scss" scoped></style>

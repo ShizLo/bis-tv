@@ -7,6 +7,7 @@ import WaterPage from "../pages/WaterPage.vue";
 import FoundationPage from "../pages/FoundationPage.vue";
 import ElectricityPage from "../pages/ElectricityPage.vue";
 import TopographyPage from "../pages/TopographyPage.vue";
+import DrainagePage from "../pages/DrainagePage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,7 @@ const router = createRouter({
     { path: ROUTES_PATHS.FAUNDATION, name: ROUTES_PATHS.FAUNDATION, component: FoundationPage },
     { path: ROUTES_PATHS.ELECTRICITY, name: ROUTES_PATHS.ELECTRICITY, component: ElectricityPage },
     { path: ROUTES_PATHS.TOPOGRAPHY, name: ROUTES_PATHS.TOPOGRAPHY, component: TopographyPage },
+    { path: ROUTES_PATHS.DRAINAGE, name: ROUTES_PATHS.DRAINAGE, component: DrainagePage },
     { path: "/:pathMatch(.*)*", redirect: "/" },
   ],
   scrollBehavior(to, from, savedPosition) {

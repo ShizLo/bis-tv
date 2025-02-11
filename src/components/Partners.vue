@@ -1,8 +1,11 @@
+<script setup>
+import BlockHeader from "../components/BlockHeader.vue";
+</script>
 <template>
   <section class="partners content">
     <div class="_container">
-      <h2 class="partners__header">Наши партнеры</h2>
-      <!-- <div class="columns-3 partners__items"> -->
+      <BlockHeader title="Наши партнеры"></BlockHeader>
+      <!-- <h2 class="partners__header">Наши партнеры</h2> -->
       <div class="partners__items">
         <div class="partners__item">
           <a class="partners__link" target="_blank" href="https://holtsovhouse.ru/">
@@ -47,10 +50,8 @@
     font-size: $fs-xxl;
     font-weight: 600;
     background: #fff;
-    border-radius: 32px;
     padding: 3px 10px;
     color: #102938;
-    // padding-top: 32px;
     padding-bottom: 16px;
     @media (max-width: $md4) {
       font-size: $fs-xxl;

@@ -17,12 +17,23 @@ const props = defineProps({
   bannerDescription: {
     typeof: String,
   },
+  desctiption: {
+    typeof: Array,
+  },
   bannerPrice: {
     typeof: Array,
   },
 });
 
 const swiper = new Swiper(".swiper-banner", swiper_banner_setting);
+
+swiper.on("slideChange", function (e) {
+  swiperBanner.slideIndex = swiper.realIndex;
+});
+
+const swiperBanner = reactive({
+  slideIndex: 0, // Индекс текущего слайда
+});
 
 onMounted(() => {
   swiper.init();
@@ -47,8 +58,10 @@ function goTo(path) {
   <section class="banner">
     <div class="banner__container _container">
       <div class="banner__block-text text-left">
-        <h1 class="banner__text">{{ bannerText }}</h1>
-        <p class="banner__description">{{ bannerDescription }}</p>
+        <h1 class="banner__text _visibility-mobile">{{ bannerText }}</h1>
+        <h1 v-if="desctiption" class="banner__text _visibility">{{ desctiption[swiperBanner.slideIndex].title }}</h1>
+        <h1 v-else-if="bannerText.length > 0" class="banner__text _visibility">{{ bannerText }}</h1>
+
         <a
          
         >
@@ -68,19 +81,23 @@ function goTo(path) {
             </svg>
           </button>
         </a>
+        <p class="banner__description _visibility-mobile">{{ bannerDescription }}</p>
+        <p v-if="desctiption" class="banner__description _visibility">{{ desctiption[swiperBanner.slideIndex].text }}</p>
+        <h1 v-else-if="bannerDescription" class="banner__description _visibility">{{ bannerDescription }}</h1>
       </div>
       <div class="swiper-container text-left">
         <div class="swiper-banner">
           <div class="swiper-wrapper">
             <div v-for="item in bannerPrice" class="swiper-slide">
-              <img class="swiper__img" :src="item.url" :alt="item.name" />
+              <img class="swiper__img" loading="lazy" :src="item.url" :alt="item.name" />
+              <div class="swiper-lazy-preloader-white"></div>
               <div @click="goTo(item.routerPath)" class="swiper-banner__content">
                 <div v-if="item.price.length > 0" class="content__price">
                   <span>{{ item.price }}</span>
                 </div>
                 <div class="content__title">{{ item.name }}</div>
               </div>
-              <div class="swiper-lazy-preloader"></div>
+              <!-- <div class="swiper-lazy-preloader"></div> -->
             </div>
           </div>
           <div class="swiper-pagination"></div>
@@ -98,6 +115,19 @@ function goTo(path) {
 @media (max-width: $md3) {
   ._container {
     padding: 0;
+  }
+}
+
+._visibility {
+  display: none;
+  @media (min-width: $md1) {
+    display: block;
+  }
+}
+._visibility-mobile {
+  display: none;
+  @media (max-width: $md4) {
+    display: block;
   }
 }
 
@@ -319,9 +349,10 @@ function goTo(path) {
     display: flex;
     width: 100%;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
+    // justify-content: space-between;
     align-items: flex-start;
-    gap: 20px;
+    gap: 25px;
 
     @media (max-width: $md2) {
       padding: 20px 10px;
@@ -337,12 +368,16 @@ function goTo(path) {
     line-height: 120%;
     font-size: 2rem; //40
     color: #102938;
+    @media (min-width: $md1) {
+      margin-top: 15px;
+    }
     @media (max-width: $md2) {
       font-size: 1.5rem;
     }
     @media (max-width: $md4) {
       font-size: 26px;
-      text-align: center;
+      // text-align: center;
+      // align-self: center;
     }
   }
   &__description {

@@ -242,7 +242,10 @@ onUnmounted(() => {
     color: $color-text;
     line-height: 1.18;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 14px;
+    @media (max-width: $md4) {
+      font-size: 13px;
+    }
   }
 }
 </style>

@@ -1,15 +1,13 @@
-<script>
-export default {
-  props: {},
-  computed: {},
-};
+<script setup>
+import BlockHeader from "../components/BlockHeader.vue";
 </script>
 <template>
   <section class="about-us">
     <div class="_container">
       <div class="about-us-text about-us-text_settings">
         <div class="about-us-text__left">
-          <h2 class="about-us-text__header">Про БИС</h2>
+          <BlockHeader title="Про БИС"></BlockHeader>
+          <!-- <h2 class="about-us-text__header">Про БИС</h2> -->
           <div class="about-us-text__title">
             <p class="about-us-text__title_settings">Относимся с любовью к каждому квадратному метру</p>
           </div>
@@ -57,7 +55,7 @@ export default {
 }
 
 .about-us {
-  margin-top: 2rem;
+  margin: 25px 0 25px 0;
 }
 
 .about-us-text__right {
@@ -72,7 +70,7 @@ export default {
   }
   @media (max-width: $md4) {
     padding: 15px 4px;
-    font-size: $fs-base;
+    font-size: 13px;
   }
 }
 .about-us-text__right_area-text p:last-child {

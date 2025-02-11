@@ -13,13 +13,13 @@ const swiper_global = new Swiper(".swiper-global-services", swiper_global_settin
 
 const data = [
   {
-    urlImg: "url(/images/globalServices/services-1.webp)",
+    urlImg: "url(/images/globalServices/services-1+.webp)",
     title: "Установка септика",
     price: "Подробнее",
     routePath: ROUTES_PATHS.HOME,
   },
   {
-    urlImg: "url(/images/globalServices/services-2.png)",
+    urlImg: "url(/images/fence/services-5+++++.webp)",
     title: "Установка забора",
     price: "Подробнее",
     routePath: ROUTES_PATHS.FENCE,
@@ -80,8 +80,12 @@ onUnmounted(() => {
             <div v-for="item in data" class="swiper-slide swiper-slide__global-services">
               <router-link :style="{ 'background-image': item.urlImg }" class="services__link" :to="{ name: item.routePath }">
                 <div class="item__title">{{ item.title }}</div>
-                <div class="item__foot">
+                <!-- <div class="item__foot">
                   <span>{{ item.price }}</span>
+                </div> -->
+                <div class="item__bot">
+                  <span class="item__next">Подробнее</span>
+                  <img src="/icons/angle-right.svg" alt="" />
                 </div>
               </router-link>
             </div>
@@ -200,7 +204,7 @@ onUnmounted(() => {
   background-color: $color-background;
   border-radius: 8px;
   height: auto;
-  padding: 15px 10px 5px 15px;
+  padding: 15px 0px 0px 15px;
   box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.2);
   @media (max-width: $md4) {
     padding: 10px 0px 0px 12px;
@@ -214,6 +218,7 @@ onUnmounted(() => {
     background-position: 95% 100%;
     background-repeat: no-repeat;
     background-size: 100% auto;
+    line-height: 1;
     @media (max-width: $md4) {
       height: 95px;
       background-size: contain;
@@ -263,11 +268,38 @@ onUnmounted(() => {
   &__title {
     font-size: 20px;
     font-weight: 500;
-    margin: 0px 0px 10px 0px;
+    margin: 0px 0px 8px 0px;
     @media (max-width: $md4) {
-      margin: 0px 0px 0px 0px;
+      margin: 0px 0px 5px 0px;
       font-size: 15px;
     }
+  }
+  &__bot {
+    display: flex;
+    @media (max-width: $md4) {
+      align-items: center;
+    }
+    img {
+      height: 14px;
+      width: 14px;
+      margin-top: 0.5px;
+      @media (max-width: $md4) {
+        height: 9px;
+        width: 8px;
+        margin-top: -0.2px;
+      }
+    }
+  }
+  &__next {
+    font-size: 14px;
+    font-weight: 500;
+    @media (max-width: $md4) {
+      font-size: 10px;
+      margin-right: 1px;
+    }
+  }
+  &__icon {
+    // height: ;
   }
   &__text {
     color: $color-text;
