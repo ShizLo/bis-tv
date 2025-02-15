@@ -1,10 +1,12 @@
 <script setup>
-import { ref, onUpdated, computed} from "vue";
+import { ref, onUpdated, computed, reactive} from "vue";
 import { ROUTES_PATHS } from "../../constants";
+import useVuelidate from "@vuelidate/core"
+import { required, maxLength, helpers, email, minLength  } from "@vuelidate/validators"
 import moment from 'moment'
-let name = ref("");
-let email = ref("");
-let telephone = ref("");
+// let name = ref("");
+// let email = ref("");
+// let telephone = ref("");
 let questiion = ref("");
 let errorName = ref("");
 let errorTel = ref("");
@@ -12,10 +14,38 @@ let errorEmail = ref("");
 let errorSelected = ref("");
 let date = ref(new Date());
 
+let isReady = ref();
+
+const formData = reactive({
+  name: "",
+  email: "",
+  telephone: "",
+  selectedCommunication: [],
+})
+const rules = {
+  name: {
+    required: helpers.withMessage('Поле должно быть заполнено', required), 
+    alpha: helpers.withMessage('Только латинские буквы', val => /^[а-яё]*$/i.test(val)),
+  },
+  email: {
+    required: helpers.withMessage('Поле должно быть заполнено', required), 
+    email: helpers.withMessage('Пример ivanov@mail.ru', email), 
+  },
+  telephone: {
+    required: helpers.withMessage('Поле должно быть заполнено', required), 
+    // alpha: helpers.withMessage('Только латинские буквы', val => /[^0-9]/gi.test(val)),
+    minLength: helpers.withMessage('Заполните поле полностью', minLength(18)),
+  },
+}
+const rulesTime = ref({
+  hours: { min: 9, max: 19 },
+  minutes: { interval: 5 },
+});
+const v$ = useVuelidate( rules, formData )
+
 let isSuccesTel = ref(false);
 let isSuccesName = ref(false);
 let isSuccesEmail = ref(false);
-let selectedCommunication = ref([])
 const selectedColor = ref('orange');
   const formattedDate = computed(() => {
     return moment(date.value).format('DD-MM-YYYY HH:mm')
@@ -36,77 +66,65 @@ onUpdated(() => {
     lazy: false,
   };
 
-  const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-  function isEmailValid(value) {
- 	return EMAIL_REGEXP.test(value);
-}
+//   const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+//   function isEmailValid(value) {
+//  	return EMAIL_REGEXP.test(value);
+// }
 function onInput() {
-	if (isEmailValid(email.value)) {
-		inputs[1].classList.remove("error");
-      inputs[1].classList.add("success");
-      emailError.classList.remove("name-error");
-      isSuccesEmail.value = true;
-	} else {
-		inputs[1].classList.remove("success");
-      inputs[1].classList.add("error");
-      errorEmail.value = "Заполните поле";
-      emailError.classList.add("name-error");
-      isSuccesEmail.value = false;
-	}
-  console.log(isEmailValid(email.value))
+	// if (isEmailValid(email.value)) {
+	// 	inputs[1].classList.remove("error");
+  //     inputs[1].classList.add("success");
+  //     emailError.classList.remove("name-error");
+  //     isSuccesEmail.value = true;
+	// } else {
+	// 	inputs[1].classList.remove("success");
+  //     inputs[1].classList.add("error");
+  //     errorEmail.value = "Заполните поле";
+  //     emailError.classList.add("name-error");
+  //     isSuccesEmail.value = false;
+	// }
+  // console.log(isEmailValid(email.value))
 }
-emailInput.addEventListener('input', onInput);
+// emailInput.addEventListener('input', onInput);
 
 
 
   const maskTel = IMask(telInput, telOptions);
   maskTel.on(
-    "complete",
-    () => {
-      inputs[2].classList.remove("error");
-      inputs[2].classList.add("success");
-      telError.classList.remove("name-error");
-      isSuccesTel.value = true;
-    },
-    maskTel.on("accept", () => {
-      inputs[2].classList.remove("success");
-      inputs[2].classList.add("error");
-      errorTel.value = "Заполните поле";
-      telError.classList.add("name-error");
-    })
   );
-  nameInput.addEventListener("keydown", function (e) {
-    // Будет перехватывать все числа при руч ввномоде.
-    if (e.key.match(/[0-9]/)) {
-      // Тажке нужна, чтобы replace не сбрасывал каретку, срабатывая каждый раз.
-      inputs[0].classList.add("error");
-      nameError.classList.add("name-error");
-      errorName.value = "Ввод цифр невозможен";
-      return e.preventDefault();
-    } else {
-      nameError.classList.remove("name-error");
-      inputs[0].classList.add("success");
-      isSuccesName.value = true;
-      inputs[0].classList.remove("error");
-    }
-  });
   
-  nameInput.addEventListener("input", function (e) {
-    // На случай, если умудрились ввести через копипаст или авто-дополнение.
-    nameInput.value = nameInput.value.replace(/[0-9]/g, "");
-  });
-  nameInput.addEventListener("blur", function (e) {
-    nameError.classList.remove("name-error");
-  });
+  
+  // nameInput.addEventListener("input", function (e) {
+  //   // На случай, если умудрились ввести через копипаст или авто-дополнение.
+  //   nameInput.value = nameInput.value.replace(/[0-9]/g, "");
+  // });
+  
 
-  nameInput.addEventListener("blur", function (e) {
-    if (nameInput.value.length == 0) {
-      nameError.classList.add("name-error");
-      errorName.value = "Заполните поле";
-      inputs[0].classList.add("error");
-    }
-  });
+  // nameInput.addEventListener("blur", function (e) {
+  //   if (nameInput.value.length == 0) {
+  //     nameError.classList.add("name-error");
+  //     errorName.value = "Заполните поле";
+  //     inputs[0].classList.add("error");
+  //   }
+  // });
 });
+function onAccept(e) {
+     const maskRef = e.detail
+     formData.telephone = maskRef.value
+console.log(maskRef)
+   }
+  function onComplete(e) {
+     const maskRef = e.detail
+     formData.telephone = maskRef.unmaskedValue
+   }
+  function isNumber(e) {
+     let regex = /[0-9]/
+     if (!regex.test(e.key)) {
+       e.returnValue = false;
+       if (e.preventDefault) e.preventDefault();
+     }
+   }
+
 function convertToUnicod(text) {
   return text.replace(
     /[\u0080-\uFFFF]/g,
@@ -114,22 +132,31 @@ function convertToUnicod(text) {
         return "\\u" + ('000' + s.charCodeAt(0).toString(16)).substr(-4);
     }
 )
+}const submitForm = async () => {
+  const result = await v$.value.$validate();
+  if (result) {
+    isReady.value = result
+    // console.log(isReady.value)
+  } else {
+    isReady.value = result
+    // console.log(isReady.value)
+  }
 }
 function sendMessage() {
   let nameError = document.querySelector('input[name="name"]').nextElementSibling;
   let telError = document.querySelector('input[name="telephone"]').nextElementSibling;  
   let emailError = document.querySelector('input[name="email"]').nextElementSibling;
   let selectedError = document.querySelector('.errorSelected');
-
+  let telInput = document.querySelector('input[name="telephone"]')
   const inputs = document.querySelectorAll(".feedback__group");
-  console.log(formattedDate.value)
-  if (isSuccesName.value && isSuccesTel.value && isSuccesEmail.value && isSuccesEmail.value && selectedCommunication.value.length !== 0) {
-    console.log(selectedCommunication.value.length !== 0)
-    var my_text = "Имя: "+ name.value + "%0A" + 
-                  "Почта: " + email.value + "%0A" +
-                  "Телефон:"+ "%2b" + convertToUnicod(telephone.value) + 
-                  "%0A" + " " + questiion.value + 
-                  "Каким способом связаться:" + " " + selectedCommunication.value + "%0A" +
+ console.log(v$._value)
+ console.log(telInput.value.length)
+  if (!v$._value.$invalid) {
+    var my_text = "Имя: "+ formData.name + "%0A" + 
+                  "Почта: " + formData.email + "%0A" +
+                  "Телефон:"+ "%2b" + convertToUnicod(formData.telephone) + 
+                  "%0A" + " " + formData.questiion + 
+                  "Каким способом связаться:" + " " + formData.selectedCommunication + "%0A" +
                   "Когда нужно связаться: " + formattedDate.value;
     var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
     var chat_id2 = -1002378962422;
@@ -144,169 +171,210 @@ function sendMessage() {
     var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
     let api = new XMLHttpRequest();
     api.open("GET", url, true);
-    api.send();
-    name.value = "";
-    email.value = "";
-    telephone.value = "";
+    console.log(url)
+    //api.send();
+    // name.value = "";
+    // email.value = "";
+    // telephone.value = "";
     questiion.value = "";
-    document.querySelectorAll('.round > input').forEach(function(checkbox) {
-  checkbox.checked = true; 
-});
-    isSuccesName.value = false;
-    isSuccesTel.value = false;
-    isSuccesEmail.value = false
+//     document.querySelectorAll('.round > input').forEach(function(checkbox) {
+//   checkbox.checked = true; 
+// });
+    // isSuccesName.value = false;
+    // isSuccesTel.value = false;
+    // isSuccesEmail.value = false
     // telError.classList.add('send-message')
     // this.errorTel = "Сообщение отправлено"
     // console.log('succes')
-  } else {
-    telError.classList.add("name-error");
-    emailError.classList.add("name-error");
-    inputs[1].classList.add("error");
-    inputs[2].classList.add("error");
-    nameError.classList.add("name-error");
-    errorName.value = "Заполните поле";
-    errorEmail.value = "Заполните поле";
-    inputs[0].classList.add("error");
-    errorTel.value = "Заполните поле";
-    selectedError.classList.add("name-error");
-    errorSelected.value = "Выберите хотя бы один способ связи"
+  } else {console.log("url")
+    // telError.classList.add("name-error");
+    // emailError.classList.add("name-error");
+    // inputs[1].classList.add("error");
+    // inputs[2].classList.add("error");
+    // nameError.classList.add("name-error");
+    // errorName.value = "Заполните поле";
+    // errorEmail.value = "Заполните поле";
+    // inputs[0].classList.add("error");
+    // errorTel.value = "Заполните поле";
+    // selectedError.classList.add("name-error");
+    // errorSelected.value = "Выберите хотя бы один способ связи"
   }
 }
+
+
 </script>
 <template>
-  <!-- <div class="container-modal" @click.self="$emit('someEvent')"> -->
-    
   <div class="container-modal" @click.self="$emit('isVisible')">
-    <div class="reveal-modal">
+    <form class="reveal-modal" @submit.prevent="submitForm">
       <div class="block-">
-      <p class="feedback__title title">Свяжемся с вами для консультации</p>
-    </div>
-      <div class="block-form">  
-      <div class="feedback__form">
-        <div class="feedback__group">
-          <input v-model="name" class="feedback__group-input hover-group-input" type="text" name="name"
-            placeholder="Имя" maxlength="20" />
-          <span>{{ errorName }}</span>
-        </div>
-        <div class="feedback__group">
-          <input v-model="email" class="feedback__group-input hover-group-input" type="email"
-            placeholder="your@email.ru" name="email" required="" />
-          <span>{{ errorEmail }}</span>
-        </div>
-        <div class="feedback__group">
-          <input v-model="telephone" class="feedback__group-input phone_mask hover-group-input" type="tel"
-            placeholder="Телефон" name="telephone" required="" />
-          <span>{{ errorTel }}</span>
-        </div>
-        
-        <div class="text">Выберите способ для связи</div>
-        <div class="btn-group">
-          <div class="">
-          <div class="btn-group__left">
-          <button class="">
-            <div class="checkbox-wrapper-18">
-              <div class="round">
-                <input type="checkbox" id="telephone" value="telephone" v-model="selectedCommunication"/>
-                <label for="telephone"></label>
-                </div>
-              </div>
-              <p>Телефон</p>
-            <img 
-              src="../../assets/icons/form-telephone.svg"
-              alt="Иконка Telephone" />
-            
-          </button>
-          <button class="">
-            <div class="checkbox-wrapper-18">
-              <div class="round">
-                <input type="checkbox" id="Telegram" value="Telegram" v-model="selectedCommunication"/>
-                <label for="Telegram"></label>
-                </div>
-              </div>
-              <p>Telegram</p>
-            <img 
-              src="../../assets/icons/header-telegram.svg" 
-              alt="Иконка Telegram" />
-              
-            </button>
+        <p class="feedback__title title">Свяжемся с вами для консультации</p>
+      </div>
+      <div class="block-form">
+        <div class="feedback__form">
+          <div class="feedback__group">
+            <input 
+              v-model="formData.name" 
+              class="feedback__group-input hover-group-input" 
+              type="text" 
+              name="name"
+              placeholder="Имя" 
+              @blur="v$.name.$touch()"
+              maxlength="20" />
+            <span v-for="error in v$.name.$errors" :key="error.$uid">
+              {{ error.$message }}
+            </span>
           </div>
-          <div class="btn-group__right">
-          <button class="">
-            <div class="checkbox-wrapper-18">
-              <div class="round">
-                <input type="checkbox" id="Whatsapp" value="Whatsapp" v-model="selectedCommunication"/>
-                <label for="Whatsapp"></label>
+          <div class="feedback__group">
+            <input 
+              v-model="formData.email" 
+              class="feedback__group-input hover-group-input" 
+              type="email"
+              placeholder="your@email.ru"
+              @blur="v$.email.$touch()"
+              name="email"
+              />
+            <span v-for="error in v$.email.$errors" :key="error.$uid">
+              {{ error.$message }}
+            </span>
+          </div>
+          <div class="feedback__group">
+            <input 
+              v-model="formData.telephone" 
+              class="feedback__group-input phone_mask hover-group-input" 
+              type="tel"
+              placeholder="Телефон"
+              @blur="v$.telephone.$touch()"
+              name="telephone"/>
+            <span v-for="error in v$.telephone.$errors" :key="error.$uid">
+              {{ error.$message }}
+            </span>
+          </div>
+          <div class="text">Выберите удобный способ для связи</div>
+          <div class="btn-group">
+            <div class="">
+              <div class="btn-group__left">
+                <div class="btn-inline">
+                  <div class="checkbox-wrapper-18">
+                    <div class="round">
+                      <input 
+                        type="checkbox" 
+                        id="telephone" 
+                        value="Телефон"
+                        v-model="formData.selectedCommunication" />
+                      <label for="telephone"></label>
+                    </div>
+                  </div>
+                  <p>Телефон</p>
+                </div>
+                <div class="btn-inline ">
+                  <div class="checkbox-wrapper-18">
+                    <div class="round">
+                      <input 
+                        type="checkbox" 
+                        id="Telegram" 
+                        value="Telegram" 
+                        v-model="formData.selectedCommunication" />
+                      <label for="Telegram"></label>
+                    </div>
+                  </div>
+                  <p>Telegram</p>
                 </div>
               </div>
-              <p>Whatsapp</p>
-            <img 
-              src="../../assets/icons/header-whatsapp.svg" 
-              alt="Иконка Whatsapp" />
-              
-          </button>
-          <button class="">
-            <div class="checkbox-wrapper-18">
-              <div class="round">
-                <input type="checkbox" id="mail" value="mail" v-model="selectedCommunication"/>
-                <label for="mail"></label>
+              <div class="btn-group__right">
+                <div class="btn-inline ">
+                  <div class="checkbox-wrapper-18">
+                    <div class="round">
+                      <input 
+                        type="checkbox" 
+                        id="Whatsapp" 
+                        value="Whatsapp" 
+                        @click.stop
+                        v-model="formData.selectedCommunication" />
+                      <label for="Whatsapp"></label>
+                    </div>
+                  </div>
+                  <p>Whatsapp</p>
+                </div>
+                  <div class="btn-inline ">
+                  <div class="checkbox-wrapper-18">
+                    <div class="round">
+                      <input 
+                        type="checkbox" 
+                        id="mail" 
+                        value="Почта" 
+                        v-model="formData.selectedCommunication" />
+                      <label for="mail"></label>
+                    </div>
+                  </div>
+                  <p>Почта</p>
                 </div>
               </div>
-              <p>Почта</p>
-            <img 
-              src="../../assets/icons/form-email.svg"
-              alt="Иконка email" />
-          </button>
+            </div>
+            <!-- <span class="errorSelected" 
+                  :class="[formData.selectedCommunication.length == 0 ? 'name-error' : '']">
+                  {{ errorSelected }}
+            </span> -->
+          </div>
         </div>
+        <div class="feedback__calendar">
+        <div class="calendar-desk none-calendar">
+          <div class="calendar-desk__header text">Выберите время для связи</div>
+          <VDatePicker 
+            v-model="date" 
+            mode="dateTime" 
+            :color="selectedColor" 
+            :rules = rulesTime
+            is24hr />
         </div>
-        <span class="errorSelected" :class="[selectedCommunication.length == 0 ? 'name-error' : '']">{{ errorSelected }}</span>
-
+        <div class="calendar-mob show-calendar">
+          <div class="text">Выберите время для связи</div>
+          <VDatePicker 
+            v-model="date" 
+            mode="dateTime" 
+            :color="selectedColor" 
+            :rules = rulesTime
+            is24hr>
+            <template 
+              #default="{ togglePopover }">
+              <button class=" px-3 py-2 bg-blue-500 text-sm text-white font-semibold rounded-md" 
+                      @click="togglePopover">
+                Выберите дату
+              </button>
+            </template>
+          </VDatePicker>
+          <p>Выбранная дата </br>{{ formattedDate }}</p>
+        </div>
       </div>
     </div>
-      <div class="calendar-desk none-calendar">
-        <VDatePicker v-model="date" mode="dateTime"  :color="selectedColor" is24hr />
-        
-    </div>
-      <div class="calendar-mob show-calendar">
-        <VDatePicker v-model="date" mode="dateTime" :color="selectedColor" is24hr>
-          <template #default="{ togglePopover }">
-            
-            <button
-              class=" px-3 py-2 bg-blue-500 text-sm text-white font-semibold rounded-md"
-              @click="togglePopover"
-            >
-              Выберите дату
-            </button>
-            
-          </template>
-          
-  </VDatePicker>
-  <p>Выбранная дата </br>{{ formattedDate  }}</p>
+      <div class="block-send">
+        <button @click="sendMessage"  type="submit" class="form__button btn" data-id="#consultationForm2"
+          data-form="">ОТПРАВИТЬ</button>
+        <p class="feedback__bottom-text">
+          Нажимая кнопку «отправить», вы соглашаетесь с
+          <router-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</router-link>
+        </p>
       </div>
-      
-    </div>
-    <div class="block-send">
-    <button @click="sendMessage" type="submit" class="form__button btn" data-id="#consultationForm2"
-    data-form="">ОТПРАВИТЬ</button>
-    <p class="feedback__bottom-text">
-        Нажимая кнопку «отправить», вы соглашаетесь с
-        <router-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</router-link>
-      </p>
-    </div>
-    </div>
-    
-    
+    </form>
   </div>
-<!--  -->
-
-
-
-
-
-
-<!--  -->
 </template>
 <style lang="scss" scoped>
 @use "../../assets/styles/main.scss" as *;
+.btn-inline {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0.7;
+}
+.feedback__calendar {
+  margin-bottom: 20px;
+  @media (max-width: $md4) {
+    margin: 10px 0px;
+  };
+  @media (max-width: $md3) {
+    margin: 10px 0px;
+  };
+}
 .none-calendar {
   display: block !important;
   @media (max-width: $md4) {
@@ -357,9 +425,20 @@ function sendMessage() {
 
 .errorSelected {
   display: none;
+  position: absolute;
+    top: 77%;
   margin-left: 15px;
   animation: shake 0.2s ease-in-out 0s 2;
+  @media (max-width: $md4) {
+    top: 67%;
+  };
+  @media (max-width: $md3) {
+    top: 70%;
+  };
 }
+.checkbox-wrapper-18 {
+    margin-right: 10px;
+  }
 
 .checkbox-wrapper-18 .round {
     position: relative;
@@ -370,8 +449,8 @@ function sendMessage() {
     border: 1px solid #ccc;
     border-radius: 50%;
     cursor: pointer;
-    height: 28px;
-    width: 28px;
+    height: 20px;
+    width: 20px;
     display: block;
   }
 
@@ -381,10 +460,10 @@ function sendMessage() {
     border-right: none;
     content: "";
     height: 6px;
-    left: 8px;
+    left: 5px;
     opacity: 0;
     position: absolute;
-    top: 9px;
+    top: 5px;
     transform: rotate(-45deg);
     width: 12px;
   }
@@ -414,13 +493,16 @@ function sendMessage() {
   font-weight: 500;
     color: #102938;
     font-size: 20px;
-    text-align: center;
 }
-
+.calendar-desk__header{
+margin-bottom: 10px;
+}
 .btn-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+}
+.btn-group__left {
+  margin-bottom: 10px;
 }
 
 .btn-group__left, .btn-group__right {
@@ -532,6 +614,7 @@ function sendMessage() {
 
   @media (max-width: $md3) {
     width: 500px;
+    padding-top: 15px;
   };
 
   @media (max-width: $md4) {
@@ -636,7 +719,7 @@ function sendMessage() {
   }
 
   &__form {
-    width: 35%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     @media (max-width: $md4) {
@@ -671,7 +754,7 @@ function sendMessage() {
 
   &__group > span {
     color: red;
-    display: none;
+    animation: shake 0.2s ease-in-out 0s 2;
   }
 }
 
