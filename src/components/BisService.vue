@@ -102,12 +102,8 @@ onUnmounted(() => {
               </router-link>
             </div>
           </div>
-          <div class="swiper-button-prev">
-            <!-- <img width="30" height="30" src="/icons/workOrder/arrow-left2.svg" alt="" /> -->
-          </div>
-          <div class="swiper-button-next">
-            <!-- <img width="30" height="30" src="/icons/workOrder/arrow-right2.svg" alt="" /> -->
-          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
       </div>
     </div>

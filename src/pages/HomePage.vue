@@ -1,5 +1,5 @@
 <script setup>
-import {reactive} from "vue";
+import { reactive } from "vue";
 import { ROUTES_PATHS } from "../constants";
 
 //<Импорт компонентов>================================================================================
@@ -22,6 +22,18 @@ import img_service_3 from "../assets/images/homePage/services-3.webp";
 import img_service_4 from "../assets/images/homePage/services-4.webp";
 import img_service_5 from "../assets/images/homePage/services-5.webp";
 import img_service_6 from "../assets/images/homePage/services-6.png";
+//</Импорт картинок>===============================================================================
+
+//<Импорт картинок блок "Наши работы">================================================================================
+import img_work_1 from "../assets/images/homePage/works/1.jpg";
+import img_work_2 from "../assets/images/homePage/works/2.jpg";
+import img_work_3 from "../assets/images/homePage/works/3.jpg";
+import img_work_4 from "../assets/images/homePage/works/4.jpg";
+import img_work_5 from "../assets/images/homePage/works/5.jpg";
+import img_work_6 from "../assets/images/homePage/works/6.jpg";
+import img_work_7 from "../assets/images/homePage/works/7.jpg";
+import img_work_8 from "../assets/images/homePage/works/8.jpg";
+
 //</Импорт картинок>===============================================================================
 
 const bannerPrice = [
@@ -163,23 +175,109 @@ const dataOrder = [
     text: "После первичной встречи на участке составляется визуализация вашего участка с привязками и размерами. Это позволяет точно составить подробную смету. Цена в большинстве случаев фиксируется или в смете указаны пункты, корректируемые по факту.",
   },
 ];
+const dataWork = [
+  {
+    url: img_work_1,
+    title: "Озеленение, освещение",
+    work: [
+      {
+        url: "/images/miniSlider/landscaping-1.jpg",
+        alt: "Озеленение",
+      },
+      {
+        url: "/images/miniSlider/landscaping-2.jpg",
+        alt: "Озеленение",
+      },
+      {
+        url: "/images/miniSlider/landscaping-3.jpg",
+        alt: "Озеленение",
+      },
+      {
+        url: "/images/miniSlider/landscaping-4.jpg",
+        alt: "Озеленение",
+      },
+      {
+        url: "/images/workPhoto/greenPark/2.jpg",
+        alt: "Озеленение",
+      },
+      {
+        url: "/images/workPhoto/greenPark/3.jpg",
+        alt: "Озеленение",
+      },
+    ],
+  },
+  {
+    url: img_work_2,
+    title: "Заезд на участок и свайное поле",
+    work: [
+      {
+        url: "/images/workPhoto/foundation/1.JPG",
+        alt: "Свайное поле",
+      },
+      {
+        url: "/images/workPhoto/foundation/2.JPG",
+        alt: "Свайное поле",
+      },
+      {
+        url: "/images/workPhoto/foundation/3.JPG",
+        alt: "Свайное поле",
+      },
+      {
+        url: "/images/workPhoto/foundation/4.JPG",
+        alt: "Свайное поле",
+      },
+      {
+        url: "/images/workPhoto/foundation/5.JPG",
+        alt: "Свайное поле",
+      },
+      {
+        url: "/images/workPhoto/foundation/6.JPG",
+        alt: "Свайное поле",
+      },
+    ],
+  },
+  {
+    url: img_work_3,
+    title: "Дорожки, посадка и выравнивание",
+  },
+  {
+    url: img_work_4,
+    title: "Уличное освещение",
+  },
+  {
+    url: img_work_5,
+    title: "Забор из штакетника",
+  },
+  {
+    url: img_work_6,
+    title: "Забор из гиттера",
+  },
+  {
+    url: img_work_7,
+    title: "Откатные ворота",
+  },
+  {
+    url: img_work_8,
+    title: "Расчистка участка",
+  },
+];
+
 function visibleForm() {
-      if (!feedbackForm.active) {
-        feedbackForm.active = true
-        toggleBodyScroll(true)
-      } else {
-        feedbackForm.active = false
-        toggleBodyScroll(false)
-      }
-     
-    }
-    function toggleBodyScroll(lock) {
+  if (!feedbackForm.active) {
+    feedbackForm.active = true;
+    toggleBodyScroll(true);
+  } else {
+    feedbackForm.active = false;
+    toggleBodyScroll(false);
+  }
+}
+function toggleBodyScroll(lock) {
   // TODO: Использовать после того как будет реализована форма обратной связи
   document.body.style.overflow = lock ? "hidden" : "";
   document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
   document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
 }
-    const feedbackForm = reactive({
+const feedbackForm = reactive({
   // Не используется
   //TODO: Открывать форму при нажатии кнопки "Обсудить задачу"
   active: false, // Открыта ли форма обратной связи
@@ -194,11 +292,10 @@ function visibleForm() {
     :bannerPrice="bannerPrice"
     @isVisible="visibleForm()"
   />
-  <Form v-show="feedbackForm.active" 
-  @isVisible="visibleForm()"/>
+  <Form v-show="feedbackForm.active" @isVisible="visibleForm()" />
   <OurServices :dataServices="dataServices" title="Наши услуги" />
   <BisService title="БИС Сервис" />
-  <WorksSlider />
+  <WorksSlider title="Наши работы" :data="dataWork" />
   <WorkOrder :data="dataOrder" title="Почему выбирают нас" />
   <Partners />
   <AboutUs />

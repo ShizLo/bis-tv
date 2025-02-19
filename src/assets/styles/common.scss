@@ -10,6 +10,7 @@
 // }
 body {
   font-family: $fontFamily;
+  position: relative;
   // position: fixed;
   @media (max-width: $md4) {
     // overflow-y: hidden;

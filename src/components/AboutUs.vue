@@ -64,7 +64,7 @@ import BlockHeader from "../components/BlockHeader.vue";
 .about-us-text__right_area-text p {
   padding-bottom: 24px;
   color: $color-text;
-  font-size: 20px;
+  font-size: 18px;
   @media (max-width: $md3) {
     padding: 0px 10px;
   }

@@ -62,10 +62,8 @@ function goTo(path) {
         <h1 v-if="desctiption" class="banner__text _visibility">{{ desctiption[swiperBanner.slideIndex].title }}</h1>
         <h1 v-else-if="bannerText.length > 0" class="banner__text _visibility">{{ bannerText }}</h1>
 
-        <a
-         
-        >
-            <button class="banner__button" @click="hoverMobile(), $emit('isVisible')">
+        <a>
+          <button class="banner__button" @click="hoverMobile(), $emit('isVisible')">
             Обсудить задачу
             <svg class="banner__button-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="Frame 1864">

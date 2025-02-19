@@ -72,7 +72,7 @@ import BlockHeader from "../components/BlockHeader.vue";
             <div class="commands__avatar">
               <picture>
                 <source srcset="" type="image/jpg" />
-                <img src="/images/command/1.jpg" />
+                <img src="/images/command/4.webp" />
               </picture>
             </div>
           </div>
@@ -99,7 +99,6 @@ import BlockHeader from "../components/BlockHeader.vue";
   &__items {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    // gap: 20px;
     column-gap: 20px;
     row-gap: 40px;
     @media (max-width: $md4) {
@@ -166,6 +165,9 @@ import BlockHeader from "../components/BlockHeader.vue";
         margin: 0px 0px 10px 0px;
       }
     }
+    ul {
+      padding-left: 15px;
+    }
     li {
       list-style: circle;
     }
@@ -175,6 +177,9 @@ import BlockHeader from "../components/BlockHeader.vue";
         &:first-child {
           margin: 0px 0px 5px 0px;
         }
+      }
+      ul {
+        padding-left: 0;
       }
       li {
         list-style: none;
