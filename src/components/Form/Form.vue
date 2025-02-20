@@ -2,19 +2,25 @@
 import { ref, onUpdated, computed, reactive} from "vue";
 import { ROUTES_PATHS } from "../../constants";
 import useVuelidate from "@vuelidate/core"
-import { required, maxLength, helpers, email, minLength  } from "@vuelidate/validators"
+import { required, helpers, email, minLength  } from "@vuelidate/validators"
 import moment from 'moment'
-// let name = ref("");
-// let email = ref("");
-// let telephone = ref("");
-let questiion = ref("");
-let errorName = ref("");
-let errorTel = ref("");
-let errorEmail = ref("");
-let errorSelected = ref("");
-let date = ref(new Date());
 
+//------ переменные ------//
+let questiion = ref("");
+let date = ref();
+let visible = ref("");
 let isReady = ref();
+
+//------ вычисляемые свойства ------//
+const formattedDate = computed(() => {
+  if (date.value == null) {
+    visible.value = false
+    return 'любое время'
+  } else {
+    visible.value = true
+    return moment(date.value).format('DD-MM-YYYY HH:mm')
+  }
+})
 
 const formData = reactive({
   name: "",
@@ -33,7 +39,6 @@ const rules = {
   },
   telephone: {
     required: helpers.withMessage('Поле должно быть заполнено', required), 
-    // alpha: helpers.withMessage('Только латинские буквы', val => /[^0-9]/gi.test(val)),
     minLength: helpers.withMessage('Заполните поле полностью', minLength(18)),
   },
 }
@@ -43,18 +48,16 @@ const rulesTime = ref({
 });
 const v$ = useVuelidate( rules, formData )
 
-let isSuccesTel = ref(false);
-let isSuccesName = ref(false);
-let isSuccesEmail = ref(false);
-const selectedColor = ref('orange');
-  const formattedDate = computed(() => {
-    return moment(date.value).format('DD-MM-YYYY HH:mm')
-})
+const selectedColor = ref('orange'); // правило для календаря цвет кружочков оранжевый
+
+const dateNull = () => {
+    return date.value = null;
+}
 onUpdated(() => {
-  let nameInput = document.querySelector('input[name="name"]'); //Доступ к полям ввода
+  //------ Доступ к полям ввода ------//
+  let nameInput = document.querySelector('input[name="name"]'); 
   let telInput = document.querySelector('input[name="telephone"]');
   let emailInput = document.querySelector('input[name="email"]');
-
   let nameError = document.querySelector('input[name="name"]').nextElementSibling;
   let telError = document.querySelector('input[name="telephone"]').nextElementSibling;
   let emailError = document.querySelector('input[name="email"]').nextElementSibling;
@@ -65,66 +68,14 @@ onUpdated(() => {
     mask: "+{7} (000) 000-00-00",
     lazy: false,
   };
-
-//   const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-//   function isEmailValid(value) {
-//  	return EMAIL_REGEXP.test(value);
-// }
-function onInput() {
-	// if (isEmailValid(email.value)) {
-	// 	inputs[1].classList.remove("error");
-  //     inputs[1].classList.add("success");
-  //     emailError.classList.remove("name-error");
-  //     isSuccesEmail.value = true;
-	// } else {
-	// 	inputs[1].classList.remove("success");
-  //     inputs[1].classList.add("error");
-  //     errorEmail.value = "Заполните поле";
-  //     emailError.classList.add("name-error");
-  //     isSuccesEmail.value = false;
-	// }
-  // console.log(isEmailValid(email.value))
-}
-// emailInput.addEventListener('input', onInput);
-
-
-
+  //------ маска телефона ------//
   const maskTel = IMask(telInput, telOptions);
   maskTel.on(
   );
   
-  
-  // nameInput.addEventListener("input", function (e) {
-  //   // На случай, если умудрились ввести через копипаст или авто-дополнение.
-  //   nameInput.value = nameInput.value.replace(/[0-9]/g, "");
-  // });
-  
-
-  // nameInput.addEventListener("blur", function (e) {
-  //   if (nameInput.value.length == 0) {
-  //     nameError.classList.add("name-error");
-  //     errorName.value = "Заполните поле";
-  //     inputs[0].classList.add("error");
-  //   }
-  // });
 });
-function onAccept(e) {
-     const maskRef = e.detail
-     formData.telephone = maskRef.value
-console.log(maskRef)
-   }
-  function onComplete(e) {
-     const maskRef = e.detail
-     formData.telephone = maskRef.unmaskedValue
-   }
-  function isNumber(e) {
-     let regex = /[0-9]/
-     if (!regex.test(e.key)) {
-       e.returnValue = false;
-       if (e.preventDefault) e.preventDefault();
-     }
-   }
 
+//------ Конвертация в Unicod для отправки в телеграм ------//
 function convertToUnicod(text) {
   return text.replace(
     /[\u0080-\uFFFF]/g,
@@ -136,10 +87,8 @@ function convertToUnicod(text) {
   const result = await v$.value.$validate();
   if (result) {
     isReady.value = result
-    // console.log(isReady.value)
   } else {
     isReady.value = result
-    // console.log(isReady.value)
   }
 }
 function sendMessage() {
@@ -149,8 +98,7 @@ function sendMessage() {
   let selectedError = document.querySelector('.errorSelected');
   let telInput = document.querySelector('input[name="telephone"]')
   const inputs = document.querySelectorAll(".feedback__group");
- console.log(v$._value)
- console.log(telInput.value.length)
+
   if (!v$._value.$invalid) {
     var my_text = "Имя: "+ formData.name + "%0A" + 
                   "Почта: " + formData.email + "%0A" +
@@ -173,31 +121,9 @@ function sendMessage() {
     api.open("GET", url, true);
     console.log(url)
     //api.send();
-    // name.value = "";
-    // email.value = "";
-    // telephone.value = "";
     questiion.value = "";
-//     document.querySelectorAll('.round > input').forEach(function(checkbox) {
-//   checkbox.checked = true; 
-// });
-    // isSuccesName.value = false;
-    // isSuccesTel.value = false;
-    // isSuccesEmail.value = false
-    // telError.classList.add('send-message')
-    // this.errorTel = "Сообщение отправлено"
-    // console.log('succes')
-  } else {console.log("url")
-    // telError.classList.add("name-error");
-    // emailError.classList.add("name-error");
-    // inputs[1].classList.add("error");
-    // inputs[2].classList.add("error");
-    // nameError.classList.add("name-error");
-    // errorName.value = "Заполните поле";
-    // errorEmail.value = "Заполните поле";
-    // inputs[0].classList.add("error");
-    // errorTel.value = "Заполните поле";
-    // selectedError.classList.add("name-error");
-    // errorSelected.value = "Выберите хотя бы один способ связи"
+  } else {
+    console.log("url")
   }
 }
 
@@ -310,10 +236,6 @@ function sendMessage() {
                 </div>
               </div>
             </div>
-            <!-- <span class="errorSelected" 
-                  :class="[formData.selectedCommunication.length == 0 ? 'name-error' : '']">
-                  {{ errorSelected }}
-            </span> -->
           </div>
         </div>
         <div class="feedback__calendar">
@@ -322,6 +244,7 @@ function sendMessage() {
           <VDatePicker 
             v-model="date" 
             mode="dateTime" 
+            :min-date="new Date()"
             :color="selectedColor" 
             :rules = rulesTime
             is24hr />
@@ -331,18 +254,30 @@ function sendMessage() {
           <VDatePicker 
             v-model="date" 
             mode="dateTime" 
+            :min-date="new Date()"
             :color="selectedColor" 
             :rules = rulesTime
-            is24hr>
+            is24hr
+            @dayclick="
+      (_, event) => {
+        event.target.blur();
+      }">
             <template 
               #default="{ togglePopover }">
-              <button class=" px-3 py-2 bg-blue-500 text-sm text-white font-semibold rounded-md" 
+              <div class="changeDate px-3 py-2 bg-blue-500 text-sm text-white font-semibold rounded-md" 
                       @click="togglePopover">
-                Выберите дату
-              </button>
+                <p>Выберите дату</p>
+              </div>
             </template>
           </VDatePicker>
-          <p>Выбранная дата </br>{{ formattedDate }}</p>
+          <div class="date">
+            <p>Выбранная дата: {{ formattedDate }}</p>
+              <div class="" v-show="visible" @click="dateNull()">
+                <svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.11 2.697L2.698 4.11 6.586 8l-3.89 3.89 1.415 1.413L8 9.414l3.89 3.89 1.413-1.415L9.414 8l3.89-3.89-1.415-1.413L8 6.586l-3.89-3.89z" fill="#102938"></path>
+                </svg>
+              </div>
+          </div>
         </div>
       </div>
     </div>
@@ -359,6 +294,12 @@ function sendMessage() {
 </template>
 <style lang="scss" scoped>
 @use "../../assets/styles/main.scss" as *;
+.date {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .btn-inline {
   display: flex;
   align-content: center;
@@ -397,7 +338,12 @@ function sendMessage() {
 .show-calendar > p {
   margin-bottom: 10px;
 }
-.show-calendar > button {
+.show-calendar > .changeDate {
+  display: flex;
+  justify-content: center;
+  
+}
+.show-calendar > .changeDate > p {
   border-bottom: 1px solid #ea5b0c;
   border-radius: 0%;
   padding-bottom: 5px;
@@ -588,7 +534,7 @@ margin-bottom: 10px;
   width: 100%;
   height: 100%;
   top: 0;
-  position: absolute;
+  position: fixed;
   // visibility: hidden;
   z-index: 11;
   // display: none;
@@ -599,9 +545,9 @@ margin-bottom: 10px;
   display: flex;
   position: relative;
   padding-bottom: 20px;
-  padding-top: 50px;
+  padding-top: 25px;
   margin: 0 auto;
-  top: 10%;
+  top: 15%;
   background-color: white;
   width: 780px;
   flex-direction: column;
@@ -614,12 +560,12 @@ margin-bottom: 10px;
 
   @media (max-width: $md3) {
     width: 500px;
-    padding-top: 15px;
+    padding-top: 5px;
   };
 
   @media (max-width: $md4) {
     width: 380px;
-    padding-top: 5px;
+    // padding-top: 5px;
   };
 }
 
@@ -738,6 +684,14 @@ margin-bottom: 10px;
       font-weight: 600;
       line-height: 1.2;
       text-align: center;
+      @media (max-width: $md4) {
+        font-size: 30px;
+        margin: 0 0 20px;
+  };
+  @media (max-width: $md3) {
+    font-size: 28px;
+    margin: 10px 0 10px;
+  };
     }
   }
 
