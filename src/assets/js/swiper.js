@@ -146,13 +146,14 @@ export const swiper_banner_setting = {
 export const swiper_bis_work = {
   direction: "horizontal",
   slidesPerView: 4, // колво слайдов на показ
-  spaceBetween: 30, // отступ между слайдами
+  spaceBetween: 20, // отступ между слайдами
   // loop: true,
   // pagination: {
   //   el: ".swiper-pagination",
   //   type: "bullets",
   //   clickable: true,
   // },
+  loop: true,
   breakpoints: {
     // when window width is >= 320px
     320: {
@@ -168,7 +169,7 @@ export const swiper_bis_work = {
     },
     1280: {
       slidesPerView: 4.1,
-      spaceBetween: 15,
+      spaceBetween: 12,
     },
   },
   navigation: {
@@ -183,11 +184,29 @@ export const swiper_popup_work = {
   // centeredSlides: true,
   // lazyPreloadPrevNext: 1,
   // longSwipes: false,
+  slidesPerView: 1,
+  slidesPerGroup: 1,
   loop: true,
   slideToClickedSlide: false,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
+  breakpoints: {
+    320: {
+      navigation: {
+        enabled: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        type: "bullets",
+        clickable: true,
+      },
+    },
+    1280: {
+      slidesPerView: 1,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    },
   },
-  modules: [Navigation],
+
+  modules: [Navigation, Pagination],
 };

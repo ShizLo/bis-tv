@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, reactive, ref } from "vue";
 import Swiper from "swiper/bundle";
 import { swiper_bis_work } from "../assets/js/swiper";
+import { toggleBodyScroll } from "../assets/js/utils/toggleBodyScroll";
 import BlockHeader from "../components/BlockHeader.vue";
 import PopupSlider from "../components/PopupSlider.vue";
 
@@ -15,7 +16,7 @@ const props = defineProps({
 });
 
 const popup = reactive({
-  index: 1,
+  index: 0,
   visibility: false,
 });
 
@@ -157,6 +158,7 @@ const workImages = {
 };
 
 function clickSlide(ind) {
+  toggleBodyScroll(true);
   setIndexSlide(ind);
   toggleVisibilityPopup();
 }
@@ -165,6 +167,10 @@ function setIndexSlide(ind) {
 }
 function toggleVisibilityPopup() {
   popup.visibility ? (popup.visibility = false) : (popup.visibility = true);
+}
+function closePopup() {
+  toggleVisibilityPopup(false);
+  toggleBodyScroll(false);
 }
 
 onMounted(() => {
@@ -175,7 +181,7 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <PopupSlider v-if="popup.visibility" :data="data[popup.index].work"></PopupSlider>
+  <PopupSlider @someEvent="closePopup" v-if="popup.visibility" :data="data[popup.index].work"></PopupSlider>
   <section class="works-slider">
     <div class="_container">
       <BlockHeader :title="title"></BlockHeader>
