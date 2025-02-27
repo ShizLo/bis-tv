@@ -18,9 +18,9 @@ import router from "./router";
 //   document.documentElement.style.setProperty("--vh", `${vh}px`);
 // });
 
-const appHeight = () => {
-  const doc = document.documentElement.doc.style.setProperty("--app-height", `${window.innerHeight}px`);
-};
-window.addEventListener("resize", appHeight);
+// const appHeight = () => {
+//   const doc = document.documentElement.doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+// };
+// window.addEventListener("resize", appHeight);
 
 createApp(App).use(router).use(VueMoment).use(VCalendar, {}).use(VueScrollTo).mount("#app");

@@ -1,21 +1,53 @@
 <script setup>
-import { onMounted, onUnmounted, reactive, ref } from "vue";
+import { onMounted, onUnmounted, onBeforeMount, reactive, ref } from "vue";
 import Swiper from "swiper/bundle";
 import { swiper_popup_work } from "../assets/js/swiper";
 import { toggleBodyScroll } from "../assets/js/utils/toggleBodyScroll";
 
 const swiper_popup = new Swiper(".swiper-popup-work", swiper_popup_work);
-let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty("--vh", `${vh}px`);
+const popup = reactive({
+  index: 1,
+});
+
+function swiperInit() {
+  swiper_popup.init();
+  listenerTouch();
+  swiper_popup.on("slideChange", function () {
+    popup.index = swiper_popup.realIndex + 1;
+  });
+}
+
+// let vh = window.innerHeight * 0.01;
+// document.documentElement.style.setProperty("--vh", `${vh}px`);
+
 const props = defineProps({
   data: {
     typeof: Array,
   },
 });
 
+const emit = defineEmits(["someEvent"]);
+
+function listenerTouch() {
+  let startY = 0;
+  let endY = 0;
+  const swiperContainer = document.querySelector(".swiper-popup-work");
+
+  swiperContainer.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+  });
+
+  swiperContainer.addEventListener("touchend", (e) => {
+    endY = e.changedTouches[0].clientY;
+    const deltaY = endY - startY;
+    if (deltaY > 100) {
+      emit("someEvent");
+    }
+  });
+}
 onMounted(() => {
   toggleBodyScroll(true);
-  swiper_popup.init();
+  swiperInit();
 });
 onUnmounted(() => {
   swiper_popup.destroy();
@@ -26,7 +58,7 @@ onUnmounted(() => {
     <div class="viewer-header">
       <div class="viewer-author"></div>
       <div class="viewer-title">
-        <span class="ui-viewer-title-text">{{ data[0].alt }}</span>
+        <span class="ui-viewer-title-text">{{ data[0].alt }} {{ popup.index }} из {{ data.length }}</span>
       </div>
       <div class="viewer-action">
         <div @click="$emit('someEvent')" class="ui-viewer-close">
@@ -41,7 +73,7 @@ onUnmounted(() => {
             <img loading="lazy" :src="item.url" :alt="item.alt" class="swiper__img" />
           </div>
         </div>
-        <div class="swiper-pagination test"></div>
+        <div class="swiper-pagination"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       </div>
@@ -51,6 +83,7 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
+
 .popup-slider {
   &__wraper {
     position: fixed;
@@ -81,6 +114,7 @@ onUnmounted(() => {
   max-width: 100%;
   height: 100%;
   margin: auto;
+  // transition: transform 1s ease-in-out;
 }
 .swiper {
   &__img {
@@ -126,13 +160,13 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   height: 85px;
-  flex: 1;
+  flex: 0.5;
 }
 .viewer-title {
   display: flex;
   flex-wrap: wrap;
   height: 85px;
-  flex: 1;
+  flex: 2;
   align-items: center;
   justify-content: center;
   padding: 0 15px;
@@ -148,7 +182,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   height: 85px;
-  flex: 1;
+  flex: 0.5;
   justify-content: end;
 }
 .ui-viewer-close {
