@@ -21,11 +21,11 @@ body {
 
 body {
   font-family: $fontFamily;
-  width: 100vw;
-  height: 100vh;
-  @media not all and (hover: hover) {
-    height: var(--app-height);
-  }
+  // width: 100vw;
+  // height: 100vh;
+  // @media not all and (hover: hover) {
+  //   height: var(--app-height);
+  // }
   // padding: 0;
   // margin: 0;
   // width: 100vh;

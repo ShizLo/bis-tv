@@ -26,7 +26,7 @@ onUnmounted(() => {
     <div class="viewer-header">
       <div class="viewer-author"></div>
       <div class="viewer-title">
-        <span class="ui-viewer-title-text">Озеленение</span>
+        <span class="ui-viewer-title-text">{{ data[0].alt }}</span>
       </div>
       <div class="viewer-action">
         <div @click="$emit('someEvent')" class="ui-viewer-close">
@@ -41,7 +41,7 @@ onUnmounted(() => {
             <img loading="lazy" :src="item.url" :alt="item.alt" class="swiper__img" />
           </div>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination test"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       </div>
@@ -53,23 +53,12 @@ onUnmounted(() => {
 @use "../assets/styles/main.scss" as *;
 .popup-slider {
   &__wraper {
-    // flex: 1;
-    // flex-shrink: 0;
-    // flex-grow: 0;
     position: fixed;
-    // overflow-y: scroll;
-    // width: 100%;
-    // min-height: 100%;
-    // height: 100%;
-    // height: -webkit-fill-available;
-    // height: calc(var(--vh, 1vh) * 100);
-    -moz-box-sizing: border-box;
     z-index: 20;
     background-color: rgba(22, 22, 22, 0.925);
-    // opacity: 1;
-    // left: 0;
-    // top: 0;
-    // right: 0;
+    left: 0;
+    top: 0;
+    right: 0;
     bottom: 0;
     display: flex;
     align-items: center;
@@ -79,14 +68,13 @@ onUnmounted(() => {
 }
 .swiper-container {
   flex: 1;
-  position: relative;
   max-width: 800px;
   height: 600px;
   overflow: hidden;
   border-radius: 8px;
   @media (max-width: $md4) {
-    max-height: 500px;
-    // margin: 0px 8px;
+    max-height: 75dvh;
+    margin: 0px 8px;
   }
 }
 .swiper-popup-work {
@@ -121,6 +109,9 @@ onUnmounted(() => {
   font-size: 32px;
   color: #9d9ea0;
 }
+.swiper-popup-work > .swiper-pagination {
+  bottom: 20px;
+}
 .viewer-header {
   display: flex;
   align-items: center;
@@ -147,8 +138,11 @@ onUnmounted(() => {
   padding: 0 15px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.6);
-  font-size: 15px;
+  font-size: 18px;
   white-space: normal;
+  @media (max-width: $md4) {
+    font-size: 16px;
+  }
 }
 .viewer-action {
   display: flex;
@@ -165,6 +159,10 @@ onUnmounted(() => {
   height: 85px;
   cursor: pointer;
   transition: 0.3s;
+  @media (max-width: $md4) {
+    justify-content: end;
+    padding: 15px;
+  }
 }
 .ui-viewer-close-icon {
   position: relative;

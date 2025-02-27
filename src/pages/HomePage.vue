@@ -243,6 +243,16 @@ const dataWork = [
   {
     url: img_work_4,
     title: "Уличное освещение",
+    work: [
+      {
+        url: img_work_4,
+        alt: "Уличное освещение",
+      },
+      {
+        url: "/images/workPhoto/electricity/1.jpg",
+        alt: "Уличное освещение",
+      },
+    ],
   },
   {
     url: img_work_5,
