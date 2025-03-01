@@ -169,7 +169,7 @@ export const swiper_bis_work = {
     },
     1280: {
       slidesPerView: 4.1,
-      spaceBetween: 12,
+      spaceBetween: 10,
     },
   },
   navigation: {

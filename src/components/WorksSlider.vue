@@ -286,13 +286,14 @@ onUnmounted(() => {
 }
 .content__title {
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   line-height: normal;
   color: #fff;
   text-align: left;
   padding: 15px 15px 10px 15px;
   z-index: 10;
   text-align: center;
+  letter-spacing: 0.4px;
   @media (max-width: $md1) {
     font-size: 20px;
   }
