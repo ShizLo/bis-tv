@@ -60,7 +60,7 @@ function sendMessage() {
     </div>
   </section>
 </template>
-<style lang="scss" coped>
+<style lang="scss" scoped>
 @use "../../assets/styles/main.scss" as *;
 .flex-input {
   display: flex;

@@ -7,6 +7,7 @@ import BisService from "../../components/BisService.vue";
 import SeptikSlider from "./SeptikSlider.vue";
 import WaterSupplySlider from "./WaterSupplySlider.vue";
 import PopularServices from "../../components/PopularServices.vue";
+import BannerFeedBack from "./BannerFeedBack.vue";
 import FeedBackForm from "../../components/FeedBackForm.vue";
 
 //<Импорт картинок блок "Наши услуги">================================================================================
@@ -217,14 +218,15 @@ const dataBisService = [
 </script>
 
 <template>
-  <Banner style="white-space: pre-line" bannerText="БИС Сервис" :bannerPrice="bannerPrice" @isVisible="visibleForm()" />
-  <OurServices :dataServices="dataServices" title="Наш сервис" />
+  <BannerFeedBack />
+  <!-- <Banner style="white-space: pre-line" bannerText="БИС Сервис" :bannerPrice="bannerPrice" @isVisible="visibleForm()" /> -->
+  <!-- <OurServices :dataServices="dataServices" title="Наш сервис" /> -->
   <WorkOrder :data="dataOrder" title="Наш спектр услуг" />
   <!-- <BisService title="Что мы умеем" :data="dataBisService" />
   <BisService title="Что мы умеем" :data="dataBisService" /> -->
   <SeptikSlider title="Сервис септика" />
   <WaterSupplySlider title="Сервис водоснабжения" />
-  <PopularServices title="Популярные услуги" />
+  <!-- <PopularServices title="Популярные услуги" /> -->
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
 </template>
 

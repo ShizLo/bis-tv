@@ -1,5 +1,5 @@
 <script setup>
-import { ROUTES_PATHS } from "../constants";
+import { ROUTES_PATHS } from "../../constants";
 import { ref } from "vue";
 
 let name = ref("");
@@ -38,12 +38,10 @@ function sendMessage() {
 <template>
   <section id="section" class="global-form feedback-form">
     <div class="_container global-form_mt">
-      <h2 class="feedback-form__title">{{ title }}</h2>
       <div class="form-bl brd">
-        <div class="form-submit" style="padding-bottom: 0">
-          <!-- <div class="form__title">Оставьте заявку</div> -->
-          <p>Позвоните сейчас или запишитесь на бесплатную консультацию</p>
-
+        <div class="form-submit">
+          <div class="form__title">Обслуживание септика или ЛОС</div>
+          <p>Закажите обслуживание септика в Санкт-Петербурге</p>
           <div class="flex-input">
             <div class="col">
               <input v-model="name" type="text" name="Ваше имя" value="" id="input-name" placeholder="Ваше имя" />
@@ -52,18 +50,17 @@ function sendMessage() {
               <input v-model="email" type="text" name="Ваша почта" value="" placeholder="Ваша почта или телефон" id="input-email" />
             </div>
             <div class="col">
-              <textarea v-model="questiion" name="Задайте ваш вопрос" placeholder="Задайте ваш вопрос"></textarea>
+              <textarea v-model="questiion" name="Какой у Вас септик" placeholder="Какой у Вас септик?"></textarea>
             </div>
-          </div>
-          <div class="feedback-form__footer">
-            <input @click="sendMessage" class="form__button button_mtp" type="submit" value="Отправить" />
-            <a class="link__phone phone" href="tel:+7 911 277-56-07"> +7 911 277-56-07</a>
           </div>
           <div class="feedback">
             <p class="feedback__text">
-              Нажимая кнопку «отправить», вы соглашаетесь с
+              Нажимая кнопку «Заказать услугу», вы соглашаетесь с
               <router-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</router-link>
             </p>
+          </div>
+          <div class="feedback-form__footer">
+            <input @click="sendMessage" class="form__button button_mtp" type="submit" value="Заказать услугу" />
           </div>
         </div>
       </div>
@@ -71,10 +68,11 @@ function sendMessage() {
   </section>
 </template>
 <style lang="scss" scoped>
-@use "../assets/styles/main.scss" as *;
+@use "../../assets/styles/main.scss" as *;
 
 .feedback-form {
   margin: 0px 0px 25px 0px;
+
   &__title {
     // margin-top: 10px;
     margin-bottom: 10px;
@@ -110,7 +108,8 @@ function sendMessage() {
   }
 }
 .col:first-child {
-  flex-grow: 1;
+  //flex-grow: 1;
+  flex: 0 0 20%;
   order: 1;
   margin-right: 12px;
   @media (max-width: 558px) {
@@ -118,7 +117,8 @@ function sendMessage() {
   }
 }
 .col:nth-child(2) {
-  flex-grow: 1;
+  //flex-grow: 1;
+  flex: 0 0 25%;
   order: 2;
   margin-right: 12px;
   @media (max-width: $md3) {
@@ -126,13 +126,26 @@ function sendMessage() {
   }
 }
 .col:nth-child(3) {
-  flex-grow: 10;
+  //flex-grow: 10;
+  flex: 0 0 25%;
   order: 3;
   margin-right: 10px;
   @media (max-width: $md3) {
     margin-right: 0px;
   }
 }
+
+input::placeholder {
+  @media (max-width: $md4) {
+    color: #102938;
+  }
+}
+textarea::placeholder {
+  @media (max-width: $md4) {
+    color: #102938;
+  }
+}
+
 input[type="email"],
 input[type="password"],
 input[type="tel"],
@@ -140,7 +153,7 @@ input[type="text"],
 textarea {
   width: 100%;
   height: auto;
-  color: #333;
+  color: #102938;
   font-size: 20px;
   vertical-align: top;
   padding: 10px 0 4px;
@@ -160,7 +173,7 @@ textarea {
 .global-form {
   margin-top: 2rem;
   @media (max-width: $md4) {
-    margin-top: 15px;
+    // margin-top: 20px;
   }
 }
 :focus,
@@ -176,25 +189,29 @@ textarea {
   height: 45px;
 }
 .form__title {
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 600;
   display: inline-block;
   border-radius: 32px;
   color: $color-title;
+  margin: 0px 0px 10px 0px;
   @media (max-width: $md4) {
     font-size: $fs-l;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 }
+.form-submit {
+}
+
 .form-submit p {
   color: #102938;
-  font-size: 1.4rem;
-  font-weight: 500;
-  margin-bottom: 7px;
+  font-size: 1.3rem;
+  font-weight: 400;
+
   @media (max-width: $md4) {
     margin-bottom: 5px;
     line-height: 1.3;
-    font-size: 16px;
+    font-size: 13px;
   }
 }
 .form__button {
@@ -237,19 +254,30 @@ textarea {
   box-shadow: 0px 1px 3px 0px rgba(34, 60, 80, 0.18);
   color: #102938;
   text-align: left;
-  padding: 28px 25px 1px;
-  background-color: #f5f5f5;
+  padding: 100px 25px;
+  background-color: $backround;
+  background-image: url("../../assets/images/homePage/services-1.webp");
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 85% auto;
+  z-index: 10;
   border-radius: 8px;
   box-sizing: border-box;
   @media (max-width: $md4) {
-    padding: 20px 12px 1px 15px;
+    padding: 110px 12px 45px 12px;
+    background-image: linear-gradient(rgba(236, 239, 243, 0.7), rgba(236, 239, 243, 0.7)),
+      url("../../assets/images/homePage/services-1.webp");
+    background-size: 300% auto;
+    background-position: 92% 100%;
   }
 }
 .feedback {
-  margin: 2px 0px 18px 0px;
-
   & p {
     font-size: 12px;
+    @media (max-width: $md4) {
+      margin-top: 3px;
+      font-size: 11px;
+    }
   }
 }
 </style>
