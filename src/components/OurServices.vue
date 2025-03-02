@@ -55,7 +55,6 @@ const props = defineProps({
 @use "../assets/styles/main.scss" as *;
 
 .services {
-  margin-top: 15px;
   margin-bottom: 25px;
   &__title {
     font-size: $fs-xxl;

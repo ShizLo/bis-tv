@@ -8,71 +8,13 @@ const props = defineProps({
   title: {
     typeof: String,
   },
+  data: {
+    typeof: Array
+  }
 });
 const swiper_bis = new Swiper(".swiper-bis-services", swiper_bis_setting);
 
-const data = [
-  {
-    urlImg: "url(/images/globalServices/services-1+.webp)",
-    title: "Септик",
-    price: [{ text: "Обслуживание" }, { text: "Ремонт" }, { text: "Разморозка труб" }, { text: "Откачка" }, { text: "..." }],
-    // routePath: ROUTES_PATHS.HOME,
-  },
-  {
-    urlImg: "url(/images/waterPage/bis-service-2+.webp)",
-    title: "Бойлер",
-    price: [{ text: "Диагностика" }, { text: "Обслуживание" }],
-    // routePath: ROUTES_PATHS.FENCE,
-  },
-  {
-    urlImg: "url(/images/waterPage/bis-service-1+.webp)",
-    title: "Вододоочистка",
-    price: [{ text: "Замена картриджей" }],
-    // routePath: ROUTES_PATHS.FAUNDATION,
-  },
-  {
-    urlImg: "url(/images/waterPage/water-6@0.5x.webp)",
-    title: "Водоподготовка",
-    price: [{ text: "Анализ воды" }, { text: "Обслуживание" }, { text: "Ремонт" }, { text: "Магистральный фильтр" }, { text: "..." }],
-    // routePath: ROUTES_PATHS.WATER,
-  },
-  {
-    urlImg: "url(/images/globalServices/sticker.png)",
-    title: "Водоснабжение",
-    price: [
-      { text: "Замена насоса" },
-      { text: "Устранение течей" },
-      { text: "Греющий кабель" },
-      { text: "Утепление труб" },
-      { text: "..." },
-    ],
-    // routePath: ROUTES_PATHS.WATER,
-  },
-  {
-    urlImg: "",
-    title: "Уборка участка",
-    price: [{ text: "Вывоз мусора" }, { text: "Уборка крыши" }, { text: "Чистка террасы" }, { text: "..." }],
-    // routePath: ROUTES_PATHS.HOME,
-  },
-  {
-    urlImg: "",
-    title: "Генераторы",
-    price: [{ text: "ТО и сервис" }],
-    // routePath: ROUTES_PATHS.ELECTRICITY,
-  },
-  {
-    urlImg: "",
-    title: "Газон",
-    price: [{ text: "Стрижка" }, { text: "Аэрация" }, { text: "Восстановление" }],
-    // routePath: ROUTES_PATHS.HOME,
-  },
-  {
-    urlImg: "",
-    title: "Водопровод",
-    price: [{ text: "Разморозка" }],
-    // routePath: ROUTES_PATHS.HOME,
-  },
-];
+
 
 onMounted(() => {
   swiper_bis.init();
