@@ -387,13 +387,13 @@ const dataBisService = [
   {
     urlImg: "url(/images/globalServices/services-1+.webp)",
     title: "Септик",
-    price: [{ text: "Обслуживание" }, { text: "Ремонт" }, { text: "Разморозка труб" }, { text: "Откачка" }, { text: "..." }],
+    price: [{ text: "Обслуживание" }, { text: "Консервация" }, { text: "Ремонт" }, { text: "Диагностика" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
   {
     urlImg: "url(/images/waterPage/bis-service-2+.webp)",
     title: "Бойлер",
-    price: [{ text: "Диагностика" }, { text: "Обслуживание" }],
+    price: [{ text: "Обслуживание" }, { text: "Диагностика" }, { text: "Замена тена" }, { text: "Чистка от накипи" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
   {

@@ -4,7 +4,7 @@ function onHover(event, color) {
 }
 
 function leaveHover(event) {
-  event.currentTarget.style.background = "#f5f5f5";
+  event.currentTarget.style.background = "#eceff3";
 }
 
 const props = defineProps({
@@ -145,7 +145,7 @@ const props = defineProps({
         }
         @media (max-width: $md4) {
           font-size: 20px;
-          padding: 15px 10px 0px 10px;
+          padding: 15px 10px 0px 12px;
         }
       }
       .item__price {
@@ -243,7 +243,7 @@ const props = defineProps({
       background-size: 65% auto !important;
     }
     @media (max-width: $md4) {
-      background-size: 90% auto !important;
+      background-size: 80% auto !important;
     }
   }
 }

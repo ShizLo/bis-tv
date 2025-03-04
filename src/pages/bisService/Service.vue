@@ -10,6 +10,7 @@ import PopularServices from "../../components/PopularServices.vue";
 import BannerFeedBack from "./BannerFeedBack.vue";
 import FeedBackForm from "../../components/FeedBackForm.vue";
 import DescriptionService from "./DescriptionService.vue";
+import VariantServiceSlider from "./VariantServiceSlider.vue";
 
 //<Импорт картинок блок "Наши услуги">================================================================================
 import img_service_1 from "../../assets/images/homePage/services-1.webp";
@@ -79,7 +80,7 @@ const dataServices = [
             text: "Откачка отработанного материала",
           },
           {
-            text: "Разборка, чистка узлов и переливов",
+            text: "Чистка узлов и переливов",
           },
           {
             text: "Чистка камер септика",
@@ -213,12 +214,13 @@ const dataBisService = [
   <BannerFeedBack />
   <!-- <Banner style="white-space: pre-line" bannerText="БИС Сервис" :bannerPrice="bannerPrice" @isVisible="visibleForm()" /> -->
 
-  <WorkOrder :data="dataOrder" title="Наш спектр услуг" />
-  <SeptikServices :dataServices="dataServices" />
+  <!-- <WorkOrder :data="dataOrder" title="Наш спектр услуг" /> -->
+  <SeptikServices title="Наш спектр услуг" :dataServices="dataServices" />
   <!-- <BisService title="Что мы умеем" :data="dataBisService" />
   <BisService title="Что мы умеем" :data="dataBisService" /> -->
   <!-- <DescriptionService /> -->
   <SeptikSlider />
+  <VariantServiceSlider title="Варианты обслуживания" />
   <!-- <WaterSupplySlider title="Сервис водоснабжения" /> -->
   <!-- <PopularServices title="Популярные услуги" /> -->
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
