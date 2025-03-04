@@ -144,13 +144,13 @@ function goTo(path) {
   box-shadow: 1px 1px 3px 0px rgba(34, 60, 80, 0.25);
   @media (max-width: $md2) {
     border-radius: 0;
-    &::after {
-      content: "";
-      width: 100%;
-      height: 2px;
-      position: absolute;
-      background-color: #ea5b0c;
-    }
+    // &::after {
+    //   content: "";
+    //   width: 100%;
+    //   height: 2px;
+    //   position: absolute;
+    //   background-color: #ea5b0c;
+    // }
   }
   @media (max-width: $md4) {
     height: 300px;
@@ -330,13 +330,13 @@ function goTo(path) {
 }
 .banner {
   @media (min-width: $md2) {
-    &::after {
-      content: "";
-      width: 100%;
-      height: 2px;
-      position: absolute;
-      background-color: #ea5b0c;
-    }
+    // &::after {
+    //   content: "";
+    //   width: 100%;
+    //   height: 2px;
+    //   position: absolute;
+    //   background-color: #ea5b0c;
+    // }
   }
 
   &__container {

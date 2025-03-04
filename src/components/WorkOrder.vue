@@ -168,7 +168,7 @@ onUnmounted(() => {
 // }
 
 .swiper-slide__order {
-  background-color: $color-background;
+  background-color: $background;
   border-radius: 8px;
   height: auto;
   // padding: 20px 15px;

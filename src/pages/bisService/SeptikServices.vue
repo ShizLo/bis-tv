@@ -42,6 +42,11 @@ const props = defineProps({
                   <div v-if="item.price.length > 0" class="item__price content__price">
                     <span>{{ item.price }}</span>
                   </div>
+                  <div class="item__content">
+                    <ul v-for="content in item.content">
+                      <li>{{ content.text }}</li>
+                    </ul>
+                  </div>
                 </div>
               </router-link>
             </div>
@@ -52,10 +57,10 @@ const props = defineProps({
   </section>
 </template>
 <style lang="scss" scoped>
-@use "../assets/styles/main.scss" as *;
+@use "../../assets/styles/main.scss" as *;
 
 .services {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   &__title {
     font-size: $fs-xxl;
     font-weight: 600;
@@ -86,7 +91,7 @@ const props = defineProps({
       flex-wrap: wrap;
     }
     @media (max-width: $md4) {
-      gap: 7px;
+      gap: 15px;
     }
   }
 
@@ -208,7 +213,7 @@ const props = defineProps({
   // height: 100%;
   overflow: hidden;
   border-radius: 0.5rem;
-  background-color: $color-background;
+  background-color: $background;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
     backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -238,11 +243,13 @@ const props = defineProps({
       background-size: 65% auto !important;
     }
     @media (max-width: $md4) {
-      background-size: 100% auto !important;
+      background-size: 90% auto !important;
     }
   }
 }
-
+li {
+  list-style: circle;
+}
 .item {
   // background: v-bind(imagePath);
   // background: v-bind(path);
@@ -264,6 +271,14 @@ const props = defineProps({
       font-size: 14px;
       margin: 8px 0px 0px 8px;
       // padding: 7px 10px;
+    }
+  }
+  &__content {
+    padding: 10px 0px 0px 30px;
+    @media (max-width: $md4) {
+      padding: 5px 0px 0px 25px;
+      font-size: 12px;
+      line-height: 1.2;
     }
   }
 }

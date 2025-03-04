@@ -255,7 +255,7 @@ textarea {
   color: #102938;
   text-align: left;
   padding: 100px 25px;
-  background-color: $backround;
+  background-color: $background;
   background-image: url("../../assets/images/homePage/services-1.webp");
   background-position: 100% 100%;
   background-repeat: no-repeat;

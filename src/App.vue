@@ -381,13 +381,13 @@ document.addEventListener("click", (e) => {
 }
 .header {
   margin-bottom: 2px;
-  &::after {
-    content: "";
-    width: 100%;
-    height: 2px;
-    position: absolute;
-    background-color: #ea5b0c;
-  }
+  // &::after {
+  //   content: "";
+  //   width: 100%;
+  //   height: 2px;
+  //   position: absolute;
+  //   background-color: #ea5b0c;
+  // }
   &__container {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;

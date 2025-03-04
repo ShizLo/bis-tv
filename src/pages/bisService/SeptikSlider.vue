@@ -11,21 +11,12 @@ const props = defineProps({
 });
 const swiper_septik = new Swiper(".swiper-septik-services", swiper_septik_setting);
 
+import work_1 from "../../assets/images/homePage/work-bis-service-1.webp";
+
 const data = [
   {
-    urlImg: "",
-    title: "Базовое обслуживание",
-    price: "от 6 500 руб.",
-    // routePath: ROUTES_PATHS.HOME,
-  },
-  {
-    urlImg: "",
+    urlImg: work_1,
     title: "Замена компрессора",
-    price: "от 6 500 руб.",
-  },
-  {
-    urlImg: "",
-    title: "Консервация",
     price: "от 6 500 руб.",
   },
   {
@@ -96,12 +87,16 @@ onUnmounted(() => {
 <template>
   <section class="global-services">
     <div class="global-services__container _container">
-      <h2 class="global-services__title">{{ title }}</h2>
+      <h2 v-if="title" class="global-services__title">{{ title }}</h2>
       <div class="swiper-container">
         <div class="swiper-septik-services">
           <div class="swiper-wrapper">
             <div v-for="item in data" class="swiper-slide swiper-slide__global-services">
-              <router-link :style="{ 'background-image': item.urlImg }" class="services__link" :to="{ name: item.routePath }">
+              <router-link
+                :style="{ 'background-image': 'url(' + item.urlImg + ')' }"
+                class="services__link"
+                :to="{ name: item.routePath }"
+              >
                 <div class="item__title">{{ item.title }}</div>
                 <div class="item__foot">
                   <span>{{ item.price }}</span>
@@ -216,7 +211,7 @@ onUnmounted(() => {
 }
 
 .swiper-slide__global-services {
-  background-color: $color-background;
+  background-color: $background;
   border-radius: 8px;
   height: auto;
   padding: 15px 15px 10px 17px;

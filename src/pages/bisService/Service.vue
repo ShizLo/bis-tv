@@ -1,7 +1,7 @@
 <script setup>
 import Banner from "../../components/Banner.vue";
 import { ROUTES_PATHS } from "../../constants";
-import OurServices from "../../components/OurServices.vue";
+import SeptikServices from "./SeptikServices.vue";
 import WorkOrder from "../../components/WorkOrder.vue";
 import BisService from "../../components/BisService.vue";
 import SeptikSlider from "./SeptikSlider.vue";
@@ -9,12 +9,14 @@ import WaterSupplySlider from "./WaterSupplySlider.vue";
 import PopularServices from "../../components/PopularServices.vue";
 import BannerFeedBack from "./BannerFeedBack.vue";
 import FeedBackForm from "../../components/FeedBackForm.vue";
+import DescriptionService from "./DescriptionService.vue";
 
 //<Импорт картинок блок "Наши услуги">================================================================================
 import img_service_1 from "../../assets/images/homePage/services-1.webp";
 import img_service_2 from "../../assets/images/homePage/services-2.webp";
-import img_service_3 from "../../assets/images/homePage/services-3.webp";
-import img_service_4 from "../../assets/images/homePage/services-4.webp";
+import img_service_3 from "../../assets/images/homePage/bis-1.webp";
+import img_service_4 from "../../assets/images/homePage/bis-2.webp";
+// import img_service_4 from "../../assets/images/homePage/services-4.webp";
 import img_service_5 from "../../assets/images/homePage/services-5.webp";
 import img_service_6 from "../../assets/images/homePage/services-6.png";
 //</Импорт картинок>===============================================================================
@@ -68,65 +70,55 @@ const dataServices = [
     [
       {
         class: "services__row-item-big",
-        title: "Обслуживание ЛОС",
+        title: "Базовое обслуживание",
         price: "От 6 500 руб.",
-        pathImg: img_service_1,
+        pathImg: img_service_3,
         hoverColors: "rgb(170, 214, 199)",
-      },
-    ],
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Бойлер",
-        price: "От 3 500 руб.",
-        pathImg: "",
-        hoverColors: "rgb(204, 209, 255)",
-        // routePath: ROUTES_PATHS.WATER,
-      },
-      // {
-      //   class: "services__row-item-sm",
-      //   title: "Ливневка",
-      //   price: "От 50 000 руб.",
-      //   pathImg: "url(/images/ourServices/services-7.webp",
-      //   hoverColors: "rgb(204, 209, 255)",
-      // },
-      {
-        class: "services__row-item-sm",
-        title: "Водоочистка",
-        price: "От 2 000 руб.",
-        pathImg: "",
-        hoverColors: "rgb(255, 229, 204)",
-        // routePath: ROUTES_PATHS.FENCE,
+        content: [
+          {
+            text: "Откачка отработанного материала",
+          },
+          {
+            text: "Разборка, чистка узлов и переливов",
+          },
+          {
+            text: "Чистка камер септика",
+          },
+          {
+            text: "Обратная сборка и установка",
+          },
+          {
+            text: "Полная проверка работы септика",
+          },
+          {
+            text: "Выезд мастера",
+          },
+        ],
       },
     ],
   ],
   [
     [
       {
-        class: "services__row-item-sm",
-        title: "Водоподготовка",
-        price: "От 2 500 руб.",
-        pathImg: "",
-        hoverColors: "rgb(255, 229, 204)",
-        // routePath: ROUTES_PATHS.FAUNDATION,
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Электроcети",
-        price: "От 3 000 руб.",
-        pathImg: img_service_5,
-        hoverColors: "rgb(243, 253, 180)",
-        // routePath: ROUTES_PATHS.ELECTRICITY,
-      },
-    ],
-    [
-      {
         class: "services__row-item-big",
-        title: "Система водоснабжения",
-        price: "От 1 000 руб.",
-        pathImg: img_service_2,
+        title: "Консервация",
+        price: "От 6 500 руб.",
+        pathImg: img_service_4,
         hoverColors: "rgb(255, 229, 204)",
-        // routePath: ROUTES_PATHS.TOPOGRAPHY,
+        content: [
+          {
+            text: "Полная проверка работы септика",
+          },
+          {
+            text: "Изъятие оборудования из станции",
+          },
+          {
+            text: "Обслуживание септика",
+          },
+          {
+            text: "Выезд мастера",
+          },
+        ],
       },
     ],
   ],
@@ -138,9 +130,9 @@ const dataOrder = [
     text: "Регулярное обслуживание позволяет предотвратить аварии, продлить срок службы оборудования и обеспечить комфортное проживание в загородном доме. Рекомендуем проводить его не реже 1-2 раз в год.",
   },
   {
-    urlImg: "/icons/homePage/cogs.svg",
-    title: "Диагностика",
-    text: "Оценим состояние всех систем и выявим потенциальные проблемы. Проводится как в профилактических целях, так и перед ремонтом, консервацией или после длительного простоя.",
+    urlImg: "/icons/homePage/checkmark.svg",
+    title: "Консервация",
+    text: "Подготовим системы к длительному простою для защиты оборудования и коммуникаций вызванных низкими температурами, коррозией или другими внешними факторами.",
   },
   {
     urlImg: "/icons/waterPage/hammer.svg",
@@ -148,9 +140,9 @@ const dataOrder = [
     text: "Восстановим работоспособность систем, которые вышли из строя или требующие модернизации.",
   },
   {
-    urlImg: "/icons/homePage/checkmark.svg",
-    title: "Консервация",
-    text: "Подготовим системы к длительному простою для защиты оборудования и коммуникаций вызванных низкими температурами, коррозией или другими внешними факторами.",
+    urlImg: "/icons/homePage/cogs.svg",
+    title: "Диагностика",
+    text: "Оценим состояние всех систем и выявим потенциальные проблемы. Проводится как в профилактических целях, так и перед ремонтом, консервацией или после длительного простоя.",
   },
 ];
 const dataBisService = [
@@ -220,12 +212,14 @@ const dataBisService = [
 <template>
   <BannerFeedBack />
   <!-- <Banner style="white-space: pre-line" bannerText="БИС Сервис" :bannerPrice="bannerPrice" @isVisible="visibleForm()" /> -->
-  <!-- <OurServices :dataServices="dataServices" title="Наш сервис" /> -->
+
   <WorkOrder :data="dataOrder" title="Наш спектр услуг" />
+  <SeptikServices :dataServices="dataServices" />
   <!-- <BisService title="Что мы умеем" :data="dataBisService" />
   <BisService title="Что мы умеем" :data="dataBisService" /> -->
-  <SeptikSlider title="Сервис септика" />
-  <WaterSupplySlider title="Сервис водоснабжения" />
+  <!-- <DescriptionService /> -->
+  <SeptikSlider />
+  <!-- <WaterSupplySlider title="Сервис водоснабжения" /> -->
   <!-- <PopularServices title="Популярные услуги" /> -->
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
 </template>
