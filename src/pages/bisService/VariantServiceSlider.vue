@@ -216,9 +216,6 @@ onUnmounted(() => {
       margin-right: 1px;
     }
   }
-  &__icon {
-    // height: ;
-  }
   &__text {
     color: $color-text;
     line-height: 1.3;

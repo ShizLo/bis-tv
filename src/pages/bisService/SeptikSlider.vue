@@ -12,8 +12,32 @@ const props = defineProps({
 const swiper_septik = new Swiper(".swiper-septik-services", swiper_septik_setting);
 
 import work_1 from "../../assets/images/homePage/work-bis-service-1.webp";
+import work_2 from "../../assets/images/servicePage/slider/2.png";
+import work_3 from "../../assets/images/servicePage/slider/3.png";
+import work_4 from "../../assets/images/servicePage/slider/4.png";
+import work_5 from "../../assets/images/servicePage/slider/5.png";
 
 const data = [
+  {
+    urlImg: work_5,
+    title: "Аварийная сигнализация",
+    price: "от 9 500 руб.",
+  },
+  {
+    urlImg: work_2,
+    title: "Электромагнитный клапан",
+    price: "от 7 500 руб.",
+  },
+  {
+    urlImg: work_3,
+    title: "Замена поплавка",
+    price: "от 7 000 руб.",
+  },
+  {
+    urlImg: work_4,
+    title: "Замена аэратора",
+    price: "от 11 000 руб.",
+  },
   {
     urlImg: work_1,
     title: "Замена компрессора",
@@ -21,34 +45,16 @@ const data = [
   },
   {
     urlImg: "",
-    title: "Электромагнитный клапан",
-    price: "от 7 500 руб.",
-  },
-  {
-    urlImg: "",
-    title: "Замена поплавка",
-    price: "от 7 000 руб.",
-  },
-  {
-    urlImg: "",
     title: "Замена аэролифта",
     price: "от 7 500 руб.",
   },
-  {
-    urlImg: "",
-    title: "Аварийная сигнализация",
-    price: "от 9 500 руб.",
-  },
+
   {
     urlImg: "",
     title: "Ремонт крышки септика",
     price: "от 10 000 руб.",
   },
-  {
-    urlImg: "",
-    title: "Замена аэратора",
-    price: "от 11 000 руб.",
-  },
+
   {
     urlImg: "",
     title: "Наращивание горловины",

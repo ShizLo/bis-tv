@@ -49,6 +49,7 @@ import foundation_4 from "../assets/images/workPhoto/foundation/4.webp";
 import foundation_5 from "../assets/images/workPhoto/foundation/7.jpg";
 import foundation_6 from "../assets/images/workPhoto/foundation/8.jpg";
 import foundation_7 from "../assets/images/workPhoto/foundation/9.jpeg";
+import foundation_8 from "../assets/images/workPhoto/foundation/10.jpg";
 
 import electricity_1 from "../assets/images/workPhoto/electricity/1.jpg";
 
@@ -280,6 +281,10 @@ const dataWork = [
       },
       {
         url: foundation_7,
+        alt: "Свайное поле",
+      },
+      {
+        url: foundation_8,
         alt: "Свайное поле",
       },
     ],

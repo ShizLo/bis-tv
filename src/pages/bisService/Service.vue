@@ -2,25 +2,23 @@
 import Banner from "../../components/Banner.vue";
 import { ROUTES_PATHS } from "../../constants";
 import SeptikServices from "./SeptikServices.vue";
-import WorkOrder from "../../components/WorkOrder.vue";
-import BisService from "../../components/BisService.vue";
 import SeptikSlider from "./SeptikSlider.vue";
-import WaterSupplySlider from "./WaterSupplySlider.vue";
-import PopularServices from "../../components/PopularServices.vue";
 import BannerFeedBack from "./BannerFeedBack.vue";
 import FeedBackForm from "../../components/FeedBackForm.vue";
-import DescriptionService from "./DescriptionService.vue";
 import VariantServiceSlider from "./VariantServiceSlider.vue";
+import WorksSlider from "../../components/WorksSlider.vue";
 
 //<Импорт картинок блок "Наши услуги">================================================================================
-import img_service_1 from "../../assets/images/homePage/services-1.webp";
-import img_service_2 from "../../assets/images/homePage/services-2.webp";
 import img_service_3 from "../../assets/images/homePage/bis-1.webp";
 import img_service_4 from "../../assets/images/homePage/bis-2.webp";
-// import img_service_4 from "../../assets/images/homePage/services-4.webp";
-import img_service_5 from "../../assets/images/homePage/services-5.webp";
-import img_service_6 from "../../assets/images/homePage/services-6.png";
 //</Импорт картинок>===============================================================================
+
+//<Импорт картинок блок "Наши работы">================================================================================
+import img_work_1 from "../../assets/images/workPhotoService/septik/2.jpg";
+import img_work_2 from "../../assets/images/workPhotoService/septik/1.jpg";
+import img_work_3 from "../../assets/images/workPhotoService/septik/3.jpg";
+import img_work_4 from "../../assets/images/workPhotoService/septik/4.jpg";
+import img_work_5 from "../../assets/images/workPhotoService/septik/5.jpg";
 
 const bannerPrice = [
   {
@@ -208,21 +206,66 @@ const dataBisService = [
     // routePath: ROUTES_PATHS.HOME,
   },
 ];
+const dataWork = [
+  {
+    url: img_work_1,
+    title: "",
+    work: [
+      {
+        url: img_work_1,
+        alt: "Обслуживание септика",
+      },
+    ],
+  },
+  {
+    url: img_work_2,
+    title: "",
+    work: [
+      {
+        url: img_work_2,
+        alt: "Обслуживание септика",
+      },
+    ],
+  },
+  {
+    url: img_work_3,
+    title: "",
+    work: [
+      {
+        url: img_work_3,
+        alt: "Обслуживание септика",
+      },
+    ],
+  },
+  {
+    url: img_work_4,
+    title: "",
+    work: [
+      {
+        url: img_work_4,
+        alt: "Обслуживание септика",
+      },
+    ],
+  },
+  {
+    url: img_work_5,
+    title: "",
+    work: [
+      {
+        url: img_work_5,
+        alt: "Обслуживание септика",
+      },
+    ],
+  },
+];
 </script>
 
 <template>
   <BannerFeedBack />
-  <!-- <Banner style="white-space: pre-line" bannerText="БИС Сервис" :bannerPrice="bannerPrice" @isVisible="visibleForm()" /> -->
-
-  <!-- <WorkOrder :data="dataOrder" title="Наш спектр услуг" /> -->
   <SeptikServices title="Наш спектр услуг" :dataServices="dataServices" />
-  <!-- <BisService title="Что мы умеем" :data="dataBisService" />
-  <BisService title="Что мы умеем" :data="dataBisService" /> -->
-  <!-- <DescriptionService /> -->
   <SeptikSlider />
   <VariantServiceSlider title="Варианты обслуживания" />
-  <!-- <WaterSupplySlider title="Сервис водоснабжения" /> -->
-  <!-- <PopularServices title="Популярные услуги" /> -->
+  <WorksSlider title="Наши работы" :data="dataWork" />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
 </template>
 
