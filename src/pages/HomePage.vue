@@ -5,6 +5,8 @@ import { ROUTES_PATHS } from "../constants";
 //<Импорт компонентов>================================================================================
 import Banner from "../components/Banner.vue";
 import OurServices from "../components/OurServices.vue";
+import ServiceSlider from "../components/ServiceSlider.vue";
+
 import BisService from "../components/BisService.vue";
 import WorksSlider from "../components/WorksSlider.vue";
 import WorkOrder from "../components/WorkOrder.vue";
@@ -483,6 +485,7 @@ const feedbackForm = reactive({
   />
   <Form v-show="feedbackForm.active" @isVisible="visibleForm()" />
   <OurServices :dataServices="dataServices" title="Наши услуги" />
+  <ServiceSlider />
   <BisService title="БИС Сервис" :data="dataBisService" />
   <WorksSlider title="Наши работы" :data="dataWork" />
   <WorkOrder :data="dataOrder" title="Почему выбирают нас" />

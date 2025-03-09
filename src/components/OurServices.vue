@@ -55,7 +55,10 @@ const props = defineProps({
 @use "../assets/styles/main.scss" as *;
 
 .services {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+  @media (max-width: $md4) {
+    margin: 0px 0px 7px 0px;
+  }
   &__title {
     font-size: $fs-xxl;
     font-weight: 600;

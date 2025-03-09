@@ -1,6 +1,7 @@
 <script setup>
 import { ROUTES_PATHS } from "../constants";
 import { ref } from "vue";
+import { CHATS_ID, sendMessage } from "../services/botService";
 
 let name = ref("");
 let email = ref("");
@@ -11,6 +12,10 @@ const props = defineProps({
     typeof: String,
   },
 });
+
+// function clickBtn() {
+//   sendMessage("Тест", CHATS_ID.BASE_DEV);
+// }
 
 function sendMessage() {
   //--------------api2 основная группа
@@ -56,7 +61,7 @@ function sendMessage() {
             </div>
           </div>
           <div class="feedback-form__footer">
-            <input @click="sendMessage" class="form__button button_mtp" type="submit" value="Отправить" />
+            <input @click="clickBtn" class="form__button button_mtp" type="submit" value="Отправить" />
             <a class="link__phone phone" href="tel:+7 911 277-56-07"> +7 911 277-56-07</a>
           </div>
           <div class="feedback">
