@@ -13,8 +13,14 @@ const props = defineProps({
   },
 });
 
+const message = `
+<b>Привет</b> Это <b>жирный</b> текст
+<i>Это курсив</i>
+<code>Это моноширинный тескт.</code>
+<a href="https://google.com">Это ссылка</a>`;
+
 // function clickBtn() {
-//   sendMessage("Тест", CHATS_ID.BASE_DEV);
+//   sendMessage(message, CHATS_ID.BASE_DEV);
 // }
 
 function sendMessage() {
