@@ -1,7 +1,7 @@
 <script setup>
 import { ROUTES_PATHS } from "../constants";
 import { ref } from "vue";
-import { CHATS_ID, sendMessage } from "../services/botService";
+// import { CHATS_ID, sendMessage } from "../services/botService";
 
 let name = ref("");
 let email = ref("");
@@ -13,15 +13,38 @@ const props = defineProps({
   },
 });
 
-const message = `
-<b>Привет</b> Это <b>жирный</b> текст
-<i>Это курсив</i>
-<code>Это моноширинный тескт.</code>
-<a href="https://google.com">Это ссылка</a>`;
+// const message = `
+// <b>Привет</b> Это <b>жирный</b> текст
+// <i>Это курсив</i>
+// <code>Это моноширинный тескт.</code>
+// <a href="https://google.com">Это ссылка</a>`;
 
-// function clickBtn() {
-//   sendMessage(message, CHATS_ID.BASE_DEV);
-// }
+// const message = {
+//   chat_id: CHATS_ID.BASE_DEV,
+//   text: {
+//     header: "Содержание заявки:",
+//     city: "Город: ",
+//     service: "Услуги",
+//     name: "ФИО\\: ",
+//     email: "Почта: ",
+//     phone: "Телефон:",
+//     communication: "Связь: ",
+//     date: "Дата: ",
+//   },
+//   variables: {
+//     city: "Санкт\\-Петербург",
+//     service: ["Аварийный выезд по ЛОС \\(Септику\\)", "Плановое ТО ЛОС \\(Септика\\)"],
+//     name: "Иван",
+//     email: "info\\@mail.ru",
+//     phone: "8\\-981\\-111\\-12\\-12",
+//     communication: "WhatsUp",
+//     date: "14.05.2025 8:00",
+//   },
+// };
+
+function clickBtn() {
+  sendMessage();
+}
 
 function sendMessage() {
   //--------------api2 основная группа

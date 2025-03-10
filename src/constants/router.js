@@ -8,4 +8,5 @@ export const ROUTES_PATHS = {
   ELECTRICITY: "/electricity",
   DRAINAGE: "/drainage",
   SERVICE: "/service",
+  DEPARTURE: "/departure",
 };
