@@ -28,3 +28,5 @@ ${message.variables.name ? `${message.text.name}${message.variables.name}` : ""}
     console.error("Ошибка при отправке сообщения:", error);
   }
 }
+
+function sendTwo() {}

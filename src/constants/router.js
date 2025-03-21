@@ -9,4 +9,5 @@ export const ROUTES_PATHS = {
   DRAINAGE: "/drainage",
   SERVICE: "/service",
   DEPARTURE: "/departure",
+  LANDSCAPE: "/landscape",
 };
