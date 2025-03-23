@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onUpdated, computed, reactive} from "vue";
+import { ref, onUpdated, computed, reactive, defineEmits} from "vue";
 import { ROUTES_PATHS } from "../../constants";
 import useVuelidate from "@vuelidate/core"
 import { required, helpers, email, minLength  } from "@vuelidate/validators"
@@ -54,15 +54,8 @@ const dateNull = () => {
     return date.value = null;
 }
 onUpdated(() => {
-  //------ Доступ к полям ввода ------//
-  let nameInput = document.querySelector('input[name="name"]'); 
+  
   let telInput = document.querySelector('input[name="telephone"]');
-  let emailInput = document.querySelector('input[name="email"]');
-  let nameError = document.querySelector('input[name="name"]').nextElementSibling;
-  let telError = document.querySelector('input[name="telephone"]').nextElementSibling;
-  let emailError = document.querySelector('input[name="email"]').nextElementSibling;
-
-  const inputs = document.querySelectorAll(".feedback__group");
 
   const telOptions = {
     mask: "+{7} (000) 000-00-00",
@@ -83,23 +76,39 @@ function convertToUnicod(text) {
         return "\\u" + ('000' + s.charCodeAt(0).toString(16)).substr(-4);
     }
 )
-}const submitForm = async () => {
-  const result = await v$.value.$validate();
-  if (result) {
-    isReady.value = result
-  } else {
-    isReady.value = result
-  }
+}const submitForma =  () => {
+  v$.value.$touch()
+  const result =  v$.value.$validate();
+  // if (result) {
+  //   isReady.value = result
+  // } else {
+  //   isReady.value = result
+  // }
 }
-function sendMessage() {
-  let nameError = document.querySelector('input[name="name"]').nextElementSibling;
-  let telError = document.querySelector('input[name="telephone"]').nextElementSibling;  
-  let emailError = document.querySelector('input[name="email"]').nextElementSibling;
-  let selectedError = document.querySelector('.errorSelected');
-  let telInput = document.querySelector('input[name="telephone"]')
-  const inputs = document.querySelectorAll(".feedback__group");
+const resetForm = () => {
+      ////form.value.username = '';
+      
+      v$.value.name.$model = ''
+      v$.value.email.$model = ''
+      v$.value.telephone.$model = ''
+      //console.log(v$.value.name)
+      v$.value.$reset
 
-  if (!v$._value.$invalid) {
+      // v$.value.$reset()
+      // formData.name = ''
+    };
+
+    const emit = defineEmits(['isVisible'])
+    const isVisible = () => {
+      //setTimeout(() => emit('isVisible'), 500);
+      emit('isVisible')
+      resetForm()
+  
+}
+
+const submitForm =  () =>  {
+  v$.value.$touch()
+  if (!v$.value.$invalid) {
     var my_text = "Имя: "+ formData.name + "%0A" + 
                   "Почта: " + formData.email + "%0A" +
                   "Телефон:"+ "%2b" + convertToUnicod(formData.telephone) + 
@@ -113,63 +122,65 @@ function sendMessage() {
     let api2 = new XMLHttpRequest();
     api2.open("GET", url2, true);
     //api2.send();
-
     // ДОПОЛНИТЕЛЬНАЯ ГРУППА
     var chat_id = -1002383432249;
     var url = `https://api.telegram.org/bot${token2}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
     let api = new XMLHttpRequest();
     api.open("GET", url, true);
-    console.log(url)
     //api.send();
     questiion.value = "";
+    console.log('succes')
+    isVisible()
+ 
+    
   } else {
-    console.log("url")
+    console.log('bad')
   }
 }
 
 
 </script>
 <template>
-  <div class="container-modal" @click.self="$emit('isVisible')">
-    <form class="reveal-modal" @submit.prevent="submitForm">
+  <div class="container-modal" @click.self="isVisible(), v$.$reset()" >
+    <form class="reveal-modal" @submit.prevent="submitForm" >
       <div class="block-">
         <p class="feedback__title title">Свяжемся с вами для консультации</p>
       </div>
       <div class="block-form">
         <div class="feedback__form">
-          <div class="feedback__group">
+          <div class="feedback__group" v-bind:class="{ 'fld-error': v$.name.$error }">
             <input 
               v-model="formData.name" 
-              class="feedback__group-input hover-group-input" 
+              class="feedback__group-input" 
               type="text" 
               name="name"
               placeholder="Имя" 
-              @blur="v$.name.$touch()"
+              @input="v$.name.$touch"
               maxlength="20" />
             <span v-for="error in v$.name.$errors" :key="error.$uid">
               {{ error.$message }}
             </span>
           </div>
-          <div class="feedback__group">
+          <div class="feedback__group" v-bind:class="{ 'fld-error': v$.email.$error }">
             <input 
               v-model="formData.email" 
-              class="feedback__group-input hover-group-input" 
+              class="feedback__group-input" 
               type="email"
               placeholder="your@email.ru"
-              @blur="v$.email.$touch()"
+              @input="v$.email.$touch"
               name="email"
               />
             <span v-for="error in v$.email.$errors" :key="error.$uid">
               {{ error.$message }}
             </span>
           </div>
-          <div class="feedback__group">
+          <div class="feedback__group" v-bind:class="{ 'fld-error': v$.telephone.$error }">
             <input 
               v-model="formData.telephone" 
               class="feedback__group-input phone_mask hover-group-input" 
               type="tel"
               placeholder="Телефон"
-              @blur="v$.telephone.$touch()"
+              @input="v$.telephone.$touch"
               name="telephone"/>
             <span v-for="error in v$.telephone.$errors" :key="error.$uid">
               {{ error.$message }}
@@ -282,7 +293,7 @@ function sendMessage() {
       </div>
     </div>
       <div class="block-send">
-        <button @click="sendMessage"  type="submit" class="form__button btn" data-id="#consultationForm2"
+        <button  type="submit"  class="form__button btn"  
           data-form="">ОТПРАВИТЬ</button>
         <p class="feedback__bottom-text">
           Нажимая кнопку «отправить», вы соглашаетесь с
@@ -294,6 +305,12 @@ function sendMessage() {
 </template>
 <style lang="scss" scoped>
 @use "../../assets/styles/main.scss" as *;
+.fld-error {
+  background-color: $color-error !important;
+}
+.fld-success {
+  background-color: $color-succes !important
+}
 .date {
   display: flex;
   justify-content: space-around;
@@ -308,12 +325,15 @@ function sendMessage() {
   flex: 0.7;
 }
 .feedback__calendar {
+height: 385px;
   margin-bottom: 20px;
   @media (max-width: $md4) {
     margin: 10px 0px;
+    height: auto;
   };
   @media (max-width: $md3) {
     margin: 10px 0px;
+    height: auto;
   };
 }
 .none-calendar {
