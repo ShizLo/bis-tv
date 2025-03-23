@@ -18,7 +18,7 @@ import BlockHeader from "../components/BlockHeader.vue";
           <div class="item__title">Сергей Поляков</div>
           <div class="item__subtitle">Руководитель нулевого цикла БИС</div>
           <div class="item__description">
-            <p>Специализация:</p>
+            <p>Специализация</p>
             <ul>
               <li>Планирование и управление всеми процессами команды</li>
               <li>Первичная консультация</li>
@@ -38,7 +38,7 @@ import BlockHeader from "../components/BlockHeader.vue";
           <div class="item__title">Андерей Кириллов</div>
           <div class="item__subtitle">Инженер и бригадир нулевого цикла</div>
           <div class="item__description">
-            <p>Специализация:</p>
+            <p>Специализация</p>
             <ul>
               <li>Организация и монтаж наружных инженерных сетей</li>
               <li>Топографическая съемка</li>
@@ -58,7 +58,7 @@ import BlockHeader from "../components/BlockHeader.vue";
           <div class="item__title">Сергей Воронин</div>
           <div class="item__subtitle">Инженер и бригадир нулевого цикла</div>
           <div class="item__description">
-            <p>Специализация:</p>
+            <p>Специализация</p>
             <ul>
               <li>Организация и монтаж наружных инженерных сетей</li>
               <li>Специалист по водоподготовке и водоочистке</li>
@@ -79,7 +79,7 @@ import BlockHeader from "../components/BlockHeader.vue";
           <div class="item__title">Алексей Качерук</div>
           <div class="item__subtitle">Инженер и бригадир нулевого цикла</div>
           <div class="item__description">
-            <p>Специализация:</p>
+            <p>Специализация</p>
             <ul>
               <li>Организация и монтаж наружных инженерных сетей</li>
               <li>Расчет и монтаж выездных групп, заборов и ограждений</li>

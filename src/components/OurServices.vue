@@ -19,7 +19,7 @@ const props = defineProps({
 <template>
   <section class="services">
     <div class="services__container _container">
-      <h2 class="services__title title-service">{{ title }}</h2>
+      <h2 v-if="title" class="services__title title-service">{{ title }}</h2>
       <div class="services__items">
         <div v-for="columns in dataServices" class="services__column">
           <div v-for="rows in columns" class="services__row">
@@ -55,8 +55,10 @@ const props = defineProps({
 @use "../assets/styles/main.scss" as *;
 
 .services {
-  margin-top: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+  @media (max-width: $md4) {
+    margin: 0px 0px 7px 0px;
+  }
   &__title {
     font-size: $fs-xxl;
     font-weight: 600;

@@ -43,9 +43,7 @@ function clickMenuMobile() {
   burger.active == true ? (burger.active = false) : (burger.active = true);
 }
 
-function clickForm() {
-
-}
+function clickForm() {}
 
 // function toggleBodyScroll(lock) {
 //   // TODO: Использовать после того как будет реализована форма обратной связи
@@ -234,7 +232,7 @@ document.addEventListener("click", (e) => {
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.HOME }">Благоустройство</router-link>
                           </div>
                           <div class="catalog__item">
-                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.HOME }">БИС Сервис</router-link>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.SERVICE }">БИС Сервис</router-link>
                           </div>
                         </li>
                         <!-- <li class="catalog__list-item_body-item"></li>
@@ -383,13 +381,13 @@ document.addEventListener("click", (e) => {
 }
 .header {
   margin-bottom: 2px;
-  &::after {
-    content: "";
-    width: 100%;
-    height: 2px;
-    position: absolute;
-    background-color: #ea5b0c;
-  }
+  // &::after {
+  //   content: "";
+  //   width: 100%;
+  //   height: 2px;
+  //   position: absolute;
+  //   background-color: #ea5b0c;
+  // }
   &__container {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;

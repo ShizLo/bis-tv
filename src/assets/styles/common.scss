@@ -1,22 +1,49 @@
 @use "variables" as *;
 
-// *,
-// *::before,
-// *::after {
-//   margin: 0;
-//   padding: 0;
-//   border: none;
-//   box-sizing: border-box;
-// }
+*,
+*::before,
+*::after {
+  // margin: 0;
+  // padding: 0;
+  // border: 0;
+  // -webkit-box-sizing: border-box;
+  // box-sizing: border-box;
+}
+:root {
+  --app-height: 100%;
+  --vh: 1vh;
+}
+
+html {
+  scroll-padding-top: 130px;
+}
+
 body {
   font-family: $fontFamily;
-  position: relative;
-  // position: fixed;
+  // width: 100vw;
+  // height: 100vh;
+  // @media not all and (hover: hover) {
+  //   height: var(--app-height);
+  // }
+  // padding: 0;
+  // margin: 0;
+  // width: 100vh;
+  // height: 100vh;
+  // height: var((--app-height));
+  // overflow: hidden;
   @media (max-width: $md4) {
-    // overflow-y: hidden;
   }
-  // overflow-x: hidden;
 }
+
+body > .scrool-box {
+  position: relative;
+  left: 0;
+  right: 0;
+  height: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
 ._container {
   max-width: $maxWidthContainer;
   margin: 0 auto;
@@ -34,4 +61,9 @@ picture {
   display: block;
   max-width: 100%;
   max-height: 100%;
+}
+
+.wrapper {
+  overflow: hidden;
+  min-height: 100%;
 }

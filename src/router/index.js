@@ -8,6 +8,9 @@ import FoundationPage from "../pages/FoundationPage.vue";
 import ElectricityPage from "../pages/ElectricityPage.vue";
 import TopographyPage from "../pages/TopographyPage.vue";
 import DrainagePage from "../pages/DrainagePage.vue";
+import Service from "../pages/bisService/Service.vue";
+import DeparturePage from "../pages/DeparturePage.vue";
+import LandscapePage from "../pages/LandscapePage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +23,10 @@ const router = createRouter({
     { path: ROUTES_PATHS.ELECTRICITY, name: ROUTES_PATHS.ELECTRICITY, component: ElectricityPage },
     { path: ROUTES_PATHS.TOPOGRAPHY, name: ROUTES_PATHS.TOPOGRAPHY, component: TopographyPage },
     { path: ROUTES_PATHS.DRAINAGE, name: ROUTES_PATHS.DRAINAGE, component: DrainagePage },
+    { path: ROUTES_PATHS.SERVICE, name: ROUTES_PATHS.SERVICE, component: Service },
+    { path: ROUTES_PATHS.DEPARTURE, name: ROUTES_PATHS.DEPARTURE, component: DeparturePage },
+    { path: ROUTES_PATHS.LANDSCAPE, name: ROUTES_PATHS.LANDSCAPE, component: LandscapePage },
+
     { path: "/:pathMatch(.*)*", redirect: "/" },
   ],
   scrollBehavior(to, from, savedPosition) {

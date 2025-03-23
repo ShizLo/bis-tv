@@ -5,6 +5,8 @@ import { ROUTES_PATHS } from "../constants";
 //<Импорт компонентов>================================================================================
 import Banner from "../components/Banner.vue";
 import OurServices from "../components/OurServices.vue";
+import ServiceSlider from "../components/ServiceSlider.vue";
+
 import BisService from "../components/BisService.vue";
 import WorksSlider from "../components/WorksSlider.vue";
 import WorkOrder from "../components/WorkOrder.vue";
@@ -33,6 +35,40 @@ import img_work_5 from "../assets/images/homePage/works/5.jpg";
 import img_work_6 from "../assets/images/homePage/works/6.jpg";
 import img_work_7 from "../assets/images/homePage/works/7.jpg";
 import img_work_8 from "../assets/images/homePage/works/8.jpg";
+
+//</Импорт картинок>===============================================================================
+
+//<Импорт картинок блок "Галерея">================================================================================
+import greenPark_1 from "../assets/images/workPhoto/greenPark/1.jpg";
+import greenPark_2 from "../assets/images/workPhoto/greenPark/2.webp";
+import greenPark_3 from "../assets/images/workPhoto/greenPark/3.jpg";
+import greenPark_4 from "../assets/images/workPhoto/greenPark/4.jpg";
+
+import foundation_1 from "../assets/images/workPhoto/foundation/1.webp";
+import foundation_2 from "../assets/images/workPhoto/foundation/2.webp";
+import foundation_3 from "../assets/images/workPhoto/foundation/3.webp";
+import foundation_4 from "../assets/images/workPhoto/foundation/4.webp";
+import foundation_5 from "../assets/images/workPhoto/foundation/7.jpg";
+import foundation_6 from "../assets/images/workPhoto/foundation/8.jpg";
+import foundation_7 from "../assets/images/workPhoto/foundation/9.jpeg";
+import foundation_8 from "../assets/images/workPhoto/foundation/10.jpg";
+
+import electricity_1 from "../assets/images/workPhoto/electricity/1.jpg";
+
+import gate_1 from "../assets/images/workPhoto/slidingGate/1.jpeg";
+import gate_2 from "../assets/images/workPhoto/slidingGate/2.jpg";
+import gate_3 from "../assets/images/workPhoto/slidingGate/3.jpeg";
+
+import fence_1 from "../assets/images/workPhoto/fence/1.jpeg";
+import fence_2 from "../assets/images/workPhoto/fence/2.jpeg";
+import fence_3 from "../assets/images/workPhoto/fence/3.jpeg";
+import fence_4 from "../assets/images/workPhoto/fence/4.jpeg";
+import fence_5 from "../assets/images/workPhoto/fence/5.jpeg";
+import fence_6 from "../assets/images/workPhoto/fence/6.jpeg";
+
+import gitter_1 from "../assets/images/workPhoto/gitter/1.jpeg";
+
+import borders_1 from "../assets/images/workPhoto/borders/1.jpeg";
 
 //</Импорт картинок>===============================================================================
 
@@ -178,87 +214,242 @@ const dataOrder = [
 const dataWork = [
   {
     url: img_work_1,
-    title: "Озеленение, освещение",
+    title: "Озеленение",
     work: [
       {
-        url: "/images/miniSlider/landscaping-1.jpg",
+        url: img_work_1,
         alt: "Озеленение",
       },
       {
-        url: "/images/miniSlider/landscaping-2.jpg",
+        url: greenPark_1,
         alt: "Озеленение",
       },
       {
-        url: "/images/miniSlider/landscaping-3.jpg",
+        url: greenPark_2,
         alt: "Озеленение",
       },
+    ],
+  },
+  {
+    url: gate_1,
+    title: "Откатные ворота",
+    work: [
       {
-        url: "/images/miniSlider/landscaping-4.jpg",
-        alt: "Озеленение",
+        url: gate_1,
+        alt: "Откатные ворота",
       },
       {
-        url: "/images/workPhoto/greenPark/2.jpg",
-        alt: "Озеленение",
+        url: img_work_7,
+        alt: "Откатные ворота",
       },
       {
-        url: "/images/workPhoto/greenPark/3.jpg",
-        alt: "Озеленение",
+        url: gate_2,
+        alt: "Откатные ворота",
+      },
+      {
+        url: gate_3,
+        alt: "Откатные ворота",
+      },
+    ],
+  },
+
+  {
+    url: foundation_1,
+    title: "Свайное поле",
+    work: [
+      {
+        url: foundation_1,
+        alt: "Свайное поле",
+      },
+      {
+        url: foundation_2,
+        alt: "Свайное поле",
+      },
+      {
+        url: foundation_3,
+        alt: "Свайное поле",
+      },
+      {
+        url: foundation_4,
+        alt: "Свайное поле",
+      },
+      {
+        url: foundation_5,
+        alt: "Свайное поле",
+      },
+      {
+        url: foundation_6,
+        alt: "Свайное поле",
+      },
+      {
+        url: foundation_7,
+        alt: "Свайное поле",
+      },
+      {
+        url: foundation_8,
+        alt: "Свайное поле",
+      },
+    ],
+  },
+  {
+    url: img_work_5,
+    title: "Забор из штакетника",
+    work: [
+      {
+        url: img_work_5,
+        alt: "Забор из штакетника",
+      },
+      {
+        url: fence_1,
+        alt: "Забор из штакетника",
+      },
+      {
+        url: fence_2,
+        alt: "Забор из штакетника",
+      },
+      {
+        url: fence_3,
+        alt: "Забор из штакетника",
+      },
+      {
+        url: fence_4,
+        alt: "Забор из штакетника",
+      },
+      {
+        url: fence_5,
+        alt: "Забор из штакетника",
+      },
+      {
+        url: fence_6,
+        alt: "Забор из штакетника",
+      },
+    ],
+  },
+  {
+    url: img_work_4,
+    title: "Уличное освещение",
+    work: [
+      {
+        url: img_work_4,
+        alt: "Уличное освещение",
+      },
+      {
+        url: electricity_1,
+        alt: "Уличное освещение",
       },
     ],
   },
   {
     url: img_work_2,
-    title: "Заезд на участок и свайное поле",
+    title: "Заезд на участок",
     work: [
       {
-        url: "/images/workPhoto/foundation/1.JPG",
-        alt: "Свайное поле",
+        url: img_work_2,
+        alt: "Заезд на участок",
+      },
+    ],
+  },
+  // {
+  //   url: img_work_3,
+  //   title: "Дорожки, посадка и выравнивание",
+  // },
+
+  {
+    url: img_work_6,
+    title: "Забор из гиттера",
+    work: [
+      {
+        url: img_work_6,
+        alt: "Забор из гиттера",
       },
       {
-        url: "/images/workPhoto/foundation/2.JPG",
-        alt: "Свайное поле",
+        url: gitter_1,
+        alt: "Забор из гиттера",
       },
+    ],
+  },
+
+  {
+    url: borders_1,
+    title: "Вынос границ",
+    work: [
       {
-        url: "/images/workPhoto/foundation/3.JPG",
-        alt: "Свайное поле",
-      },
-      {
-        url: "/images/workPhoto/foundation/4.JPG",
-        alt: "Свайное поле",
-      },
-      {
-        url: "/images/workPhoto/foundation/5.JPG",
-        alt: "Свайное поле",
-      },
-      {
-        url: "/images/workPhoto/foundation/6.JPG",
-        alt: "Свайное поле",
+        url: borders_1,
+        alt: "Вынос границ",
       },
     ],
   },
   {
-    url: img_work_3,
-    title: "Дорожки, посадка и выравнивание",
-  },
-  {
-    url: img_work_4,
-    title: "Уличное освещение",
-  },
-  {
-    url: img_work_5,
-    title: "Забор из штакетника",
-  },
-  {
-    url: img_work_6,
-    title: "Забор из гиттера",
-  },
-  {
-    url: img_work_7,
-    title: "Откатные ворота",
-  },
-  {
     url: img_work_8,
     title: "Расчистка участка",
+    work: [
+      {
+        url: img_work_8,
+        alt: "Расчистка участка",
+      },
+    ],
+  },
+];
+const dataBisService = [
+  {
+    urlImg: "url(/images/globalServices/services-1+.webp)",
+    title: "Септик",
+    price: [{ text: "Обслуживание" }, { text: "Консервация" }, { text: "Ремонт" }, { text: "Диагностика" }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+  {
+    urlImg: "url(/images/waterPage/bis-service-2+.webp)",
+    title: "Бойлер",
+    price: [{ text: "Обслуживание" }, { text: "Диагностика" }, { text: "Замена тена" }, { text: "Чистка от накипи" }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+  {
+    urlImg: "url(/images/waterPage/bis-service-1+.webp)",
+    title: "Вододоочистка",
+    price: [{ text: "Замена картриджей" }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+  {
+    urlImg: "url(/images/waterPage/water-6@0.5x.webp)",
+    title: "Водоподготовка",
+    price: [{ text: "Анализ воды" }, { text: "Обслуживание" }, { text: "Ремонт" }, { text: "Магистральный фильтр" }, { text: "..." }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+  {
+    urlImg: "url(/images/globalServices/sticker.png)",
+    title: "Водоснабжение",
+    price: [
+      { text: "Замена насоса" },
+      { text: "Устранение течей" },
+      { text: "Греющий кабель" },
+      { text: "Утепление труб" },
+      { text: "..." },
+    ],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+  {
+    urlImg: "",
+    title: "Уборка участка",
+    price: [{ text: "Вывоз мусора" }, { text: "Уборка крыши" }, { text: "Чистка террасы" }, { text: "..." }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+  {
+    urlImg: "",
+    title: "Генераторы",
+    price: [{ text: "ТО и сервис" }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+  {
+    urlImg: "",
+    title: "Газон",
+    price: [{ text: "Стрижка" }, { text: "Аэрация" }, { text: "Восстановление" }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+  {
+    urlImg: "",
+    title: "Водопровод",
+    price: [{ text: "Разморозка" }],
+    routePath: ROUTES_PATHS.SERVICE,
   },
 ];
 
@@ -294,7 +485,8 @@ const feedbackForm = reactive({
   />
   <Form v-show="feedbackForm.active" @isVisible="visibleForm()" />
   <OurServices :dataServices="dataServices" title="Наши услуги" />
-  <BisService title="БИС Сервис" />
+  <ServiceSlider />
+  <BisService title="БИС Сервис" :data="dataBisService" />
   <WorksSlider title="Наши работы" :data="dataWork" />
   <WorkOrder :data="dataOrder" title="Почему выбирают нас" />
   <Partners />
