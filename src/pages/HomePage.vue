@@ -482,6 +482,7 @@ const feedbackForm = reactive({
   и благоустройство участка"
     :bannerPrice="bannerPrice"
     @isVisible="visibleForm()"
+    stikers="true"
   />
   <Form v-show="feedbackForm.active" @isVisible="visibleForm()" />
   <OurServices :dataServices="dataServices" title="Наши услуги" />

@@ -154,7 +154,7 @@ ${selectedDateTime.value ? `Удобное время выезда: ${selectedDa
       <div class="form-bl brd">
         <div class="form-submit">
           <div class="form__title">Обслуживание септика или ЛОС</div>
-          <p class="mb-4">Закажите обслуживание септика в Санкт-Петербурге</p>
+          <p class="mb-4">Оставьте заявку на обслуживание</p>
           <div class="flex-input">
             <div class="col">
               <!-- <input v-model="message.fio" type="text" name="Ваше ФИО" value="" id="input-name" placeholder="Ваше ФИО" /> -->
@@ -165,7 +165,9 @@ ${selectedDateTime.value ? `Удобное время выезда: ${selectedDa
                 v-model="message.fio"
                 name="Ваше ФИО"
                 placeholder="Ваше ФИО"
-              />
+              >
+                <template v-slot:label> <span> Ваше ФИО </span> </template></v-text-field
+              >
             </div>
             <div class="col">
               <!-- <input
@@ -187,7 +189,9 @@ ${selectedDateTime.value ? `Удобное время выезда: ${selectedDa
                 placeholder="+7 (___) ___-__-__"
                 @focus="moveCursorToFirstHash"
                 @blur="onBlur"
-              />
+              >
+                <template v-slot:label> <span class="test"> Номер телефона </span> </template>
+              </v-text-field>
             </div>
             <div class="col">
               <!-- <textarea class="mb-3" v-model="message.questiion" name="Какой у Вас септик" placeholder="Какой у Вас септик?"></textarea> -->
@@ -211,7 +215,8 @@ ${selectedDateTime.value ? `Удобное время выезда: ${selectedDa
                 hide-details
                 v-model="message.address"
                 placeholder="Адрес дома или № объекта"
-              />
+                ><template v-slot:label> <span> Адрес дома или № объекта </span> </template></v-text-field
+              >
             </div>
             <div class="col">
               <!-- <textarea class="mb-3" v-model="message.questiion" name="Какой у Вас септик" placeholder="Какой у Вас септик?"></textarea> -->
@@ -257,7 +262,7 @@ ${selectedDateTime.value ? `Удобное время выезда: ${selectedDa
               <v-checkbox v-model="communication.whatsup" hide-details label="WhatsUp"></v-checkbox>
             </div>
           </div> -->
-          <div class="feedback mb-2">
+          <div class="feedback mb-4">
             <p class="feedback__text">
               Нажимая кнопку «Отправить заявку», вы соглашаетесь с
               <router-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</router-link>
@@ -276,7 +281,9 @@ ${selectedDateTime.value ? `Удобное время выезда: ${selectedDa
 </template>
 <style lang="scss" scoped>
 @use "../../assets/styles/main.scss" as *;
-
+::v-deep(.col) .v-label {
+  opacity: 1;
+}
 .feedback-form {
   margin: 0px 0px 25px 0px;
 
@@ -420,7 +427,7 @@ textarea {
   @media (max-width: $md4) {
     margin-bottom: 5px;
     line-height: 1.3;
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 .form__button {

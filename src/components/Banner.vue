@@ -7,7 +7,9 @@ import { swiper_banner_setting } from "../assets/js/swiper";
 import "../assets/styles/banner/banner.scss";
 import { useRouter } from "vue-router";
 import { ROUTES_PATHS } from "../constants";
-
+import guaranteeIcon from "../assets/icons/Icons_BIS/SVG/guarantee.svg";
+import serviceIcon from "../assets/icons/Icons_BIS/SVG/montag+.svg";
+import keyIcon from "../assets/icons/Icons_BIS/SVG/workKey.svg";
 const router = useRouter();
 
 const props = defineProps({
@@ -22,6 +24,9 @@ const props = defineProps({
   },
   bannerPrice: {
     typeof: Array,
+  },
+  stikers: {
+    typeof: Boolean,
   },
 });
 
@@ -61,8 +66,31 @@ function goTo(path) {
         <h1 class="banner__text _visibility-mobile">{{ bannerText }}</h1>
         <h1 v-if="desctiption" class="banner__text _visibility">{{ desctiption[swiperBanner.slideIndex].title }}</h1>
         <h1 v-else-if="bannerText.length > 0" class="banner__text _visibility">{{ bannerText }}</h1>
-
+        <div v-if="stikers">
+          <div class="d-flex align-center">
+            <v-icon size="34" class="mr-1">
+              <v-img :src="guaranteeIcon"></v-img>
+            </v-icon>
+            <div>Гарантия на все работы</div>
+            <!-- <div>Своя сервисная служба</div> -->
+          </div>
+          <div class="d-flex align-center">
+            <v-icon size="34" class="mr-1">
+              <v-img :src="serviceIcon"></v-img>
+            </v-icon>
+            <div>Своя сервисная служба</div>
+            <!-- <div>Своя сервисная служба</div> -->
+          </div>
+          <div class="d-flex align-center">
+            <v-icon size="34" class="mr-1">
+              <v-img :src="keyIcon"></v-img>
+            </v-icon>
+            <div>Работа под ключ</div>
+            <!-- <div>Своя сервисная служба</div> -->
+          </div>
+        </div>
         <a
+          class="banner__button-link"
           href="#GlobalForm"
           v-scroll-to="{
             el: '#GlobalForm',
@@ -73,7 +101,7 @@ function goTo(path) {
           <!-- <button class="banner__button" @click="hoverMobile(), $emit('isVisible')"> -->
           <button class="banner__button" @click="hoverMobile()">
             Обсудить задачу
-            <svg class="banner__button-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- <svg class="banner__button-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="Frame 1864">
                 <path
                   id="Vector"
@@ -84,7 +112,7 @@ function goTo(path) {
                   stroke-linejoin="round"
                 ></path>
               </g>
-            </svg>
+            </svg> -->
           </button>
         </a>
         <p class="banner__description _visibility-mobile">{{ bannerDescription }}</p>
@@ -326,6 +354,7 @@ function goTo(path) {
   margin: 0px 0px 25px 0px;
   @media (max-width: $md4) {
     background-color: #fff;
+    margin: 0px 0px 0px 0px;
   }
 }
 .banner {
@@ -365,7 +394,7 @@ function goTo(path) {
     }
     @media (max-width: $md4) {
       padding-bottom: 10px;
-      gap: 12px;
+      gap: 10px;
     }
   }
   &__text {
@@ -409,6 +438,11 @@ function goTo(path) {
     transition: all 0.3s ease 0s;
     @media (max-width: $md3) {
       align-self: flex-end;
+    }
+  }
+  &__button-link {
+    @media (max-width: $md4) {
+      align-self: end;
     }
   }
 }

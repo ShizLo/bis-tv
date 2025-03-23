@@ -2,9 +2,9 @@ import { Navigation, Pagination } from "swiper/modules";
 
 export const swiper_order_setting = {
   direction: "horizontal",
-  slidesPerView: 4, // колво слайдов на показ
+  // slidesPerView: 4, // колво слайдов на показ
   spaceBetween: 30, // отступ между слайдами
-
+  // loop: true,
   // pagination: {
   //   el: ".swiper-pagination",
   //   type: "bullets",
@@ -24,7 +24,7 @@ export const swiper_order_setting = {
       spaceBetween: 10,
     },
     1280: {
-      slidesPerView: 4.005,
+      slidesPerView: 4.01,
       spaceBetween: 15,
     },
   },
@@ -75,10 +75,6 @@ export const swiper_septik_setting = {
   slidesPerView: 3, // колво слайдов на показ
   spaceBetween: 30, // отступ между слайдами
   loop: true,
-  mousewheel: {
-    sensitivity: 1,
-    releaseOnEdges: true,
-  },
   breakpoints: {
     // when window width is >= 320px
     320: {
@@ -186,10 +182,7 @@ export const swiper_bis_setting = {
   slidesPerView: 3, // колво слайдов на показ
   spaceBetween: 30, // отступ между слайдами
   loop: true,
-  mousewheel: {
-    sensitivity: 1,
-    releaseOnEdges: true,
-  },
+
   breakpoints: {
     // when window width is >= 320px
     320: {

@@ -7,6 +7,7 @@ import BannerFeedBack from "./BannerFeedBack.vue";
 import FeedBackForm from "../../components/FeedBackForm.vue";
 import VariantServiceSlider from "./VariantServiceSlider.vue";
 import WorksSlider from "../../components/WorksSlider.vue";
+import PriceExpansion from "./PriceExpansion.vue";
 
 //<Импорт картинок блок "Наши услуги">================================================================================
 import img_service_3 from "../../assets/images/homePage/bis-1.webp";
@@ -266,6 +267,7 @@ const dataWork = [
   <SeptikSlider />
   <VariantServiceSlider title="Варианты обслуживания" />
   <WorksSlider title="Наши работы" :data="dataWork" />
+  <PriceExpansion></PriceExpansion>
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
 </template>
 

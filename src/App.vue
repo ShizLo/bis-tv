@@ -5,6 +5,16 @@ import { useRouter, useRoute } from "vue-router";
 import { ref, watch } from "vue";
 import { reactive, computed } from "vue";
 import { ROUTES_PATHS } from "./constants";
+import projectIcon from "../src/assets/icons/Icons_BIS/SVG/project.svg";
+import montagIcon from "../src/assets/icons/Icons_BIS/SVG/montag.svg";
+import septikIcon from "../src/assets/icons/Icons_BIS/SVG/septik.svg";
+import waterIcon from "../src/assets/icons/Icons_BIS/SVG/water.svg";
+import foundationIcon from "../src/assets/icons/Icons_BIS/SVG/foundation.svg";
+import fenceIcon from "../src/assets/icons/Icons_BIS/SVG/fence.svg";
+import drainageIcon from "../src/assets/icons/Icons_BIS/SVG/drainage.svg";
+import electricityIcon from "../src/assets/icons/Icons_BIS/SVG/electricity.svg";
+import improvementIcon from "../src/assets/icons/Icons_BIS/SVG/improvement.svg";
+import serviceIcon from "../src/assets/icons/Icons_BIS/SVG/montag+.svg";
 
 const route = useRoute();
 const router = useRouter();
@@ -196,42 +206,73 @@ document.addEventListener("click", (e) => {
                   <ul class="catalog__list">
                     <li class="catalog__list-item">
                       <span class="catalog__list-item_header">
-                        <img class="catalog__list-item_header-icon" alt="Услуги" src="./assets/icons/design_services.svg" />
+                        <v-icon class="mr-2">
+                          <v-img :src="serviceIcon"></v-img>
+                        </v-icon>
                         Наши услуги
                       </span>
                       <ul class="catalog__list-item_body">
                         <li class="catalog__list-item_body-item">
                           <div class="catalog__item">
+                            <v-icon class="ml-2">
+                              <v-img :src="projectIcon"></v-img>
+                            </v-icon>
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.TOPOGRAPHY }"
                               >Проект участка и топографическая съемка</router-link
                             >
                           </div>
                           <div class="catalog__item">
+                            <v-icon class="ml-2">
+                              <v-img :src="septikIcon"></v-img>
+                            </v-icon>
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.HOME }">Септик под ключ</router-link>
                           </div>
                           <div class="catalog__item">
+                            <v-icon class="ml-2">
+                              <v-img :src="waterIcon"></v-img>
+                            </v-icon>
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.WATER }"
                               >Водоподготовка и система очистки воды</router-link
                             >
                           </div>
                           <div class="catalog__item">
+                            <v-icon class="ml-2">
+                              <v-img :src="foundationIcon"></v-img>
+                            </v-icon>
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
                           </div>
                           <div class="catalog__item" data-test="0">
+                            <v-icon class="ml-2">
+                              <v-img :src="fenceIcon"></v-img>
+                            </v-icon>
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                           </div>
-                          <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.DRAINAGE }"
-                            >Дренаж и ливневая канализация</router-link
-                          >
                           <div class="catalog__item" data-test="0">
+                            <v-icon class="ml-2">
+                              <v-img :src="drainageIcon"></v-img>
+                            </v-icon>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.DRAINAGE }"
+                              >Дренаж и ливневая канализация</router-link
+                            >
+                          </div>
+                          <div class="catalog__item">
+                            <v-icon class="ml-2">
+                              <v-img :src="electricityIcon"></v-img>
+                            </v-icon>
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.ELECTRICITY }"
                               >Электромонтаж и освещение участка</router-link
                             >
                           </div>
                           <div class="catalog__item">
+                            <v-icon class="ml-2">
+                              <v-img :src="improvementIcon"></v-img>
+                            </v-icon>
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.HOME }">Благоустройство</router-link>
                           </div>
                           <div class="catalog__item">
+                            <v-icon class="ml-2">
+                              <v-img :src="montagIcon"></v-img>
+                            </v-icon>
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.SERVICE }">БИС Сервис</router-link>
                           </div>
                         </li>
@@ -1007,6 +1048,8 @@ document.addEventListener("click", (e) => {
     }
   }
   &__item {
+    display: flex;
+    align-items: center;
     transition: border-radius 0.3s, background 0.3s;
     &:hover {
       border-radius: 6px;
