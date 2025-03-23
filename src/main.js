@@ -6,6 +6,7 @@ import Notifications from "@kyvg/vue3-notification";
 import VCalendar from "v-calendar";
 import "v-calendar/style.css";
 import VueMoment from "vue3-moment";
+import VueTheMask from "vue-the-mask";
 
 import { createApp } from "vue";
 
@@ -82,6 +83,7 @@ app.use(vuetify);
 app.use(VueMoment);
 app.use(VCalendar, {});
 app.use(VueScrollTo);
+app.use(VueTheMask);
 app.mount("#app");
 
 //createApp(App).use(router).use(vuetify).use(VueMoment).use(VCalendar, {}).use(VueScrollTo).mount("#app");

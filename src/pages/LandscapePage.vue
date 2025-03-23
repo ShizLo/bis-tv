@@ -260,7 +260,7 @@ ${message.interfereGarden != "" ? `Что мешает в саду: ${message.in
       .replace(/\s*\[line\]/g, "\n")
       .replace(/=/g, "\\=")
       .replace(/>/g, "\\>")
-
+      .replace(/\+/g, "\\+")
       .replace(/\(/g, "\\(")
       .replace(/\)/g, "\\)")
       .replace(/\]/g, "\\]")
@@ -268,11 +268,11 @@ ${message.interfereGarden != "" ? `Что мешает в саду: ${message.in
       .trim();
     await axios
       .post(`https://api.telegram.org/bot${token}/sendMessage`, {
-        chat_id: CHATS_ID.BASE_DEV,
+        chat_id: CHATS_ID.BASE,
         text: formattedText,
         parse_mode: "MarkdownV2",
-        message_thread_id: 4294967414, //DEV
-        // message_thread_id: 4294967339,
+        // message_thread_id: 4294967414, //DEV
+        message_thread_id: 4294967339,
         polling: true,
       })
       .then(() => {

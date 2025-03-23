@@ -287,7 +287,7 @@ ${message.card_13_note != "" ? `_Примечание:_ ${message.card_13_note}`
       .replace(/\s*\[line\]/g, "\n")
       .replace(/=/g, "\\=")
       .replace(/>/g, "\\>")
-
+      .replace(/\+/g, "\\+")
       .replace(/\(/g, "\\(")
       .replace(/\)/g, "\\)")
       .replace(/\]/g, "\\]")
