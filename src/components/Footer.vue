@@ -76,15 +76,12 @@ function wireUpTriggers() {
                   <div class="menu__item item-link">
                     <router-link :to="{ name: ROUTES_PATHS.TOPOGRAPHY }">Проект и топографическая съемка</router-link>
                   </div>
-                  <div class="menu__item item-link">Септик под ключ</div>
-                  <div class="menu__item item-link">
-                    <router-link :to="{ name: ROUTES_PATHS.WATER }">Водоподготовка и система очистки воды</router-link>
-                  </div>
                   <div class="menu__item item-link">
                     <router-link :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
                   </div>
+                  <div class="menu__item item-link">Септик под ключ</div>
                   <div class="menu__item item-link">
-                    <router-link :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
+                    <router-link :to="{ name: ROUTES_PATHS.WATER }">Водоподготовка и система очистки воды</router-link>
                   </div>
                   <div class="menu__item item-link">
                     <router-link :to="{ name: ROUTES_PATHS.DRAINAGE }">Дренаж и ливневая канализация</router-link>
@@ -94,6 +91,9 @@ function wireUpTriggers() {
                   </div>
                   <div class="menu__item item-link">
                     <router-link :to="{ name: ROUTES_PATHS.ELECTRICITY }">Благоустройство</router-link>
+                  </div>
+                  <div class="menu__item item-link">
+                    <router-link :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                   </div>
                 </div>
               </div>

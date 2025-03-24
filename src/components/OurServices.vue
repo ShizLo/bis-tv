@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 function onHover(event, color) {
   event.currentTarget.style.background = color;
 }
@@ -7,12 +8,18 @@ function leaveHover(event) {
   event.currentTarget.style.background = "#f5f5f5";
 }
 
+const show = ref(false);
+const isRotated = ref(false);
+
 const props = defineProps({
   dataServices: {
     typeof: Array,
   },
   title: {
     typeof: String,
+  },
+  dopServices: {
+    typeof: Array,
   },
 });
 </script>
@@ -48,12 +55,60 @@ const props = defineProps({
           </div>
         </div>
       </div>
+      <div v-if="dopServices" class="d-flex justify-center my-6">
+        <!-- <v-btn :elevation="1" @click="show = !show">Показать еще услуги</v-btn> -->
+        <v-btn color="background2" @click="(isRotated = !isRotated), (show = !show)" :elevation="1">
+          Показать еще услуги
+          <v-icon :class="{ 'rotate-180': isRotated }" class="ml-2 transition-transform"> mdi-chevron-down </v-icon>
+        </v-btn>
+      </div>
+      <v-expand-transition v-if="dopServices">
+        <div v-show="show">
+          <div class="services__items">
+            <div v-for="columns in dopServices" class="services__column">
+              <div v-for="rows in columns" class="services__row">
+                <div
+                  v-for="item in rows"
+                  class="services__item"
+                  v-on:mouseover="(event) => onHover(event, item.hoverColors)"
+                  v-on:mouseleave="(event) => leaveHover(event)"
+                  :class="item.class"
+                >
+                  <router-link
+                    :style="{ 'background-image': 'url(' + item.pathImg + ')' }"
+                    class="services__item-link item"
+                    :to="{ name: item.routePath }"
+                  >
+                    <div class="item__description content__description">
+                      <div class="item__title title">
+                        <span>{{ item.title }}</span>
+                      </div>
+                      <div v-if="item.price.length > 0" class="item__price content__price">
+                        <span>{{ item.price }}</span>
+                      </div>
+                    </div>
+                  </router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </v-expand-transition>
     </div>
   </section>
 </template>
 <style lang="scss" scoped>
 @use "../assets/styles/main.scss" as *;
 
+.rotate-180 {
+  transform: rotate(180deg);
+}
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}
+.my-rotate-btn .v-btn__content {
+  // gap: 8px; /* Добавляем отступ между текстом и иконкой */
+}
 .services {
   margin-bottom: 15px;
   @media (max-width: $md4) {

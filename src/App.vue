@@ -110,17 +110,16 @@ document.addEventListener("click", (e) => {
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.TOPOGRAPHY }"
                     >Проект участка и топографическая съемка</router-link
                   >
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.HOME }">Септик под ключ</router-link>
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.WATER }"
                     >Водоподготовка и система очистки воды</router-link
                   >
-                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
-                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.DRAINAGE }">Ливневка и дренаж</router-link>
                   <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.ELECTRICITY }"
                     >Электромонтажные работы</router-link
                   >
-                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.HOME }">Благоустройство</router-link>
+                  <router-link class="menu-mobile__item_body-link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                 </div>
               </div>
               <div class="menu-mobile__item">
@@ -223,6 +222,12 @@ document.addEventListener("click", (e) => {
                           </div>
                           <div class="catalog__item">
                             <v-icon class="ml-2">
+                              <v-img :src="foundationIcon"></v-img>
+                            </v-icon>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
+                          </div>
+                          <div class="catalog__item">
+                            <v-icon class="ml-2">
                               <v-img :src="septikIcon"></v-img>
                             </v-icon>
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.HOME }">Септик под ключ</router-link>
@@ -234,18 +239,6 @@ document.addEventListener("click", (e) => {
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.WATER }"
                               >Водоподготовка и система очистки воды</router-link
                             >
-                          </div>
-                          <div class="catalog__item">
-                            <v-icon class="ml-2">
-                              <v-img :src="foundationIcon"></v-img>
-                            </v-icon>
-                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FAUNDATION }">Свайный фундамент</router-link>
-                          </div>
-                          <div class="catalog__item" data-test="0">
-                            <v-icon class="ml-2">
-                              <v-img :src="fenceIcon"></v-img>
-                            </v-icon>
-                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
                           </div>
                           <div class="catalog__item" data-test="0">
                             <v-icon class="ml-2">
@@ -269,6 +262,13 @@ document.addEventListener("click", (e) => {
                             </v-icon>
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.HOME }">Благоустройство</router-link>
                           </div>
+                          <div class="catalog__item" data-test="0">
+                            <v-icon class="ml-2">
+                              <v-img :src="fenceIcon"></v-img>
+                            </v-icon>
+                            <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.FENCE }">Установка заборов</router-link>
+                          </div>
+
                           <div class="catalog__item">
                             <v-icon class="ml-2">
                               <v-img :src="montagIcon"></v-img>
@@ -276,60 +276,8 @@ document.addEventListener("click", (e) => {
                             <router-link class="catalog__link" :to="{ name: ROUTES_PATHS.SERVICE }">БИС Сервис</router-link>
                           </div>
                         </li>
-                        <!-- <li class="catalog__list-item_body-item"></li>
-                        <li class="catalog__list-item_body-item"></li>
-                        <li class="catalog__list-item_body-item"></li> -->
                       </ul>
                     </li>
-                    <!-- <li class="catalog__list-item">
-                      <a href="/service" class="catalog__list-item_header">
-                        <img
-                          class="catalog__list-item_header-icon"
-                          width="20"
-                          height="20"
-                          alt="Sewera Сервис"
-                          src="./assets/icons/cleaning_services.svg"
-                        />
-                        Сервис
-                      </a>
-                      <ul class="catalog__list-item_body">
-                        <li class="catalog__list-item_body-item">
-                          <div class="catalog__item">
-                            <a class="catalog__link">Обслуживание ЛОС</a>
-                          </div>
-                          <div class="catalog__item">
-                            <a class="catalog__link">Обслуживание бойлеров</a>
-                          </div>
-                          <div class="catalog__item">
-                            <a class="catalog__link">Система водоочистки</a>
-                          </div>
-                        </li>
-                        <li class="catalog__list-item_body-item">
-                          <div class="catalog__item">
-                            <a class="catalog__link">Система водоподготовки</a>
-                          </div>
-
-                          <div class="catalog__item">
-                            <a class="catalog__link">Система водоснабжения</a>
-                          </div>
-
-                          <div class="catalog__item">
-                            <a class="catalog__link">Уборка участка</a>
-                          </div>
-                        </li>
-                        <li class="catalog__list-item_body-item">
-                          <div class="catalog__item">
-                            <a class="catalog__link">ТО и сервис генераторов</a>
-                          </div>
-                          <div class="catalog__item">
-                            <a class="catalog__link">Уход за газоном</a>
-                          </div>
-                          <div class="catalog__item">
-                            <a class="catalog__link">Разморозка водопровода</a>
-                          </div>
-                        </li>
-                      </ul>
-                    </li> -->
                   </ul>
                 </div>
               </div>

@@ -22,11 +22,11 @@ const data = [
     title: "Скважины",
     price: "от 3 800 р./м",
   },
-  {
-    urlImg: work_3,
-    title: "Дренаж",
-    price: "~ 80 000 руб.",
-  },
+  // {
+  //   urlImg: work_3,
+  //   title: "Дренаж",
+  //   price: "~ 80 000 руб.",
+  // },
   {
     urlImg: work_2,
     title: "Ливневка",
@@ -37,11 +37,11 @@ const data = [
     title: "Колодец",
     price: "от 300 000 р.",
   },
-  {
-    urlImg: "",
-    title: "Купели",
-    price: "от 210 000 р.",
-  },
+  // {
+  //   urlImg: "",
+  //   title: "Купели",
+  //   price: "от 210 000 р.",
+  // },
 ];
 
 onMounted(() => {

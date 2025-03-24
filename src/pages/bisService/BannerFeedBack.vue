@@ -222,7 +222,7 @@ ${selectedDateTime.value ? `Удобное время выезда: ${selectedDa
               <!-- <textarea class="mb-3" v-model="message.questiion" name="Какой у Вас септик" placeholder="Какой у Вас септик?"></textarea> -->
               <v-select
                 v-model="message.communication"
-                :items="['Звонок', 'Telegram', 'WhatsUp']"
+                :items="['Звонок', 'Telegram', 'WhatsApp']"
                 label="Укажите удобный способ связи"
                 variant="underlined"
                 hide-details
@@ -253,15 +253,6 @@ ${selectedDateTime.value ? `Удобное время выезда: ${selectedDa
               </v-date-picker>
             </div>
           </div>
-
-          <!-- <div class="communication">
-            <div class="communication__head">Удобный для Вас способ связи</div>
-            <div class="communication__btn">
-              <v-checkbox v-model="communication.phone" hide-details label="Звонок"></v-checkbox>
-              <v-checkbox v-model="communication.telegram" hide-details label="Telegram"></v-checkbox>
-              <v-checkbox v-model="communication.whatsup" hide-details label="WhatsUp"></v-checkbox>
-            </div>
-          </div> -->
           <div class="feedback mb-4">
             <p class="feedback__text">
               Нажимая кнопку «Отправить заявку», вы соглашаетесь с

@@ -116,6 +116,74 @@ const bannerPrice = [
     routerPath: "",
   },
 ];
+const dopServices = [
+  [
+    [
+      {
+        class: "services__row-item-big",
+        title: "Благоустройство",
+        price: "От 110 000 руб.",
+        pathImg: "",
+        hoverColors: "rgb(170, 214, 199)",
+      },
+    ],
+    [
+      {
+        class: "services__row-item-sm",
+        title: "Бурение скважин",
+        price: "От 3 800 р./м",
+        pathImg: "",
+        hoverColors: "rgb(204, 209, 255)",
+        routePath: ROUTES_PATHS.WATER,
+      },
+      // {
+      //   class: "services__row-item-sm",
+      //   title: "Ливневка",
+      //   price: "От 50 000 руб.",
+      //   pathImg: "url(/images/ourServices/services-7.webp",
+      //   hoverColors: "rgb(204, 209, 255)",
+      // },
+      {
+        class: "services__row-item-sm",
+        title: "Ливневка",
+        price: "~ 50 000 руб.",
+        pathImg: "",
+        hoverColors: "rgb(255, 229, 204)",
+        routePath: ROUTES_PATHS.FENCE,
+      },
+    ],
+  ],
+  [
+    [
+      {
+        class: "services__row-item-sm",
+        title: "Обустройство дренажа",
+        price: "От 80 000 руб.",
+        pathImg: "",
+        hoverColors: "rgb(255, 229, 204)",
+        routePath: ROUTES_PATHS.FAUNDATION,
+      },
+      {
+        class: "services__row-item-sm",
+        title: "Обустройство колодца",
+        price: "",
+        pathImg: "",
+        hoverColors: "rgb(243, 253, 180)",
+        routePath: ROUTES_PATHS.ELECTRICITY,
+      },
+    ],
+    [
+      {
+        class: "services__row-item-big",
+        title: "БИС сервис",
+        price: "Аварийный выезд - 5000 руб.",
+        pathImg: "",
+        hoverColors: "rgb(255, 229, 204)",
+        routePath: ROUTES_PATHS.TOPOGRAPHY,
+      },
+    ],
+  ],
+];
 const dataServices = [
   [
     [
@@ -485,8 +553,8 @@ const feedbackForm = reactive({
     stikers="true"
   />
   <Form v-show="feedbackForm.active" @isVisible="visibleForm()" />
-  <OurServices :dataServices="dataServices" title="Наши услуги" />
-  <ServiceSlider />
+  <OurServices :dataServices="dataServices" :dopServices="dopServices" title="Наши услуги" />
+  <!-- <ServiceSlider /> -->
   <BisService title="БИС Сервис" :data="dataBisService" />
   <WorksSlider title="Наши работы" :data="dataWork" />
   <WorkOrder :data="dataOrder" title="Почему выбирают нас" />

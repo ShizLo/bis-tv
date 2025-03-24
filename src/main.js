@@ -37,6 +37,11 @@ const myCustomLightTheme = {
     info: "#2196F3",
     success: "#4CAF50",
     warning: "#FB8C00",
+    title: "#102939",
+    subtitle: " #547285",
+    text: "#102939",
+    background1: "#eceff3",
+    background2: "#f0f1f2ec",
   },
   variables: {
     "border-color": "#000000",
