@@ -1,4 +1,6 @@
 <script setup>
+import { reactive } from "vue";
+
 import BannerSlider from "../components/Banner.vue";
 import LocalService from "../components/LocalService.vue";
 import WorkOrder from "../components/WorkOrder.vue";
@@ -6,6 +8,7 @@ import OurServices from "../components/OurServices.vue";
 import PopularServices from "../components/PopularServices.vue";
 import FeedBackForm from "../components/FeedBackForm.vue";
 import { ROUTES_PATHS } from "../constants";
+import DialogFeedBack from "../components/Form/DialogFeedBack.vue";
 //<Импорт картинок блок наши услуги>================================================================================
 import img_service_1 from "../assets/images/fencePage/services-2.webp";
 import img_service_2 from "../assets/images/fencePage/services-1.png";
@@ -101,7 +104,6 @@ const dataServices = [
         price: "от 2 550 м.пог",
         pathImg: img_service_6,
         hoverColors: "rgb(255, 229, 204)",
-        routePath: ROUTES_PATHS.FENCE,
       },
     ],
   ],
@@ -138,15 +140,43 @@ const dataOrder = [
     text: "Доставляем и монтируем заказ в удобное для Вас время. Наша команда гарантирует качественный монтаж и безупречную работу оборудования.",
   },
 ];
+const feedBackData = [
+  "Забор из мет. штакетника",
+  "Забор из профлиста",
+  "Забор из дер. штакетника",
+  "Забор из сетки гиттер",
+  "Забор из бруска",
+  "Забор из сетки рабица",
+  "Автоматика",
+  "Ворота",
+  "Освещение",
+  "Доп. услуги",
+  "Нет в списке",
+];
+
+function visibleForm() {
+  if (!feedbackForm.active) {
+    feedbackForm.active = true;
+    // toggleBodyScroll(true);
+  } else {
+    feedbackForm.active = false;
+    // toggleBodyScroll(false);
+  }
+}
+const feedbackForm = reactive({
+  active: false, // Открыта ли форма обратной связи
+});
 </script>
 <template>
+  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
   <BannerSlider
     bannerText="Заборы и ограждения"
     bannerDescription="Забор нужен для защиты вашего дома от посторонних, а также выделить и огородить четкие границы вашей территории.
 Устанавливаем заборы на винтовых сваях, что обеспечивает длительный срок службы."
     :bannerPrice="bannerPrice"
+    @isVisible="visibleForm()"
   />
-  <OurServices :dataServices="dataServices" title="Наши услуги по заборам" />
+  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" title="Наши услуги по заборам" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
   <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
   <PopularServices title="Популярные услуги" />

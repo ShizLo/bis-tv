@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, reactive, ref } from "vue";
+import { onMounted, onUnmounted, reactive, ref, computed } from "vue";
 import axios from "axios";
 import moment from "moment";
 
@@ -15,12 +15,20 @@ const calendar = reactive({
   attributes: [{ key: "today", highlight: { color: "blue" } }],
 });
 
+const totalFileSize = computed(() => {
+  return previews.value.reduce((acc, file) => acc + file.file.size, 0) / (1024 * 1024);
+});
+const isSizeExceeded = computed(() => totalFileSize.value > 50);
 const snackbar = reactive({
   value: false,
+  text: "",
+  color: "blue-grey",
 });
 
 const message = reactive({
   date: "",
+  num: "",
+  phone: "",
   object: "",
   fio: "",
   model: "",
@@ -85,6 +93,12 @@ const message = reactive({
 
 async function sendMessage() {
   try {
+    if (isSizeExceeded.value) {
+      snackbar.value = true;
+      snackbar.text = "Превышен максимальный размер файлов (50 МБ)";
+      snackbar.color = "error";
+      return;
+    }
     const formattedText = `
 👨🏻 *Карточка клиента*
 ${
@@ -99,7 +113,9 @@ ${
     ? `[line]`
     : ""
 }
-${message.date != "" ? `Дата: ${moment(message.date).format("DD.MM.YYYY")}` : ""}
+${message.date != "" ? `Дата выезда: ${moment(message.date).format("DD.MM.YYYY")}` : ""}
+${message.num != "" ? `Номер клиента: ${message.num}` : ""}
+${message.phone != "" ? `Номер телефона: ${message.phone}` : ""}
 ${message.object != "" ? `Объект: ${message.object}` : ""}
 ${message.fio != "" ? `ФИО: ${message.fio}` : ""}
 ${message.model != "" ? `Модель дома: ${message.model}` : ""}
@@ -293,23 +309,119 @@ ${message.card_13_note != "" ? `_Примечание:_ ${message.card_13_note}`
       .replace(/\]/g, "\\]")
       .replace(/\[/g, "\\[")
       .trim();
-    await axios
-      .post(`https://api.telegram.org/bot${token}/sendMessage`, {
-        chat_id: CHATS_ID.BASE,
-        text: formattedText,
-        parse_mode: "MarkdownV2",
-        // message_thread_id: 4294967414, //DEV
-        message_thread_id: 4294967337,
-        polling: true,
-      })
-      .then(() => {
-        snackbar.value = true;
-      });
+
+    //
+    // Отправка текстового сообщения
+    await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+      // chat_id: CHATS_ID.BASE_DEV,
+      chat_id: CHATS_ID.BASE,
+      text: formattedText,
+      parse_mode: "MarkdownV2",
+      // message_thread_id: 4294967414, //DEV
+      message_thread_id: 4294967337,
+    });
+
+    // Отправка медиа с обработкой
+    if (previews.value.length > 0) {
+      // Разбиваем на группы по 10 файлов (лимит Telegram)
+      const chunks = [];
+      while (previews.value.length) {
+        chunks.push(previews.value.splice(0, 10));
+      }
+
+      for (const chunk of chunks) {
+        const formData = new FormData();
+        const media = [];
+
+        for (const [index, preview] of chunk.entries()) {
+          let processedFile = preview.file;
+
+          // Обработка фото с камеры
+          if (isImage(preview.type)) {
+            processedFile = await processCameraImage(preview.file);
+          }
+          // Обработка видео
+          else {
+            processedFile = await processVideoFile(preview.file);
+          }
+
+          formData.append(`file${index}`, processedFile);
+          media.push({
+            type: isImage(preview.type) ? "photo" : "video",
+            media: `attach://file${index}`,
+            supports_streaming: true,
+          });
+        }
+
+        formData.append("chat_id", CHATS_ID.BASE_DEV);
+        formData.append("message_thread_id", 4294967414);
+        formData.append("media", JSON.stringify(media));
+
+        await axios.post(`https://api.telegram.org/bot${token}/sendMediaGroup`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+          maxContentLength: Infinity,
+          maxBodyLength: Infinity,
+        });
+      }
+    }
+
+    snackbar.value = true;
+    snackbar.text = "Данные успешно отправлены";
+    snackbar.color = "blue-grey";
   } catch (error) {
-    console.error("Ошибка при отправке сообщения:", error);
+    console.error("Ошибка отправки:", {
+      status: error.response?.status,
+      data: error.response?.data,
+      message: error.message,
+    });
   }
 }
 
+async function processCameraImage(file) {
+  try {
+    // Исправление ориентации для фото с камеры
+    const img = await createImageBitmap(file);
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    return new Promise((resolve) => {
+      canvas.toBlob(
+        (blob) => {
+          resolve(
+            new File([blob], file.name, {
+              type: file.type,
+              lastModified: Date.now(),
+            })
+          );
+        },
+        "image/jpeg",
+        0.95
+      ); // Качество 95%
+    });
+  } catch {
+    return file; // Возвращаем оригинал при ошибке
+  }
+}
+
+async function processVideoFile(file) {
+  // Проверка формата видео
+  if (!["video/mp4", "video/quicktime"].includes(file.type)) {
+    throw new Error("Неподдерживаемый формат видео");
+  }
+
+  // Проверка размера (макс. 50MB)
+  if (file.size > 50 * 1024 * 1024) {
+    throw new Error("Видео слишком большое (макс. 50MB)");
+  }
+
+  return file; // Можно добавить обработку видео при необходимости
+}
 function oneDayClick(day) {
   calendar.selectedDate = day.id;
   message.date = day.id;
@@ -353,7 +465,62 @@ const closeCombobox = (refName) => {
   isAnyComboboxOpen.value = false;
   currentOpenCombobox.value = null;
 };
+const moveCursorToFirstHash = () => {
+  if (message.phone.length != 18) {
+    message.phone = "+7 ";
+  }
+};
 
+const onBlur = () => {
+  if (message.phone.length != 18) {
+    message.phone = "";
+  }
+};
+
+//Фото и видео
+const files = ref([]);
+const previews = ref([]);
+
+const isImage = (type) => type.startsWith("image/");
+
+const onFileChange = async (event) => {
+  const validFiles = Array.from(event.target.files).filter((file) => {
+    // Проверка MIME-типов
+    const validTypes = ["image/jpeg", "image/png", "image/webp", "video/mp4", "video/quicktime"];
+    return validTypes.includes(file.type);
+  });
+
+  // Очистка предыдущих превью
+  previews.value = [];
+
+  // Обработка файлов с ограничением количества
+  for (const file of validFiles.slice(0, 10)) {
+    try {
+      const url = URL.createObjectURL(file);
+      previews.value.push({
+        url,
+        type: file.type,
+        file: await processFileBeforePreview(file),
+      });
+    } catch (error) {
+      console.error(`Ошибка обработки файла ${file.name}:`, error);
+    }
+  }
+};
+
+async function processFileBeforePreview(file) {
+  if (file.type.startsWith("image/")) {
+    return await processCameraImage(file);
+  }
+  return file;
+}
+
+const removeFile = (index) => {
+  URL.revokeObjectURL(previews.value[index].url);
+  previews.value.splice(index, 1);
+  files.value.splice(index, 1);
+};
+//////
 onMounted(() => {
   if (isMobileDevice()) {
     document.querySelectorAll("input, textarea").forEach((input) => {
@@ -389,6 +556,29 @@ onMounted(() => {
                     <div v-if="calendar.show" class="absolute z-10 mt-1">
                       <v-calendar @dayclick="oneDayClick" :isdark="false"></v-calendar>
                     </div>
+                    <v-text-field
+                      v-model="message.num"
+                      density="compact"
+                      hide-details
+                      class="mb-2"
+                      label="Номер клиента"
+                      variant="outlined"
+                      :disabled="isAnyComboboxOpen"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="message.phone"
+                      variant="outlined"
+                      class="mb-2"
+                      density="compact"
+                      prepend-inner-icon="mdi-phone"
+                      hide-details
+                      v-mask="'+7 (###) ###-##-##'"
+                      placeholder="+7 (___) ___-__-__"
+                      @focus="moveCursorToFirstHash"
+                      @blur="onBlur"
+                    >
+                      <template v-slot:label> <span class="test"> Номер телефона </span> </template>
+                    </v-text-field>
                     <v-text-field
                       v-model="message.object"
                       density="compact"
@@ -797,7 +987,7 @@ onMounted(() => {
                       variant="outlined"
                       :disabled="isAnyComboboxOpen"
                     ></v-text-field>
-                    <v-divider color="warning" class="mb-2 border-opacity-100"></v-divider>
+                    <v-divider class="mb-2 border-opacity-100"></v-divider>
                     <v-select
                       v-model="message.card_6_an_vody"
                       :items="['Имеется', 'Нужен']"
@@ -937,7 +1127,7 @@ onMounted(() => {
                 <label class="block text-h5 mt-5 font-semibold text-gray-900 pl-4">Дополнительные работы</label>
                 <fieldset class="mt-4">
                   <v-card class="px-3 pt-2 mb-4">
-                    <v-card-title class="text-h6 mb-1 pl-1">Чернова парковка</v-card-title>
+                    <v-card-title class="text-h6 mb-1 pl-1">Черновая парковка</v-card-title>
                     <v-text-field
                       v-model="message.card_9_width"
                       density="compact"
@@ -1172,10 +1362,51 @@ onMounted(() => {
                     ></v-textarea>
                   </v-card>
                 </fieldset>
+                <label class="block text-h5 mt-5 font-semibold text-gray-900 pl-4">Фото и видео материалы</label>
+                <fieldset class="mt-4">
+                  <v-card class="px-1 py-2 mb-4">
+                    <v-card-title class="text-h6 mb-1 pl-4">Материалы</v-card-title>
+                    <div class="pl-4">до 10 файлов (в сумме 50 МБ)</div>
+                    <div class="pl-4" :class="['text-caption', isSizeExceeded ? 'text-red' : 'text-grey']">
+                      Текущий размер: {{ totalFileSize.toFixed(2) }} МБ
+                      <span v-if="isSizeExceeded">(превышен лимит!)</span>
+                    </div>
+                    <div class="pa-4">
+                      <v-file-input
+                        v-model="files"
+                        variant="outlined"
+                        multiple
+                        accept="image/*,video/*"
+                        label="Добавьте фото и видео"
+                        @change="onFileChange"
+                      ></v-file-input>
+
+                      <v-row>
+                        <v-col v-for="(preview, index) in previews" :key="index" cols="12" sm="4">
+                          <div class="preview-wrapper">
+                            <v-img v-if="isImage(preview.type)" :src="preview.url" aspect-ratio="1" class="grey lighten-2"></v-img>
+
+                            <video
+                              v-else
+                              controls
+                              :src="preview.url"
+                              class="grey lighten-2"
+                              style="width: 100%; height: 200px; object-fit: cover"
+                            ></video>
+
+                            <v-btn icon small class="remove-btn" @click="removeFile(index)">
+                              <v-icon color="red">mdi-close</v-icon>
+                            </v-btn>
+                          </div>
+                        </v-col>
+                      </v-row>
+                    </div>
+                  </v-card>
+                </fieldset>
                 <v-btn @click="sendMessage" variant="outlined"> Отправить </v-btn>
-                <v-snackbar class="text-center" location="top" rounded="pill" color="blue-grey" v-model="snackbar.value"
-                  ><span class="text-center text-title">Данные успешно отправлены</span></v-snackbar
-                >
+                <v-snackbar class="text-center" location="top" rounded="pill" :color="snackbar.color" v-model="snackbar.value">
+                  <span class="text-center text-title">{{ snackbar.text }}</span>
+                </v-snackbar>
               </div>
             </div>
           </div>
@@ -1185,6 +1416,16 @@ onMounted(() => {
   </section>
 </template>
 <style lang="scss" scoped>
+.preview-wrapper {
+  position: relative;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: white;
+}
 .survey {
   //
   margin-top: 25px;

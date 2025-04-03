@@ -11,6 +11,7 @@ import DrainagePage from "../pages/DrainagePage.vue";
 import Service from "../pages/bisService/Service.vue";
 import DeparturePage from "../pages/DeparturePage.vue";
 import LandscapePage from "../pages/LandscapePage.vue";
+import FenceFormPage from "../pages/FenceFormPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,7 @@ const router = createRouter({
     { path: ROUTES_PATHS.HOME, name: ROUTES_PATHS.HOME, component: HomePage },
     { path: ROUTES_PATHS.POLICY, name: ROUTES_PATHS.POLICY, component: PolicyPage },
     { path: ROUTES_PATHS.FENCE, name: ROUTES_PATHS.FENCE, component: FencePage },
+    { path: ROUTES_PATHS.FENCEFORM, name: ROUTES_PATHS.FENCEFORM, component: FenceFormPage },
     { path: ROUTES_PATHS.WATER, name: ROUTES_PATHS.WATER, component: WaterPage },
     { path: ROUTES_PATHS.FAUNDATION, name: ROUTES_PATHS.FAUNDATION, component: FoundationPage },
     { path: ROUTES_PATHS.ELECTRICITY, name: ROUTES_PATHS.ELECTRICITY, component: ElectricityPage },

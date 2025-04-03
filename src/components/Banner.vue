@@ -72,49 +72,21 @@ function goTo(path) {
               <v-img :src="guaranteeIcon"></v-img>
             </v-icon>
             <div>Гарантия на все работы</div>
-            <!-- <div>Своя сервисная служба</div> -->
           </div>
           <div class="d-flex align-center">
             <v-icon size="34" class="mr-1">
               <v-img :src="serviceIcon"></v-img>
             </v-icon>
             <div>Своя сервисная служба</div>
-            <!-- <div>Своя сервисная служба</div> -->
           </div>
           <div class="d-flex align-center">
             <v-icon size="34" class="mr-1">
               <v-img :src="keyIcon"></v-img>
             </v-icon>
             <div>Работа под ключ</div>
-            <!-- <div>Своя сервисная служба</div> -->
           </div>
         </div>
-        <a
-          class="banner__button-link"
-          href="#GlobalForm"
-          v-scroll-to="{
-            el: '#GlobalForm',
-            easing: [0.6, 0.8, 0.3, 1.9],
-            duration: 2000,
-          }"
-        >
-          <!-- <button class="banner__button" @click="hoverMobile(), $emit('isVisible')"> -->
-          <button class="banner__button" @click="hoverMobile()">
-            Обсудить задачу
-            <!-- <svg class="banner__button-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g id="Frame 1864">
-                <path
-                  id="Vector"
-                  d="M1.75 7.29163H12.25M12.25 7.29163L7 12.5416M12.25 7.29163L7 2.04163"
-                  stroke="#102938"
-                  stroke-width="1.4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </g>
-            </svg> -->
-          </button>
-        </a>
+        <button class="banner__button" @click="hoverMobile(), $emit('isVisible')">Обсудить задачу</button>
         <p class="banner__description _visibility-mobile">{{ bannerDescription }}</p>
         <p v-if="desctiption" class="banner__description _visibility">{{ desctiption[swiperBanner.slideIndex].text }}</p>
         <h1 v-else-if="bannerDescription" class="banner__description _visibility">{{ bannerDescription }}</h1>
@@ -445,5 +417,43 @@ function goTo(path) {
       align-self: end;
     }
   }
+}
+/* Буллеты */
+.swiper-banner .swiper-pagination {
+  bottom: 0;
+}
+.swiper-banner .swiper-pagination-bullet {
+  width: 30px;
+  border-radius: 8px;
+  height: 4px;
+  background-color: #fff;
+}
+.swiper-banner .swiper-pagination-bullet-active {
+  position: relative;
+  width: 60px;
+  border-radius: 8px;
+  height: 4px;
+}
+.swiper-banner .swiper-pagination-bullet-active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 0;
+  opacity: 1;
+  border-radius: 8px;
+  transition: background-color 0.4s linear;
+  animation: progress-css 1s ease-in forwards;
+}
+
+.swiper-banner .swiper-pagination-bullet-active::after {
+  /* Включает анимацию булитов */
+  width: 100%;
+  background-color: #ea5b0c;
+  transition: all 4s linear;
+  transition-property: width, background-color;
 }
 </style>

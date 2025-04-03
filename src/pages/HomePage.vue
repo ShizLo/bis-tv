@@ -15,6 +15,7 @@ import AboutUs from "../components/AboutUs.vue";
 import Commands from "../components/Commands.vue";
 import FeedBackForm from "../components/FeedBackForm.vue";
 import Form from "../components/Form/Form.vue";
+import DialogFeedBack from "../components/Form/DialogFeedBack.vue";
 //</Импорт компонентов>===============================================================================
 
 //<Импорт картинок блок "Наши услуги">================================================================================
@@ -71,6 +72,11 @@ import gitter_1 from "../assets/images/workPhoto/gitter/1.jpeg";
 import borders_1 from "../assets/images/workPhoto/borders/1.jpeg";
 
 //</Импорт картинок>===============================================================================
+
+import garantyIcon from "../assets/icons/Icons_BIS/SVG/garantyQuolity.svg";
+import keyIcon from "../assets/icons/Icons_BIS/SVG/workKey.svg";
+import montagIcon from "../assets/icons/Icons_BIS/SVG/montag.svg";
+import projectIcon from "../assets/icons/Icons_BIS/SVG/project.svg";
 
 const bannerPrice = [
   {
@@ -134,7 +140,6 @@ const dopServices = [
         price: "От 3 800 р./м",
         pathImg: "",
         hoverColors: "rgb(204, 209, 255)",
-        routePath: ROUTES_PATHS.WATER,
       },
       // {
       //   class: "services__row-item-sm",
@@ -149,7 +154,7 @@ const dopServices = [
         price: "~ 50 000 руб.",
         pathImg: "",
         hoverColors: "rgb(255, 229, 204)",
-        routePath: ROUTES_PATHS.FENCE,
+        routePath: ROUTES_PATHS.DRAINAGE,
       },
     ],
   ],
@@ -161,7 +166,7 @@ const dopServices = [
         price: "От 80 000 руб.",
         pathImg: "",
         hoverColors: "rgb(255, 229, 204)",
-        routePath: ROUTES_PATHS.FAUNDATION,
+        routePath: ROUTES_PATHS.DRAINAGE,
       },
       {
         class: "services__row-item-sm",
@@ -169,7 +174,7 @@ const dopServices = [
         price: "",
         pathImg: "",
         hoverColors: "rgb(243, 253, 180)",
-        routePath: ROUTES_PATHS.ELECTRICITY,
+        routePath: ROUTES_PATHS.WATER,
       },
     ],
     [
@@ -179,7 +184,7 @@ const dopServices = [
         price: "Аварийный выезд - 5000 руб.",
         pathImg: "",
         hoverColors: "rgb(255, 229, 204)",
-        routePath: ROUTES_PATHS.TOPOGRAPHY,
+        routePath: ROUTES_PATHS.SERVICE,
       },
     ],
   ],
@@ -193,6 +198,20 @@ const dataServices = [
         price: "От 180 000 руб.",
         pathImg: img_service_1,
         hoverColors: "rgb(170, 214, 199)",
+        garanty: [
+          {
+            icon: garantyIcon,
+            text: "Гарантия качества",
+          },
+          {
+            icon: keyIcon,
+            text: "Работа под ключ",
+          },
+          {
+            icon: montagIcon,
+            text: "Быстрый монтаж",
+          },
+        ],
       },
     ],
     [
@@ -248,6 +267,16 @@ const dataServices = [
         pathImg: img_service_6,
         hoverColors: "rgb(255, 229, 204)",
         routePath: ROUTES_PATHS.TOPOGRAPHY,
+        garanty: [
+          {
+            icon: projectIcon,
+            text: "Визуализация проекта",
+          },
+          {
+            icon: keyIcon,
+            text: "Работа под ключ",
+          },
+        ],
       },
     ],
   ],
@@ -264,17 +293,17 @@ const dataOrder = [
     text: "Как не бывает двух одинаковых заказчиков, так и нет полностью идентичных участков. Наши инженеры и ландшафтный дизайнер помогут создать индивидуальный ландшафт и грамотно разместить коммуникации, учитывая все особенности участка.",
   },
   {
-    urlImg: "/icons/homePage/checkmark.svg",
+    urlImg: "/icons/homePage/garantyQuolity.svg",
     title: "Гарантия качества",
     text: "Гарантируем качество наших работ и оперативно реагируем в случае когда, что-то пошло не так. ",
   },
   {
-    urlImg: "/icons/homePage/cogs.svg",
+    urlImg: "/icons/homePage/montag+.svg",
     title: "Служба сервиса",
     text: "Если заказываете сервис у нас, то помимо сезонного обслуживания получаете и расширенную* гарантию. После монтажа оборудования наш специалист сам будет отслеживать и напоминать вам о необходимости провести ТО.",
   },
   {
-    urlImg: "/icons/homePage/clipboard.svg",
+    urlImg: "/icons/homePage/smeta.svg",
     title: "Прозрачная смета",
     text: "После первичной встречи на участке составляется визуализация вашего участка с привязками и размерами. Это позволяет точно составить подробную смету. Цена в большинстве случаев фиксируется или в смете указаны пункты, корректируемые по факту.",
   },
@@ -461,89 +490,110 @@ const dataWork = [
 const dataBisService = [
   {
     urlImg: "url(/images/globalServices/services-1+.webp)",
-    title: "Септик",
-    price: [{ text: "Обслуживание" }, { text: "Консервация" }, { text: "Ремонт" }, { text: "Диагностика" }],
+    title: "Септики",
+    // price: [{ text: "Обслуживание" }, { text: "Консервация" }, { text: "Ремонт" }, { text: "Диагностика" }],
+    price: [{ text: "Подробнее" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
   {
     urlImg: "url(/images/waterPage/bis-service-2+.webp)",
-    title: "Бойлер",
-    price: [{ text: "Обслуживание" }, { text: "Диагностика" }, { text: "Замена тена" }, { text: "Чистка от накипи" }],
+    title: "Бойлеры",
+    // price: [{ text: "Обслуживание" }, { text: "Диагностика" }, { text: "Замена тена" }, { text: "Чистка от накипи" }],
+    price: [{ text: "Подробнее" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
   {
     urlImg: "url(/images/waterPage/bis-service-1+.webp)",
     title: "Вододоочистка",
-    price: [{ text: "Замена картриджей" }],
+    // price: [{ text: "Замена картриджей" }],
+    price: [{ text: "Подробнее" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
   {
     urlImg: "url(/images/waterPage/water-6@0.5x.webp)",
     title: "Водоподготовка",
-    price: [{ text: "Анализ воды" }, { text: "Обслуживание" }, { text: "Ремонт" }, { text: "Магистральный фильтр" }, { text: "..." }],
+    // price: [{ text: "Анализ воды" }, { text: "Обслуживание" }, { text: "Ремонт" }, { text: "Магистральный фильтр" }, { text: "..." }],
+    price: [{ text: "Подробнее" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
   {
     urlImg: "url(/images/globalServices/sticker.png)",
     title: "Водоснабжение",
-    price: [
-      { text: "Замена насоса" },
-      { text: "Устранение течей" },
-      { text: "Греющий кабель" },
-      { text: "Утепление труб" },
-      { text: "..." },
-    ],
+    // price: [
+    //   { text: "Замена насоса" },
+    //   { text: "Устранение течей" },
+    //   { text: "Греющий кабель" },
+    //   { text: "Утепление труб" },
+    //   { text: "..." },
+    // ],
+    price: [{ text: "Подробнее" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
   {
     urlImg: "",
     title: "Уборка участка",
-    price: [{ text: "Вывоз мусора" }, { text: "Уборка крыши" }, { text: "Чистка террасы" }, { text: "..." }],
+    // price: [{ text: "Вывоз мусора" }, { text: "Уборка крыши" }, { text: "Чистка террасы" }, { text: "..." }],
+    price: [{ text: "Подробнее" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
   {
     urlImg: "",
     title: "Генераторы",
-    price: [{ text: "ТО и сервис" }],
+    // price: [{ text: "ТО и сервис" }],
+    price: [{ text: "Подробнее" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
   {
     urlImg: "",
     title: "Газон",
-    price: [{ text: "Стрижка" }, { text: "Аэрация" }, { text: "Восстановление" }],
+    // price: [{ text: "Стрижка" }, { text: "Аэрация" }, { text: "Восстановление" }],
+    price: [{ text: "Подробнее" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
   {
     urlImg: "",
     title: "Водопровод",
-    price: [{ text: "Разморозка" }],
+    // price: [{ text: "Разморозка" }],
+    price: [{ text: "Подробнее" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
+];
+const feedBackData = [
+  "Проект участка",
+  "Свайный фундамент",
+  "Септик под ключ",
+  "Водоподготовка",
+  "Водоснабжение",
+  "Дренаж",
+  "Электромонтаж",
+  "Благоустройство",
+  "Заборы",
+  "Сервис",
+  "Нет в списке",
 ];
 
 function visibleForm() {
   if (!feedbackForm.active) {
     feedbackForm.active = true;
-    toggleBodyScroll(true);
+    // toggleBodyScroll(true);
   } else {
     feedbackForm.active = false;
-    toggleBodyScroll(false);
+    // toggleBodyScroll(false);
   }
 }
-function toggleBodyScroll(lock) {
-  // TODO: Использовать после того как будет реализована форма обратной связи
-  document.body.style.overflow = lock ? "hidden" : "";
-  document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
-  document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
-}
+// function toggleBodyScroll(lock) {
+//   // TODO: Использовать после того как будет реализована форма обратной связи
+//   document.body.style.overflow = lock ? "hidden" : "";
+//   document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
+//   document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
+// }
 const feedbackForm = reactive({
-  // Не используется
-  //TODO: Открывать форму при нажатии кнопки "Обсудить задачу"
   active: false, // Открыта ли форма обратной связи
 });
 </script>
 
 <template>
+  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
   <Banner
     style="white-space: pre-line"
     bannerText="Инженерные коммуникации 
@@ -552,12 +602,13 @@ const feedbackForm = reactive({
     @isVisible="visibleForm()"
     stikers="true"
   />
-  <Form v-show="feedbackForm.active" @isVisible="visibleForm()" />
-  <OurServices :dataServices="dataServices" :dopServices="dopServices" title="Наши услуги" />
+
+  <!-- <Form v-show="feedbackForm.active" @isVisible="visibleForm()" /> -->
+  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" :dopServices="dopServices" title="Наши услуги" />
   <!-- <ServiceSlider /> -->
   <BisService title="БИС Сервис" :data="dataBisService" />
-  <WorksSlider title="Наши работы" :data="dataWork" />
-  <WorkOrder :data="dataOrder" title="Почему выбирают нас" />
+  <WorksSlider :data="dataWork" />
+  <WorkOrder :data="dataOrder" title="За что нас ценят" />
   <Partners />
   <AboutUs />
   <Commands />

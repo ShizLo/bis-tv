@@ -1,4 +1,6 @@
 <script setup>
+import { reactive } from "vue";
+
 import BannerSlider from "../components/Banner.vue";
 import LocalService from "../components/LocalService.vue";
 import WorkOrder from "../components/WorkOrder.vue";
@@ -6,6 +8,8 @@ import GlobalForm from "../components/Form/GlobalForm.vue";
 import OurServices from "../components/OurServices.vue";
 import PopularServices from "../components/PopularServices.vue";
 import FeedBackForm from "../components/FeedBackForm.vue";
+import PriceList from "../components/topographyPage/PriceList.vue";
+import DialogFeedBack from "../components/Form/DialogFeedBack.vue";
 
 //<Импорт картинок блок наши услуги>================================================================================
 import img_service_1 from "../assets/images/topographyPage/services-1.webp";
@@ -32,12 +36,12 @@ const bannerPrice = [
   },
   {
     url: "/images/topographyPage/banner-4+.webp",
-    price: "от 65 000 руб.",
+    price: "от 22 000 руб.",
     name: "Эскизный ландшафтный проект",
   },
   {
     url: "/images/topographyPage/banner-5.jpeg",
-    price: "от 85 000 руб.",
+    price: "от 65 000 руб.",
     name: "Полный ландшафтный проект",
   },
   {
@@ -61,7 +65,7 @@ const dataServices = [
       {
         class: "services__row-item-big",
         title: "Полный ландшафтный проект",
-        price: "от 85 000 руб.",
+        price: "от 65 000 руб.",
         pathImg: img_service_3,
         hoverColors: "rgb(255, 229, 204)",
       },
@@ -79,7 +83,7 @@ const dataServices = [
       {
         class: "services__row-item-big",
         title: "Эскизный проект",
-        price: "от 65 000 руб.",
+        price: "от 22 000 руб.",
         pathImg: img_service_2,
         hoverColors: "rgb(255, 229, 204)",
       },
@@ -166,17 +170,35 @@ const desctription = [
         Также данная услуга может быть заказана с другими работами из каталога (уточняйте при обращении).`,
   },
 ];
+
+function visibleForm() {
+  if (!feedbackForm.active) {
+    feedbackForm.active = true;
+    // toggleBodyScroll(true);
+  } else {
+    feedbackForm.active = false;
+    // toggleBodyScroll(false);
+  }
+}
+const feedbackForm = reactive({
+  active: false, // Открыта ли форма обратной связи
+});
+
+const feedBackData = ["Эскизный проект", "Ландшафтный проект", "Полный проект", "Выезд специалиста", "Вынос границ", "Топосъемка"];
 </script>
 
 <template>
+  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
   <BannerSlider
     style="white-space: pre-line"
     bannerText="Топографическая съемка и проектирование"
     bannerDescription="Поиск и закрепление границ вашего участка по координатам Росреестра. Определение границ заказывают перед установкой нового забора, покупкой участка и при спорах с соседями о текущем положении границы."
     :bannerPrice="bannerPrice"
     :desctiption="desctription"
+    @isVisible="visibleForm()"
   />
-  <OurServices :dataServices="dataServices" title="Наши услуги" />
+  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" title="Наши услуги" />
+  <PriceList />
   <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
 </template>

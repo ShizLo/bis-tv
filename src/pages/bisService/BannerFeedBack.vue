@@ -21,7 +21,11 @@ const formattedDateTime = computed(() => {
     hour12: false, // 24-часовой формат
   });
 });
-
+// Обновить выбранную дату и время
+const updateDateTime = (value) => {
+  dateTime.value = value;
+  selectedDateTime.value = formattedDateTime.value; // Обновить значение v-select
+};
 // Открыть диалоговое окно
 const openDialog = () => {
   dialog.value = true;
@@ -32,11 +36,6 @@ const closeDialog = () => {
   dialog.value = false;
 };
 
-// Обновить выбранную дату и время
-const updateDateTime = (value) => {
-  dateTime.value = value;
-  selectedDateTime.value = formattedDateTime.value; // Обновить значение v-select
-};
 const CHATS_ID = {
   BASE: -1002378962422,
   BASE_DEV: -1002383432249,
