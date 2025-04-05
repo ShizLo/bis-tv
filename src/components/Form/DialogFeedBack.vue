@@ -93,12 +93,12 @@ ${message.notes != "" ? `Примечания: ${message.notes}` : ""}
       .trim();
     await axios
       .post(`https://api.telegram.org/bot${token}/sendMessage`, {
-        chat_id: CHATS_ID.BASE_DEV,
-        // chat_id: CHATS_ID.BASE,
+        // chat_id: CHATS_ID.BASE_DEV,
+        chat_id: CHATS_ID.BASE,
         text: formattedText,
         parse_mode: "MarkdownV2",
-        message_thread_id: 4294967414, //DEV
-        // message_thread_id: 4294967328,
+        // message_thread_id: 4294967414, //DEV
+        message_thread_id: 4294967328,
         polling: true,
       })
       .then(() => {

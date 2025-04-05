@@ -16,7 +16,9 @@ const calendar = reactive({
 });
 
 const totalFileSize = computed(() => {
-  return previews.value.reduce((acc, file) => acc + file.file.size, 0) / (1024 * 1024);
+  const mediaSize = previews.value.reduce((acc, file) => acc + file.file?.size || 0, 0);
+  const docsSize = documents.value.reduce((acc, file) => acc + file.size, 0);
+  return (mediaSize + docsSize) / (1024 * 1024);
 });
 const isSizeExceeded = computed(() => totalFileSize.value > 50);
 const snackbar = reactive({
@@ -322,20 +324,23 @@ ${message.card_13_note != "" ? `Примечание: ${message.card_13_note}` :
     //
     // Отправка текстового сообщения
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-      // chat_id: CHATS_ID.BASE_DEV,
-      chat_id: CHATS_ID.BASE,
+      chat_id: CHATS_ID.BASE_DEV,
+      // chat_id: CHATS_ID.BASE,
       text: formattedText,
       parse_mode: "MarkdownV2",
-      // message_thread_id: 4294967414, //DEV
-      message_thread_id: 4294967337,
+      message_thread_id: 4294967414, //DEV
+      // message_thread_id: 4294967337,
     });
 
     // Отправка медиа с обработкой
     if (previews.value.length > 0) {
-      // Разбиваем на группы по 10 файлов (лимит Telegram)
+      // Создаем копию массива для отправки
+      const filesToSend = [...previews.value];
       const chunks = [];
-      while (previews.value.length) {
-        chunks.push(previews.value.splice(0, 10));
+
+      // Разбиваем на группы по 10 файлов
+      while (filesToSend.length) {
+        chunks.push(filesToSend.splice(0, 10));
       }
 
       for (const chunk of chunks) {
@@ -345,12 +350,9 @@ ${message.card_13_note != "" ? `Примечание: ${message.card_13_note}` :
         for (const [index, preview] of chunk.entries()) {
           let processedFile = preview.file;
 
-          // Обработка фото с камеры
           if (isImage(preview.type)) {
             processedFile = await processCameraImage(preview.file);
-          }
-          // Обработка видео
-          else {
+          } else {
             processedFile = await processVideoFile(preview.file);
           }
 
@@ -373,6 +375,22 @@ ${message.card_13_note != "" ? `Примечание: ${message.card_13_note}` :
           },
           maxContentLength: Infinity,
           maxBodyLength: Infinity,
+        });
+      }
+    }
+
+    // Отправка документов (остается без изменений)
+    if (documents.value.length > 0) {
+      for (const doc of documents.value) {
+        const formData = new FormData();
+        formData.append("document", doc);
+        formData.append("chat_id", CHATS_ID.BASE_DEV);
+        formData.append("message_thread_id", 4294967414);
+
+        await axios.post(`https://api.telegram.org/bot${token}/sendDocument`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         });
       }
     }
@@ -489,46 +507,123 @@ const onBlur = () => {
 //Фото и видео
 const files = ref([]);
 const previews = ref([]);
+const documents = ref([]);
+const documentsInputRef = ref(null);
+const fileInputRef = ref(null);
+
+const fileInputKey = ref(0); // Ключ для сброса файлового инпута
 
 const isImage = (type) => type.startsWith("image/");
+const isDocument = (file) => {
+  const docTypes = [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.ms-excel",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "text/plain",
+  ];
+  return (
+    docTypes.includes(file.type) ||
+    file.name.endsWith(".pdf") ||
+    file.name.endsWith(".doc") ||
+    file.name.endsWith(".docx") ||
+    file.name.endsWith(".xls") ||
+    file.name.endsWith(".xlsx") ||
+    file.name.endsWith(".txt")
+  );
+};
 
+const onDocumentsChange = (event) => {
+  const newDocuments = Array.from(event.target.files || []);
+
+  // Проверка на общий размер
+  const totalSize = [...previews.value, ...newDocuments].reduce((acc, file) => acc + file.size, 0) / (1024 * 1024);
+
+  if (totalSize > 50) {
+    snackbar.value = true;
+    snackbar.text = "Превышен максимальный размер файлов (50 МБ)";
+    snackbar.color = "error";
+    documents.value = [];
+    if (documentsInputRef.value) {
+      documentsInputRef.value.inputValue = null;
+    }
+    return;
+  }
+};
+
+const removeDocument = (index) => {
+  documents.value.splice(index, 1);
+
+  // Полностью сбрасываем файловый инпут
+  if (documentsInputRef.value) {
+    // Для Vuetify 3.x
+    documentsInputRef.value.inputValue = null;
+    // Дополнительно сбрасываем внутреннее состояние
+    documentsInputRef.value.$el.querySelector('input[type="file"]').value = "";
+  }
+};
+const clearMediaFiles = () => {
+  previews.value.forEach((file) => URL.revokeObjectURL(file.url));
+  previews.value = [];
+  files.value = [];
+};
 const onFileChange = async (event) => {
-  const validFiles = Array.from(event.target.files).filter((file) => {
-    // Проверка MIME-типов
-    const validTypes = ["image/jpeg", "image/png", "image/webp", "video/mp4", "video/quicktime"];
-    return validTypes.includes(file.type);
-  });
+  const newFiles = Array.from(event.target.files || []);
+  if (!newFiles.length) return;
 
-  // Очистка предыдущих превью
+  // Проверка лимита
+  if (newFiles.length > 10) {
+    snackbar.value = true;
+    snackbar.text = "Максимум 10 файлов";
+    snackbar.color = "error";
+    files.value = [];
+    return;
+  }
+
+  // Проверка размера
+  const totalSize = newFiles.reduce((acc, file) => acc + file.size, 0) / (1024 * 1024);
+  if (totalSize > 50) {
+    snackbar.value = true;
+    snackbar.text = "Превышен максимальный размер (50 МБ)";
+    snackbar.color = "error";
+    files.value = [];
+    return;
+  }
+
+  // Очищаем предыдущие превью
+  previews.value.forEach((file) => URL.revokeObjectURL(file.url));
   previews.value = [];
 
-  // Обработка файлов с ограничением количества
-  for (const file of validFiles.slice(0, 10)) {
+  // Обработка новых файлов
+  for (const file of newFiles) {
     try {
       const url = URL.createObjectURL(file);
       previews.value.push({
         url,
         type: file.type,
-        file: await processFileBeforePreview(file),
+        file: file,
+        id: Date.now() + Math.random(),
       });
     } catch (error) {
-      console.error(`Ошибка обработки файла ${file.name}:`, error);
+      console.error("Ошибка обработки файла:", error);
     }
   }
-};
 
-async function processFileBeforePreview(file) {
-  if (file.type.startsWith("image/")) {
-    return await processCameraImage(file);
-  }
-  return file;
-}
+  files.value = newFiles;
+};
 
 const removeFile = (index) => {
   URL.revokeObjectURL(previews.value[index].url);
   previews.value.splice(index, 1);
-  files.value.splice(index, 1);
+
+  // Обновляем files для инпута
+  files.value = previews.value.map((p) => p.file);
+
+  // Принудительное обновление инпута
+  fileInputKey.value++;
 };
+
 //////
 onMounted(() => {
   if (isMobileDevice()) {
@@ -1371,7 +1466,7 @@ onMounted(() => {
                     ></v-textarea>
                   </v-card>
                 </fieldset>
-                <label class="block text-h5 mt-5 font-semibold text-gray-900 pl-4">Фото и видео материалы</label>
+                <label class="block text-h5 mt-5 font-semibold text-gray-900 pl-4">Загрузка файлов</label>
                 <fieldset class="mt-4">
                   <v-card class="px-1 py-2 mb-4">
                     <v-card-title class="text-h6 mb-1 pl-4">Материалы</v-card-title>
@@ -1382,19 +1477,30 @@ onMounted(() => {
                     </div>
                     <div class="pa-4">
                       <v-file-input
+                        ref="fileInputRef"
                         v-model="files"
-                        variant="outlined"
                         multiple
+                        variant="outlined"
                         accept="image/*,video/*"
                         label="Добавьте фото и видео"
                         @change="onFileChange"
+                        :key="fileInputKey"
+                        clearable
+                        @click:clear="clearMediaFiles"
                       ></v-file-input>
-
-                      <v-row>
-                        <v-col v-for="(preview, index) in previews" :key="index" cols="12" sm="4">
+                      <v-file-input
+                        ref="documentsInputRef"
+                        v-model="documents"
+                        variant="outlined"
+                        multiple
+                        accept=".pdf,.doc,.docx,.xls,.xlsx,.txt"
+                        label="Добавьте документы"
+                        @change="onDocumentsChange"
+                      ></v-file-input>
+                      <v-row v-if="previews.length">
+                        <v-col v-for="(preview, index) in previews" :key="preview.id" cols="12" sm="4">
                           <div class="preview-wrapper">
                             <v-img v-if="isImage(preview.type)" :src="preview.url" aspect-ratio="1" class="grey lighten-2"></v-img>
-
                             <video
                               v-else
                               controls
@@ -1402,13 +1508,25 @@ onMounted(() => {
                               class="grey lighten-2"
                               style="width: 100%; height: 200px; object-fit: cover"
                             ></video>
-
                             <v-btn icon small class="remove-btn" @click="removeFile(index)">
                               <v-icon color="red">mdi-close</v-icon>
                             </v-btn>
                           </div>
                         </v-col>
                       </v-row>
+                      <v-list v-if="documents.length > 0" class="mt-4">
+                        <v-list-item v-for="(doc, index) in documents" :key="index">
+                          <template v-slot:prepend>
+                            <v-icon>mdi-file-document</v-icon>
+                          </template>
+                          <v-list-item-title>{{ doc.name }}</v-list-item-title>
+                          <template v-slot:append>
+                            <v-btn icon @click="removeDocument(index)">
+                              <v-icon color="red">mdi-close</v-icon>
+                            </v-btn>
+                          </template>
+                        </v-list-item>
+                      </v-list>
                     </div>
                   </v-card>
                 </fieldset>
@@ -1451,5 +1569,26 @@ onMounted(() => {
 .v-checkbox {
   margin: 0;
   padding: 0;
+}
+
+.preview-item {
+  position: relative;
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+.file-name {
+  padding-right: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
