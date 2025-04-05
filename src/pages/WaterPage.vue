@@ -1,11 +1,12 @@
 <script setup>
-import { defineAsyncComponent } from "vue";
+import { reactive, defineAsyncComponent } from "vue";
 import BannerSlider from "../components/Banner.vue";
 const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
 const LocalService = defineAsyncComponent(() => import("../components/LocalService.vue"));
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
 const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
 const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
+const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
 
 //<Импорт картинок блок наши услуги>================================================================================
 import img_service_1 from "../assets/images/waterPage/services-1.webp";
@@ -145,17 +146,45 @@ const dataOrder = [
     text: "Устанавливаем ванны, унитазы, раковины, душевые, подключаем смесители и прочую сантехнику.",
   },
 ];
+const feedBackData = [
+  "Кессон",
+  "Монтаж автоматики",
+  "Бурение скважин",
+  "Обвязка скважины",
+  "Обустройство колодца",
+  "Водоподготовка",
+  "Врезка в водопровод",
+  "Анализ воды",
+  "Уличный кран",
+  "Утепление колодца",
+  "Нет в списке",
+];
+
+function visibleForm() {
+  if (!feedbackForm.active) {
+    feedbackForm.active = true;
+    // toggleBodyScroll(true);
+  } else {
+    feedbackForm.active = false;
+    // toggleBodyScroll(false);
+  }
+}
+const feedbackForm = reactive({
+  active: false, // Открыта ли форма обратной связи
+});
 </script>
 
 <template>
+  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
   <BannerSlider
     bannerText="Водоснабжение и очистка воды в частном доме"
     bannerDescription="Одна из основных задач при обустройстве загородного дома организация водоснабжения.
 В основном мы рекомендуем бурить скважины на воду, но в некоторых районах за счет особенностей экосистемы применяются и другие источники воды (колодец, накопительные ёмкости).
 Кроме источника воды потребуется монтаж соответствующего оборудования. У нас есть для Вас решение."
     :bannerPrice="bannerPrice"
+    @isVisible="visibleForm()"
   />
-  <OurServices :dataServices="dataServices" title="Услуги по водоснабжению" />
+  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" title="Услуги по водоснабжению" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
   <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
   <PopularServices title="Популярные услуги" />

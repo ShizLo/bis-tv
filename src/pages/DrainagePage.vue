@@ -1,11 +1,11 @@
 <script setup>
-import { defineAsyncComponent } from "vue";
+import { reactive, defineAsyncComponent } from "vue";
 import BannerSlider from "../components/Banner.vue";
 const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
 const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
 const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
-
+const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
 //<Импорт картинок блок наши услуги>================================================================================
 // import img_service_1 from "";
 import img_service_2 from "../assets/images/drainagePage/services-1.webp";
@@ -100,17 +100,40 @@ const dataOrder = [
     text: "Доставляем и монтируем заказ в удобное для Вас время. Наша команда гарантирует качественный монтаж и безупречную работу оборудования.",
   },
 ];
+const feedBackData = [
+  "Схема с уклонами",
+  "Обустройство дренажа",
+  "Монтаж дренажных насосов",
+  "Ливневая канализация",
+  "Видеоинспекция",
+  "Прочистка дренажа",
+  "Прочистка лив. канализации",
+  "Нет в списке",
+];
+
+function visibleForm() {
+  if (!feedbackForm.active) {
+    feedbackForm.active = true;
+  } else {
+    feedbackForm.active = false;
+  }
+}
+const feedbackForm = reactive({
+  active: false, // Открыта ли форма обратной связи
+});
 </script>
 
 <template>
+  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
   <BannerSlider
     style="white-space: pre-line"
     bannerText="Ливневые канализации 
 и дренаж участка"
     bannerDescription="Сбор и отвод чистых вод от дренажных, водосточных систем с кровли и террасс, отведение очищенных вод из станции биологической очистки. Устройство ливневой канализации позволяет отвести поверхностные и грунтовые воды в общую систему дренажа (канавы, поселковая канализация) максимально эффективным и эстетичным образом. На низких участках возможно обустройство накопительного колодца и принудительный подъем и выброс воды дренажными насосами."
     :bannerPrice="bannerPrice"
+    @isVisible="visibleForm()"
   />
-  <OurServices :dataServices="dataServices" title="Наши услуги" />
+  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" title="Наши услуги" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
   <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />

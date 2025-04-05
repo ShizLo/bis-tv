@@ -106,7 +106,6 @@ const dataServices = [
     ],
   ],
 ];
-
 const servicePrice = [
   { urlImg: "url(/images/fence/dop-1.png)", price: "от 60 000 руб.", name: "Установка автоматики" },
   { urlImg: "url(/images/fence/dop-2.png", price: "от 10 000 руб.", name: "Освещение участка" },

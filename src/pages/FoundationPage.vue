@@ -1,13 +1,14 @@
 <script setup>
 // import BannerSlider from "../components/Banner.vue";
 // import OurServices from "../components/OurServices.vue";
-import { defineAsyncComponent } from "vue";
+import { reactive, defineAsyncComponent } from "vue";
 import BannerSlider from "../components/Banner.vue";
 const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
 const LocalService = defineAsyncComponent(() => import("../components/LocalService.vue"));
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
 const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
 const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
+const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
 
 //<Импорт картинок блок "Наши услуги">================================================================================
 import img_service_1 from "../assets/images/foundationPage/services-1.png";
@@ -128,16 +129,39 @@ const dataServices = [
     ],
   ],
 ];
+const feedBackData = [
+  "Монтаж фундамента под дом",
+  "Обвязка профтрубой",
+  "Пробное бурение",
+  "Деревянная обвязка",
+  "Обвязка уголком",
+  "Обвязка шеллером",
+  "Отсыпка свайного поля",
+  "Планировка участка",
+  "Дренаж и ливневка",
+  "Нет в списке",
+];
+function visibleForm() {
+  if (!feedbackForm.active) {
+    feedbackForm.active = true;
+  } else {
+    feedbackForm.active = false;
+  }
+}
+const feedbackForm = reactive({
+  active: false, // Открыта ли форма обратной связи
+});
 </script>
-
 <template>
+  <DialogFeedBack @isVisible="visibleForm()" v-if="feedbackForm.active" :services="feedBackData" />
   <BannerSlider
     bannerText="Монтаж фундамента на винтовых сваях"
     bannerDescription="Быстрое, надежное и экономичное решение для строительства. Обеспечивает прочность основания и подходит для любых грунтовых условий.
 Различное назначение: фундамент для дома, хоз. построек, забора, фундамент под печти или доп оборудование. Везде где требуется обеспечить жесткое статичное основание."
     :bannerPrice="bannerPrice"
+    @isVisible="visibleForm()"
   />
-  <OurServices :dataServices="dataServices" title="Услуги по фундаменту" />
+  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" title="Услуги по фундаменту" />
 
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
   <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />

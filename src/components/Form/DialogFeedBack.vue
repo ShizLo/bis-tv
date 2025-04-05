@@ -1,6 +1,13 @@
 <script setup>
 import { onMounted, onUnmounted, reactive, ref, computed, watch } from "vue";
+import { useRoute } from "vue-router";
 import axios from "axios";
+
+const route = useRoute();
+
+const routeName = computed(() => route.name || "Без названия");
+
+const routeMetaTitle = computed(() => route.meta?.title || "Стандартный заголовок");
 
 const dialog = ref(true);
 const emit = defineEmits(["isVisible"]); // Добавляем emit для закрытия
@@ -32,7 +39,7 @@ const message = reactive({
   bid: [],
   address: "",
   communication: [],
-  dop: "",
+  notes: "",
 });
 
 function clickBtn() {
@@ -40,12 +47,12 @@ function clickBtn() {
 }
 
 async function sendMessage() {
-  console.log("idfjidjfidfjif");
   try {
     const formattedText = `
 👨🏻 Заявка на услугу
 ${
   message.fio != "" ||
+  routeMetaTitle.value != "" ||
   message.phone != "" ||
   message.bid.length > 0 ||
   message.address != "" ||
@@ -54,10 +61,11 @@ ${
     ? `[line]`
     : ""
 }
+${routeMetaTitle.value != "" ? `Тема: ${routeMetaTitle.value}` : ""}
 ${message.fio != "" ? `ФИО: ${message.fio}` : ""}
 ${message.phone != "" ? `Телефон: ${message.phone}` : ""}
 ${message.address != "" ? `Адрес: ${message.address}` : ""}
-${message.bid != "" ? `Тема заявки: ${message.bid}` : ""}
+${message.bid != "" ? `Услуга: ${message.bid}` : ""}
 ${message.communication.length > 0 ? `Связь: ${message.communication.map((task) => `${task}`).join(", ")}` : ""}
 ${selectedDateTime.value ? `Удобное время выезда: ${selectedDateTime.value}` : ""}
 ${message.notes != "" ? `Примечания: ${message.notes}` : ""}
@@ -85,12 +93,12 @@ ${message.notes != "" ? `Примечания: ${message.notes}` : ""}
       .trim();
     await axios
       .post(`https://api.telegram.org/bot${token}/sendMessage`, {
-        // chat_id: CHATS_ID.BASE_DEV,
-        chat_id: CHATS_ID.BASE,
+        chat_id: CHATS_ID.BASE_DEV,
+        // chat_id: CHATS_ID.BASE,
         text: formattedText,
         parse_mode: "MarkdownV2",
-        // message_thread_id: 4294967414, //DEV
-        message_thread_id: 4294967328,
+        message_thread_id: 4294967414, //DEV
+        // message_thread_id: 4294967328,
         polling: true,
       })
       .then(() => {
@@ -105,6 +113,7 @@ ${message.notes != "" ? `Примечания: ${message.notes}` : ""}
 }
 
 const onBlur = () => {
+  console.log(routeMetaTitle.value);
   if (message.phone.length != 18) {
     message.phone = "";
   }
