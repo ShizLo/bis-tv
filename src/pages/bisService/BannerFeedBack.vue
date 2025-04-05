@@ -2,7 +2,7 @@
 import { ROUTES_PATHS } from "../../constants";
 import { onMounted, onUnmounted, reactive, ref, computed } from "vue";
 import axios from "axios";
-import { VDateInput } from "vuetify/labs/VDateInput";
+// import { VDateInput } from "vuetify/labs/VDateInput";
 
 // Состояния
 const dialog = ref(false); // Открытие/закрытие диалога
@@ -96,7 +96,7 @@ onMounted(() => {});
 async function sendMessage() {
   try {
     const formattedText = `
-  👨🏻 *Заявка на сервис*
+  👨🏻 Заявка на сервис
   ${
     message.fio != "" ||
     message.email != "" ||
@@ -125,6 +125,15 @@ ${selectedDateTime.value ? `Удобное время выезда: ${selectedDa
       .replace(/\)/g, "\\)")
       .replace(/\]/g, "\\]")
       .replace(/\[/g, "\\[")
+      .replace(/_/g, "\\_")
+      .replace(/\*/g, "\\*")
+      .replace(/~/g, "\\~")
+      .replace(/`/g, "\\`")
+      .replace(/#/g, "\\#")
+      .replace(/\|/g, "\\|")
+      .replace(/{/g, "\\{")
+      .replace(/}/g, "\\}")
+      .replace(/!/g, "\\!")
       .trim();
     await axios
       .post(`https://api.telegram.org/bot${token}/sendMessage`, {

@@ -1,5 +1,5 @@
 <script setup>
-import BlockHeader from "../../components/BlockHeader.vue";
+// import BlockHeader from "../../components/BlockHeader.vue";
 </script>
 <template>
   <section>

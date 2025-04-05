@@ -19,6 +19,7 @@
     "axios": "^1.8.2",
     "flatpickr": "^4.6.13",
     "lightgallery": "^2.8.2",
+    "rollup-plugin-visualizer": "^5.14.0",
     "swiper": "^11.1.15",
     "v-calendar": "^3.1.2",
     "vue": "^3.5.13",

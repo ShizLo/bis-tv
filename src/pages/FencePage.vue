@@ -1,14 +1,12 @@
 <script setup>
-import { reactive } from "vue";
-
+import { reactive, defineAsyncComponent } from "vue";
 import BannerSlider from "../components/Banner.vue";
-import LocalService from "../components/LocalService.vue";
-import WorkOrder from "../components/WorkOrder.vue";
-import OurServices from "../components/OurServices.vue";
-import PopularServices from "../components/PopularServices.vue";
-import FeedBackForm from "../components/FeedBackForm.vue";
-import { ROUTES_PATHS } from "../constants";
-import DialogFeedBack from "../components/Form/DialogFeedBack.vue";
+const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
+const LocalService = defineAsyncComponent(() => import("../components/LocalService.vue"));
+const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
+const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
+const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
+const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
 //<Импорт картинок блок наши услуги>================================================================================
 import img_service_1 from "../assets/images/fencePage/services-2.webp";
 import img_service_2 from "../assets/images/fencePage/services-1.png";

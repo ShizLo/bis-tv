@@ -1,13 +1,13 @@
 <script setup>
-import Banner from "../../components/Banner.vue";
+import { defineAsyncComponent } from "vue";
 import { ROUTES_PATHS } from "../../constants";
-import SeptikServices from "./SeptikServices.vue";
-import SeptikSlider from "./SeptikSlider.vue";
-import BannerFeedBack from "./BannerFeedBack.vue";
-import FeedBackForm from "../../components/FeedBackForm.vue";
-import VariantServiceSlider from "./VariantServiceSlider.vue";
-import WorksSlider from "../../components/WorksSlider.vue";
-import PriceExpansion from "./PriceExpansion.vue";
+const SeptikServices = defineAsyncComponent(() => import("./SeptikServices.vue"));
+const SeptikSlider = defineAsyncComponent(() => import("./SeptikSlider.vue"));
+const BannerFeedBack = defineAsyncComponent(() => import("./BannerFeedBack.vue"));
+const FeedBackForm = defineAsyncComponent(() => import("../../components/FeedBackForm.vue"));
+const VariantServiceSlider = defineAsyncComponent(() => import("./VariantServiceSlider.vue"));
+const WorksSlider = defineAsyncComponent(() => import("../../components/WorksSlider.vue"));
+const PriceExpansion = defineAsyncComponent(() => import("./PriceExpansion.vue"));
 
 //<Импорт картинок блок "Наши услуги">================================================================================
 import img_service_3 from "../../assets/images/homePage/bis-1.webp";

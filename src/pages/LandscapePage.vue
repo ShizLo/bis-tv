@@ -75,7 +75,7 @@ const message = reactive({
 async function sendMessage() {
   try {
     const formattedText = `
-👨🏻 *Анкета для ТЗ*
+👨🏻 Анкета для ТЗ
 ${message.fio != "" || message.address != "" || message.kadastr != "" || message.phone != "" ? `[line]` : ""}
 ${message.fio != "" ? `ФИО: ${message.fio}` : ""}
 ${message.address != "" ? `Адрес клиента: ${message.address}` : ""}
@@ -100,7 +100,7 @@ ${
   message.childrenAge != "" ||
   message.inval.length > 0 ||
   message.allergy.length > 0
-    ? `⭐️⭐️⭐️ *Дополнительные сведения*\n`
+    ? `⭐️⭐️⭐️ Дополнительные сведения\n`
     : ""
 }
 ${message.countPeople != "" ? `Число проживающих на участке: ${message.countPeople}` : ""}
@@ -127,7 +127,7 @@ ${
   message.utilityBlock.length > 0 ||
   message.air.length > 0 ||
   message.addReq != ""
-    ? `⭐️⭐️⭐️ *Функциональные зоны*\n`
+    ? `⭐️⭐️⭐️ Функциональные зоны\n`
     : ""
 }
 ${message.leisure.length > 0 ? `⭐️ Отдых (досуг)` : ""}
@@ -169,7 +169,7 @@ ${
   message.colorLike != "" ||
   message.colorDisLike != "" ||
   message.interior != ""
-    ? `⭐️⭐️⭐️ *Предпочтения*\n`
+    ? `⭐️⭐️⭐️ Предпочтения\n`
     : ""
 }
 ${message.garden.length > 0 ? `⭐️ Элементы сада` : ""}
@@ -209,7 +209,7 @@ ${
   message.viewDismantling != "" ||
   message.changes > 0 ||
   message.dopChanges != ""
-    ? `⭐️⭐️⭐️ *Технические вопросы*\n`
+    ? `⭐️⭐️⭐️ Технические вопросы\n`
     : ""
 }
 ${message.lighting.length > 0 ? `⭐️ Система освещения` : ""}
@@ -227,7 +227,7 @@ ${message.changes.length > 0 ? `⭐️ Пожелания по изменени�
 ${message.changes ? `${message.changes.map((task) => `● ${task}`).join("\n")}` : ""}
 ${message.dopChanges != "" ? `Дополнительные требования: ${message.dopChanges}` : ""}
 ${message.dopInfo.length > 0 || message.detailsInfo != "" ? `[line]` : ""}
-${message.dopInfo.length > 0 || message.detailsInfo != "" ? `⭐️⭐️⭐️ *Дополнительная информация*\n` : ""}
+${message.dopInfo.length > 0 || message.detailsInfo != "" ? `⭐️⭐️⭐️ Дополнительная информация\n` : ""}
 ${message.dopInfo ? `${message.dopInfo.map((task) => `● ${task}`).join("\n")}` : ""}
 ${message.detailsInfo != "" ? `Подробности: ${message.detailsInfo}` : ""}
 ${
@@ -245,7 +245,7 @@ ${
   message.wantHourGarden != "" ||
   message.likeWork != "" ||
   message.interfereGarden != ""
-    ? `⭐️⭐️⭐️ *Обслуживание сада*\n`
+    ? `⭐️⭐️⭐️ Обслуживание сада\n`
     : ""
 }
 ${message.experienceGarden != "" ? `Опыт работы: ${message.experienceGarden}` : ""}
@@ -265,6 +265,15 @@ ${message.interfereGarden != "" ? `Что мешает в саду: ${message.in
       .replace(/\)/g, "\\)")
       .replace(/\]/g, "\\]")
       .replace(/\[/g, "\\[")
+      .replace(/_/g, "\\_")
+      .replace(/\*/g, "\\*")
+      .replace(/~/g, "\\~")
+      .replace(/`/g, "\\`")
+      .replace(/#/g, "\\#")
+      .replace(/\|/g, "\\|")
+      .replace(/{/g, "\\{")
+      .replace(/}/g, "\\}")
+      .replace(/!/g, "\\!")
       .trim();
     await axios
       .post(`https://api.telegram.org/bot${token}/sendMessage`, {

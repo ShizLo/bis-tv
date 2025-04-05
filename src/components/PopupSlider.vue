@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, onBeforeMount, reactive, ref } from "vue";
+import { onMounted, onUnmounted, reactive } from "vue";
 import Swiper from "swiper/bundle";
 import { swiper_popup_work } from "../assets/js/swiper";
 import { toggleBodyScroll } from "../assets/js/utils/toggleBodyScroll";

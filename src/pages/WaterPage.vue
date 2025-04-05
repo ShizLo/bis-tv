@@ -1,11 +1,11 @@
 <script setup>
+import { defineAsyncComponent } from "vue";
 import BannerSlider from "../components/Banner.vue";
-import LocalService from "../components/LocalService.vue";
-import WorkOrder from "../components/WorkOrder.vue";
-import GlobalForm from "../components/Form/GlobalForm.vue";
-import OurServices from "../components/OurServices.vue";
-import FeedBackForm from "../components/FeedBackForm.vue";
-import PopularServices from "../components/PopularServices.vue";
+const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
+const LocalService = defineAsyncComponent(() => import("../components/LocalService.vue"));
+const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
+const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
+const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
 
 //<Импорт картинок блок наши услуги>================================================================================
 import img_service_1 from "../assets/images/waterPage/services-1.webp";

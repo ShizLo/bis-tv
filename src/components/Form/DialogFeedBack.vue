@@ -1,9 +1,18 @@
 <script setup>
 import { onMounted, onUnmounted, reactive, ref, computed, watch } from "vue";
+import axios from "axios";
 
 const dialog = ref(true);
-const emit = defineEmits(["dialogClosed"]); // Добавляем emit для закрытия
+const emit = defineEmits(["isVisible"]); // Добавляем emit для закрытия
+const CHATS_ID = {
+  BASE: -1002378962422,
+  BASE_DEV: -1002383432249,
+};
 
+const token = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
+const snackbar = reactive({
+  value: false,
+});
 // Функция для установки курсора на первую решетку
 const moveCursorToFirstHash = () => {
   if (message.phone.length != 18) {
@@ -21,10 +30,79 @@ const message = reactive({
   fio: "",
   phone: "",
   bid: [],
-  septik: [],
   address: "",
   communication: [],
+  dop: "",
 });
+
+function clickBtn() {
+  sendMessage();
+}
+
+async function sendMessage() {
+  console.log("idfjidjfidfjif");
+  try {
+    const formattedText = `
+👨🏻 Заявка на услугу
+${
+  message.fio != "" ||
+  message.phone != "" ||
+  message.bid.length > 0 ||
+  message.address != "" ||
+  message.communication.length > 0 ||
+  message.notes != ""
+    ? `[line]`
+    : ""
+}
+${message.fio != "" ? `ФИО: ${message.fio}` : ""}
+${message.phone != "" ? `Телефон: ${message.phone}` : ""}
+${message.address != "" ? `Адрес: ${message.address}` : ""}
+${message.bid != "" ? `Тема заявки: ${message.bid}` : ""}
+${message.communication.length > 0 ? `Связь: ${message.communication.map((task) => `${task}`).join(", ")}` : ""}
+${selectedDateTime.value ? `Удобное время выезда: ${selectedDateTime.value}` : ""}
+${message.notes != "" ? `Примечания: ${message.notes}` : ""}
+`
+      .replace(/\./g, "\\\.")
+      .replace(/-/g, "\\-")
+      .replace(/\n+/g, "\n")
+      .replace(/\s*\[line\]/g, "\n")
+      .replace(/=/g, "\\=")
+      .replace(/>/g, "\\>")
+      .replace(/\+/g, "\\+")
+      .replace(/\(/g, "\\(")
+      .replace(/\)/g, "\\)")
+      .replace(/\]/g, "\\]")
+      .replace(/\[/g, "\\[")
+      .replace(/_/g, "\\_")
+      .replace(/\*/g, "\\*")
+      .replace(/~/g, "\\~")
+      .replace(/`/g, "\\`")
+      .replace(/#/g, "\\#")
+      .replace(/\|/g, "\\|")
+      .replace(/{/g, "\\{")
+      .replace(/}/g, "\\}")
+      .replace(/!/g, "\\!")
+      .trim();
+    await axios
+      .post(`https://api.telegram.org/bot${token}/sendMessage`, {
+        // chat_id: CHATS_ID.BASE_DEV,
+        chat_id: CHATS_ID.BASE,
+        text: formattedText,
+        parse_mode: "MarkdownV2",
+        // message_thread_id: 4294967414, //DEV
+        message_thread_id: 4294967328,
+        polling: true,
+      })
+      .then(() => {
+        snackbar.value = true;
+        setTimeout(() => {
+          handleDialogClose();
+        }, 3000);
+      });
+  } catch (error) {
+    console.error("Ошибка при отправке сообщения:", error);
+  }
+}
 
 const onBlur = () => {
   if (message.phone.length != 18) {
@@ -209,8 +287,12 @@ watch(dialog, (newVal) => {
           </v-row>
         </v-card-text>
         <v-card-actions class="px-4 mb-4">
-          <v-btn block color="background2" size="large" variant="flat" @click="dialog = false"> Отправить заявку </v-btn>
+          <!-- <v-btn block color="background2" size="large" variant="flat" @click="clickBtn, (dialog = false)"> Отправить заявку </v-btn> -->
+          <v-btn block color="background2" size="large" variant="flat" @click="clickBtn"> Отправить заявку </v-btn>
         </v-card-actions>
+        <v-snackbar class="text-center" location="top" rounded="pill" color="blue-grey" v-model="snackbar.value"
+          ><span class="text-center text-title">Заявка отправлена</span></v-snackbar
+        >
       </v-card>
     </v-dialog>
   </div>

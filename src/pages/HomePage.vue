@@ -1,21 +1,20 @@
 <script setup>
 import { reactive } from "vue";
+import { defineAsyncComponent } from "vue";
 import { ROUTES_PATHS } from "../constants";
 
 //<Импорт компонентов>================================================================================
+// const Banner = defineAsyncComponent(() => import("../components/Banner.vue"));
 import Banner from "../components/Banner.vue";
-import OurServices from "../components/OurServices.vue";
-import ServiceSlider from "../components/ServiceSlider.vue";
-
-import BisService from "../components/BisService.vue";
-import WorksSlider from "../components/WorksSlider.vue";
-import WorkOrder from "../components/WorkOrder.vue";
-import Partners from "../components/Partners.vue";
-import AboutUs from "../components/AboutUs.vue";
-import Commands from "../components/Commands.vue";
-import FeedBackForm from "../components/FeedBackForm.vue";
-import Form from "../components/Form/Form.vue";
-import DialogFeedBack from "../components/Form/DialogFeedBack.vue";
+const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
+const BisService = defineAsyncComponent(() => import("../components/BisService.vue"));
+const WorksSlider = defineAsyncComponent(() => import("../components/WorksSlider.vue"));
+const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
+const Partners = defineAsyncComponent(() => import("../components/Partners.vue"));
+const AboutUs = defineAsyncComponent(() => import("../components/AboutUs.vue"));
+const Commands = defineAsyncComponent(() => import("../components/Commands.vue"));
+const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
+const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
 //</Импорт компонентов>===============================================================================
 
 //<Импорт картинок блок "Наши услуги">================================================================================

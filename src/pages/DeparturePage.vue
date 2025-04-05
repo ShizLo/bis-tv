@@ -100,7 +100,7 @@ async function sendMessage() {
       return;
     }
     const formattedText = `
-👨🏻 *Карточка клиента*
+👨🏻 Карточка клиента
 ${
   message.date != "" ||
   message.object != "" ||
@@ -124,21 +124,21 @@ ${message.kadastr != "" ? `Кадастровый номер: ${message.kadastr}
 ${message.address != "" ? `Адрес объекта: ${message.address}` : ""}
 ${message.coordinate2 != "" ? `Площадка для разрузки модулей: ${message.coordinate2}` : ""}
 ${message.card_1.length > 0 || message.card_1_note != "" ? `[line]` : ""}
-${message.card_1.length > 0 || message.card_1_note != "" ? `⭐️⭐️⭐️ *Первичные данные по участку*\n` : ""}
+${message.card_1.length > 0 || message.card_1_note != "" ? `⭐️⭐️⭐️ Первичные данные по участку\n` : ""}
 ${message.card_1 ? `${message.card_1.map((task) => `➕ ${task}`).join("\n")}` : ""}
-${message.card_1_note != "" ? `_Примечания:_ ${message.card_1_note}` : ""}
+${message.card_1_note != "" ? `Примечания: ${message.card_1_note}` : ""}
 ${message.card_2.length > 0 || message.card_2_note != "" ? `[line]` : ""}
-${message.card_2.length > 0 || message.card_2_note != "" ? `⭐️⭐️⭐️ *Отчет по пробному бурению*\n` : ""}
+${message.card_2.length > 0 || message.card_2_note != "" ? `⭐️⭐️⭐️ Отчет по пробному бурению\n` : ""}
 ${message.card_2 ? `${message.card_2.map((task) => `➕ ${task}`).join("\n")}` : ""}
-${message.card_2_note != "" ? `_Примечания:_ ${message.card_2_note}` : ""}
-${message.card_2_dop.length > 0 || message.card_2_dop_note != "" ? `_Дополнительные работы:_\n` : ""}
+${message.card_2_note != "" ? `Примечания: ${message.card_2_note}` : ""}
+${message.card_2_dop.length > 0 || message.card_2_dop_note != "" ? `Дополнительные работы:\n` : ""}
 ${message.card_2_dop.length > 0 ? `${message.card_2_dop.map((task) => `➕ ${task}`).join("\n")}` : ""}
-${message.card_2_dop_note != "" ? `_Примечания:_ ${message.card_2_dop_note}` : ""}
+${message.card_2_dop_note != "" ? `Примечания: ${message.card_2_dop_note}` : ""}
 ${message.card_3.length > 0 || message.card_3_note != "" || message.card_3_phone != "" ? `[line]` : ""}
-${message.card_3.length > 0 || message.card_3_note != "" || message.card_3_phone != "" ? `⭐️⭐️⭐️ *КПП*\n` : ""}
+${message.card_3.length > 0 || message.card_3_note != "" || message.card_3_phone != "" ? `⭐️⭐️⭐️ КПП\n` : ""}
 ${message.card_3 ? `${message.card_3.map((task) => `➕ ${task}`).join("\n")}` : ""}
 ${message.card_3_phone != "" ? `Телефон КПП: ${message.card_3_phone}` : ""}
-${message.card_3_note != "" ? `_Примечания:_ ${message.card_3_note}` : ""}
+${message.card_3_note != "" ? `Примечания: ${message.card_3_note}` : ""}
 ${
   message.card_4.length > 0 ||
   message.card_4_note != "" ||
@@ -154,24 +154,24 @@ ${
   message.card_4_width != "" ||
   message.card_4_width_in != "" ||
   message.card_4_width_vorot != ""
-    ? `⭐️⭐️⭐️ *Заезд на участок*\n`
+    ? `⭐️⭐️⭐️ Заезд на участок\n`
     : ""
 }
 ${message.card_4.length > 0 ? `${message.card_4.map((task) => `➕ ${task}`).join("\n")}` : ""}
 ${message.card_4_width != "" ? `Ширина дороги: ${message.card_4_width} м\.` : ""}
 ${message.card_4_width_in != "" ? `Ширина заезда: ${message.card_4_width_in} м\.` : ""}
 ${message.card_4_width_vorot != "" ? `Ширина ворот: ${message.card_4_width_vorot} м\.` : ""}
-${message.card_4_note != "" ? `_Примечания:_ ${message.card_4_note}` : ""}
+${message.card_4_note != "" ? `Примечания: ${message.card_4_note}` : ""}
 ${message.card_5.length > 0 || message.card_5_note != "" || message.card_5_tree != "" || message.card_5_tree_big != "" ? `[line]` : ""}
 ${
   message.card_5.length > 0 || message.card_5_note != "" || message.card_5_tree != "" || message.card_5_tree_big != ""
-    ? `⭐️⭐️⭐️ *Расчистка участка, планировка*\n`
+    ? `⭐️⭐️⭐️ Расчистка участка, планировка\n`
     : ""
 }
 ${message.card_5.length > 0 ? `${message.card_5.map((task) => `➕ ${task}`).join("\n")}` : ""}
 ${message.card_5_tree != "" ? `Большие деревья 10-20: ${message.card_5_tree}` : ""}
 ${message.card_5_tree_big != "" ? `Большие деревья 25-40: ${message.card_5_tree_big}` : ""}
-${message.card_5_note != "" ? `_Примечания:_ ${message.card_5_note}` : ""}
+${message.card_5_note != "" ? `Примечания: ${message.card_5_note}` : ""}
 ${
   message.card_6.length > 0 ||
   message.card_6_note != "" ||
@@ -195,7 +195,7 @@ ${
   message.card_6_kolodec_kolca != "" ||
   message.card_6_debet != "" ||
   message.card_6_an_vody.length > 0
-    ? `⭐️⭐️⭐️ *Источник воды*\n`
+    ? `⭐️⭐️⭐️ Источник воды\n`
     : ""
 }
 ${message.card_6.length > 0 ? `${message.card_6.map((task) => `➕ ${task}`).join("\n")}` : ""}
@@ -208,7 +208,7 @@ ${
   message.card_6_kolodec_kolca != "" ||
   message.card_6_debet != "" ||
   message.card_6_an_vody.length > 0
-    ? `_Дополнительные работы_\n`
+    ? `Дополнительные работы\n`
     : ""
 }
 ${message.card_6_plan_istoch.length > 0 ? `⭐️ Планируемый источник и допы\n` : ""}
@@ -223,34 +223,34 @@ ${message.card_6_kolodec_kolca != "" ? `Кол-во колец: ${message.card_6
 ${message.card_6_debet != "" ? `Дебет: ${message.card_6_debet}` : ""}
 ${message.card_6_an_vody.length > 0 ? `⭐️ Анализ воды\n` : ""}
 ${message.card_6_an_vody.length > 0 ? `${message.card_6_an_vody.map((task) => `➕ ${task}`).join("\n")}` : ""}
-${message.card_6_note != "" ? `_Примечания:_ ${message.card_6_note}` : ""}
+${message.card_6_note != "" ? `Примечания: ${message.card_6_note}` : ""}
 ${message.card_7.length > 0 || message.card_7_note != "" || message.card_7_kvt != "" || message.card_7_dop.length > 0 ? `[line]` : ""}
 ${
   message.card_7.length > 0 || message.card_7_note != "" || message.card_7_kvt != "" || message.card_7_dop.length > 0
-    ? `⚡️⚡️⚡️ *Электричество*\n`
+    ? `⚡️⚡️⚡️ Электричество\n`
     : ""
 }
 ${message.card_7.length > 0 ? `${message.card_7.map((task) => `➕ ${task}`).join("\n")}` : ""}
 ${message.card_7_kvt != "" ? `Количество КВТ: ${message.card_7_kvt}` : ""}
 ${message.card_7_dop.length > 0 ? `⭐️ Планируемый источник и допы\n` : ""}
 ${message.card_7_dop.length > 0 ? `${message.card_7_dop.map((task) => `➕ ${task}`).join("\n")}` : ""}
-${message.card_7_note != "" ? `_Иное:_ ${message.card_7_note}` : ""}
+${message.card_7_note != "" ? `Иное: ${message.card_7_note}` : ""}
 ${message.card_8.length > 0 || message.card_8_note != "" || message.card_8_dop.length > 0 ? `[line]` : ""}
-${message.card_8.length > 0 || message.card_8_note != "" || message.card_8_dop.length > 0 ? `🧻🧻🧻 *Канализация*\n` : ""}
+${message.card_8.length > 0 || message.card_8_note != "" || message.card_8_dop.length > 0 ? `🧻🧻🧻 Канализация\n` : ""}
 ${message.card_8.length > 0 ? `${message.card_8.map((task) => `➕ ${task}`).join("\n")}` : ""}
 ${message.card_8_dop.length > 0 ? `⭐️ Планируемая канализация и допы\n` : ""}
 ${message.card_8_dop.length > 0 ? `${message.card_8_dop.map((task) => `➕ ${task}`).join("\n")}` : ""}
-${message.card_8_note != "" ? `_Иное:_ ${message.card_8_note}` : ""}
+${message.card_8_note != "" ? `Иное: ${message.card_8_note}` : ""}
 ${message.card_9.length > 0 || message.card_9_note != "" || message.card_9_length != "" || message.card_9_width != "" ? `[line]` : ""}
 ${
   message.card_9.length > 0 || message.card_9_note != "" || message.card_9_length != "" || message.card_9_width != ""
-    ? `🅿️🅿️🅿️ *Черновая парковка*\n`
+    ? `🅿️🅿️🅿️ Черновая парковка\n`
     : ""
 }
 ${message.card_9_width != "" ? `Ширина: ${message.card_9_width} м.` : ""}
 ${message.card_9_length != "" ? `Длина: ${message.card_9_length} м.` : ""}
 ${message.card_9.length > 0 ? `${message.card_9.map((task) => `➕ ${task}`).join("\n")}` : ""}
-${message.card_9_note != "" ? `_Примечание:_ ${message.card_9_note}` : ""}
+${message.card_9_note != "" ? `Примечание: ${message.card_9_note}` : ""}
 ${
   message.card_10.length > 0 ||
   message.card_10_note != "" ||
@@ -268,7 +268,7 @@ ${
   message.card_10_width != "" ||
   message.card_10_glubina != "" ||
   message.card_10_diametr != ""
-    ? `⭐️⭐️⭐️ *Заезд на участок*\n`
+    ? `⭐️⭐️⭐️ Заезд на участок\n`
     : ""
 }
 ${message.card_10_width != "" ? `Ширина: ${message.card_10_width} м.` : ""}
@@ -276,26 +276,26 @@ ${message.card_10_length != "" ? `Длина: ${message.card_10_length} м.` : "
 ${message.card_10_glubina != "" ? `Глубина кювета: ${message.card_10_glubina}` : ""}
 ${message.card_10_diametr != "" ? `Диаметр трубы по регламенту: ${message.card_10_diametr}` : ""}
 ${message.card_10.length > 0 ? `${message.card_10.map((task) => `➕ ${task}`).join("\n")}` : ""}
-${message.card_10_note != "" ? `_Примечание:_ ${message.card_10_note}` : ""}
+${message.card_10_note != "" ? `Примечание: ${message.card_10_note}` : ""}
 ${message.card_11.length > 0 || message.card_11_note != "" || message.card_11_length != "" || message.card_11_width != "" ? `[line]` : ""}
 ${
   message.card_11.length > 0 || message.card_11_note != "" || message.card_11_length != "" || message.card_11_width != ""
-    ? `⭐️⭐️⭐️ *Дорожки*\n`
+    ? `⭐️⭐️⭐️ Дорожки\n`
     : ""
 }
 ${message.card_11_width != "" ? `Ширина: ${message.card_11_width} м.` : ""}
 ${message.card_11_length != "" ? `Длина: ${message.card_11_length} м.` : ""}
 ${message.card_11.length > 0 ? `${message.card_11.map((task) => `➕ ${task}`).join("\n")}` : ""}
-${message.card_11_note != "" ? `_Примечание:_ ${message.card_11_note}` : ""}
+${message.card_11_note != "" ? `Примечание: ${message.card_11_note}` : ""}
 ${message.card_12.length > 0 || message.card_12_note != "" || message.card_12_vinos != "" ? `[line]` : ""}
-${message.card_12.length > 0 || message.card_12_note != "" || message.card_12_vinos != "" ? `⭐️⭐️⭐️ *Отсыпка свайного поля*\n` : ""}
+${message.card_12.length > 0 || message.card_12_note != "" || message.card_12_vinos != "" ? `⭐️⭐️⭐️ Отсыпка свайного поля\n` : ""}
 ${message.card_12.length > 0 ? `${message.card_12.map((task) => `➕ ${task}`).join("\n")}` : ""}
 ${message.card_12_vinos != "" ? `Вынос по периметру: ${message.card_12_vinos}` : ""}
-${message.card_12_note != "" ? `_Примечание:_ ${message.card_12_note}` : ""}
+${message.card_12_note != "" ? `Примечание: ${message.card_12_note}` : ""}
 ${message.card_13.length > 0 || message.card_13_note != "" ? `[line]` : ""}
-${message.card_13.length > 0 || message.card_13_note != "" ? `⭐️⭐️⭐️ *Прочие планируемые работы*\n` : ""}
+${message.card_13.length > 0 || message.card_13_note != "" ? `⭐️⭐️⭐️ Прочие планируемые работы\n` : ""}
 ${message.card_13.length > 0 ? `${message.card_13.map((task) => `➕ ${task}`).join("\n")}` : ""}
-${message.card_13_note != "" ? `_Примечание:_ ${message.card_13_note}` : ""}
+${message.card_13_note != "" ? `Примечание: ${message.card_13_note}` : ""}
 `
       .replace(/\./g, "\\\.")
       .replace(/-/g, "\\-")
@@ -308,6 +308,15 @@ ${message.card_13_note != "" ? `_Примечание:_ ${message.card_13_note}`
       .replace(/\)/g, "\\)")
       .replace(/\]/g, "\\]")
       .replace(/\[/g, "\\[")
+      .replace(/_/g, "\\_")
+      .replace(/\*/g, "\\*")
+      .replace(/~/g, "\\~")
+      .replace(/`/g, "\\`")
+      .replace(/#/g, "\\#")
+      .replace(/\|/g, "\\|")
+      .replace(/{/g, "\\{")
+      .replace(/}/g, "\\}")
+      .replace(/!/g, "\\!")
       .trim();
 
     //

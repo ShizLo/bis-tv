@@ -1,9 +1,9 @@
 <script setup>
-import { ref, onUpdated, computed, reactive, defineEmits} from "vue";
+import { ref, onUpdated, computed, reactive } from "vue";
 import { ROUTES_PATHS } from "../../constants";
-import useVuelidate from "@vuelidate/core"
-import { required, helpers, email, minLength  } from "@vuelidate/validators"
-import moment from 'moment'
+import useVuelidate from "@vuelidate/core";
+import { required, helpers, email, minLength } from "@vuelidate/validators";
+import moment from "moment";
 
 //------ переменные ------//
 let questiion = ref("");
@@ -14,47 +14,46 @@ let isReady = ref();
 //------ вычисляемые свойства ------//
 const formattedDate = computed(() => {
   if (date.value == null) {
-    visible.value = false
-    return 'любое время'
+    visible.value = false;
+    return "любое время";
   } else {
-    visible.value = true
-    return moment(date.value).format('DD-MM-YYYY HH:mm')
+    visible.value = true;
+    return moment(date.value).format("DD-MM-YYYY HH:mm");
   }
-})
+});
 
 const formData = reactive({
   name: "",
   email: "",
   telephone: "",
   selectedCommunication: [],
-})
+});
 const rules = {
   name: {
-    required: helpers.withMessage('Поле должно быть заполнено', required), 
-    alpha: helpers.withMessage('Только латинские буквы', val => /^[а-яё]*$/i.test(val)),
+    required: helpers.withMessage("Поле должно быть заполнено", required),
+    alpha: helpers.withMessage("Только латинские буквы", (val) => /^[а-яё]*$/i.test(val)),
   },
   email: {
-    required: helpers.withMessage('Поле должно быть заполнено', required), 
-    email: helpers.withMessage('Пример ivanov@mail.ru', email), 
+    required: helpers.withMessage("Поле должно быть заполнено", required),
+    email: helpers.withMessage("Пример ivanov@mail.ru", email),
   },
   telephone: {
-    required: helpers.withMessage('Поле должно быть заполнено', required), 
-    minLength: helpers.withMessage('Заполните поле полностью', minLength(18)),
+    required: helpers.withMessage("Поле должно быть заполнено", required),
+    minLength: helpers.withMessage("Заполните поле полностью", minLength(18)),
   },
-}
+};
 const rulesTime = ref({
   hours: { min: 9, max: 19 },
   minutes: { interval: 5 },
 });
-const v$ = useVuelidate( rules, formData )
+const v$ = useVuelidate(rules, formData);
 
-const selectedColor = ref('orange'); // правило для календаря цвет кружочков оранжевый
+const selectedColor = ref("orange"); // правило для календаря цвет кружочков оранжевый
 
 const dateNull = () => {
-    return date.value = null;
-}
+  return (date.value = null);
+};
 onUpdated(() => {
-  
   let telInput = document.querySelector('input[name="telephone"]');
 
   const telOptions = {
@@ -63,58 +62,66 @@ onUpdated(() => {
   };
   //------ маска телефона ------//
   const maskTel = IMask(telInput, telOptions);
-  maskTel.on(
-  );
-  
+  maskTel.on();
 });
 
 //------ Конвертация в Unicod для отправки в телеграм ------//
 function convertToUnicod(text) {
-  return text.replace(
-    /[\u0080-\uFFFF]/g,
-    function (s) {
-        return "\\u" + ('000' + s.charCodeAt(0).toString(16)).substr(-4);
-    }
-)
-}const submitForma =  () => {
-  v$.value.$touch()
-  const result =  v$.value.$validate();
+  return text.replace(/[\u0080-\uFFFF]/g, function (s) {
+    return "\\u" + ("000" + s.charCodeAt(0).toString(16)).substr(-4);
+  });
+}
+const submitForma = () => {
+  v$.value.$touch();
+  const result = v$.value.$validate();
   // if (result) {
   //   isReady.value = result
   // } else {
   //   isReady.value = result
   // }
-}
+};
 const resetForm = () => {
-      ////form.value.username = '';
-      
-      v$.value.name.$model = ''
-      v$.value.email.$model = ''
-      v$.value.telephone.$model = ''
-      //console.log(v$.value.name)
-      v$.value.$reset
+  ////form.value.username = '';
 
-      // v$.value.$reset()
-      // formData.name = ''
-    };
+  v$.value.name.$model = "";
+  v$.value.email.$model = "";
+  v$.value.telephone.$model = "";
+  //console.log(v$.value.name)
+  v$.value.$reset;
 
-    const emit = defineEmits(['isVisible'])
-    const isVisible = () => {
-      //setTimeout(() => emit('isVisible'), 500);
-      emit('isVisible')
-      resetForm()
-  
-}
+  // v$.value.$reset()
+  // formData.name = ''
+};
 
-const submitForm =  () =>  {
-  v$.value.$touch()
+const emit = defineEmits(["isVisible"]);
+const isVisible = () => {
+  //setTimeout(() => emit('isVisible'), 500);
+  emit("isVisible");
+  resetForm();
+};
+
+const submitForm = () => {
+  v$.value.$touch();
   if (!v$.value.$invalid) {
-    var my_text = "Имя: "+ formData.name + "%0A" + 
-                  "Почта: " + formData.email + "%0A" +
-                  "Телефон:"+ "%2b" + convertToUnicod(formData.telephone) + 
-                  "%0A" + " " + formData.questiion + 
-                  "Каким способом связаться:" + " " + formData.selectedCommunication + "%0A" +
-                  "Когда нужно связаться: " + formattedDate.value;
+    var my_text =
+      "Имя: " +
+      formData.name +
+      "%0A" +
+      "Почта: " +
+      formData.email +
+      "%0A" +
+      "Телефон:" +
+      "%2b" +
+      convertToUnicod(formData.telephone) +
+      "%0A" +
+      " " +
+      formData.questiion +
+      "Каким способом связаться:" +
+      " " +
+      formData.selectedCommunication +
+      "%0A" +
+      "Когда нужно связаться: " +
+      formattedDate.value;
     var token2 = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
     var chat_id2 = -1002378962422;
     // ОСНОВНАЯ ГРУППА
@@ -129,59 +136,57 @@ const submitForm =  () =>  {
     api.open("GET", url, true);
     //api.send();
     questiion.value = "";
-    console.log('succes')
-    isVisible()
- 
-    
+    console.log("succes");
+    isVisible();
   } else {
-    console.log('bad')
+    console.log("bad");
   }
-}
-
-
+};
 </script>
 <template>
-  <div class="container-modal" @click.self="isVisible(), v$.$reset()" >
-    <form class="reveal-modal" @submit.prevent="submitForm" >
+  <div class="container-modal" @click.self="isVisible(), v$.$reset()">
+    <form class="reveal-modal" @submit.prevent="submitForm">
       <div class="block-">
         <p class="feedback__title title">Свяжемся с вами для консультации</p>
       </div>
       <div class="block-form">
         <div class="feedback__form">
           <div class="feedback__group" v-bind:class="{ 'fld-error': v$.name.$error }">
-            <input 
-              v-model="formData.name" 
-              class="feedback__group-input" 
-              type="text" 
+            <input
+              v-model="formData.name"
+              class="feedback__group-input"
+              type="text"
               name="name"
-              placeholder="Имя" 
+              placeholder="Имя"
               @input="v$.name.$touch"
-              maxlength="20" />
+              maxlength="20"
+            />
             <span v-for="error in v$.name.$errors" :key="error.$uid">
               {{ error.$message }}
             </span>
           </div>
           <div class="feedback__group" v-bind:class="{ 'fld-error': v$.email.$error }">
-            <input 
-              v-model="formData.email" 
-              class="feedback__group-input" 
+            <input
+              v-model="formData.email"
+              class="feedback__group-input"
               type="email"
               placeholder="your@email.ru"
               @input="v$.email.$touch"
               name="email"
-              />
+            />
             <span v-for="error in v$.email.$errors" :key="error.$uid">
               {{ error.$message }}
             </span>
           </div>
           <div class="feedback__group" v-bind:class="{ 'fld-error': v$.telephone.$error }">
-            <input 
-              v-model="formData.telephone" 
-              class="feedback__group-input phone_mask hover-group-input" 
+            <input
+              v-model="formData.telephone"
+              class="feedback__group-input phone_mask hover-group-input"
               type="tel"
               placeholder="Телефон"
               @input="v$.telephone.$touch"
-              name="telephone"/>
+              name="telephone"
+            />
             <span v-for="error in v$.telephone.$errors" :key="error.$uid">
               {{ error.$message }}
             </span>
@@ -193,24 +198,16 @@ const submitForm =  () =>  {
                 <div class="btn-inline">
                   <div class="checkbox-wrapper-18">
                     <div class="round">
-                      <input 
-                        type="checkbox" 
-                        id="telephone" 
-                        value="Телефон"
-                        v-model="formData.selectedCommunication" />
+                      <input type="checkbox" id="telephone" value="Телефон" v-model="formData.selectedCommunication" />
                       <label for="telephone"></label>
                     </div>
                   </div>
                   <p>Телефон</p>
                 </div>
-                <div class="btn-inline ">
+                <div class="btn-inline">
                   <div class="checkbox-wrapper-18">
                     <div class="round">
-                      <input 
-                        type="checkbox" 
-                        id="Telegram" 
-                        value="Telegram" 
-                        v-model="formData.selectedCommunication" />
+                      <input type="checkbox" id="Telegram" value="Telegram" v-model="formData.selectedCommunication" />
                       <label for="Telegram"></label>
                     </div>
                   </div>
@@ -218,28 +215,19 @@ const submitForm =  () =>  {
                 </div>
               </div>
               <div class="btn-group__right">
-                <div class="btn-inline ">
+                <div class="btn-inline">
                   <div class="checkbox-wrapper-18">
                     <div class="round">
-                      <input 
-                        type="checkbox" 
-                        id="Whatsapp" 
-                        value="Whatsapp" 
-                        @click.stop
-                        v-model="formData.selectedCommunication" />
+                      <input type="checkbox" id="Whatsapp" value="Whatsapp" @click.stop v-model="formData.selectedCommunication" />
                       <label for="Whatsapp"></label>
                     </div>
                   </div>
                   <p>Whatsapp</p>
                 </div>
-                  <div class="btn-inline ">
+                <div class="btn-inline">
                   <div class="checkbox-wrapper-18">
                     <div class="round">
-                      <input 
-                        type="checkbox" 
-                        id="mail" 
-                        value="Почта" 
-                        v-model="formData.selectedCommunication" />
+                      <input type="checkbox" id="mail" value="Почта" v-model="formData.selectedCommunication" />
                       <label for="mail"></label>
                     </div>
                   </div>
@@ -250,51 +238,49 @@ const submitForm =  () =>  {
           </div>
         </div>
         <div class="feedback__calendar">
-        <div class="calendar-desk none-calendar">
-          <div class="calendar-desk__header text">Выберите время для связи</div>
-          <VDatePicker 
-            v-model="date" 
-            mode="dateTime" 
-            :min-date="new Date()"
-            :color="selectedColor" 
-            :rules = rulesTime
-            is24hr />
-        </div>
-        <div class="calendar-mob show-calendar">
-          <div class="text">Выберите время для связи</div>
-          <VDatePicker 
-            v-model="date" 
-            mode="dateTime" 
-            :min-date="new Date()"
-            :color="selectedColor" 
-            :rules = rulesTime
-            is24hr
-            @dayclick="
-      (_, event) => {
-        event.target.blur();
-      }">
-            <template 
-              #default="{ togglePopover }">
-              <div class="changeDate px-3 py-2 bg-blue-500 text-sm text-white font-semibold rounded-md" 
-                      @click="togglePopover">
-                <p>Выберите дату</p>
-              </div>
-            </template>
-          </VDatePicker>
-          <div class="date">
-            <p>Выбранная дата: {{ formattedDate }}</p>
+          <div class="calendar-desk none-calendar">
+            <div class="calendar-desk__header text">Выберите время для связи</div>
+            <VDatePicker v-model="date" mode="dateTime" :min-date="new Date()" :color="selectedColor" :rules="rulesTime" is24hr />
+          </div>
+          <div class="calendar-mob show-calendar">
+            <div class="text">Выберите время для связи</div>
+            <VDatePicker
+              v-model="date"
+              mode="dateTime"
+              :min-date="new Date()"
+              :color="selectedColor"
+              :rules="rulesTime"
+              is24hr
+              @dayclick="
+                (_, event) => {
+                  event.target.blur();
+                }
+              "
+            >
+              <template #default="{ togglePopover }">
+                <div class="changeDate px-3 py-2 bg-blue-500 text-sm text-white font-semibold rounded-md" @click="togglePopover">
+                  <p>Выберите дату</p>
+                </div>
+              </template>
+            </VDatePicker>
+            <div class="date">
+              <p>Выбранная дата: {{ formattedDate }}</p>
               <div class="" v-show="visible" @click="dateNull()">
                 <svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M4.11 2.697L2.698 4.11 6.586 8l-3.89 3.89 1.415 1.413L8 9.414l3.89 3.89 1.413-1.415L9.414 8l3.89-3.89-1.415-1.413L8 6.586l-3.89-3.89z" fill="#102938"></path>
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M4.11 2.697L2.698 4.11 6.586 8l-3.89 3.89 1.415 1.413L8 9.414l3.89 3.89 1.413-1.415L9.414 8l3.89-3.89-1.415-1.413L8 6.586l-3.89-3.89z"
+                    fill="#102938"
+                  ></path>
                 </svg>
               </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
       <div class="block-send">
-        <button  type="submit"  class="form__button btn"  
-          data-form="">ОТПРАВИТЬ</button>
+        <button type="submit" class="form__button btn" data-form="">ОТПРАВИТЬ</button>
         <p class="feedback__bottom-text">
           Нажимая кнопку «отправить», вы соглашаетесь с
           <router-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</router-link>
@@ -309,7 +295,7 @@ const submitForm =  () =>  {
   background-color: $color-error !important;
 }
 .fld-success {
-  background-color: $color-succes !important
+  background-color: $color-succes !important;
 }
 .date {
   display: flex;
@@ -325,35 +311,35 @@ const submitForm =  () =>  {
   flex: 0.7;
 }
 .feedback__calendar {
-height: 385px;
+  height: 385px;
   margin-bottom: 20px;
   @media (max-width: $md4) {
     margin: 10px 0px;
     height: auto;
-  };
+  }
   @media (max-width: $md3) {
     margin: 10px 0px;
     height: auto;
-  };
+  }
 }
 .none-calendar {
   display: block !important;
   @media (max-width: $md4) {
     display: none !important;
-  };
+  }
   @media (max-width: $md3) {
     display: none !important;
-  };
+  }
 }
 .show-calendar {
   display: none;
   text-align: center;
   @media (max-width: $md4) {
     display: block;
-  };
+  }
   @media (max-width: $md3) {
     display: block;
-  };
+  }
 }
 .show-calendar > p {
   margin-bottom: 10px;
@@ -361,7 +347,6 @@ height: 385px;
 .show-calendar > .changeDate {
   display: flex;
   justify-content: center;
-  
 }
 .show-calendar > .changeDate > p {
   border-bottom: 1px solid #ea5b0c;
@@ -372,82 +357,81 @@ height: 385px;
 .block-form {
   display: flex;
   width: 100%;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    @media (max-width: $md4) {
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  @media (max-width: $md4) {
     flex-direction: column;
-  };
+  }
   @media (max-width: $md3) {
     flex-direction: column;
-  };
+  }
 }
 
 .block-send {
-  display: flex
-;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .errorSelected {
   display: none;
   position: absolute;
-    top: 77%;
+  top: 77%;
   margin-left: 15px;
   animation: shake 0.2s ease-in-out 0s 2;
   @media (max-width: $md4) {
     top: 67%;
-  };
+  }
   @media (max-width: $md3) {
     top: 70%;
-  };
+  }
 }
 .checkbox-wrapper-18 {
-    margin-right: 10px;
-  }
+  margin-right: 10px;
+}
 
 .checkbox-wrapper-18 .round {
-    position: relative;
-  }
+  position: relative;
+}
 
-  .checkbox-wrapper-18 .round label {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    cursor: pointer;
-    height: 20px;
-    width: 20px;
-    display: block;
-  }
+.checkbox-wrapper-18 .round label {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  display: block;
+}
 
-  .checkbox-wrapper-18 .round label:after {
-    border: 2px solid #fff;
-    border-top: none;
-    border-right: none;
-    content: "";
-    height: 6px;
-    left: 5px;
-    opacity: 0;
-    position: absolute;
-    top: 5px;
-    transform: rotate(-45deg);
-    width: 12px;
-  }
+.checkbox-wrapper-18 .round label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 5px;
+  opacity: 0;
+  position: absolute;
+  top: 5px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
 
-  .checkbox-wrapper-18 .round input[type="checkbox"] {
-    visibility: hidden;
-    display: none;
-    opacity: 0;
-  }
+.checkbox-wrapper-18 .round input[type="checkbox"] {
+  visibility: hidden;
+  display: none;
+  opacity: 0;
+}
 
-  .checkbox-wrapper-18 .round input[type="checkbox"]:checked + label {
-    background-color: #66bb6a;
-    border-color: #66bb6a;
-  }
+.checkbox-wrapper-18 .round input[type="checkbox"]:checked + label {
+  background-color: #66bb6a;
+  border-color: #66bb6a;
+}
 
-  .checkbox-wrapper-18 .round input[type="checkbox"]:checked + label:after {
-    opacity: 1;
-  }
+.checkbox-wrapper-18 .round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
 
 //////////
 .test {
@@ -457,11 +441,11 @@ height: 385px;
 
 .text {
   font-weight: 500;
-    color: #102938;
-    font-size: 20px;
+  color: #102938;
+  font-size: 20px;
 }
-.calendar-desk__header{
-margin-bottom: 10px;
+.calendar-desk__header {
+  margin-bottom: 10px;
 }
 .btn-group {
   display: flex;
@@ -471,21 +455,24 @@ margin-bottom: 10px;
   margin-bottom: 10px;
 }
 
-.btn-group__left, .btn-group__right {
+.btn-group__left,
+.btn-group__right {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   @media (max-width: $md4) {
     flex-direction: row;
-  };
+  }
 }
 
-.btn-group__left > button, .btn-group__right > button {
+.btn-group__left > button,
+.btn-group__right > button {
   align-items: center;
   justify-content: flex-start;
 }
 
-.btn-group__left > button > p, .btn-group__right > button > p {
+.btn-group__left > button > p,
+.btn-group__right > button > p {
   margin: 0px 10px 0px 10px;
 }
 
@@ -495,12 +482,11 @@ margin-bottom: 10px;
   align-self: center;
   justify-content: space-between;
   padding: 10px 0px 10px 0px;
-  color: #102938;;
+  color: #102938;
   font-weight: 500;
   transition: all 0.3s ease 0s;
   font-size: 14px;
 }
-
 
 @keyframes shake {
   0% {
@@ -581,12 +567,12 @@ margin-bottom: 10px;
   @media (max-width: $md3) {
     width: 500px;
     padding-top: 5px;
-  };
+  }
 
   @media (max-width: $md4) {
     width: 380px;
     // padding-top: 5px;
-  };
+  }
 }
 
 .modal-backdrop {
@@ -690,10 +676,10 @@ margin-bottom: 10px;
     flex-direction: column;
     @media (max-width: $md4) {
       width: 90%;
-  };
-  @media (max-width: $md3) {
+    }
+    @media (max-width: $md3) {
       width: 90%;
-  };
+    }
   }
 
   &__title {
@@ -707,11 +693,11 @@ margin-bottom: 10px;
       @media (max-width: $md4) {
         font-size: 30px;
         margin: 0 0 20px;
-  };
-  @media (max-width: $md3) {
-    font-size: 28px;
-    margin: 10px 0 10px;
-  };
+      }
+      @media (max-width: $md3) {
+        font-size: 28px;
+        margin: 10px 0 10px;
+      }
     }
   }
 

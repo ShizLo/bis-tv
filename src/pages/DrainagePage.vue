@@ -1,12 +1,10 @@
 <script setup>
+import { defineAsyncComponent } from "vue";
 import BannerSlider from "../components/Banner.vue";
-import LocalService from "../components/LocalService.vue";
-import WorkOrder from "../components/WorkOrder.vue";
-import GlobalForm from "../components/Form/GlobalForm.vue";
-import OurServices from "../components/OurServices.vue";
-import PopularServices from "../components/PopularServices.vue";
-import FeedBackForm from "../components/FeedBackForm.vue";
-import { ROUTES_PATHS } from "../constants";
+const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
+const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
+const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
+const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
 
 //<Импорт картинок блок наши услуги>================================================================================
 // import img_service_1 from "";
