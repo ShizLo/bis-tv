@@ -324,12 +324,12 @@ ${message.card_13_note != "" ? `Примечание: ${message.card_13_note}` :
     //
     // Отправка текстового сообщения
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-      chat_id: CHATS_ID.BASE_DEV,
-      // chat_id: CHATS_ID.BASE,
+      // chat_id: CHATS_ID.BASE_DEV,
+      chat_id: CHATS_ID.BASE,
       text: formattedText,
       parse_mode: "MarkdownV2",
-      message_thread_id: 4294967414, //DEV
-      // message_thread_id: 4294967337,
+      // message_thread_id: 4294967414, //DEV
+      message_thread_id: 4294967337,
     });
 
     // Отправка медиа с обработкой
@@ -364,8 +364,8 @@ ${message.card_13_note != "" ? `Примечание: ${message.card_13_note}` :
           });
         }
 
-        formData.append("chat_id", CHATS_ID.BASE_DEV);
-        formData.append("message_thread_id", 4294967414);
+        formData.append("chat_id", CHATS_ID.BASE);
+        formData.append("message_thread_id", 4294967337);
         formData.append("media", JSON.stringify(media));
 
         await axios.post(`https://api.telegram.org/bot${token}/sendMediaGroup`, formData, {
@@ -384,8 +384,8 @@ ${message.card_13_note != "" ? `Примечание: ${message.card_13_note}` :
       for (const doc of documents.value) {
         const formData = new FormData();
         formData.append("document", doc);
-        formData.append("chat_id", CHATS_ID.BASE_DEV);
-        formData.append("message_thread_id", 4294967414);
+        formData.append("chat_id", CHATS_ID.BASE);
+        formData.append("message_thread_id", 4294967337);
 
         await axios.post(`https://api.telegram.org/bot${token}/sendDocument`, formData, {
           headers: {

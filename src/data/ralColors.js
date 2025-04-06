@@ -425,3 +425,23 @@ export const ralColorMap = {
   9022: { name: "Жемчужно-светло-серый", color: "#9C9C9C" },
   9023: { name: "Жемчужно-темно-серый", color: "#7E8182" },
 };
+
+export const powderColors = [
+  { title: "Белый", value: "white" },
+  { title: "Черный", value: "black" },
+  { title: "Коричневый", value: "brown" },
+  { title: "Серый", value: "gray" },
+  { title: "Красный", value: "red" },
+  { title: "Зеленый", value: "green" },
+  { title: "Синий", value: "blue" },
+];
+
+export const powderColorMap = {
+  white: { color: "#ffffff" },
+  black: { color: "#000000" },
+  brown: { color: "#964B00" },
+  gray: { color: "#808080" },
+  red: { color: "#FF0000" },
+  green: { color: "#00FF00" },
+  blue: { color: "#0000FF" },
+};

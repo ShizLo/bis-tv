@@ -29,4 +29,38 @@ ${message.variables.name ? `${message.text.name}${message.variables.name}` : ""}
   }
 }
 
-function sendTwo() {}
+export async function sendTextMessage(message) {
+  const formattedText = message.text
+    .replace(/\./g, "\\.")
+    .replace(/-/g, "\\-")
+    .replace(/\n+/g, "\n")
+    .replace(/\s*\[line\]/g, "\n")
+    .replace(/=/g, "\\=")
+    .replace(/>/g, "\\>")
+    .replace(/\+/g, "\\+")
+    .replace(/\(/g, "\\(")
+    .replace(/\)/g, "\\)")
+    .replace(/\]/g, "\\]")
+    .replace(/\[/g, "\\[")
+    .replace(/_/g, "\\_")
+    .replace(/\*/g, "\\*")
+    .replace(/~/g, "\\~")
+    .replace(/`/g, "\\`")
+    .replace(/#/g, "\\#")
+    .replace(/\|/g, "\\|")
+    .replace(/{/g, "\\{")
+    .replace(/}/g, "\\}")
+    .replace(/!/g, "\\!")
+    .trim();
+
+  try {
+    await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+      chat_id: CHATS_ID.BASE_DEV,
+      text: formattedText,
+      parse_mode: "MarkdownV2",
+      message_thread_id: message.chat_id,
+    });
+  } catch (error) {
+    console.error("Ошибка при отправке сообщения:", error);
+  }
+}
