@@ -6,7 +6,8 @@ import { ROUTES_PATHS } from "../constants";
 //<Импорт компонентов>================================================================================
 // const Banner = defineAsyncComponent(() => import("../components/Banner.vue"));
 import Banner from "../components/Banner.vue";
-const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
+import OurServices from "../components/OurServices.vue";
+// const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
 const BisService = defineAsyncComponent(() => import("../components/BisService.vue"));
 const WorksSlider = defineAsyncComponent(() => import("../components/WorksSlider.vue"));
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));

@@ -36,7 +36,7 @@
                     <div class="price-cell">22 000 ₽</div>
                     <div class="price-cell">32 000 ₽</div>
                     <div class="price-cell">42 000 ₽</div>
-                    <div class="price-cell">2 200 ₽/сотка</div>
+                    <div class="price-cell">2 200 ₽/сот.</div>
                   </div>
 
                   <div class="table-row">
@@ -44,7 +44,7 @@
                     <div class="price-cell">43 000 ₽</div>
                     <div class="price-cell">63 000 ₽</div>
                     <div class="price-cell">83 000 ₽</div>
-                    <div class="price-cell">4 300 ₽/сотка</div>
+                    <div class="price-cell">4 300 ₽/сот.</div>
                   </div>
 
                   <div class="table-row">
@@ -52,12 +52,19 @@
                     <div class="price-cell">65 000 ₽</div>
                     <div class="price-cell">95 000 ₽</div>
                     <div class="price-cell">125 000 ₽</div>
-                    <div class="price-cell">6 500 ₽/сотка</div>
+                    <div class="price-cell">6 500 ₽/сот.</div>
                   </div>
 
                   <div class="table-row">
                     <div class="row-name">Выезд специалиста</div>
-                    <div class="price-cell">6 000 ₽</div>
+                    <div class="price-cell">от 6 000 ₽</div>
+                    <div class="price-cell">-</div>
+                    <div class="price-cell">-</div>
+                    <div class="price-cell">-</div>
+                  </div>
+                  <div class="table-row">
+                    <div class="row-name">Выезд геодезиста</div>
+                    <div class="price-cell">от 6 000 ₽</div>
                     <div class="price-cell">-</div>
                     <div class="price-cell">-</div>
                     <div class="price-cell">-</div>

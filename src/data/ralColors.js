@@ -1,4 +1,5 @@
 export const ralColors = [
+  { title: "RAL 7024 - Графитово-серый", value: "7024" },
   { title: "RAL 1000 - Бежевый", value: "1000" },
   { title: "RAL 1001 - Бежевый", value: "1001" },
   { title: "RAL 1002 - Песочный желтый", value: "1002" },
@@ -156,7 +157,7 @@ export const ralColors = [
   { title: "RAL 7021 - Черно-серый", value: "7021" },
   { title: "RAL 7022 - Умбра-серый", value: "7022" },
   { title: "RAL 7023 - Бетонно-серый", value: "7023" },
-  { title: "RAL 7024 - Графитово-серый", value: "7024" },
+
   { title: "RAL 7026 - Гранитно-серый", value: "7026" },
   { title: "RAL 7030 - Каменно-серый", value: "7030" },
   { title: "RAL 7031 - Голубо-серый", value: "7031" },

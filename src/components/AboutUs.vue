@@ -23,42 +23,50 @@ onMounted(() => {
   <section class="about-us">
     <div class="_container">
       <div class="about-us__content">
-        <div class="about-us__header about-us__animated">
-          <h1 class="about-us__main-title">Про БИС</h1>
-          <div class="about-us__slogan">
-            <span class="slogan-text">Относимся с любовью</span>
-            <span class="slogan-text">к каждому квадратному метру</span>
-          </div>
-        </div>
-
-        <div class="about-us__description about-us__animated">
-          <div class="decoration-line"></div>
-
-          <div class="about-us__image">
-            <img src="/images/fence/1.jpg" alt="Команда БИС за работой" loading="lazy" />
-          </div>
-
-          <p class="about-us__text">
-            Мы – профессиональная команда нулевого цикла, предоставляющая комплексные решения в области инженерных коммуникаций и
-            благоустройства участков. Наша миссия - создавать надежные системы, которые служат десятилетиями.
-          </p>
-          <p class="about-us__text">
-            Специализируемся на проектировании, монтаже и обслуживании систем водоснабжения, канализации, электроснабжения, отопления, а
-            также выполняем работы по благоустройству территорий. Наш опыт и квалификация позволяют реализовывать проекты любой сложности,
-            обеспечивая высочайший уровень качества.
-          </p>
-          <div class="about-us__features">
-            <div class="feature-item">
-              <v-icon color="primary">mdi-check-circle-outline</v-icon>
-              <span>8+ лет опыта</span>
+        <div class="about-us__grid">
+          <!-- Левая колонка -->
+          <div class="about-us__left">
+            <div class="about-us__header about-us__animated">
+              <h1 class="about-us__main-title">Про БИС</h1>
+              <div class="about-us__slogan">
+                <span class="slogan-text">Относимся с любовью</span>
+                <span class="slogan-text">к каждому квадратному метру</span>
+              </div>
             </div>
-            <div class="feature-item">
-              <v-icon color="primary">mdi-check-circle-outline</v-icon>
-              <span>300+ реализованных проектов</span>
+
+            <div class="about-us__image about-us__animated">
+              <img src="/images/fence/1.jpg" alt="Команда БИС за работой" loading="lazy" />
             </div>
-            <div class="feature-item">
-              <v-icon color="primary">mdi-check-circle-outline</v-icon>
-              <span>Гарантия на все работы</span>
+          </div>
+
+          <!-- Правая колонка -->
+          <div class="about-us__right">
+            <div class="about-us__description about-us__animated">
+              <div class="decoration-line"></div>
+
+              <p class="about-us__text">
+                Мы – профессиональная команда нулевого цикла, предоставляющая комплексные решения в области инженерных коммуникаций и
+                благоустройства участков. Наша миссия - создавать надежные системы, которые служат десятилетиями.
+              </p>
+              <p class="about-us__text">
+                Специализируемся на проектировании, монтаже и обслуживании систем водоснабжения, канализации, электроснабжения, отопления, а
+                также выполняем работы по благоустройству территорий. Наш опыт и квалификация позволяют реализовывать проекты любой
+                сложности, обеспечивая высочайший уровень качества.
+              </p>
+              <div class="about-us__features">
+                <div class="feature-item">
+                  <v-icon color="primary">mdi-check-circle-outline</v-icon>
+                  <span>8+ лет опыта</span>
+                </div>
+                <div class="feature-item">
+                  <v-icon color="primary">mdi-check-circle-outline</v-icon>
+                  <span>300+ реализованных проектов</span>
+                </div>
+                <div class="feature-item">
+                  <v-icon color="primary">mdi-check-circle-outline</v-icon>
+                  <span>Гарантия на все работы</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -74,16 +82,20 @@ onMounted(() => {
 
 .about-us {
   padding: 100px 0px;
-
   position: relative;
   overflow: hidden;
 
   &__content {
     max-width: 1200px;
     margin: 0 auto;
+  }
+
+  &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
+    align-items: start;
+    position: relative;
 
     @media (max-width: $md3) {
       grid-template-columns: 1fr;
@@ -91,10 +103,63 @@ onMounted(() => {
     }
   }
 
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__right {
+    position: relative;
+    height: 100%;
+  }
+
   &__header {
     position: relative;
     z-index: 2;
     padding-top: 20px;
+  }
+
+  &__image {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transform: translateZ(0);
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    &:hover {
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      img {
+        transform: scale(1.03);
+      }
+    }
+
+    @media (max-width: $md3) {
+      order: 1;
+      border-radius: 12px;
+    }
+  }
+
+  .decoration-line {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background: linear-gradient(90deg, black, color.adjust(black, $lightness: -15%));
+    border-radius: 3px;
+    box-shadow: 2px 0 10px rgba(black, 0.2);
+
+    @media (max-width: $md3) {
+      display: none;
+    }
   }
 
   &__main-title {
@@ -120,9 +185,7 @@ onMounted(() => {
       left: 0;
       width: 80px;
       height: 5px;
-      // background: linear-gradient(90deg, black, darken(black, 15%));
       background: linear-gradient(90deg, black, color.adjust(black, $lightness: -15%));
-
       border-radius: 3px;
       transition: width 0.3s ease;
     }
@@ -187,55 +250,11 @@ onMounted(() => {
 
   &__description {
     position: relative;
-    padding-left: 60px;
+    height: 100%;
+    padding-left: 40px;
 
     @media (max-width: $md3) {
       padding-left: 0;
-    }
-  }
-
-  &__image {
-    margin-bottom: 40px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    transform: translateZ(0);
-
-    img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    &:hover {
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-
-      img {
-        transform: scale(1.03);
-      }
-    }
-
-    @media (max-width: $md3) {
-      margin-bottom: 30px;
-      border-radius: 12px;
-    }
-  }
-
-  .decoration-line {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 5px;
-    // background: linear-gradient(to bottom, black, lighten(black, 30%));
-    background: linear-gradient(90deg, black, color.adjust(black, $lightness: -15%));
-    border-radius: 3px;
-    box-shadow: 2px 0 10px rgba(black, 0.2);
-
-    @media (max-width: $md3) {
-      display: none;
     }
   }
 

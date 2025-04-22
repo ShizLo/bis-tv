@@ -10,8 +10,10 @@ import { ROUTES_PATHS } from "../constants";
 import guaranteeIcon from "../assets/icons/Icons_BIS/SVG/guarantee.svg";
 import serviceIcon from "../assets/icons/Icons_BIS/SVG/montag+.svg";
 import keyIcon from "../assets/icons/Icons_BIS/SVG/workKey.svg";
-const router = useRouter();
+import { useDisplay } from "vuetify";
 
+const router = useRouter();
+const { mobile } = useDisplay();
 const props = defineProps({
   bannerText: {
     typeof: String,
@@ -66,7 +68,7 @@ function goTo(path) {
         <h1 class="banner__text _visibility-mobile">{{ bannerText }}</h1>
         <h1 v-if="desctiption" class="banner__text _visibility">{{ desctiption[swiperBanner.slideIndex].title }}</h1>
         <h1 v-else-if="bannerText.length > 0" class="banner__text _visibility">{{ bannerText }}</h1>
-        <div v-if="stikers">
+        <div v-if="stikers && !mobile">
           <div class="d-flex align-center">
             <v-icon size="34" class="mr-1">
               <v-img :src="guaranteeIcon"></v-img>
@@ -86,7 +88,16 @@ function goTo(path) {
             <div>Работа под ключ</div>
           </div>
         </div>
-        <button class="banner__button" @click="hoverMobile(), $emit('isVisible')">Обсудить задачу</button>
+        <!-- <button class="banner__button" @click="hoverMobile(), $emit('isVisible')">Обсудить задачу</button> -->
+        <v-btn
+          @click="hoverMobile(), $emit('isVisible')"
+          type="submit"
+          :size="mobile ? 'large' : 'x-large'"
+          class="submit-btn"
+          :append-icon="mobile ? '' : 'mdi-arrow-right'"
+        >
+          Обсудить задачу
+        </v-btn>
         <p class="banner__description _visibility-mobile">{{ bannerDescription }}</p>
         <p v-if="desctiption" class="banner__description _visibility">{{ desctiption[swiperBanner.slideIndex].text }}</p>
         <h1 v-else-if="bannerDescription" class="banner__description _visibility">{{ bannerDescription }}</h1>
@@ -365,6 +376,7 @@ function goTo(path) {
       gap: 15px;
     }
     @media (max-width: $md4) {
+      align-items: center;
       padding-bottom: 10px;
       gap: 10px;
     }
@@ -455,5 +467,14 @@ function goTo(path) {
   background-color: #ea5b0c;
   transition: all 4s linear;
   transition-property: width, background-color;
+}
+.submit-btn {
+  background: linear-gradient(90deg, #ea5b0c, #ff8c42);
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
 }
 </style>

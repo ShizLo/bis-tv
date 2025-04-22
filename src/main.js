@@ -42,6 +42,7 @@ const myCustomLightTheme = {
     text: "#102939",
     background1: "#eceff3",
     background2: "#f0f1f2ec",
+    gradient: "#ff8c42",
   },
   variables: {
     "border-color": "#000000",

@@ -1,7 +1,7 @@
 <script setup>
 import { reactive, defineAsyncComponent } from "vue";
 import BannerSlider from "../components/Banner.vue";
-const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
+import OurServices from "../components/OurServices.vue";
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
 const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
 const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));

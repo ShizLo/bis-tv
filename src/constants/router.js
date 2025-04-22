@@ -11,4 +11,5 @@ export const ROUTES_PATHS = {
   SERVICE: "/service",
   DEPARTURE: "/departure",
   LANDSCAPE: "/landscape",
+  DEVELOP: "/develop",
 };

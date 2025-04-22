@@ -12,11 +12,12 @@ import Service from "../pages/bisService/Service.vue";
 import DeparturePage from "../pages/DeparturePage.vue";
 import LandscapePage from "../pages/LandscapePage.vue";
 import FenceFormPage from "../pages/FenceFormPage.vue";
+import Development from "../pages/Development.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: ROUTES_PATHS.HOME, name: ROUTES_PATHS.HOME, component: HomePage, meta: { title: "Заказ услуги" } },
+    { path: ROUTES_PATHS.HOME, name: ROUTES_PATHS.HOME, component: HomePage, meta: { title: "Главная" } },
     { path: ROUTES_PATHS.POLICY, name: ROUTES_PATHS.POLICY, component: PolicyPage },
     { path: ROUTES_PATHS.FENCE, name: ROUTES_PATHS.FENCE, component: FencePage, meta: { title: "Заборы" } },
     { path: ROUTES_PATHS.FENCEFORM, name: ROUTES_PATHS.FENCEFORM, component: FenceFormPage },
@@ -28,7 +29,7 @@ const router = createRouter({
     { path: ROUTES_PATHS.SERVICE, name: ROUTES_PATHS.SERVICE, component: Service },
     { path: ROUTES_PATHS.DEPARTURE, name: ROUTES_PATHS.DEPARTURE, component: DeparturePage },
     { path: ROUTES_PATHS.LANDSCAPE, name: ROUTES_PATHS.LANDSCAPE, component: LandscapePage },
-
+    { path: ROUTES_PATHS.DEVELOP, name: ROUTES_PATHS.DEVELOP, component: Development },
     { path: "/:pathMatch(.*)*", redirect: "/" },
   ],
   scrollBehavior(to, from, savedPosition) {
