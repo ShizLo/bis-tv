@@ -181,7 +181,7 @@ const dopServices = [
       {
         class: "services__row-item-big",
         title: "БИС сервис",
-        price: "Аварийный выезд - 5000 руб.",
+        price: "Аварийный выезд - от 6 100 руб.",
         pathImg: "",
         hoverColors: "rgb(255, 229, 204)",
         routePath: ROUTES_PATHS.SERVICE,

@@ -8,8 +8,9 @@ export const TOPICS_ID = {
   FENCE: 4294967352, // Заборы
   SERVICES: 4294967328, // Услуги
   LANDSCAPE: 4294967339, // Проекты
+  DEPARTURE: 4294967337, // Первичный выезд
 };
-const token = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
+export const token = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
 
 export async function sendMessage(message) {
   try {

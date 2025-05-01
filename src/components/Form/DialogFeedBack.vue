@@ -113,7 +113,6 @@ ${message.notes != "" ? `Примечания: ${message.notes}` : ""}
 }
 
 const onBlur = () => {
-  console.log(routeMetaTitle.value);
   if (message.phone.length != 18) {
     message.phone = "";
   }

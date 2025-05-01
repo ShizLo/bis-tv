@@ -63,9 +63,9 @@ const dataServices = [
     [
       {
         class: "services__row-item-sm",
-        title: "Бурение скважин",
-        price: "от 3800 руб./м",
-        pathImg: img_service_2,
+        title: "Водоподготовка",
+        price: "",
+        pathImg: img_service_6,
         hoverColors: "rgb(204, 209, 255)",
       },
       {
@@ -97,9 +97,9 @@ const dataServices = [
     [
       {
         class: "services__row-item-big",
-        title: "Водоподготовка",
-        price: "",
-        pathImg: img_service_6,
+        title: "Бурение скважин",
+        price: "от 3800 руб./м",
+        pathImg: img_service_2,
         hoverColors: "rgb(204, 209, 255)",
       },
     ],

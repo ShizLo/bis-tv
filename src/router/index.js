@@ -13,6 +13,7 @@ import DeparturePage from "../pages/DeparturePage.vue";
 import LandscapePage from "../pages/LandscapePage.vue";
 import FenceFormPage from "../pages/FenceFormPage.vue";
 import Development from "../pages/Development.vue";
+import Vacancies from "../pages/Vacancies.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +31,7 @@ const router = createRouter({
     { path: ROUTES_PATHS.DEPARTURE, name: ROUTES_PATHS.DEPARTURE, component: DeparturePage },
     { path: ROUTES_PATHS.LANDSCAPE, name: ROUTES_PATHS.LANDSCAPE, component: LandscapePage },
     { path: ROUTES_PATHS.DEVELOP, name: ROUTES_PATHS.DEVELOP, component: Development },
+    { path: ROUTES_PATHS.VACANCIES, name: ROUTES_PATHS.VACANCIES, component: Vacancies },
     { path: "/:pathMatch(.*)*", redirect: "/" },
   ],
   scrollBehavior(to, from, savedPosition) {

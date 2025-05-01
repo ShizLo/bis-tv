@@ -9,7 +9,7 @@ function onHover(event, color) {
 
 function leaveHover(event) {
   event.currentTarget.style.transform = "translateY(0)";
-  event.currentTarget.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.1)";
+  // event.currentTarget.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.1)";
 }
 
 const show = ref(false);
@@ -137,34 +137,6 @@ onMounted(() => {
                   v-on:mouseleave="leaveHover"
                   :class="item.class"
                 >
-                  <!-- <router-link
-                    :style="{ 'background-image': 'url(' + item.pathImg + ')' }"
-                    class="services__item-link item"
-                    :to="{ name: item.routePath }"
-                  >
-                    <div class="item__description content__description">
-                      <div class="item__title title">
-                        <span>{{ item.title }}</span>
-                      </div>
-                      <div v-if="item.price.length > 0" class="item__price content__price">
-                        <span>{{ item.price }}</span>
-                      </div>
-                      <div class="ml-5 mt-16" v-if="item.garanty">
-                        <div
-                          class="d-flex align-center garanty-item"
-                          v-for="garanty in item.garanty"
-                          style="opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease"
-                        >
-                          <div>
-                            <v-icon size="30">
-                              <v-img :src="garanty.icon"></v-img>
-                            </v-icon>
-                          </div>
-                          <div>{{ garanty.text }}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </router-link> -->
                   <a
                     :style="{ 'background-image': 'url(' + item.pathImg + ')' }"
                     class="services__item-link item"
@@ -502,7 +474,7 @@ onMounted(() => {
 }
 
 .expanded-content {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .rotate-180 {

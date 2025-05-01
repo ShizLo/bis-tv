@@ -1,5 +1,7 @@
 <script setup>
 import { reactive, defineAsyncComponent } from "vue";
+import { ROUTES_PATHS } from "../constants";
+
 import BannerSlider from "../components/Banner.vue";
 import OurServices from "../components/OurServices.vue";
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
@@ -110,7 +112,44 @@ const feedBackData = [
   "Прочистка лив. канализации",
   "Нет в списке",
 ];
-
+const dopServices = [
+  [
+    [
+      {
+        class: "services__row-item-sm",
+        title: "Заезд на участок",
+        price: "",
+        pathImg: "",
+        hoverColors: "rgb(204, 209, 255)",
+      },
+      {
+        class: "services__row-item-sm",
+        title: "Ливневка",
+        price: "",
+        pathImg: "",
+        hoverColors: "rgb(255, 229, 204)",
+      },
+    ],
+  ],
+  [
+    [
+      {
+        class: "services__row-item-sm",
+        title: "Дождеприемники",
+        price: "",
+        pathImg: "",
+        hoverColors: "rgb(255, 229, 204)",
+      },
+      {
+        class: "services__row-item-sm",
+        title: "Оставить заявку",
+        price: "",
+        pathImg: "",
+        hoverColors: "rgb(243, 253, 180)",
+      },
+    ],
+  ],
+];
 function visibleForm() {
   if (!feedbackForm.active) {
     feedbackForm.active = true;
@@ -133,7 +172,7 @@ const feedbackForm = reactive({
     :bannerPrice="bannerPrice"
     @isVisible="visibleForm()"
   />
-  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" title="Наши услуги" />
+  <OurServices @isVisible="visibleForm()" :dopServices="dopServices" :dataServices="dataServices" title="Наши услуги" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
   <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />

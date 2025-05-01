@@ -12,6 +12,11 @@ const PriceExpansion = defineAsyncComponent(() => import("./PriceExpansion.vue")
 //<Импорт картинок блок "Наши услуги">================================================================================
 import img_service_3 from "../../assets/images/homePage/bis-1.webp";
 import img_service_4 from "../../assets/images/homePage/bis-2.webp";
+import img_service_5 from "../../assets/images/servicePage/slider/3.png";
+import img_service_6 from "../../assets/images/servicePage/slider/5.png";
+import img_service_7 from "../../assets/images/servicePage/slider/2.png";
+import img_service_8 from "../../assets/images/homePage/work-bis-service-1.webp";
+import img_service_9 from "../../assets/images/servicePage/slider/4.png";
 //</Импорт картинок>===============================================================================
 
 //<Импорт картинок блок "Наши работы">================================================================================
@@ -21,57 +26,13 @@ import img_work_3 from "../../assets/images/workPhotoService/septik/3.jpg";
 import img_work_4 from "../../assets/images/workPhotoService/septik/4.jpg";
 import img_work_5 from "../../assets/images/workPhotoService/septik/5.jpg";
 
-const bannerPrice = [
-  {
-    url: "/images/swiperBanner/banner-1+.jpg",
-    price: "от 110 000 руб.",
-    name: "Благоустройство",
-    routerPath: "",
-  },
-  {
-    url: "/images/swiperBanner/swiper-slide-1.webp",
-    price: "от 90 000 руб.",
-    name: "Установка забора",
-    routerPath: ROUTES_PATHS.FENCE,
-  },
-  {
-    url: "/images/swiperBanner/swiper-slide-2.webp",
-    price: "от 100 000 руб.",
-    name: "Свайное поле",
-    routerPath: ROUTES_PATHS.FAUNDATION,
-  },
-  {
-    url: "/images/swiperBanner/banner-3.jpg",
-    price: "от 65 000 руб.",
-    name: "Откатные ворота",
-    routerPath: ROUTES_PATHS.FENCE,
-  },
-  {
-    url: "/images/swiperBanner/swiper-slide-4.webp",
-    price: "от 1 900 руб./м²",
-    name: "Парковка",
-    routerPath: "",
-  },
-  {
-    url: "/images/swiperBanner/swiper-slide-5.webp",
-    price: "от 60 000 руб.",
-    name: "Водоподготовка",
-    routerPath: ROUTES_PATHS.WATER,
-  },
-  {
-    url: "/images/swiperBanner/swiper-slide-6.webp",
-    price: "от 180 000 руб.",
-    name: "Септик под ключ",
-    routerPath: "",
-  },
-];
 const dataServices = [
   [
     [
       {
         class: "services__row-item-big",
         title: "Базовое обслуживание",
-        price: "От 6 500 руб.",
+        price: "от 6 700 руб.",
         pathImg: img_service_3,
         hoverColors: "rgb(170, 214, 199)",
         content: [
@@ -96,13 +57,45 @@ const dataServices = [
         ],
       },
     ],
+    [
+      {
+        class: "services__row-item-sm",
+        title: "Демонтаж/монтаж насоса",
+        price: "от 7 300 руб.",
+        pathImg: "",
+        hoverColors: "rgb(204, 209, 255)",
+      },
+      {
+        class: "services__row-item-sm",
+        title: "Поплавок с заменой",
+        price: "от 3 100 руб.",
+        pathImg: img_service_5,
+        hoverColors: "rgb(204, 209, 255)",
+      },
+    ],
   ],
   [
     [
       {
+        class: "services__row-item-sm",
+        title: "Чистка фильтрационного колодца",
+        price: "от 1 900 руб.",
+        pathImg: "",
+        hoverColors: "rgb(204, 209, 255)",
+      },
+      {
+        class: "services__row-item-sm",
+        title: "Аварийный выезд",
+        price: "от 6 100 руб.",
+        pathImg: "",
+        hoverColors: "rgb(204, 209, 255)",
+      },
+    ],
+    [
+      {
         class: "services__row-item-big",
         title: "Консервация",
-        price: "От 6 500 руб.",
+        price: "от 1 300 руб.",
         pathImg: img_service_4,
         hoverColors: "rgb(255, 229, 204)",
         content: [
@@ -119,6 +112,76 @@ const dataServices = [
             text: "Выезд мастера",
           },
         ],
+      },
+    ],
+  ],
+];
+const dopServices = [
+  [
+    [
+      {
+        class: "services__row-item-sm",
+        title: "Аварийная сигнализация",
+        price: "от 9 500 руб.",
+        pathImg: img_service_6,
+        hoverColors: "rgb(204, 209, 255)",
+      },
+      {
+        class: "services__row-item-sm",
+        title: "Электромагнитный клапан",
+        price: "от 7 500 руб.",
+        pathImg: img_service_7,
+        hoverColors: "rgb(255, 229, 204)",
+      },
+    ],
+    [
+      {
+        class: "services__row-item-sm",
+        title: "Замена аэролифта",
+        price: "от 7 500 руб.",
+        pathImg: "",
+        hoverColors: "rgb(204, 209, 255)",
+      },
+      {
+        class: "services__row-item-sm",
+        title: "Ремонт крышки септика",
+        price: "от 10 000 руб.",
+        pathImg: "",
+        hoverColors: "rgb(255, 229, 204)",
+      },
+    ],
+  ],
+  [
+    [
+      {
+        class: "services__row-item-sm",
+        title: "Замена компрессора",
+        price: "от 6 500 руб.",
+        pathImg: img_service_8,
+        hoverColors: "rgb(255, 229, 204)",
+      },
+      {
+        class: "services__row-item-sm",
+        title: "Замена аэратора",
+        price: "от 11 000 руб.",
+        pathImg: img_service_9,
+        hoverColors: "rgb(243, 253, 180)",
+      },
+    ],
+    [
+      {
+        class: "services__row-item-sm",
+        title: "Наращивание горловины",
+        price: "от 11 000 руб.",
+        pathImg: "",
+        hoverColors: "rgb(204, 209, 255)",
+      },
+      {
+        class: "services__row-item-sm",
+        title: "Нет вашей услуги?",
+        price: "Поможем!",
+        pathImg: "",
+        hoverColors: "rgb(255, 229, 204)",
       },
     ],
   ],
@@ -145,68 +208,7 @@ const dataOrder = [
     text: "Оценим состояние всех систем и выявим потенциальные проблемы. Проводится как в профилактических целях, так и перед ремонтом, консервацией или после длительного простоя.",
   },
 ];
-const dataBisService = [
-  {
-    urlImg: "url(/images/globalServices/services-1+.webp)",
-    title: "Замена компрессора",
-    price: [{ text: "Замена компрессора" }, { text: "Ремонт" }, { text: "Разморозка труб" }, { text: "Откачка" }, { text: "..." }],
-    // routePath: ROUTES_PATHS.HOME,
-  },
-  {
-    urlImg: "url(/images/waterPage/bis-service-2+.webp)",
-    title: "Бойлер",
-    price: [{ text: "Диагностика" }, { text: "Обслуживание" }],
-    // routePath: ROUTES_PATHS.FENCE,
-  },
-  {
-    urlImg: "url(/images/waterPage/bis-service-1+.webp)",
-    title: "Вододоочистка",
-    price: [{ text: "Замена картриджей" }],
-    // routePath: ROUTES_PATHS.FAUNDATION,
-  },
-  {
-    urlImg: "url(/images/waterPage/water-6@0.5x.webp)",
-    title: "Водоподготовка",
-    price: [{ text: "Анализ воды" }, { text: "Обслуживание" }, { text: "Ремонт" }, { text: "Магистральный фильтр" }, { text: "..." }],
-    // routePath: ROUTES_PATHS.WATER,
-  },
-  {
-    urlImg: "url(/images/globalServices/sticker.png)",
-    title: "Водоснабжение",
-    price: [
-      { text: "Замена насоса" },
-      { text: "Устранение течей" },
-      { text: "Греющий кабель" },
-      { text: "Утепление труб" },
-      { text: "..." },
-    ],
-    // routePath: ROUTES_PATHS.WATER,
-  },
-  {
-    urlImg: "",
-    title: "Уборка участка",
-    price: [{ text: "Вывоз мусора" }, { text: "Уборка крыши" }, { text: "Чистка террасы" }, { text: "..." }],
-    // routePath: ROUTES_PATHS.HOME,
-  },
-  {
-    urlImg: "",
-    title: "Генераторы",
-    price: [{ text: "ТО и сервис" }],
-    // routePath: ROUTES_PATHS.ELECTRICITY,
-  },
-  {
-    urlImg: "",
-    title: "Газон",
-    price: [{ text: "Стрижка" }, { text: "Аэрация" }, { text: "Восстановление" }],
-    // routePath: ROUTES_PATHS.HOME,
-  },
-  {
-    urlImg: "",
-    title: "Водопровод",
-    price: [{ text: "Разморозка" }],
-    // routePath: ROUTES_PATHS.HOME,
-  },
-];
+
 const dataWork = [
   {
     url: img_work_1,
@@ -263,8 +265,8 @@ const dataWork = [
 
 <template>
   <BannerFeedBack />
-  <SeptikServices title="Наш спектр услуг" :dataServices="dataServices" />
-  <SeptikSlider />
+  <SeptikServices title="Наши услуги" :dataServices="dataServices" :dopServices="dopServices" />
+  <!-- <SeptikSlider /> -->
   <VariantServiceSlider title="Варианты обслуживания" />
   <WorksSlider title="Наши работы" :data="dataWork" />
   <PriceExpansion></PriceExpansion>
