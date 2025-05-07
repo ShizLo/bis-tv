@@ -25,6 +25,13 @@ import img_service_3 from "../assets/images/homePage/services-3.webp";
 import img_service_4 from "../assets/images/homePage/services-4.webp";
 import img_service_5 from "../assets/images/homePage/services-5.webp";
 import img_service_6 from "../assets/images/homePage/services-6.png";
+import img_service_7 from "../assets/images/waterPage/services-2.webp";
+import img_service_8 from "../assets/images/drainagePage/services-1.webp";
+import img_service_9 from "../assets/images/drainagePage/services-4.webp";
+import img_service_10 from "../assets/images/waterPage/services-5.webp";
+import img_service_11 from "../assets/images/homePage/services-11.png";
+import img_service_12 from "../assets/images/homePage/services-12+.webp";
+
 //</Импорт картинок>===============================================================================
 
 //<Импорт картинок блок "Наши работы">================================================================================
@@ -77,6 +84,9 @@ import garantyIcon from "../assets/icons/Icons_BIS/SVG/garantyQuolity.svg";
 import keyIcon from "../assets/icons/Icons_BIS/SVG/workKey.svg";
 import montagIcon from "../assets/icons/Icons_BIS/SVG/montag.svg";
 import projectIcon from "../assets/icons/Icons_BIS/SVG/project.svg";
+import carIcon from "../assets/icons/Icons_BIS/SVG/car.svg";
+import likeIcon from "../assets/icons/Icons_BIS/SVG/like.svg";
+import contractIcon from "../assets/icons/Icons_BIS/SVG/contract.svg";
 
 const bannerPrice = [
   {
@@ -129,8 +139,22 @@ const dopServices = [
         class: "services__row-item-big",
         title: "Благоустройство",
         price: "От 110 000 руб.",
-        pathImg: "",
+        pathImg: img_service_12,
         hoverColors: "rgb(170, 214, 199)",
+        garanty: [
+          {
+            icon: contractIcon,
+            text: "Гарантия по договору",
+          },
+          {
+            icon: projectIcon,
+            text: "Визуализация проекта",
+          },
+          {
+            icon: keyIcon,
+            text: "Работа под ключ",
+          },
+        ],
       },
     ],
     [
@@ -138,21 +162,14 @@ const dopServices = [
         class: "services__row-item-sm",
         title: "Бурение скважин",
         price: "От 3 800 р./м",
-        pathImg: "",
+        pathImg: img_service_7,
         hoverColors: "rgb(204, 209, 255)",
       },
-      // {
-      //   class: "services__row-item-sm",
-      //   title: "Ливневка",
-      //   price: "От 50 000 руб.",
-      //   pathImg: "url(/images/ourServices/services-7.webp",
-      //   hoverColors: "rgb(204, 209, 255)",
-      // },
       {
         class: "services__row-item-sm",
         title: "Ливневка",
         price: "~ 50 000 руб.",
-        pathImg: "",
+        pathImg: img_service_8,
         hoverColors: "rgb(255, 229, 204)",
         routePath: ROUTES_PATHS.DRAINAGE,
       },
@@ -164,7 +181,7 @@ const dopServices = [
         class: "services__row-item-sm",
         title: "Обустройство дренажа",
         price: "От 80 000 руб.",
-        pathImg: "",
+        pathImg: img_service_9,
         hoverColors: "rgb(255, 229, 204)",
         routePath: ROUTES_PATHS.DRAINAGE,
       },
@@ -172,7 +189,7 @@ const dopServices = [
         class: "services__row-item-sm",
         title: "Обустройство колодца",
         price: "",
-        pathImg: "",
+        pathImg: img_service_10,
         hoverColors: "rgb(243, 253, 180)",
         routePath: ROUTES_PATHS.WATER,
       },
@@ -182,9 +199,23 @@ const dopServices = [
         class: "services__row-item-big",
         title: "БИС сервис",
         price: "Аварийный выезд - от 6 100 руб.",
-        pathImg: "",
+        pathImg: img_service_11,
         hoverColors: "rgb(255, 229, 204)",
         routePath: ROUTES_PATHS.SERVICE,
+        garanty: [
+          {
+            icon: garantyIcon,
+            text: "Гарантия качества",
+          },
+          {
+            icon: likeIcon,
+            text: "Лучшие мастера",
+          },
+          {
+            icon: carIcon,
+            text: "Быстрый выезд",
+          },
+        ],
       },
     ],
   ],
@@ -602,10 +633,7 @@ const feedbackForm = reactive({
     @isVisible="visibleForm()"
     stikers="true"
   />
-
-  <!-- <Form v-show="feedbackForm.active" @isVisible="visibleForm()" /> -->
   <OurServices @isVisible="visibleForm()" :dataServices="dataServices" :dopServices="dopServices" title="Наши услуги" />
-  <!-- <ServiceSlider /> -->
   <BisService title="БИС Сервис" :data="dataBisService" />
   <WorksSlider :data="dataWork" />
   <WorkOrder :data="dataOrder" title="За что нас ценят" />

@@ -14,6 +14,7 @@ import LandscapePage from "../pages/LandscapePage.vue";
 import FenceFormPage from "../pages/FenceFormPage.vue";
 import Development from "../pages/Development.vue";
 import Vacancies from "../pages/Vacancies.vue";
+import VacancyMiddle from "../pages/VacancyMiddle.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,7 @@ const router = createRouter({
     { path: ROUTES_PATHS.LANDSCAPE, name: ROUTES_PATHS.LANDSCAPE, component: LandscapePage },
     { path: ROUTES_PATHS.DEVELOP, name: ROUTES_PATHS.DEVELOP, component: Development },
     { path: ROUTES_PATHS.VACANCIES, name: ROUTES_PATHS.VACANCIES, component: Vacancies },
+    { path: ROUTES_PATHS.VACANCIES_MID, name: ROUTES_PATHS.VACANCIES_MID, component: VacancyMiddle },
     { path: "/:pathMatch(.*)*", redirect: "/" },
   ],
   scrollBehavior(to, from, savedPosition) {

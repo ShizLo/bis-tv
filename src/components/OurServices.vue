@@ -149,18 +149,18 @@ onMounted(() => {
                       <div v-if="item.price.length > 0" class="item__price content__price">
                         <span>{{ item.price }}</span>
                       </div>
-                      <div class="ml-5 mt-16" v-if="item.garanty">
+                      <div class="ml-2 ml-lg-5 mt-2 mt-lg-16" v-if="item.garanty">
                         <div
-                          class="d-flex align-center garanty-item"
+                          class="d-flex align-senter mb-0 mb-lg-1 garanty-item"
                           v-for="garanty in item.garanty"
                           style="opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease"
                         >
-                          <div>
-                            <v-icon size="30">
+                          <div class="d-flex align-center">
+                            <v-icon class="mr-2 text-h6 text-lg-h5">
                               <v-img :src="garanty.icon"></v-img>
                             </v-icon>
                           </div>
-                          <div>{{ garanty.text }}</div>
+                          <div class="text-caption text-lg-subtitle-1">{{ garanty.text }}</div>
                         </div>
                       </div>
                     </div>

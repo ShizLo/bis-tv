@@ -9,6 +9,7 @@ export const TOPICS_ID = {
   SERVICES: 4294967328, // Услуги
   LANDSCAPE: 4294967339, // Проекты
   DEPARTURE: 4294967337, // Первичный выезд
+  VACANCIES: 4294967411, // Отклики на вакансии
 };
 export const token = "7564255529:AAELnqPYEHTvtJzwSaf3tnn7JQb4whqx688";
 

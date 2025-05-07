@@ -269,6 +269,16 @@ async function clickBtn() {
     sendingStatus.value.isSending = false;
   }
 }
+const moveCursorToFirstHash = () => {
+  if (customer.phone.length != 18) {
+    customer.phone = "+7 ";
+  }
+};
+const onBlur = () => {
+  if (customer.phone.length != 18) {
+    customer.phone = "";
+  }
+};
 onMounted(() => {
   window.addEventListener("resize", handleResize);
   handleResize();
@@ -299,9 +309,35 @@ onUnmounted(() => {
           <v-stepper-window-item value="0">
             <v-card variant="text" class="pa-4 pa-md-6">
               <v-form class="pt-4" v-model="isStep1Valid" @submit.prevent="nextStep">
-                <v-text-field v-model="customer.name" label="ФИО" variant="outlined" class="mb-2"></v-text-field>
-                <v-text-field v-model="customer.phone" label="Телефон" variant="outlined" class="mb-2"></v-text-field>
-                <v-text-field v-model="customer.address" label="Адрес установки" variant="outlined" class="mb-2"></v-text-field>
+                <v-text-field
+                  prepend-inner-icon="mdi-account-outline"
+                  v-model="customer.name"
+                  label="ФИО"
+                  variant="outlined"
+                  density="comfortable"
+                  class="mb-2"
+                ></v-text-field>
+                <!-- <v-text-field v-model="customer.phone" label="Телефон" variant="outlined" class="mb-2"></v-text-field> -->
+                <v-text-field
+                  v-model="customer.phone"
+                  variant="outlined"
+                  prepend-inner-icon="mdi-phone-outline"
+                  v-mask="'+7 (###) ###-##-##'"
+                  placeholder="+7 (___) ___-__-__"
+                  label="Телефон"
+                  density="comfortable"
+                  color="text"
+                  @focus="moveCursorToFirstHash"
+                  @blur="onBlur"
+                ></v-text-field>
+                <v-text-field
+                  prepend-inner-icon="mdi-map-marker"
+                  v-model="customer.address"
+                  label="Адрес установки"
+                  density="comfortable"
+                  variant="outlined"
+                  class="mb-2"
+                ></v-text-field>
               </v-form>
             </v-card>
           </v-stepper-window-item>
@@ -315,23 +351,24 @@ onUnmounted(() => {
                   </v-btn>
                 </div>
 
-                <v-row>
-                  <v-col cols="12" md="6">
+                <v-row class="">
+                  <v-col class="pb-0" cols="12" md="6">
                     <v-select v-model="section.type" :items="fenceTypes" label="Тип забора" variant="outlined" hide-details></v-select>
                   </v-col>
-                  <v-col cols="6" md="3">
+                  <v-col class="pb-0" cols="6" md="3">
                     <v-text-field
                       v-model.number="section.length"
-                      label="Длина (м)"
+                      label="Длина участка (м)"
                       type="number"
+                      hint="Без калиток и ворот"
                       min="0"
                       max="100"
                       step="0.1"
                       variant="outlined"
-                      hide-details
-                    ></v-text-field>
+                    >
+                    </v-text-field>
                   </v-col>
-                  <v-col cols="6" md="3">
+                  <v-col class="pb-0" cols="6" md="3">
                     <v-text-field
                       v-model.number="section.height"
                       label="Высота (м)"
@@ -706,7 +743,7 @@ onUnmounted(() => {
             </div>
           </v-stepper-window-item>
         </v-stepper-window>
-        <v-stepper-actions>
+        <v-stepper-actions class="pb-10">
           <template #prev>
             <v-btn @click="prevStep" type="submit" class="submit-btn" :prepend-icon="mobile ? '' : 'mdi-arrow-left'"> Назад </v-btn>
           </template>
