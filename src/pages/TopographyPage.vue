@@ -1,12 +1,141 @@
 <script setup>
-import { reactive, defineAsyncComponent } from "vue";
-
+import { reactive, defineAsyncComponent, onMounted } from "vue";
+import axios from "axios";
 import BannerSlider from "../components/Banner.vue";
 const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
 const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
 const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
 const PriceList = defineAsyncComponent(() => import("../components/topographyPage/PriceList.vue"));
 const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
+
+onMounted(async () => {
+  try {
+    state.loading = true;
+    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
+    const response = await axios.get(url);
+    state.price = response.data;
+    // Обновляем цены в структуре
+    updatePrices();
+  } catch (error) {
+    console.error("Ошибка загрузки данных:", error);
+  } finally {
+    state.loading = false;
+  }
+});
+function updatePrices() {
+  if (state.price[0]) {
+    //<Основные услуги>================================================================================
+    // Вынос в натуру
+    state.dataServices[0][0][0].price = state.price[47].price;
+    // Полный ландшафтный проект
+    state.dataServices[0][1][0].price = state.price[50].price;
+    // Эскизный проект
+    state.dataServices[1][0][0].price = state.price[49].price;
+    // Топографическая съемка
+    state.dataServices[1][1][0].price = state.price[46].price;
+    //</Основные услуги>===============================================================================
+    //<Банер>================================================================================
+    //Топографическая съемка
+    state.bannerPrice[0].price = state.price[46].price;
+    //Вынос границ земельного участка
+    state.bannerPrice[1].price = state.price[47].price;
+    //Проектирование и ландшафтный дизайн
+    state.bannerPrice[2].price = state.price[48].price;
+    //Эскизный ландшафтный проект
+    state.bannerPrice[3].price = state.price[49].price;
+    //Полный ландшафтный проект
+    state.bannerPrice[4].price = state.price[50].price;
+    //Вместе будет дешевле
+    state.bannerPrice[5].price = state.price[51].price;
+    //</Банер>===============================================================================
+  }
+}
+
+const state = reactive({
+  price: [],
+  bannerPrice: initializeBannerStructure(),
+  dataServices: initializeServicesStructure(),
+  loading: false,
+});
+
+function initializeBannerStructure() {
+  return [
+    {
+      url: "/images/topographyPage/banner-1.webp",
+      price: "",
+      name: "Топографическая съемка",
+    },
+    {
+      url: "/images/topographyPage/banner-2.jpeg",
+      price: "",
+      name: "Вынос границ земельного участка",
+    },
+    {
+      url: "/images/topographyPage/banner-3+.webp",
+      price: "",
+      name: "Проектирование и ландшафтный дизайн",
+    },
+    {
+      url: "/images/topographyPage/banner-4+.webp",
+      price: "",
+      name: "Эскизный ландшафтный проект",
+    },
+    {
+      url: "/images/topographyPage/banner-5.jpeg",
+      price: "",
+      name: "Полный ландшафтный проект",
+    },
+    {
+      url: "/images/topographyPage/banner-6+.webp",
+      price: "",
+      name: "Вместе будет дешевле",
+    },
+  ];
+}
+function initializeServicesStructure() {
+  return [
+    [
+      [
+        {
+          class: "services__row-item-big",
+          title: "Вынос в натуру границ земельного участка",
+          price: "",
+          pathImg: img_service_1,
+          hoverColors: "rgb(255, 229, 204)",
+        },
+      ],
+      [
+        {
+          class: "services__row-item-big",
+          title: "Полный ландшафтный проект",
+          price: "",
+          pathImg: img_service_3,
+          hoverColors: "rgb(255, 229, 204)",
+        },
+      ],
+    ],
+    [
+      [
+        {
+          class: "services__row-item-big",
+          title: "Эскизный проект",
+          price: "",
+          pathImg: img_service_2,
+          hoverColors: "rgb(255, 229, 204)",
+        },
+      ],
+      [
+        {
+          class: "services__row-item-big",
+          title: "Топографическая съемка",
+          price: "",
+          pathImg: img_service_4,
+          hoverColors: "rgb(255, 229, 204)",
+        },
+      ],
+    ],
+  ];
+}
 
 //<Импорт картинок блок наши услуги>================================================================================
 import img_service_1 from "../assets/images/topographyPage/services-1.webp";
@@ -15,38 +144,6 @@ import img_service_3 from "../assets/images/topographyPage/services-3.webp";
 import img_service_4 from "../assets/images/topographyPage/services-4.webp";
 //</Импорт картинок>===============================================================================
 
-const bannerPrice = [
-  {
-    url: "/images/topographyPage/banner-1.webp",
-    price: "от 12 000 руб.",
-    name: "Топографическая съемка",
-  },
-  {
-    url: "/images/topographyPage/banner-2.jpeg",
-    price: "До конца марта 6 000 руб.",
-    name: "Вынос границ земельного участка",
-  },
-  {
-    url: "/images/topographyPage/banner-3+.webp",
-    price: "от 6 000 руб.",
-    name: "Проектирование и ландшафтный дизайн",
-  },
-  {
-    url: "/images/topographyPage/banner-4+.webp",
-    price: "от 22 000 руб.",
-    name: "Эскизный ландшафтный проект",
-  },
-  {
-    url: "/images/topographyPage/banner-5.jpeg",
-    price: "от 65 000 руб.",
-    name: "Полный ландшафтный проект",
-  },
-  {
-    url: "/images/topographyPage/banner-6+.webp",
-    price: "от 20 000 руб.",
-    name: "Вместе будет дешевле",
-  },
-];
 const dataServices = [
   [
     [
@@ -190,11 +287,11 @@ const feedBackData = ["Эскизный проект", "Ландшафтный �
     style="white-space: pre-line"
     bannerText="Топографическая съемка и проектирование"
     bannerDescription="Поиск и закрепление границ вашего участка по координатам Росреестра. Определение границ заказывают перед установкой нового забора, покупкой участка и при спорах с соседями о текущем положении границы."
-    :bannerPrice="bannerPrice"
+    :bannerPrice="state.bannerPrice"
     :desctiption="desctription"
     @isVisible="visibleForm()"
   />
-  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" title="Наши услуги" />
+  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Наши услуги" />
   <PriceList />
   <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />

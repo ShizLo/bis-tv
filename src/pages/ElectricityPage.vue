@@ -1,11 +1,145 @@
 <script setup>
-import { reactive, defineAsyncComponent } from "vue";
+import { reactive, defineAsyncComponent, onMounted } from "vue";
 import BannerSlider from "../components/Banner.vue";
 import OurServices from "../components/OurServices.vue";
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
 const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
 const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
 const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
+
+import axios from "axios";
+onMounted(async () => {
+  try {
+    state.loading = true;
+    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
+    const response = await axios.get(url);
+    state.price = response.data;
+    // Обновляем цены в структуре
+    updatePrices();
+  } catch (error) {
+    console.error("Ошибка загрузки данных:", error);
+  } finally {
+    state.loading = false;
+  }
+});
+function updatePrices() {
+  if (state.price[0]) {
+    //<Основные услуги>================================================================================
+    // Проектирование электросетей
+    state.dataServices[0][0][0].price = state.price[44].price;
+    // Установка стабилизаторов
+    state.dataServices[1][0][0].price = state.price[42].price;
+    // Монтаж уличного освещения
+    state.dataServices[1][0][1].price = state.price[2].price;
+    // Монтаж опоры трубостойки
+    state.dataServices[0][1][0].price = state.price[41].price;
+    // Монтаж приборов
+    state.dataServices[0][1][1].price = state.price[45].price;
+    // Монтаж щита и воздушной линии
+    state.dataServices[1][1][0].price = state.price[43].price;
+    //</Основные услуги>===============================================================================
+    //<Банер>================================================================================
+    //Монтаж уличного освещения
+    state.bannerPrice[0].price = state.price[2].price;
+    //Монтаж опоры/трубостойки
+    state.bannerPrice[1].price = state.price[41].price;
+    //Установка стабилизаторов
+    state.bannerPrice[2].price = state.price[42].price;
+    //Монтаж щита и воздушной линии
+    state.bannerPrice[3].price = state.price[43].price;
+    //</Банер>===============================================================================
+  }
+}
+
+const state = reactive({
+  price: [],
+  bannerPrice: initializeBannerStructure(),
+  dataServices: initializeServicesStructure(),
+  loading: false,
+});
+
+function initializeBannerStructure() {
+  return [
+    {
+      url: "/images/electricityPage/banner-3+.jpg",
+      price: "",
+      name: "Монтаж уличного освещения",
+    },
+    {
+      url: "/images/electricityPage/banner-4.jpg",
+      price: "",
+      name: "Монтаж опоры/трубостойки",
+    },
+    {
+      url: "/images/electricityPage/banner-5.jpg",
+      price: "",
+      name: "Установка стабилизаторов",
+    },
+    {
+      url: "/images/electricityPage/banner-6.jpg",
+      price: "",
+      name: "Монтаж щита и воздушной линии",
+    },
+  ];
+}
+function initializeServicesStructure() {
+  return [
+    [
+      [
+        {
+          class: "services__row-item-big",
+          title: "Проектирование электросетей",
+          price: "",
+          pathImg: img_service_1,
+          hoverColors: "rgb(243, 253, 180)",
+        },
+      ],
+      [
+        {
+          class: "services__row-item-sm",
+          title: "Монтаж опоры трубостойки",
+          price: "",
+          pathImg: img_service_2,
+          hoverColors: "rgb(243, 253, 180)",
+        },
+        {
+          class: "services__row-item-sm",
+          title: "Монтаж приборов",
+          price: "",
+          pathImg: img_service_3,
+          hoverColors: "rgb(243, 253, 180)",
+        },
+      ],
+    ],
+    [
+      [
+        {
+          class: "services__row-item-sm",
+          title: "Установка стабилизаторов",
+          price: "",
+          pathImg: img_service_4,
+          hoverColors: "rgb(243, 253, 180)",
+        },
+        {
+          class: "services__row-item-sm",
+          title: "Монтаж уличного освещения",
+          price: "",
+          pathImg: img_service_6,
+          hoverColors: "rgb(243, 253, 180)",
+        },
+      ],
+      [
+        {
+          class: "services__row-item-big",
+          title: "Монтаж щита и воздушной линии",
+          price: "",
+          pathImg: img_service_5,
+          hoverColors: "rgb(243, 253, 180)",
+        },
+      ],
+    ],
+  ];
+}
 
 //<Импорт картинок блок наши услуги>================================================================================
 import img_service_1 from "../assets/images/electricityPage/services-1.webp";
@@ -16,96 +150,6 @@ import img_service_5 from "../assets/images/electricityPage/services-6.webp";
 import img_service_6 from "../assets/images/electricityPage/services-5.webp";
 //</Импорт картинок>===============================================================================
 
-const bannerPrice = [
-  {
-    url: "/images/electricityPage/banner-3+.jpg",
-    price: "от 15 000 руб",
-    name: "Монтаж уличного освещения",
-  },
-  // {
-  //   url: "",
-  //   // url: "/images/fence/banner-2+.jpeg",
-  //   price: "от 25 000 руб",
-  //   name: "Проектирование электросетей",
-  // },
-  // {
-  //   url: "",
-  //   price: "",
-  //   name: "Сборка электрощитков",
-  // },
-  {
-    url: "/images/electricityPage/banner-4.jpg",
-    price: "от 25 000 руб.",
-    name: "Монтаж опоры/трубостойки",
-  },
-  {
-    url: "/images/electricityPage/banner-5.jpg",
-    price: "от 150 000 руб.",
-    name: "Установка стабилизаторов",
-  },
-  {
-    url: "/images/electricityPage/banner-6.jpg",
-    price: "от 32 000 руб.",
-    name: "Монтаж щита и воздушной линии",
-  },
-];
-
-const dataServices = [
-  [
-    [
-      {
-        class: "services__row-item-big",
-        title: "Проектирование электросетей",
-        price: "от 25 000 руб.",
-        pathImg: img_service_1,
-        hoverColors: "rgb(243, 253, 180)",
-      },
-    ],
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Монтаж опоры трубостойки",
-        price: "",
-        pathImg: img_service_2,
-        hoverColors: "rgb(243, 253, 180)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Монтаж приборов",
-        price: "",
-        pathImg: img_service_3,
-        hoverColors: "rgb(243, 253, 180)",
-      },
-    ],
-  ],
-  [
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Установка стабилизаторов",
-        price: "от 180 000 руб.",
-        pathImg: img_service_4,
-        hoverColors: "rgb(243, 253, 180)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Монтаж уличного освещения",
-        price: "от 15 000 руб.",
-        pathImg: img_service_6,
-        hoverColors: "rgb(243, 253, 180)",
-      },
-    ],
-    [
-      {
-        class: "services__row-item-big",
-        title: "Монтаж щита и воздушной линии",
-        price: "от 32 000 руб.",
-        pathImg: img_service_5,
-        hoverColors: "rgb(243, 253, 180)",
-      },
-    ],
-  ],
-];
 const dataOrder = [
   {
     urlImg: "/icons/workOrder/bubbles4.svg",
@@ -162,10 +206,10 @@ const feedbackForm = reactive({
   - Установка опор и трубостоек, монтаж воздушных линий
   - Установка стабилизаторов напряжения
   - Установка приборов (выключатели, розетки, переключатели...)"
-    :bannerPrice="bannerPrice"
+    :bannerPrice="state.bannerPrice"
     @isVisible="visibleForm()"
   />
-  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" title="Услуги по электромонтажу" />
+  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Услуги по электромонтажу" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
   <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />

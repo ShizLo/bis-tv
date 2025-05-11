@@ -1,8 +1,304 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
 import { defineAsyncComponent } from "vue";
 import { ROUTES_PATHS } from "../constants";
+import axios from "axios";
+onMounted(async () => {
+  try {
+    state.loading = true;
+    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
+    const response = await axios.get(url);
+    state.price = response.data;
+    // Обновляем цены в структуре
+    updatePrices();
+  } catch (error) {
+    console.error("Ошибка загрузки данных:", error);
+  } finally {
+    state.loading = false;
+  }
+});
+function updatePrices() {
+  if (state.price[0]) {
+    // Для септика (первый элемент)
+    state.dataServices[0][0][0].price = state.price[0].price;
+    // Фундамент
+    state.dataServices[1][0][0].price = state.price[1].price;
+    // Электромонтаж
+    state.dataServices[1][0][1].price = state.price[2].price;
+    // Водоснабжение
+    state.dataServices[0][1][0].price = state.price[3].price;
+    // Заборы
+    state.dataServices[0][1][1].price = state.price[4].price;
+    // Проект участка
+    state.dataServices[1][1][0].price = state.price[5].price;
+    //<Банер>================================================================================
+    //Благоустройство
+    state.bannerPrice[0].price = state.price[6].price;
+    //Заборы
+    state.bannerPrice[1].price = state.price[4].price;
+    //Свайное поле
+    state.bannerPrice[2].price = state.price[1].price;
+    //Откатные ворота
+    state.bannerPrice[3].price = state.price[7].price;
+    //Парковка
+    state.bannerPrice[4].price = state.price[8].price;
+    //Водоподготовка
+    state.bannerPrice[5].price = state.price[9].price;
+    //Септик под ключ
+    state.bannerPrice[6].price = state.price[0].price;
+    //</Банер>===============================================================================
+    //<Дополнительные услуги>================================================================================
+    // Благоустройство
+    state.dopServices[0][0][0].price = state.price[6].price;
+    // Обустройство дренажа
+    state.dopServices[1][0][0].price = state.price[12].price;
+    // Обустройство колодца
+    state.dopServices[1][0][1].price = state.price[13].price;
+    // Бурение скважин
+    state.dopServices[0][1][0].price = state.price[10].price;
+    // Ливневка
+    state.dopServices[0][1][1].price = state.price[11].price;
+    // Бис сервис
+    state.dopServices[1][1][0].price = state.price[14].price;
+    //</Дополнительные услуги>===============================================================================
+  }
+}
 
+const state = reactive({
+  price: [],
+  dataServices: initializeServicesStructure(),
+  bannerPrice: initializeBannerStructure(),
+  dopServices: initializeDopServicesStructure(),
+  loading: false,
+});
+function initializeServicesStructure() {
+  return [
+    [
+      [
+        {
+          class: "services__row-item-big",
+          title: "Септик под ключ",
+          price: "",
+          pathImg: img_service_1,
+          hoverColors: "rgb(170, 214, 199)",
+          garanty: [
+            {
+              icon: garantyIcon,
+              text: "Гарантия качества",
+            },
+            {
+              icon: keyIcon,
+              text: "Работа под ключ",
+            },
+            {
+              icon: montagIcon,
+              text: "Быстрый монтаж",
+            },
+          ],
+        },
+      ],
+      [
+        {
+          class: "services__row-item-sm",
+          title: "Водоснабжение",
+          price: "",
+          // price: "От 60 000 руб.",
+          pathImg: img_service_2,
+          hoverColors: "rgb(204, 209, 255)",
+          routePath: ROUTES_PATHS.WATER,
+        },
+        {
+          class: "services__row-item-sm",
+          title: "Установка заборов",
+          price: "",
+          // price: "От 90 000 руб.",
+          pathImg: img_service_3,
+          hoverColors: "rgb(255, 229, 204)",
+          routePath: ROUTES_PATHS.FENCE,
+        },
+      ],
+    ],
+    [
+      [
+        {
+          class: "services__row-item-sm",
+          title: "Фундамент",
+          price: "",
+          // price: "От 100 000 руб.",
+          pathImg: img_service_4,
+          hoverColors: "rgb(255, 229, 204)",
+          routePath: ROUTES_PATHS.FAUNDATION,
+        },
+        {
+          class: "services__row-item-sm",
+          title: "Электромонтаж",
+          price: "",
+          // price: "От 20 000 руб.",
+          pathImg: img_service_5,
+          hoverColors: "rgb(243, 253, 180)",
+          routePath: ROUTES_PATHS.ELECTRICITY,
+        },
+      ],
+      [
+        {
+          class: "services__row-item-big",
+          title: "Проект участка и топографическая съемка",
+          price: "",
+          // price: "От 50 000 руб.",
+          pathImg: img_service_6,
+          hoverColors: "rgb(255, 229, 204)",
+          routePath: ROUTES_PATHS.TOPOGRAPHY,
+          garanty: [
+            {
+              icon: projectIcon,
+              text: "Визуализация проекта",
+            },
+            {
+              icon: keyIcon,
+              text: "Работа под ключ",
+            },
+          ],
+        },
+      ],
+    ],
+  ];
+}
+function initializeBannerStructure() {
+  return [
+    {
+      url: "/images/swiperBanner/banner-1+.jpg",
+      price: "",
+      name: "Благоустройство",
+      routerPath: "",
+    },
+    {
+      url: "/images/swiperBanner/swiper-slide-1.webp",
+      price: "",
+      name: "Установка забора",
+      routerPath: ROUTES_PATHS.FENCE,
+    },
+    {
+      url: "/images/swiperBanner/swiper-slide-2.webp",
+      price: "",
+      name: "Свайное поле",
+      routerPath: ROUTES_PATHS.FAUNDATION,
+    },
+    {
+      url: "/images/swiperBanner/banner-3.jpg",
+      price: "",
+      name: "Откатные ворота",
+      routerPath: ROUTES_PATHS.FENCE,
+    },
+    {
+      url: "/images/swiperBanner/swiper-slide-4.webp",
+      price: "",
+      name: "Парковка",
+      routerPath: "",
+    },
+    {
+      url: "/images/swiperBanner/swiper-slide-5.webp",
+      price: "",
+      name: "Водоподготовка",
+      routerPath: ROUTES_PATHS.WATER,
+    },
+    {
+      url: "/images/swiperBanner/swiper-slide-6.webp",
+      price: "",
+      name: "Септик под ключ",
+      routerPath: "",
+    },
+  ];
+}
+function initializeDopServicesStructure() {
+  return [
+    [
+      [
+        {
+          class: "services__row-item-big",
+          title: "Благоустройство",
+          price: "",
+          pathImg: img_service_12,
+          hoverColors: "rgb(170, 214, 199)",
+          garanty: [
+            {
+              icon: contractIcon,
+              text: "Гарантия по договору",
+            },
+            {
+              icon: projectIcon,
+              text: "Визуализация проекта",
+            },
+            {
+              icon: keyIcon,
+              text: "Работа под ключ",
+            },
+          ],
+        },
+      ],
+      [
+        {
+          class: "services__row-item-sm",
+          title: "Бурение скважин",
+          price: "",
+          pathImg: img_service_7,
+          hoverColors: "rgb(204, 209, 255)",
+        },
+        {
+          class: "services__row-item-sm",
+          title: "Ливневка",
+          price: "",
+          pathImg: img_service_8,
+          hoverColors: "rgb(255, 229, 204)",
+          routePath: ROUTES_PATHS.DRAINAGE,
+        },
+      ],
+    ],
+    [
+      [
+        {
+          class: "services__row-item-sm",
+          title: "Обустройство дренажа",
+          price: "",
+          pathImg: img_service_9,
+          hoverColors: "rgb(255, 229, 204)",
+          routePath: ROUTES_PATHS.DRAINAGE,
+        },
+        {
+          class: "services__row-item-sm",
+          title: "Обустройство колодца",
+          price: "",
+          pathImg: img_service_10,
+          hoverColors: "rgb(243, 253, 180)",
+          routePath: ROUTES_PATHS.WATER,
+        },
+      ],
+      [
+        {
+          class: "services__row-item-big",
+          title: "БИС сервис",
+          price: "",
+          pathImg: img_service_11,
+          hoverColors: "rgb(255, 229, 204)",
+          routePath: ROUTES_PATHS.SERVICE,
+          garanty: [
+            {
+              icon: garantyIcon,
+              text: "Гарантия качества",
+            },
+            {
+              icon: likeIcon,
+              text: "Лучшие мастера",
+            },
+            {
+              icon: carIcon,
+              text: "Быстрый выезд",
+            },
+          ],
+        },
+      ],
+    ],
+  ];
+}
 //<Импорт компонентов>================================================================================
 // const Banner = defineAsyncComponent(() => import("../components/Banner.vue"));
 import Banner from "../components/Banner.vue";
@@ -88,230 +384,6 @@ import carIcon from "../assets/icons/Icons_BIS/SVG/car.svg";
 import likeIcon from "../assets/icons/Icons_BIS/SVG/like.svg";
 import contractIcon from "../assets/icons/Icons_BIS/SVG/contract.svg";
 
-const bannerPrice = [
-  {
-    url: "/images/swiperBanner/banner-1+.jpg",
-    price: "от 110 000 руб.",
-    name: "Благоустройство",
-    routerPath: "",
-  },
-  {
-    url: "/images/swiperBanner/swiper-slide-1.webp",
-    price: "от 90 000 руб.",
-    name: "Установка забора",
-    routerPath: ROUTES_PATHS.FENCE,
-  },
-  {
-    url: "/images/swiperBanner/swiper-slide-2.webp",
-    price: "от 100 000 руб.",
-    name: "Свайное поле",
-    routerPath: ROUTES_PATHS.FAUNDATION,
-  },
-  {
-    url: "/images/swiperBanner/banner-3.jpg",
-    price: "от 65 000 руб.",
-    name: "Откатные ворота",
-    routerPath: ROUTES_PATHS.FENCE,
-  },
-  {
-    url: "/images/swiperBanner/swiper-slide-4.webp",
-    price: "от 1 900 руб./м²",
-    name: "Парковка",
-    routerPath: "",
-  },
-  {
-    url: "/images/swiperBanner/swiper-slide-5.webp",
-    price: "от 60 000 руб.",
-    name: "Водоподготовка",
-    routerPath: ROUTES_PATHS.WATER,
-  },
-  {
-    url: "/images/swiperBanner/swiper-slide-6.webp",
-    price: "от 180 000 руб.",
-    name: "Септик под ключ",
-    routerPath: "",
-  },
-];
-const dopServices = [
-  [
-    [
-      {
-        class: "services__row-item-big",
-        title: "Благоустройство",
-        price: "От 110 000 руб.",
-        pathImg: img_service_12,
-        hoverColors: "rgb(170, 214, 199)",
-        garanty: [
-          {
-            icon: contractIcon,
-            text: "Гарантия по договору",
-          },
-          {
-            icon: projectIcon,
-            text: "Визуализация проекта",
-          },
-          {
-            icon: keyIcon,
-            text: "Работа под ключ",
-          },
-        ],
-      },
-    ],
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Бурение скважин",
-        price: "От 3 800 р./м",
-        pathImg: img_service_7,
-        hoverColors: "rgb(204, 209, 255)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Ливневка",
-        price: "~ 50 000 руб.",
-        pathImg: img_service_8,
-        hoverColors: "rgb(255, 229, 204)",
-        routePath: ROUTES_PATHS.DRAINAGE,
-      },
-    ],
-  ],
-  [
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Обустройство дренажа",
-        price: "От 80 000 руб.",
-        pathImg: img_service_9,
-        hoverColors: "rgb(255, 229, 204)",
-        routePath: ROUTES_PATHS.DRAINAGE,
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Обустройство колодца",
-        price: "",
-        pathImg: img_service_10,
-        hoverColors: "rgb(243, 253, 180)",
-        routePath: ROUTES_PATHS.WATER,
-      },
-    ],
-    [
-      {
-        class: "services__row-item-big",
-        title: "БИС сервис",
-        price: "Аварийный выезд - от 6 100 руб.",
-        pathImg: img_service_11,
-        hoverColors: "rgb(255, 229, 204)",
-        routePath: ROUTES_PATHS.SERVICE,
-        garanty: [
-          {
-            icon: garantyIcon,
-            text: "Гарантия качества",
-          },
-          {
-            icon: likeIcon,
-            text: "Лучшие мастера",
-          },
-          {
-            icon: carIcon,
-            text: "Быстрый выезд",
-          },
-        ],
-      },
-    ],
-  ],
-];
-const dataServices = [
-  [
-    [
-      {
-        class: "services__row-item-big",
-        title: "Септик под ключ",
-        price: "От 180 000 руб.",
-        pathImg: img_service_1,
-        hoverColors: "rgb(170, 214, 199)",
-        garanty: [
-          {
-            icon: garantyIcon,
-            text: "Гарантия качества",
-          },
-          {
-            icon: keyIcon,
-            text: "Работа под ключ",
-          },
-          {
-            icon: montagIcon,
-            text: "Быстрый монтаж",
-          },
-        ],
-      },
-    ],
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Водоснабжение",
-        price: "От 60 000 руб.",
-        pathImg: img_service_2,
-        hoverColors: "rgb(204, 209, 255)",
-        routePath: ROUTES_PATHS.WATER,
-      },
-      // {
-      //   class: "services__row-item-sm",
-      //   title: "Ливневка",
-      //   price: "От 50 000 руб.",
-      //   pathImg: "url(/images/ourServices/services-7.webp",
-      //   hoverColors: "rgb(204, 209, 255)",
-      // },
-      {
-        class: "services__row-item-sm",
-        title: "Установка заборов",
-        price: "От 90 000 руб.",
-        pathImg: img_service_3,
-        hoverColors: "rgb(255, 229, 204)",
-        routePath: ROUTES_PATHS.FENCE,
-      },
-    ],
-  ],
-  [
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Фундамент",
-        price: "От 100 000 руб.",
-        pathImg: img_service_4,
-        hoverColors: "rgb(255, 229, 204)",
-        routePath: ROUTES_PATHS.FAUNDATION,
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Электромонтаж",
-        price: "От 20 000 руб.",
-        pathImg: img_service_5,
-        hoverColors: "rgb(243, 253, 180)",
-        routePath: ROUTES_PATHS.ELECTRICITY,
-      },
-    ],
-    [
-      {
-        class: "services__row-item-big",
-        title: "Проект участка и топографическая съемка",
-        price: "От 50 000 руб.",
-        pathImg: img_service_6,
-        hoverColors: "rgb(255, 229, 204)",
-        routePath: ROUTES_PATHS.TOPOGRAPHY,
-        garanty: [
-          {
-            icon: projectIcon,
-            text: "Визуализация проекта",
-          },
-          {
-            icon: keyIcon,
-            text: "Работа под ключ",
-          },
-        ],
-      },
-    ],
-  ],
-];
 const dataOrder = [
   {
     urlImg: "/icons/homePage/spinner9.svg",
@@ -338,6 +410,11 @@ const dataOrder = [
     title: "Прозрачная смета",
     text: "После первичной встречи на участке составляется визуализация вашего участка с привязками и размерами. Это позволяет точно составить подробную смету. Цена в большинстве случаев фиксируется или в смете указаны пункты, корректируемые по факту.",
   },
+  // {
+  //   urlImg: "/icons/homePage/spinner9.svg",
+  //   title: "Делаем полный цикл",
+  //   text: "Мы беремся за реализацию всего цикла от проектирования до организации газона. Большой набор услуг позволяет закрыть большую часть потребностей в 'одном окне', что позволяет не тратить время на согласования, коллаборации и экономит средства.",
+  // },
 ];
 const dataWork = [
   {
@@ -520,6 +597,36 @@ const dataWork = [
 ];
 const dataBisService = [
   {
+    urlImg: "",
+    title: "Уборка участка",
+    // price: [{ text: "Вывоз мусора" }, { text: "Уборка крыши" }, { text: "Чистка террасы" }, { text: "..." }],
+    price: [{ text: "Подробнее" }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+  {
+    urlImg: "",
+    title: "Генераторы",
+    // price: [{ text: "ТО и сервис" }],
+    price: [{ text: "Подробнее" }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+
+  {
+    urlImg: "url(/images/waterPage/water-6@0.5x.webp)",
+    title: "Водоподготовка",
+    // price: [{ text: "Анализ воды" }, { text: "Обслуживание" }, { text: "Ремонт" }, { text: "Магистральный фильтр" }, { text: "..." }],
+    price: [{ text: "Подробнее" }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+
+  {
+    urlImg: "url(/images/waterPage/bis-service-1+.webp)",
+    title: "Водоочистка",
+    // price: [{ text: "Замена картриджей" }],
+    price: [{ text: "Подробнее" }],
+    routePath: ROUTES_PATHS.SERVICE,
+  },
+  {
     urlImg: "url(/images/globalServices/services-1+.webp)",
     title: "Септики",
     // price: [{ text: "Обслуживание" }, { text: "Консервация" }, { text: "Ремонт" }, { text: "Диагностика" }],
@@ -534,43 +641,8 @@ const dataBisService = [
     routePath: ROUTES_PATHS.SERVICE,
   },
   {
-    urlImg: "url(/images/waterPage/bis-service-1+.webp)",
-    title: "Вододоочистка",
-    // price: [{ text: "Замена картриджей" }],
-    price: [{ text: "Подробнее" }],
-    routePath: ROUTES_PATHS.SERVICE,
-  },
-  {
-    urlImg: "url(/images/waterPage/water-6@0.5x.webp)",
-    title: "Водоподготовка",
-    // price: [{ text: "Анализ воды" }, { text: "Обслуживание" }, { text: "Ремонт" }, { text: "Магистральный фильтр" }, { text: "..." }],
-    price: [{ text: "Подробнее" }],
-    routePath: ROUTES_PATHS.SERVICE,
-  },
-  {
     urlImg: "url(/images/globalServices/sticker.png)",
     title: "Водоснабжение",
-    // price: [
-    //   { text: "Замена насоса" },
-    //   { text: "Устранение течей" },
-    //   { text: "Греющий кабель" },
-    //   { text: "Утепление труб" },
-    //   { text: "..." },
-    // ],
-    price: [{ text: "Подробнее" }],
-    routePath: ROUTES_PATHS.SERVICE,
-  },
-  {
-    urlImg: "",
-    title: "Уборка участка",
-    // price: [{ text: "Вывоз мусора" }, { text: "Уборка крыши" }, { text: "Чистка террасы" }, { text: "..." }],
-    price: [{ text: "Подробнее" }],
-    routePath: ROUTES_PATHS.SERVICE,
-  },
-  {
-    urlImg: "",
-    title: "Генераторы",
-    // price: [{ text: "ТО и сервис" }],
     price: [{ text: "Подробнее" }],
     routePath: ROUTES_PATHS.SERVICE,
   },
@@ -612,12 +684,7 @@ function visibleForm() {
     // toggleBodyScroll(false);
   }
 }
-// function toggleBodyScroll(lock) {
-//   // TODO: Использовать после того как будет реализована форма обратной связи
-//   document.body.style.overflow = lock ? "hidden" : "";
-//   document.getElementById("nav__button").style.zIndex = lock ? "-1" : "";
-//   document.getElementById("nav__button").style.overflow = lock ? "hidden" : "";
-// }
+
 const feedbackForm = reactive({
   active: false, // Открыта ли форма обратной связи
 });
@@ -629,11 +696,11 @@ const feedbackForm = reactive({
     style="white-space: pre-line"
     bannerText="Инженерные коммуникации 
   и благоустройство участка"
-    :bannerPrice="bannerPrice"
+    :bannerPrice="state.bannerPrice"
     @isVisible="visibleForm()"
     stikers="true"
   />
-  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" :dopServices="dopServices" title="Наши услуги" />
+  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" :dopServices="state.dopServices" title="Наши услуги" />
   <BisService title="БИС Сервис" :data="dataBisService" />
   <WorksSlider :data="dataWork" />
   <WorkOrder :data="dataOrder" title="За что нас ценят" />

@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, defineAsyncComponent } from "vue";
+import { reactive, defineAsyncComponent, onMounted } from "vue";
 import BannerSlider from "../components/Banner.vue";
 import OurServices from "../components/OurServices.vue";
 const LocalService = defineAsyncComponent(() => import("../components/LocalService.vue"));
@@ -15,106 +15,179 @@ import img_service_4 from "../assets/images/fencePage/services-4.webp";
 import img_service_5 from "../assets/images/fencePage/services-6.webp";
 import img_service_6 from "../assets/images/fencePage/services-5.webp";
 //</Импорт картинок>===============================================================================
+import axios from "axios";
+onMounted(async () => {
+  try {
+    state.loading = true;
+    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
+    const response = await axios.get(url);
+    state.price = response.data;
+    // Обновляем цены в структуре
+    updatePrices();
+  } catch (error) {
+    console.error("Ошибка загрузки данных:", error);
+  } finally {
+    state.loading = false;
+  }
+});
 
-const bannerPrice = [
-  {
-    url: "/images/fence/banner-2++.webp",
-    price: "от 6 250 за м.пог",
-    name: "Забор из металлического штакетника",
-  },
-  {
-    url: "/images/fence/banner-1.jpg",
-    price: "от 7 200 за м.пог",
-    name: "Забор из профлиста",
-  },
-  {
-    url: "/images/fence/banner-3+++.webp",
-    price: "от 9 350 за м.пог",
-    name: "Забор из деревянного штакетника",
-  },
-  {
-    url: "/images/fence/banner-4.jpg",
-    price: "от 4500 за м.пог",
-    name: "Забор из сетки гиттер",
-  },
+function updatePrices() {
+  if (state.price[0]) {
+    //<Банер>================================================================================
+    // Забор из металлического штакетника
+    state.bannerPrice[0].price = state.price[15].price;
+    // Забор из профлиста
+    state.bannerPrice[1].price = state.price[16].price;
+    // Забор из деревянного штакетника
+    state.bannerPrice[2].price = state.price[17].price;
+    // Забор из сетки гиттер
+    state.bannerPrice[3].price = state.price[18].price;
+    // Забор из бруска
+    state.bannerPrice[4].price = state.price[19].price;
+    // Установка автоматики
+    state.bannerPrice[5].price = state.price[20].price;
+    //</Банер>===============================================================================
+    //<Услуги>================================================================================
+    // Забор из металлического штакетника
+    state.dataServices[0][0][0].price = state.price[15].price;
+    // Забор из сетки гиттер
+    state.dataServices[1][0][0].price = state.price[18].price;
+    // Забор из бруска
+    state.dataServices[1][0][1].price = state.price[19].price;
+    // Забор из профлиста
+    state.dataServices[0][1][0].price = state.price[16].price;
+    // Забор из деревянного штакетника
+    state.dataServices[0][1][1].price = state.price[17].price;
+    // Забор из сетки рабица
+    state.dataServices[1][1][0].price = state.price[21].price;
+    //</Услуги>===============================================================================
+    //<Дополнительно берут>================================================================================
+    // Автоматика
+    state.servicePrice[0].price = state.price[20].price;
+    // Уличное освещение
+    state.servicePrice[1].price = state.price[22].price;
+    // Организация парковки и заезда
+    state.servicePrice[2].price = state.price[23].price;
+    // Откатные ворота
+    state.servicePrice[3].price = state.price[7].price;
+    // Распашные ворота
+    state.servicePrice[4].price = state.price[24].price;
+    //</Дополнительно берут>===============================================================================
+  }
+}
 
-  {
-    url: "/images/fence/banner-6.jpg",
-    price: "от 6000 за м.пог",
-    name: "Забор из бруска",
-  },
-  {
-    url: "/images/fence/banner-5.jpg",
-    price: "от 60 000 руб.",
-    name: "Установка автоматики",
-  },
-];
-const dataServices = [
-  [
+const state = reactive({
+  price: [],
+  bannerPrice: initializeBannerStructure(),
+  dataServices: initializeServicesStructure(),
+  servicePrice: initializeServicePriceStructure(),
+  loading: false,
+});
+
+function initializeBannerStructure() {
+  return [
+    {
+      url: "/images/fence/banner-2++.webp",
+      price: "",
+      name: "Забор из металлического штакетника",
+    },
+    {
+      url: "/images/fence/banner-1.jpg",
+      price: "",
+      name: "Забор из профлиста",
+    },
+    {
+      url: "/images/fence/banner-3+++.webp",
+      price: "",
+      name: "Забор из деревянного штакетника",
+    },
+    {
+      url: "/images/fence/banner-4.jpg",
+      price: "",
+      name: "Забор из сетки гиттер",
+    },
+
+    {
+      url: "/images/fence/banner-6.jpg",
+      price: "",
+      name: "Забор из бруска",
+    },
+    {
+      url: "/images/fence/banner-5.jpg",
+      price: "",
+      name: "Установка автоматики",
+    },
+  ];
+}
+function initializeServicesStructure() {
+  return [
     [
-      {
-        class: "services__row-item-big",
-        title: "Забор из металлического штакетника",
-        price: "от 6 250 м.пог",
-        // pathImg: "url(/images/fence/services-2+++.webp)",
-        pathImg: img_service_1,
-        hoverColors: "rgb(170, 214, 199)",
-      },
+      [
+        {
+          class: "services__row-item-big",
+          title: "Забор из металлического штакетника",
+          price: "",
+          pathImg: img_service_1,
+          hoverColors: "rgb(170, 214, 199)",
+        },
+      ],
+      [
+        {
+          class: "services__row-item-sm",
+          title: "Забор из профлиста",
+          price: "",
+          pathImg: img_service_2,
+          hoverColors: "rgb(204, 209, 255)",
+        },
+        {
+          class: "services__row-item-sm",
+          title: "Забор из деревянного штакетника",
+          price: "",
+          pathImg: img_service_3,
+          hoverColors: "rgb(204, 209, 255)",
+        },
+      ],
     ],
     [
-      {
-        class: "services__row-item-sm",
-        title: "Забор из профлиста",
-        price: "от 7 200 м.пог",
-        pathImg: img_service_2,
-        hoverColors: "rgb(204, 209, 255)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Забор из деревянного штакетника",
-        price: "от 9 350 м.пог",
-        pathImg: img_service_3,
-        hoverColors: "rgb(204, 209, 255)",
-      },
+      [
+        {
+          class: "services__row-item-sm",
+          title: "Забор из сетки гиттер (3D сетка)",
+          price: "",
+          pathImg: img_service_4,
+          hoverColors: "rgb(255, 229, 204)",
+        },
+        {
+          class: "services__row-item-sm",
+          title: "Забор и оргаждения из бруска",
+          price: "",
+          pathImg: img_service_5,
+          hoverColors: "rgb(243, 253, 180)",
+        },
+      ],
+      [
+        {
+          class: "services__row-item-big",
+          title: "Забор из сетки рабица",
+          price: "",
+          pathImg: img_service_6,
+          hoverColors: "rgb(255, 229, 204)",
+        },
+      ],
     ],
-  ],
-  [
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Забор из сетки гиттер (3D сетка)",
-        price: "от 4 500 м.пог",
-        pathImg: img_service_4,
-        hoverColors: "rgb(255, 229, 204)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Забор и оргаждения из бруска",
-        price: "от 6 000 м.пог",
-        pathImg: img_service_5,
-        hoverColors: "rgb(243, 253, 180)",
-      },
-    ],
-    [
-      {
-        class: "services__row-item-big",
-        title: "Забор из сетки рабица",
-        price: "от 2 550 м.пог",
-        pathImg: img_service_6,
-        hoverColors: "rgb(255, 229, 204)",
-      },
-    ],
-  ],
-];
-const servicePrice = [
-  { urlImg: "url(/images/fence/dop-1.png)", price: "от 60 000 руб.", name: "Установка автоматики" },
-  { urlImg: "url(/images/fence/dop-2.png", price: "от 10 000 руб.", name: "Освещение участка" },
-  { urlImg: "url(/images/fence/dop-3+.png)", price: "", name: "Организация парковки и заезда" },
-  { urlImg: "url(/images/fence/dop-5+.png)", price: "", name: "Откатные ворота" },
-  { urlImg: "url(/images/fence/dop-4+.png)", price: "", name: "Распашные ворота" },
-  { urlImg: "url(/images/fence/dop-6.png", price: "", name: "Дополнительные услуги" },
-  // { urlImg: "url(/images/fence/services-6.png)", price: "от 6000 м.пог", name: "Забор и оргаждения из бруска" },
-];
+  ];
+}
+function initializeServicePriceStructure() {
+  return [
+    { urlImg: "url(/images/fence/dop-1.png)", price: "", name: "Установка автоматики" },
+    { urlImg: "url(/images/fence/dop-2.png", price: "", name: "Монтаж уличного освещения" },
+    { urlImg: "url(/images/fence/dop-3+.png)", price: "", name: "Организация парковки и заезда" },
+    { urlImg: "url(/images/fence/dop-5+.png)", price: "", name: "Откатные ворота" },
+    { urlImg: "url(/images/fence/dop-4+.png)", price: "", name: "Распашные ворота" },
+    { urlImg: "url(/images/fence/dop-6.png", price: "", name: "Дополнительные услуги" },
+  ];
+}
+
 const dataOrder = [
   {
     urlImg: "/icons/workOrder/bubbles4.svg",
@@ -170,12 +243,12 @@ const feedbackForm = reactive({
     bannerText="Заборы и ограждения"
     bannerDescription="Забор нужен для защиты вашего дома от посторонних, а также выделить и огородить четкие границы вашей территории.
 Устанавливаем заборы на винтовых сваях, что обеспечивает длительный срок службы."
-    :bannerPrice="bannerPrice"
+    :bannerPrice="state.bannerPrice"
     @isVisible="visibleForm()"
   />
-  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" title="Наши услуги по заборам" />
+  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Наши услуги по заборам" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
+  <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.servicePrice" />
   <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Закажите установку забора" id="GlobalForm" />
 </template>

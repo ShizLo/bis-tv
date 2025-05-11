@@ -1,6 +1,7 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, watch, onMounted } from "vue";
 import route from "../router";
+import { reactive } from "vue";
 
 function onHover(event, color) {
   event.currentTarget.style.transform = "translateY(-5px)";
@@ -46,29 +47,44 @@ function goTo(path) {
     emit("isVisible");
   }
 }
+const showGaranties = reactive({
+  value: false,
+});
+
+const animationDone = reactive({ value: false });
+
+watch(
+  () => props.dataServices,
+  (newVal) => {
+    if (newVal && newVal.some((col) => col.some((row) => row.some((item) => item.price)))) {
+      showGaranties.value = true;
+      startGarantyAnimation();
+    }
+  },
+  { deep: true, immediate: true }
+);
+function startGarantyAnimation() {
+  if (animationDone.value) return;
+
+  const garantyItems = document.querySelectorAll(".garanty-item");
+  garantyItems.forEach((el, index) => {
+    setTimeout(() => {
+      el.style.opacity = 1;
+      el.style.transform = "translateY(0)";
+      el.style.transition = `
+        opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) ${index * 0.1}s,
+        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) ${index * 0.1}s
+      `;
+    }, 50);
+  });
+
+  animationDone.value = true;
+}
 
 onMounted(() => {
-  // Инициализация Intersection Observer для анимации при появлении
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const garantyElements = entry.target.querySelectorAll(".garanty-item");
-          garantyElements.forEach((el, index) => {
-            setTimeout(() => {
-              el.style.opacity = 1;
-              el.style.transform = "translateY(0)";
-            }, index * 200);
-          });
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
-
-  document.querySelectorAll(".services__item").forEach((item) => {
-    observer.observe(item);
-  });
+  if (showGaranties.value) {
+    startGarantyAnimation();
+  }
 });
 </script>
 
@@ -101,14 +117,18 @@ onMounted(() => {
                   <div class="item__title title">
                     <span>{{ item.title }}</span>
                   </div>
-                  <div v-if="item.price.length > 0" class="item__price content__price">
+                  <div v-if="item.price" class="item__price content__price">
                     <span>{{ item.price }}</span>
                   </div>
-                  <div class="ml-2 ml-lg-5 mt-2 mt-lg-16" v-if="item.garanty">
+                  <div class="ml-2 ml-lg-5 mt-2 mt-lg-16" v-if="item.garanty && showGaranties.value">
                     <div
                       class="d-flex align-senter mb-0 mb-lg-1 garanty-item"
-                      v-for="garanty in item.garanty"
-                      style="opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease"
+                      v-for="(garanty, gIndex) in item.garanty"
+                      :key="gIndex"
+                      :style="{
+                        opacity: animationDone ? 1 : 0,
+                        transform: animationDone ? 'translateY(0)' : 'translateY(15px)',
+                      }"
                     >
                       <div class="d-flex align-center">
                         <v-icon class="mr-2 text-h6 text-lg-h5">
@@ -146,7 +166,8 @@ onMounted(() => {
                       <div class="item__title title">
                         <span>{{ item.title }}</span>
                       </div>
-                      <div v-if="item.price.length > 0" class="item__price content__price">
+                      <!-- <div v-if="item.price.length > 0" class="item__price content__price"> -->
+                      <div v-if="item.price" class="item__price content__price">
                         <span>{{ item.price }}</span>
                       </div>
                       <div class="ml-2 ml-lg-5 mt-2 mt-lg-16" v-if="item.garanty">
@@ -492,10 +513,18 @@ onMounted(() => {
   z-index: 2;
   position: relative;
 }
+.text-lg-subtitle-1 {
+  transition: color 0.2s ease;
+}
+.services__item:hover .garanty-item {
+  transition: opacity 0.3s ease-out, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
 .garanty-item {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.v-expand-transition-leave-active .garanty-item {
+  transition: opacity 0.2s ease-in, transform 0.2s ease-in !important;
 }
 </style>

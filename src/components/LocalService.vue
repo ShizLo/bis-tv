@@ -22,7 +22,7 @@ onUnmounted(() => {});
         <li v-for="item in servicePrice" class="services__item item">
           <a :style="{ 'background-image': item.urlImg }" class="services__link">
             <div class="item__title">{{ item.name }}</div>
-            <div v-if="item.price.length > 0" class="item__foot">
+            <div v-if="item.price" class="item__foot">
               <span>{{ item.price }}</span>
             </div>
           </a>

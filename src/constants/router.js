@@ -14,4 +14,6 @@ export const ROUTES_PATHS = {
   DEVELOP: "/develop",
   VACANCIES: "/vacancies-junior",
   VACANCIES_MID: "/vacancies-middle",
+  SEPTIC: "/septic",
+  CALENDARSERVICE: "/calendar-service",
 };

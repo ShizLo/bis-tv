@@ -23,9 +23,9 @@ const swiper_order = reactive({
     modules: [Navigation, Autoplay],
     slidesPerView: "auto",
     spaceBetween: 24,
-    centeredSlides: false,
-    loop: true, // Отключил loop для точного отображения 4 элементов
+
     autoplay: false, // Отключил автопрокрутку для 4 элементов
+
     navigation: showNavigation.value
       ? {
           nextEl: ".services-nav-next",
@@ -36,18 +36,29 @@ const swiper_order = reactive({
       320: {
         slidesPerView: 1.1,
         spaceBetween: 16,
+        centeredSlides: false,
+        loop: true,
       },
       576: {
         slidesPerView: 1.5,
+        centeredSlides: false,
+        loop: true,
       },
       768: {
         slidesPerView: 2,
+        centeredSlides: false,
+        loop: true,
       },
       1024: {
         slidesPerView: 3,
+        centeredSlides: true,
+        loop: true,
       },
       1280: {
         slidesPerView: 4,
+        centeredSlides: props.data.length != 4 ? true : false,
+        initialSlide: Math.ceil(props.data.length / 2),
+        loop: props.data.length > 4 ? true : false,
       },
     },
   },

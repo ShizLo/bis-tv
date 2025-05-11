@@ -69,9 +69,9 @@ const installation = ref({
 
 // Опции для выбора
 const fenceTypes = ref([
-  "Сетка гиттер",
   "Штакетник металлический",
   "Штакетник деревянный",
+  "Сетка гиттер",
   "Профнастил",
   "Сетка рабица",
   "Брусок",
@@ -87,7 +87,12 @@ const lockTypes = ref(["Встроенный", "Навесной", "Электр
 const gateDirections = ref(["На улицу", "Во двор"]);
 const connectionTypes = ref(["Прямое", "Угол", "Стык"]);
 const angleTypes = ref(["Прямой (90°)", "Острый (45°)", "Тупой (135°)", "Произвольный"]);
-const claddingTypes = ref(["Односторонняя", "Двухсторонняя"]);
+const claddingTypes = ref([
+  "Односторонняя (вертикально)",
+  "Односторонняя (горизонтально)",
+  "Двухсторонняя (вертикально)",
+  "Двухсторонняя (горизонтально)",
+]);
 
 // Обновление цвета RAL
 const updateRalColor = (section) => {
@@ -282,6 +287,13 @@ const onBlur = () => {
 onMounted(() => {
   window.addEventListener("resize", handleResize);
   handleResize();
+  if (mobile) {
+    document.querySelectorAll("input, textarea").forEach((input) => {
+      input.addEventListener("focus", () => {
+        input.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
 });
 
 onUnmounted(() => {

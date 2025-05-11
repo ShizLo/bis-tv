@@ -15,6 +15,8 @@ import FenceFormPage from "../pages/FenceFormPage.vue";
 import Development from "../pages/Development.vue";
 import Vacancies from "../pages/Vacancies.vue";
 import VacancyMiddle from "../pages/VacancyMiddle.vue";
+import SepticTank from "../pages/SepticTank.vue";
+import CalendarService from "../pages/CalendarService.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +36,8 @@ const router = createRouter({
     { path: ROUTES_PATHS.DEVELOP, name: ROUTES_PATHS.DEVELOP, component: Development },
     { path: ROUTES_PATHS.VACANCIES, name: ROUTES_PATHS.VACANCIES, component: Vacancies },
     { path: ROUTES_PATHS.VACANCIES_MID, name: ROUTES_PATHS.VACANCIES_MID, component: VacancyMiddle },
+    { path: ROUTES_PATHS.SEPTIC, name: ROUTES_PATHS.SEPTIC, component: SepticTank },
+    { path: ROUTES_PATHS.CALENDARSERVICE, name: ROUTES_PATHS.CALENDARSERVICE, component: CalendarService },
     { path: "/:pathMatch(.*)*", redirect: "/" },
   ],
   scrollBehavior(to, from, savedPosition) {

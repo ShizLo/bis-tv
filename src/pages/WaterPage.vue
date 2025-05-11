@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, defineAsyncComponent } from "vue";
+import { reactive, defineAsyncComponent, onMounted } from "vue";
 import BannerSlider from "../components/Banner.vue";
 const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
 const LocalService = defineAsyncComponent(() => import("../components/LocalService.vue"));
@@ -7,6 +7,151 @@ const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue
 const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
 const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
 const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
+
+import axios from "axios";
+onMounted(async () => {
+  try {
+    state.loading = true;
+    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
+    const response = await axios.get(url);
+    state.price = response.data;
+    // Обновляем цены в структуре
+    updatePrices();
+  } catch (error) {
+    console.error("Ошибка загрузки данных:", error);
+  } finally {
+    state.loading = false;
+  }
+});
+function updatePrices() {
+  if (state.price[0]) {
+    //<Основные услуги>================================================================================
+    // Кессон
+    state.dataServices[0][0][0].price = state.price[25].price;
+    // Монтаж автоматики
+    state.dataServices[1][0][0].price = state.price[26].price;
+    // Обустройство колодца
+    state.dataServices[1][0][1].price = state.price[13].price;
+    // Водоподготовка
+    state.dataServices[0][1][0].price = state.price[9].price;
+    // Обвязка скважины
+    state.dataServices[0][1][1].price = state.price[27].price;
+    // Бурение скважин
+    state.dataServices[1][1][0].price = state.price[10].price;
+    //</Основные услуги>===============================================================================
+    //<Банер>================================================================================
+    //Кессон
+    state.bannerPrice[0].price = state.price[25].price;
+    //Монтаж автоматики
+    state.bannerPrice[1].price = state.price[26].price;
+    //</Банер>===============================================================================
+    //<Дополнительные бурут>================================================================================
+    //Врезка в водопровод
+    state.dopServices[0].price = state.price[28].price;
+    // Анализ воды и подбор оборудования для очистки
+    state.dopServices[1].price = state.price[29].price;
+    // Уличный кран
+    state.dopServices[2].price = state.price[30].price;
+    // Утепление колодца
+    state.dopServices[3].price = state.price[31].price;
+    // Установка ковера (подземный кран)
+    state.dopServices[4].price = state.price[32].price;
+    // Прокладка дополнительных трас водоснабжения
+    state.dopServices[5].price = state.price[33].price;
+    //</Дополнительные берут>===============================================================================
+  }
+}
+
+const state = reactive({
+  price: [],
+  bannerPrice: initializeBannerStructure(),
+  dataServices: initializeServicesStructure(),
+  dopServices: initializeDopServicesStructure(),
+  loading: false,
+});
+
+function initializeBannerStructure() {
+  return [
+    {
+      url: "/images/waterPage/slider-1_.jpg",
+      price: "",
+      name: "Кессон",
+    },
+    {
+      url: "/images/waterPage/slider-2+.jpg",
+      price: "",
+      name: "Монтаж автоматики",
+    },
+  ];
+}
+function initializeServicesStructure() {
+  return [
+    [
+      [
+        {
+          class: "services__row-item-big",
+          title: "Кессон",
+          price: "",
+          pathImg: img_service_1,
+          hoverColors: "rgb(204, 209, 255)",
+        },
+      ],
+      [
+        {
+          class: "services__row-item-sm",
+          title: "Водоподготовка",
+          price: "",
+          pathImg: img_service_6,
+          hoverColors: "rgb(204, 209, 255)",
+        },
+        {
+          class: "services__row-item-sm",
+          title: "Обвязка скважины",
+          price: "",
+          pathImg: img_service_3,
+          hoverColors: "rgb(204, 209, 255)",
+        },
+      ],
+    ],
+    [
+      [
+        {
+          class: "services__row-item-sm",
+          title: "Монтаж автоматики",
+          price: "",
+          pathImg: img_service_4,
+          hoverColors: "rgb(204, 209, 255)",
+        },
+        {
+          class: "services__row-item-sm",
+          title: "Обустройство колодца",
+          price: "",
+          pathImg: img_service_5,
+          hoverColors: "rgb(204, 209, 255)",
+        },
+      ],
+      [
+        {
+          class: "services__row-item-big",
+          title: "Бурение скважин",
+          price: "",
+          pathImg: img_service_2,
+          hoverColors: "rgb(204, 209, 255)",
+        },
+      ],
+    ],
+  ];
+}
+function initializeDopServicesStructure() {
+  return [
+    { urlImg: "", price: "", name: "Врезка в водопровод" },
+    { urlImg: "", price: "", name: "Анализ воды и подбор оборудования для очистки" },
+    { urlImg: "", price: "", name: "Уличный кран" },
+    { urlImg: "", price: "", name: "Утепление колодца" },
+    { urlImg: "", price: "", name: "Установка ковера (подземный кран)" },
+    { urlImg: "", price: "", name: "Прокладка дополнительных трас водоснабжения" },
+  ];
+}
 
 //<Импорт картинок блок наши услуги>================================================================================
 import img_service_1 from "../assets/images/waterPage/services-1.webp";
@@ -17,103 +162,6 @@ import img_service_5 from "../assets/images/waterPage/services-5.webp";
 import img_service_6 from "../assets/images/waterPage/services-6.webp";
 //</Импорт картинок>===============================================================================
 
-const bannerPrice = [
-  {
-    url: "/images/waterPage/slider-1_.jpg",
-    price: "от 320 000 руб.",
-    name: "Кессон",
-  },
-  // {
-  //   url: "/images/fence/banner-1.jpg",
-  //   price: "",
-  //   name: "Бурение скважин",
-  // },
-  // {
-  //   url: "/images/fence/banner-3++.jpg",
-  //   price: "от 55 000 руб.",
-  //   name: "Обвязка скважины",
-  // },
-  {
-    url: "/images/waterPage/slider-2+.jpg",
-    price: "от 45 000 руб.",
-    name: "Монтаж автоматики",
-  },
-  // {
-  //   url: "/images/fence/banner-5.jpg",
-  //   price: "от 60 000 руб.",
-  //   name: "Обустройство колодца",
-  // },
-  // {
-  //   url: "/images/fence/banner-6.jpg",
-  //   price: "от 6000 за м.пог",
-  //   name: "Врезка в магистраль",
-  // },
-];
-const dataServices = [
-  [
-    [
-      {
-        class: "services__row-item-big",
-        title: "Кессон",
-        price: "от 320 000 руб.",
-        pathImg: img_service_1,
-        hoverColors: "rgb(204, 209, 255)",
-      },
-    ],
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Водоподготовка",
-        price: "",
-        pathImg: img_service_6,
-        hoverColors: "rgb(204, 209, 255)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Обвязка скважины",
-        price: "от 55 000 руб.",
-        pathImg: img_service_3,
-        hoverColors: "rgb(204, 209, 255)",
-      },
-    ],
-  ],
-  [
-    [
-      {
-        class: "services__row-item-sm",
-        title: "Монтаж автоматики",
-        price: "от 45 000 руб.",
-        pathImg: img_service_4,
-        hoverColors: "rgb(204, 209, 255)",
-      },
-      {
-        class: "services__row-item-sm",
-        title: "Обустройство колодца",
-        price: "",
-        pathImg: img_service_5,
-        hoverColors: "rgb(204, 209, 255)",
-      },
-    ],
-    [
-      {
-        class: "services__row-item-big",
-        title: "Бурение скважин",
-        price: "от 3800 руб./м",
-        pathImg: img_service_2,
-        hoverColors: "rgb(204, 209, 255)",
-      },
-    ],
-  ],
-];
-const servicePrice = [
-  { urlImg: "", price: "от 30000 руб.", name: "Врезка в водопровод" },
-  { urlImg: "", price: "", name: "Анализ воды и подбор оборудования для очистки" },
-  { urlImg: "", price: "", name: "Уличный кран" },
-  { urlImg: "", price: "", name: "Утепление колодца" },
-  { urlImg: "", price: "", name: "Установка ковера (подземный кран)" },
-  { urlImg: "", price: "", name: "Прокладка дополнительных трас водоснабжения" },
-  // { urlImg: "url(/images/fence/services-6.png)", price: "от 6000 м.пог", name: "Забор и оргаждения из бруска" },
-];
 const dataOrder = [
   {
     urlImg: "/icons/waterPage/pencil2.svg",
@@ -146,6 +194,7 @@ const dataOrder = [
     text: "Устанавливаем ванны, унитазы, раковины, душевые, подключаем смесители и прочую сантехнику.",
   },
 ];
+
 const feedBackData = [
   "Кессон",
   "Монтаж автоматики",
@@ -181,12 +230,12 @@ const feedbackForm = reactive({
     bannerDescription="Одна из основных задач при обустройстве загородного дома организация водоснабжения.
 В основном мы рекомендуем бурить скважины на воду, но в некоторых районах за счет особенностей экосистемы применяются и другие источники воды (колодец, накопительные ёмкости).
 Кроме источника воды потребуется монтаж соответствующего оборудования. У нас есть для Вас решение."
-    :bannerPrice="bannerPrice"
+    :bannerPrice="state.bannerPrice"
     @isVisible="visibleForm()"
   />
-  <OurServices @isVisible="visibleForm()" :dataServices="dataServices" title="Услуги по водоснабжению" />
+  <OurServices @isVisible="visibleForm()" :dataServices="state.dataServices" title="Услуги по водоснабжению" />
   <WorkOrder :data="dataOrder" title="Как мы работаем" />
-  <LocalService serviceTitle="Дополнительно берут" :servicePrice="servicePrice" />
+  <LocalService serviceTitle="Дополнительно берут" :servicePrice="state.dopServices" />
   <PopularServices title="Популярные услуги" />
   <FeedBackForm title="Оставьте заявку" id="GlobalForm" />
 </template>

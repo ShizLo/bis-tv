@@ -25,6 +25,8 @@ const swiperOptions = {
   //   delay: 5000,
   //   disableOnInteraction: false,
   // },
+  centeredSlides: true,
+  initialSlide: Math.floor(props.data.length / 2),
   navigation: {
     nextEl: ".services-nav-next",
     prevEl: ".services-nav-prev",
