@@ -1,6 +1,8 @@
 <script setup>
 import { reactive, defineAsyncComponent, onMounted } from "vue";
+import { useCatalogStore } from "@/stores/modules/catalog.store";
 import BannerSlider from "../components/Banner.vue";
+
 const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
 const LocalService = defineAsyncComponent(() => import("../components/LocalService.vue"));
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
@@ -8,58 +10,48 @@ const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackFo
 const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
 const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
 
-import axios from "axios";
+const catalogStore = useCatalogStore();
+
 onMounted(async () => {
-  try {
-    state.loading = true;
-    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
-    const response = await axios.get(url);
-    state.price = response.data;
-    // Обновляем цены в структуре
-    updatePrices();
-  } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
-  } finally {
-    state.loading = false;
-  }
+  await catalogStore.loadCatalog();
+  updatePrices();
 });
+
 function updatePrices() {
-  if (state.price[0]) {
-    //<Основные услуги>================================================================================
-    // Кессон
-    state.dataServices[0][0][0].price = state.price[25].price;
-    // Монтаж автоматики
-    state.dataServices[1][0][0].price = state.price[26].price;
-    // Обустройство колодца
-    state.dataServices[1][0][1].price = state.price[13].price;
-    // Водоподготовка
-    state.dataServices[0][1][0].price = state.price[9].price;
-    // Обвязка скважины
-    state.dataServices[0][1][1].price = state.price[27].price;
-    // Бурение скважин
-    state.dataServices[1][1][0].price = state.price[10].price;
-    //</Основные услуги>===============================================================================
-    //<Банер>================================================================================
-    //Кессон
-    state.bannerPrice[0].price = state.price[25].price;
-    //Монтаж автоматики
-    state.bannerPrice[1].price = state.price[26].price;
-    //</Банер>===============================================================================
-    //<Дополнительные бурут>================================================================================
-    //Врезка в водопровод
-    state.dopServices[0].price = state.price[28].price;
-    // Анализ воды и подбор оборудования для очистки
-    state.dopServices[1].price = state.price[29].price;
-    // Уличный кран
-    state.dopServices[2].price = state.price[30].price;
-    // Утепление колодца
-    state.dopServices[3].price = state.price[31].price;
-    // Установка ковера (подземный кран)
-    state.dopServices[4].price = state.price[32].price;
-    // Прокладка дополнительных трас водоснабжения
-    state.dopServices[5].price = state.price[33].price;
-    //</Дополнительные берут>===============================================================================
-  }
+  //<Основные услуги>================================================================================
+  // Кессон
+  state.dataServices[0][0][0].price = catalogStore.getPriceById(26);
+  // Монтаж автоматики
+  state.dataServices[1][0][0].price = catalogStore.getPriceById(27);
+  // Обустройство колодца
+  state.dataServices[1][0][1].price = catalogStore.getPriceById(14);
+  // Водоподготовка
+  state.dataServices[0][1][0].price = catalogStore.getPriceById(10);
+  // Обвязка скважины
+  state.dataServices[0][1][1].price = catalogStore.getPriceById(28);
+  // Бурение скважин
+  state.dataServices[1][1][0].price = catalogStore.getPriceById(11);
+  //</Основные услуги>===============================================================================
+  //<Банер>================================================================================
+  //Кессон
+  state.bannerPrice[0].price = catalogStore.getPriceById(26);
+  //Монтаж автоматики
+  state.bannerPrice[1].price = catalogStore.getPriceById(27);
+  //</Банер>===============================================================================
+  //<Дополнительные бурут>================================================================================
+  //Врезка в водопровод
+  state.dopServices[0].price = catalogStore.getPriceById(29);
+  // Анализ воды и подбор оборудования для очистки
+  state.dopServices[1].price = catalogStore.getPriceById(30);
+  // Уличный кран
+  state.dopServices[2].price = catalogStore.getPriceById(31);
+  // Утепление колодца
+  state.dopServices[3].price = catalogStore.getPriceById(32);
+  // Установка ковера (подземный кран)
+  state.dopServices[4].price = catalogStore.getPriceById(33);
+  // Прокладка дополнительных трас водоснабжения
+  state.dopServices[5].price = catalogStore.getPriceById(34);
+  //</Дополнительные берут>===============================================================================
 }
 
 const state = reactive({

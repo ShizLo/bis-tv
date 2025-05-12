@@ -1,5 +1,13 @@
 <script setup>
 import { reactive, defineAsyncComponent, onMounted } from "vue";
+import { useCatalogStore } from "@/stores/modules/catalog.store";
+const catalogStore = useCatalogStore();
+
+onMounted(async () => {
+  await catalogStore.loadCatalog();
+  updatePrices();
+});
+
 import BannerSlider from "../components/Banner.vue";
 import OurServices from "../components/OurServices.vue";
 const LocalService = defineAsyncComponent(() => import("../components/LocalService.vue"));
@@ -15,65 +23,48 @@ import img_service_4 from "../assets/images/fencePage/services-4.webp";
 import img_service_5 from "../assets/images/fencePage/services-6.webp";
 import img_service_6 from "../assets/images/fencePage/services-5.webp";
 //</Импорт картинок>===============================================================================
-import axios from "axios";
-onMounted(async () => {
-  try {
-    state.loading = true;
-    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
-    const response = await axios.get(url);
-    state.price = response.data;
-    // Обновляем цены в структуре
-    updatePrices();
-  } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
-  } finally {
-    state.loading = false;
-  }
-});
 
 function updatePrices() {
-  if (state.price[0]) {
-    //<Банер>================================================================================
-    // Забор из металлического штакетника
-    state.bannerPrice[0].price = state.price[15].price;
-    // Забор из профлиста
-    state.bannerPrice[1].price = state.price[16].price;
-    // Забор из деревянного штакетника
-    state.bannerPrice[2].price = state.price[17].price;
-    // Забор из сетки гиттер
-    state.bannerPrice[3].price = state.price[18].price;
-    // Забор из бруска
-    state.bannerPrice[4].price = state.price[19].price;
-    // Установка автоматики
-    state.bannerPrice[5].price = state.price[20].price;
-    //</Банер>===============================================================================
-    //<Услуги>================================================================================
-    // Забор из металлического штакетника
-    state.dataServices[0][0][0].price = state.price[15].price;
-    // Забор из сетки гиттер
-    state.dataServices[1][0][0].price = state.price[18].price;
-    // Забор из бруска
-    state.dataServices[1][0][1].price = state.price[19].price;
-    // Забор из профлиста
-    state.dataServices[0][1][0].price = state.price[16].price;
-    // Забор из деревянного штакетника
-    state.dataServices[0][1][1].price = state.price[17].price;
-    // Забор из сетки рабица
-    state.dataServices[1][1][0].price = state.price[21].price;
-    //</Услуги>===============================================================================
-    //<Дополнительно берут>================================================================================
-    // Автоматика
-    state.servicePrice[0].price = state.price[20].price;
-    // Уличное освещение
-    state.servicePrice[1].price = state.price[22].price;
-    // Организация парковки и заезда
-    state.servicePrice[2].price = state.price[23].price;
-    // Откатные ворота
-    state.servicePrice[3].price = state.price[7].price;
-    // Распашные ворота
-    state.servicePrice[4].price = state.price[24].price;
-    //</Дополнительно берут>===============================================================================
-  }
+  //<Банер>================================================================================
+  // Забор из металлического штакетника
+  state.bannerPrice[0].price = catalogStore.getPriceById(16);
+  // Забор из профлиста
+  state.bannerPrice[1].price = catalogStore.getPriceById(17);
+  // Забор из деревянного штакетника
+  state.bannerPrice[2].price = catalogStore.getPriceById(18);
+  // Забор из сетки гиттер
+  state.bannerPrice[3].price = catalogStore.getPriceById(19);
+  // Забор из бруска
+  state.bannerPrice[4].price = catalogStore.getPriceById(20);
+  // Установка автоматики
+  state.bannerPrice[5].price = catalogStore.getPriceById(21);
+  //</Банер>===============================================================================
+  //<Услуги>================================================================================
+  // Забор из металлического штакетника
+  state.dataServices[0][0][0].price = catalogStore.getPriceById(16);
+  // Забор из сетки гиттер
+  state.dataServices[1][0][0].price = catalogStore.getPriceById(19);
+  // Забор из бруска
+  state.dataServices[1][0][1].price = catalogStore.getPriceById(20);
+  // Забор из профлиста
+  state.dataServices[0][1][0].price = catalogStore.getPriceById(17);
+  // Забор из деревянного штакетника
+  state.dataServices[0][1][1].price = catalogStore.getPriceById(18);
+  // Забор из сетки рабица
+  state.dataServices[1][1][0].price = catalogStore.getPriceById(22);
+  //</Услуги>===============================================================================
+  //<Дополнительно берут>================================================================================
+  // Автоматика;
+  state.servicePrice[0].price = catalogStore.getPriceById(21);
+  // Уличное освещение
+  state.servicePrice[1].price = catalogStore.getPriceById(23);
+  // Организация парковки и заезда
+  state.servicePrice[2].price = catalogStore.getPriceById(24);
+  // Откатные ворота
+  state.servicePrice[3].price = catalogStore.getPriceById(8);
+  // Распашные ворота
+  state.servicePrice[4].price = catalogStore.getPriceById(25);
+  //</Дополнительно берут>===============================================================================
 }
 
 const state = reactive({
@@ -187,7 +178,6 @@ function initializeServicePriceStructure() {
     { urlImg: "url(/images/fence/dop-6.png", price: "", name: "Дополнительные услуги" },
   ];
 }
-
 const dataOrder = [
   {
     urlImg: "/icons/workOrder/bubbles4.svg",

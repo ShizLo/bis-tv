@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, defineAsyncComponent, onMounted } from "vue";
-
+import { useCatalogStore } from "@/stores/modules/catalog.store";
 import BannerSlider from "../components/Banner.vue";
 import OurServices from "../components/OurServices.vue";
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
@@ -8,50 +8,40 @@ const PopularServices = defineAsyncComponent(() => import("../components/Popular
 const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
 const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
 
-import axios from "axios";
+const catalogStore = useCatalogStore();
+
 onMounted(async () => {
-  try {
-    state.loading = true;
-    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
-    const response = await axios.get(url);
-    state.price = response.data;
-    // Обновляем цены в структуре
-    updatePrices();
-  } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
-  } finally {
-    state.loading = false;
-  }
+  await catalogStore.loadCatalog();
+  updatePrices();
 });
+
 function updatePrices() {
-  if (state.price[0]) {
-    //<Основные услуги>================================================================================
-    // Cхема с уклонами и высотными отметками
-    state.dataServices[0][0][0].price = state.price[65].price;
-    // Обустройство дренажа
-    state.dataServices[1][0][0].price = state.price[12].price;
-    // Монтаж дренажных насосов
-    state.dataServices[1][0][1].price = state.price[68].price;
-    // Монтаж ливневой канализации
-    state.dataServices[0][1][0].price = state.price[11].price;
-    // Видеоинспекция ливневой канализации
-    state.dataServices[0][1][1].price = state.price[67].price;
-    // Прочистка дренажа, ливневой канализации модернизация и реконструкция
-    state.dataServices[1][1][0].price = state.price[66].price;
-    //</Основные услуги>===============================================================================
-    //<Банер>================================================================================
-    //Обустройство дренажа
-    state.bannerPrice[0].price = state.price[12].price;
-    //</Банер>===============================================================================
-    //<Дополнительные услуги>================================================================================
-    // Заезд на участок
-    state.dopServices[0][0][0].price = state.price[69].price;
-    // Ливневка
-    state.dopServices[0][0][1].price = state.price[11].price;
-    // Дождеприемники
-    state.dopServices[1][0][0].price = state.price[70].price;
-    //</Дополнительные услуги>===============================================================================
-  }
+  //<Основные услуги>================================================================================
+  // Cхема с уклонами и высотными отметками
+  state.dataServices[0][0][0].price = catalogStore.getPriceById(66);
+  // Обустройство дренажа
+  state.dataServices[1][0][0].price = catalogStore.getPriceById(13);
+  // Монтаж дренажных насосов
+  state.dataServices[1][0][1].price = catalogStore.getPriceById(69);
+  // Монтаж ливневой канализации
+  state.dataServices[0][1][0].price = catalogStore.getPriceById(12);
+  // Видеоинспекция ливневой канализации
+  state.dataServices[0][1][1].price = catalogStore.getPriceById(68);
+  // Прочистка дренажа, ливневой канализации модернизация и реконструкция
+  state.dataServices[1][1][0].price = catalogStore.getPriceById(67);
+  //</Основные услуги>===============================================================================
+  //<Банер>================================================================================
+  //Обустройство дренажа
+  state.bannerPrice[0].price = catalogStore.getPriceById(13);
+  //</Банер>===============================================================================
+  //<Дополнительные услуги>================================================================================
+  // Заезд на участок
+  state.dopServices[0][0][0].price = catalogStore.getPriceById(70);
+  // Ливневка
+  state.dopServices[0][0][1].price = catalogStore.getPriceById(12);
+  // Дождеприемники
+  state.dopServices[1][0][0].price = catalogStore.getPriceById(71);
+  //</Дополнительные услуги>===============================================================================
 }
 
 const state = reactive({

@@ -1,69 +1,60 @@
 <script setup>
 import { reactive, onMounted } from "vue";
+import { useCatalogStore } from "@/stores/modules/catalog.store";
 import { defineAsyncComponent } from "vue";
 import { ROUTES_PATHS } from "../constants";
-import axios from "axios";
-onMounted(async () => {
-  try {
-    state.loading = true;
-    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
-    const response = await axios.get(url);
-    state.price = response.data;
-    // Обновляем цены в структуре
-    updatePrices();
-  } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
-  } finally {
-    state.loading = false;
-  }
-});
-function updatePrices() {
-  if (state.price[0]) {
-    // Для септика (первый элемент)
-    state.dataServices[0][0][0].price = state.price[0].price;
-    // Фундамент
-    state.dataServices[1][0][0].price = state.price[1].price;
-    // Электромонтаж
-    state.dataServices[1][0][1].price = state.price[2].price;
-    // Водоснабжение
-    state.dataServices[0][1][0].price = state.price[3].price;
-    // Заборы
-    state.dataServices[0][1][1].price = state.price[4].price;
-    // Проект участка
-    state.dataServices[1][1][0].price = state.price[5].price;
-    //<Банер>================================================================================
-    //Благоустройство
-    state.bannerPrice[0].price = state.price[6].price;
-    //Заборы
-    state.bannerPrice[1].price = state.price[4].price;
-    //Свайное поле
-    state.bannerPrice[2].price = state.price[1].price;
-    //Откатные ворота
-    state.bannerPrice[3].price = state.price[7].price;
-    //Парковка
-    state.bannerPrice[4].price = state.price[8].price;
-    //Водоподготовка
-    state.bannerPrice[5].price = state.price[9].price;
-    //Септик под ключ
-    state.bannerPrice[6].price = state.price[0].price;
-    //</Банер>===============================================================================
-    //<Дополнительные услуги>================================================================================
-    // Благоустройство
-    state.dopServices[0][0][0].price = state.price[6].price;
-    // Обустройство дренажа
-    state.dopServices[1][0][0].price = state.price[12].price;
-    // Обустройство колодца
-    state.dopServices[1][0][1].price = state.price[13].price;
-    // Бурение скважин
-    state.dopServices[0][1][0].price = state.price[10].price;
-    // Ливневка
-    state.dopServices[0][1][1].price = state.price[11].price;
-    // Бис сервис
-    state.dopServices[1][1][0].price = state.price[14].price;
-    //</Дополнительные услуги>===============================================================================
-  }
-}
+const catalogStore = useCatalogStore();
 
+onMounted(async () => {
+  await catalogStore.loadCatalog();
+  updatePrices();
+});
+
+function updatePrices() {
+  // Для септика (первый элемент)
+  // state.dataServices[0][0][0].price = state.price[0].price;
+  state.dataServices[0][0][0].price = catalogStore.getPriceById(1);
+  // Фундамент
+  state.dataServices[1][0][0].price = catalogStore.getPriceById(2);
+  // Электромонтаж
+  state.dataServices[1][0][1].price = catalogStore.getPriceById(3);
+  // Водоснабжение
+  state.dataServices[0][1][0].price = catalogStore.getPriceById(4);
+  // Заборы
+  state.dataServices[0][1][1].price = catalogStore.getPriceById(5);
+  // Проект участка
+  state.dataServices[1][1][0].price = catalogStore.getPriceById(6);
+  //<Банер>================================================================================
+  //Благоустройство
+  state.bannerPrice[0].price = catalogStore.getPriceById(7);
+  //Заборы
+  state.bannerPrice[1].price = catalogStore.getPriceById(5);
+  //Свайное поле
+  state.bannerPrice[2].price = catalogStore.getPriceById(2);
+  //Откатные ворота
+  state.bannerPrice[3].price = catalogStore.getPriceById(8);
+  //Парковка
+  state.bannerPrice[4].price = catalogStore.getPriceById(9);
+  //Водоподготовка
+  state.bannerPrice[5].price = catalogStore.getPriceById(10);
+  //Септик под ключ
+  state.bannerPrice[6].price = catalogStore.getPriceById(1);
+  //</Банер>===============================================================================
+  //<Дополнительные услуги>================================================================================
+  // Благоустройство
+  state.dopServices[0][0][0].price = catalogStore.getPriceById(7);
+  // Обустройство дренажа
+  state.dopServices[1][0][0].price = catalogStore.getPriceById(13);
+  // Обустройство колодца
+  state.dopServices[1][0][1].price = catalogStore.getPriceById(14);
+  // Бурение скважин
+  state.dopServices[0][1][0].price = catalogStore.getPriceById(11);
+  // Ливневка
+  state.dopServices[0][1][1].price = catalogStore.getPriceById(12);
+  // Бис сервис
+  state.dopServices[1][1][0].price = catalogStore.getPriceById(15);
+  //</Дополнительные услуги>===============================================================================
+}
 const state = reactive({
   price: [],
   dataServices: initializeServicesStructure(),
@@ -102,7 +93,6 @@ function initializeServicesStructure() {
           class: "services__row-item-sm",
           title: "Водоснабжение",
           price: "",
-          // price: "От 60 000 руб.",
           pathImg: img_service_2,
           hoverColors: "rgb(204, 209, 255)",
           routePath: ROUTES_PATHS.WATER,
@@ -111,7 +101,6 @@ function initializeServicesStructure() {
           class: "services__row-item-sm",
           title: "Установка заборов",
           price: "",
-          // price: "От 90 000 руб.",
           pathImg: img_service_3,
           hoverColors: "rgb(255, 229, 204)",
           routePath: ROUTES_PATHS.FENCE,
@@ -124,7 +113,6 @@ function initializeServicesStructure() {
           class: "services__row-item-sm",
           title: "Фундамент",
           price: "",
-          // price: "От 100 000 руб.",
           pathImg: img_service_4,
           hoverColors: "rgb(255, 229, 204)",
           routePath: ROUTES_PATHS.FAUNDATION,
@@ -133,7 +121,6 @@ function initializeServicesStructure() {
           class: "services__row-item-sm",
           title: "Электромонтаж",
           price: "",
-          // price: "От 20 000 руб.",
           pathImg: img_service_5,
           hoverColors: "rgb(243, 253, 180)",
           routePath: ROUTES_PATHS.ELECTRICITY,
@@ -144,7 +131,6 @@ function initializeServicesStructure() {
           class: "services__row-item-big",
           title: "Проект участка и топографическая съемка",
           price: "",
-          // price: "От 50 000 руб.",
           pathImg: img_service_6,
           hoverColors: "rgb(255, 229, 204)",
           routePath: ROUTES_PATHS.TOPOGRAPHY,
@@ -300,10 +286,8 @@ function initializeDopServicesStructure() {
   ];
 }
 //<Импорт компонентов>================================================================================
-// const Banner = defineAsyncComponent(() => import("../components/Banner.vue"));
 import Banner from "../components/Banner.vue";
 import OurServices from "../components/OurServices.vue";
-// const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
 const BisService = defineAsyncComponent(() => import("../components/BisService.vue"));
 const WorksSlider = defineAsyncComponent(() => import("../components/WorksSlider.vue"));
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
@@ -410,11 +394,6 @@ const dataOrder = [
     title: "Прозрачная смета",
     text: "После первичной встречи на участке составляется визуализация вашего участка с привязками и размерами. Это позволяет точно составить подробную смету. Цена в большинстве случаев фиксируется или в смете указаны пункты, корректируемые по факту.",
   },
-  // {
-  //   urlImg: "/icons/homePage/spinner9.svg",
-  //   title: "Делаем полный цикл",
-  //   text: "Мы беремся за реализацию всего цикла от проектирования до организации газона. Большой набор услуг позволяет закрыть большую часть потребностей в 'одном окне', что позволяет не тратить время на согласования, коллаборации и экономит средства.",
-  // },
 ];
 const dataWork = [
   {

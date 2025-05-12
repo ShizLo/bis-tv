@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, defineAsyncComponent, onMounted } from "vue";
+import { useCatalogStore } from "@/stores/modules/catalog.store";
 import BannerSlider from "../components/Banner.vue";
 import OurServices from "../components/OurServices.vue";
 const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue"));
@@ -7,48 +8,38 @@ const PopularServices = defineAsyncComponent(() => import("../components/Popular
 const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
 const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
 
-import axios from "axios";
+const catalogStore = useCatalogStore();
+
 onMounted(async () => {
-  try {
-    state.loading = true;
-    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
-    const response = await axios.get(url);
-    state.price = response.data;
-    // Обновляем цены в структуре
-    updatePrices();
-  } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
-  } finally {
-    state.loading = false;
-  }
+  await catalogStore.loadCatalog();
+  updatePrices();
 });
+
 function updatePrices() {
-  if (state.price[0]) {
-    //<Основные услуги>================================================================================
-    // Проектирование электросетей
-    state.dataServices[0][0][0].price = state.price[44].price;
-    // Установка стабилизаторов
-    state.dataServices[1][0][0].price = state.price[42].price;
-    // Монтаж уличного освещения
-    state.dataServices[1][0][1].price = state.price[2].price;
-    // Монтаж опоры трубостойки
-    state.dataServices[0][1][0].price = state.price[41].price;
-    // Монтаж приборов
-    state.dataServices[0][1][1].price = state.price[45].price;
-    // Монтаж щита и воздушной линии
-    state.dataServices[1][1][0].price = state.price[43].price;
-    //</Основные услуги>===============================================================================
-    //<Банер>================================================================================
-    //Монтаж уличного освещения
-    state.bannerPrice[0].price = state.price[2].price;
-    //Монтаж опоры/трубостойки
-    state.bannerPrice[1].price = state.price[41].price;
-    //Установка стабилизаторов
-    state.bannerPrice[2].price = state.price[42].price;
-    //Монтаж щита и воздушной линии
-    state.bannerPrice[3].price = state.price[43].price;
-    //</Банер>===============================================================================
-  }
+  //<Основные услуги>================================================================================
+  // Проектирование электросетей
+  state.dataServices[0][0][0].price = catalogStore.getPriceById(45);
+  // Установка стабилизаторов
+  state.dataServices[1][0][0].price = catalogStore.getPriceById(43);
+  // Монтаж уличного освещения
+  state.dataServices[1][0][1].price = catalogStore.getPriceById(3);
+  // Монтаж опоры трубостойки
+  state.dataServices[0][1][0].price = catalogStore.getPriceById(42);
+  // Монтаж приборов
+  state.dataServices[0][1][1].price = catalogStore.getPriceById(46);
+  // Монтаж щита и воздушной линии
+  state.dataServices[1][1][0].price = catalogStore.getPriceById(44);
+  //</Основные услуги>===============================================================================
+  //<Банер>================================================================================
+  //Монтаж уличного освещения
+  state.bannerPrice[0].price = catalogStore.getPriceById(3);
+  //Монтаж опоры/трубостойки
+  state.bannerPrice[1].price = catalogStore.getPriceById(42);
+  //Установка стабилизаторов
+  state.bannerPrice[2].price = catalogStore.getPriceById(43);
+  //Монтаж щита и воздушной линии
+  state.bannerPrice[3].price = catalogStore.getPriceById(44);
+  //</Банер>===============================================================================
 }
 
 const state = reactive({

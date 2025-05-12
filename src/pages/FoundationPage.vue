@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, defineAsyncComponent, onMounted } from "vue";
+import { useCatalogStore } from "@/stores/modules/catalog.store";
 import BannerSlider from "../components/Banner.vue";
 import OurServices from "../components/OurServices.vue";
 const LocalService = defineAsyncComponent(() => import("../components/LocalService.vue"));
@@ -7,52 +8,43 @@ const WorkOrder = defineAsyncComponent(() => import("../components/WorkOrder.vue
 const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackForm.vue"));
 const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
 const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
-import axios from "axios";
+
+const catalogStore = useCatalogStore();
+
 onMounted(async () => {
-  try {
-    state.loading = true;
-    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
-    const response = await axios.get(url);
-    state.price = response.data;
-    // Обновляем цены в структуре
-    updatePrices();
-  } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
-  } finally {
-    state.loading = false;
-  }
+  await catalogStore.loadCatalog();
+  updatePrices();
 });
+
 function updatePrices() {
-  if (state.price[0]) {
-    //<Основные услуги>================================================================================
-    // Монтаж фундамента под дом
-    state.dataServices[0][0][0].price = state.price[1].price;
-    // Обвязка профтрубой
-    state.dataServices[1][0][0].price = state.price[35].price;
-    // Пробное бурение
-    state.dataServices[1][0][1].price = state.price[36].price;
-    // Деревянная обвязка
-    state.dataServices[0][1][0].price = state.price[34].price;
-    // Обвязка уголком
-    state.dataServices[0][1][1].price = state.price[37].price;
-    // Обвязка швеллером
-    state.dataServices[1][1][0].price = state.price[38].price;
-    //</Основные услуги>===============================================================================
-    //<Банер>================================================================================
-    //Монтаж фундамента под дом
-    state.bannerPrice[0].price = state.price[1].price;
-    //Деревянная обвязка
-    state.bannerPrice[1].price = state.price[34].price;
-    //</Банер>===============================================================================
-    //<Дополнительные бурут>================================================================================
-    //Отсыпка свайного поля
-    state.dopServices[0].price = state.price[39].price;
-    //Планировка и расчистка участка
-    state.dopServices[1].price = state.price[40].price;
-    //Ливневка
-    state.dopServices[2].price = state.price[11].price;
-    //</Дополнительные берут>===============================================================================
-  }
+  //<Основные услуги>================================================================================
+  // Монтаж фундамента под дом
+  state.dataServices[0][0][0].price = catalogStore.getPriceById(2);
+  // Обвязка профтрубой
+  state.dataServices[1][0][0].price = catalogStore.getPriceById(36);
+  // Пробное бурение
+  state.dataServices[1][0][1].price = catalogStore.getPriceById(37);
+  // Деревянная обвязка
+  state.dataServices[0][1][0].price = catalogStore.getPriceById(35);
+  // Обвязка уголком
+  state.dataServices[0][1][1].price = catalogStore.getPriceById(38);
+  // Обвязка швеллером
+  state.dataServices[1][1][0].price = catalogStore.getPriceById(39);
+  //</Основные услуги>===============================================================================
+  //<Банер>================================================================================
+  //Монтаж фундамента под дом
+  state.bannerPrice[0].price = catalogStore.getPriceById(2);
+  //Деревянная обвязка
+  state.bannerPrice[1].price = catalogStore.getPriceById(35);
+  //</Банер>===============================================================================
+  //<Дополнительные бурут>================================================================================
+  //Отсыпка свайного поля
+  state.dopServices[0].price = catalogStore.getPriceById(40);
+  //Планировка и расчистка участка
+  state.dopServices[1].price = catalogStore.getPriceById(41);
+  //Ливневка
+  state.dopServices[2].price = catalogStore.getPriceById(12);
+  //</Дополнительные берут>===============================================================================
 }
 
 const state = reactive({

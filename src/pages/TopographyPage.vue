@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, defineAsyncComponent, onMounted } from "vue";
-import axios from "axios";
+import { useCatalogStore } from "@/stores/modules/catalog.store";
 import BannerSlider from "../components/Banner.vue";
 const OurServices = defineAsyncComponent(() => import("../components/OurServices.vue"));
 const PopularServices = defineAsyncComponent(() => import("../components/PopularServices.vue"));
@@ -8,47 +8,38 @@ const FeedBackForm = defineAsyncComponent(() => import("../components/FeedBackFo
 const PriceList = defineAsyncComponent(() => import("../components/topographyPage/PriceList.vue"));
 const DialogFeedBack = defineAsyncComponent(() => import("../components/Form/DialogFeedBack.vue"));
 
+const catalogStore = useCatalogStore();
+
 onMounted(async () => {
-  try {
-    state.loading = true;
-    const url = "https://script.google.com/macros/s/AKfycbxX8juPBcrbME79NmrzYRAzQhBxamyH30AOYi5tpWM08Tr4t0B71xEYB8k5oFRJ3KFvcQ/exec";
-    const response = await axios.get(url);
-    state.price = response.data;
-    // Обновляем цены в структуре
-    updatePrices();
-  } catch (error) {
-    console.error("Ошибка загрузки данных:", error);
-  } finally {
-    state.loading = false;
-  }
+  await catalogStore.loadCatalog();
+  updatePrices();
 });
+
 function updatePrices() {
-  if (state.price[0]) {
-    //<Основные услуги>================================================================================
-    // Вынос в натуру
-    state.dataServices[0][0][0].price = state.price[47].price;
-    // Полный ландшафтный проект
-    state.dataServices[0][1][0].price = state.price[50].price;
-    // Эскизный проект
-    state.dataServices[1][0][0].price = state.price[49].price;
-    // Топографическая съемка
-    state.dataServices[1][1][0].price = state.price[46].price;
-    //</Основные услуги>===============================================================================
-    //<Банер>================================================================================
-    //Топографическая съемка
-    state.bannerPrice[0].price = state.price[46].price;
-    //Вынос границ земельного участка
-    state.bannerPrice[1].price = state.price[47].price;
-    //Проектирование и ландшафтный дизайн
-    state.bannerPrice[2].price = state.price[48].price;
-    //Эскизный ландшафтный проект
-    state.bannerPrice[3].price = state.price[49].price;
-    //Полный ландшафтный проект
-    state.bannerPrice[4].price = state.price[50].price;
-    //Вместе будет дешевле
-    state.bannerPrice[5].price = state.price[51].price;
-    //</Банер>===============================================================================
-  }
+  //<Основные услуги>================================================================================
+  // Вынос в натуру
+  state.dataServices[0][0][0].price = catalogStore.getPriceById(48);
+  // Полный ландшафтный проект
+  state.dataServices[0][1][0].price = catalogStore.getPriceById(51);
+  // Эскизный проект
+  state.dataServices[1][0][0].price = catalogStore.getPriceById(50);
+  // Топографическая съемка
+  state.dataServices[1][1][0].price = catalogStore.getPriceById(47);
+  //</Основные услуги>===============================================================================
+  //<Банер>================================================================================
+  //Топографическая съемка
+  state.bannerPrice[0].price = catalogStore.getPriceById(47);
+  //Вынос границ земельного участка
+  state.bannerPrice[1].price = catalogStore.getPriceById(48);
+  //Проектирование и ландшафтный дизайн
+  state.bannerPrice[2].price = catalogStore.getPriceById(49);
+  //Эскизный ландшафтный проект
+  state.bannerPrice[3].price = catalogStore.getPriceById(50);
+  //Полный ландшафтный проект
+  state.bannerPrice[4].price = catalogStore.getPriceById(51);
+  //Вместе будет дешевле
+  state.bannerPrice[5].price = catalogStore.getPriceById(52);
+  //</Банер>===============================================================================
 }
 
 const state = reactive({

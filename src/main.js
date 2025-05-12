@@ -9,6 +9,7 @@ import VueMoment from "vue3-moment";
 import VueTheMask from "vue-the-mask";
 
 import { createApp } from "vue";
+import { createPinia } from "pinia";
 
 import App from "./App.vue";
 import router from "./router";
@@ -82,10 +83,12 @@ const vuetify = createVuetify({
     },
   },
 });
+const pinia = createPinia();
 
 const app = createApp(App);
 app.use(router);
 app.use(vuetify);
+app.use(pinia);
 app.use(VueMoment);
 app.use(VCalendar, {});
 app.use(VueScrollTo);
