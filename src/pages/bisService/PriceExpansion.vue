@@ -1,62 +1,134 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, reactive } from "vue";
 import septikIcon from "../../assets/icons/septik.svg";
 import waterIcon from "../../assets/icons/Icons_BIS/SVG/water.svg";
 import electricityIcon from "../../assets/icons/Icons_BIS/SVG/electricity.svg";
+import { useCatalogStore } from "@/stores/modules/catalog.store";
 
-const services = ref([
-  {
-    name: "Обслуживание и ремонт ЛОС",
-    icon: septikIcon,
-    price: "от 1 300",
-    description: [
-      { text: "Обслуживание ЛОС Астра 5", price: "6 700" },
-      { text: "Обслуживание ЛОС Астра 8", price: "8 500" },
-      { text: "Обслуживание ЛОС Астра 10", price: "9 700" },
-      { text: "Обслуживание ЛОС Астра 15", price: "10 800" },
-      { text: "Обслуживание ЛОС Астра 30", price: "12 000" },
-      { text: "Консервация ЛОС", price: "1 300" },
-      { text: "Демонтаж/монтаж насоса", price: "7 300" },
-      { text: "Поплавок с заменой", price: "3 100" },
-      { text: "Чистка фильтрационного колодца", price: "1 900" },
-    ],
-  },
-  {
-    name: "Система водоочистки и водоподготовки",
-    icon: waterIcon,
-    price: "от 6 100",
-    description: [
-      { text: "Аквашеф", price: "20 600" },
-      { text: "Дозация", price: "43 600" },
-      { text: "Айрация", price: "15 200" },
-      { text: "Осмос", price: "42 400" },
-      { text: "Аварийный выезд", price: "6 100" },
-    ],
-  },
-  {
-    name: "Система водоснабжения",
-    icon: waterIcon,
-    price: "от 800",
-    description: [
-      { text: "Аварийный выезд", price: "5 000" },
-      { text: "Диагностика насоса", price: "3 800" },
-      { text: "Диагностика автоматики", price: "1 000" },
-      { text: "Диагностика гидроаккумулятора", price: "800" },
-      { text: "Замена обр клапана", price: "2 200" },
-    ],
-  },
-  {
-    name: "Система электроснабжения",
-    icon: electricityIcon,
-    price: "от 6 700",
-    description: [
-      { text: "Аварийный выезд", price: "6 700" },
-      { text: "Обслуживание стабилизаторов", price: "6 700" },
-      { text: "Обслуживание генераторов", price: "от 18 200" },
-      { text: "Сервис щитов", price: "6 700" },
-    ],
-  },
-]);
+const catalogStore = useCatalogStore();
+
+onMounted(async () => {
+  await catalogStore.loadCatalog();
+  updatePrices();
+});
+
+function updatePrices() {
+  //<Обслуживание ЛОС>================================================================================
+  // Обслуживание ЛОС Астра 5
+  state.dataServices[0].description[0].price = catalogStore.getPriceById(88);
+  // Обслуживание ЛОС Астра 8
+  state.dataServices[0].description[1].price = catalogStore.getPriceById(89);
+  // Обслуживание ЛОС Астра 10
+  state.dataServices[0].description[2].price = catalogStore.getPriceById(90);
+  // Обслуживание ЛОС Астра 15
+  state.dataServices[0].description[3].price = catalogStore.getPriceById(91);
+  // Обслуживание ЛОС Астра 30
+  state.dataServices[0].description[4].price = catalogStore.getPriceById(92);
+  // Консервация ЛОС
+  state.dataServices[0].description[5].price = catalogStore.getPriceById(76);
+  // Демонтаж / монтаж насоса
+  state.dataServices[0].description[6].price = catalogStore.getPriceById(73);
+  // Поплавок с заменой
+  state.dataServices[0].description[7].price = catalogStore.getPriceById(74);
+  // Чистка фильтрационного колодца
+  state.dataServices[0].description[8].price = catalogStore.getPriceById(75);
+  //</Обслуживание ЛОС>===============================================================================
+  //<Водоочистка и водоподготовка>================================================================================
+  // Аквашеф
+  state.dataServices[1].description[0].price = catalogStore.getPriceById(93);
+  // Дозация
+  state.dataServices[1].description[1].price = catalogStore.getPriceById(94);
+  // Айрация
+  state.dataServices[1].description[2].price = catalogStore.getPriceById(95);
+  // Осмос
+  state.dataServices[1].description[3].price = catalogStore.getPriceById(96);
+  // Аварийный выезд
+  state.dataServices[1].description[4].price = catalogStore.getPriceById(97);
+  //</Водоочистка и водоподготовка>===============================================================================
+  //<Водоснабжение>================================================================================
+  // Аварийный выезд
+  state.dataServices[2].description[0].price = catalogStore.getPriceById(98);
+  // Диагностика насоса
+  state.dataServices[2].description[1].price = catalogStore.getPriceById(99);
+  // Диагностика автоматики
+  state.dataServices[2].description[2].price = catalogStore.getPriceById(100);
+  // Диагностика гидроаккумулятора
+  state.dataServices[2].description[3].price = catalogStore.getPriceById(101);
+  // Замена обр клапана
+  state.dataServices[2].description[4].price = catalogStore.getPriceById(102);
+  //</Водоснабжение>===============================================================================
+  //<Электроснабжение>================================================================================
+  // Аварийный выезд
+  state.dataServices[3].description[0].price = catalogStore.getPriceById(103);
+  // Обслуживание стабилизаторов
+  state.dataServices[3].description[1].price = catalogStore.getPriceById(104);
+  // Обслуживание генераторов
+  state.dataServices[3].description[2].price = catalogStore.getPriceById(105);
+  // Сервис щитов
+  state.dataServices[3].description[3].price = catalogStore.getPriceById(106);
+  //</Электроснабжение>===============================================================================
+}
+
+const state = reactive({
+  dataServices: initializeServicesStructure(),
+  loading: false,
+});
+
+function initializeServicesStructure() {
+  return [
+    {
+      name: "Обслуживание и ремонт ЛОС",
+      icon: septikIcon,
+      price: "",
+      description: [
+        { text: "Обслуживание ЛОС Астра 5", price: "" },
+        { text: "Обслуживание ЛОС Астра 8", price: "" },
+        { text: "Обслуживание ЛОС Астра 10", price: "" },
+        { text: "Обслуживание ЛОС Астра 15", price: "" },
+        { text: "Обслуживание ЛОС Астра 30", price: "" },
+        { text: "Консервация ЛОС", price: "" },
+        { text: "Демонтаж/монтаж насоса", price: "" },
+        { text: "Поплавок с заменой", price: "" },
+        { text: "Чистка фильтрационного колодца", price: "" },
+      ],
+    },
+    {
+      name: "Система водоочистки и водоподготовки",
+      icon: waterIcon,
+      price: "",
+      description: [
+        { text: "Аквашеф", price: "" },
+        { text: "Дозация", price: "" },
+        { text: "Айрация", price: "" },
+        { text: "Осмос", price: "" },
+        { text: "Аварийный выезд", price: "" },
+      ],
+    },
+    {
+      name: "Система водоснабжения",
+      icon: waterIcon,
+      price: "",
+      description: [
+        { text: "Аварийный выезд", price: "" },
+        { text: "Диагностика насоса", price: "" },
+        { text: "Диагностика автоматики", price: "" },
+        { text: "Диагностика гидроаккумулятора", price: "" },
+        { text: "Замена обр клапана", price: "" },
+      ],
+    },
+    {
+      name: "Система электроснабжения",
+      icon: electricityIcon,
+      price: "",
+      description: [
+        { text: "Аварийный выезд", price: "" },
+        { text: "Обслуживание стабилизаторов", price: "" },
+        { text: "Обслуживание генераторов", price: "" },
+        { text: "Сервис щитов", price: "" },
+      ],
+    },
+  ];
+}
 
 const expandedPanels = ref([]);
 </script>
@@ -72,7 +144,7 @@ const expandedPanels = ref([]);
       <div class="price-cards">
         <v-expansion-panels v-model="expandedPanels" multiple class="price-accordion">
           <v-expansion-panel
-            v-for="(service, index) in services"
+            v-for="(service, index) in state.dataServices"
             :key="service.name"
             class="price-card"
             :class="{ 'is-expanded': expandedPanels.includes(index) }"
@@ -91,7 +163,7 @@ const expandedPanels = ref([]);
                 <li v-for="(item, itemIndex) in service.description" :key="itemIndex" class="service-item">
                   <div class="item-content">
                     <span class="item-name">{{ item.text }}</span>
-                    <span class="item-price">{{ item.price }} ₽</span>
+                    <span class="item-price">{{ item.price }}</span>
                   </div>
                   <v-divider v-if="itemIndex < service.description.length - 1" />
                 </li>

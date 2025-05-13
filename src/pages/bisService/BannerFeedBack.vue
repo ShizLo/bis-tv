@@ -286,7 +286,7 @@ ${selectedDateTime.value ? `Удобное время: ${selectedDateTime.value}
 
               <div class="feedback mb-4">
                 <p class="feedback__text">
-                  Нажимая кнопку «Отправить заявку», вы соглашаетесь с
+                  Нажимая кнопку «Отправить», вы соглашаетесь с
                   <router-link :to="{ name: ROUTES_PATHS.POLICY }"> Политикой конфиденциальности.</router-link>
                 </p>
               </div>

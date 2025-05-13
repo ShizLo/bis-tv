@@ -1,42 +1,64 @@
 <script setup>
 import { onMounted, onUnmounted, reactive } from "vue";
+import { useCatalogStore } from "@/stores/modules/catalog.store";
 import Swiper from "swiper/bundle";
 import { swiper_variant_setting } from "../../assets/js/swiper";
 import { ROUTES_PATHS } from "../../constants";
+const catalogStore = useCatalogStore();
 
 const props = defineProps({
   title: {
     typeof: String,
   },
 });
+
 const swiper_variant = new Swiper(".swiper-variant-services", swiper_variant_setting);
 
-import work_1 from "../../assets/images/homePage/work-bis-service-1.webp";
+function updatePrices() {
+  //<Основные услуги>================================================================================
+  // Разовое обслуживание
+  state.dataServices[0].price = catalogStore.getPriceById(84);
+  // Годовое обслуживание
+  state.dataServices[1].price = catalogStore.getPriceById(85);
+  // Проверка технического состояния
+  state.dataServices[2].price = catalogStore.getPriceById(86);
+  //</Основные услуги>===============================================================================
+}
 
-const data = [
-  {
-    urlImg: "",
-    title: "Проверка технического состояния",
-    price: "~ 5 000 руб.",
-    description: "Диагностика работы септика, определение неисправностей с последующим ремонтом",
-  },
-  {
-    urlImg: "",
-    title: "Разовое обслуживание",
-    price: "~ 6 500 руб.",
-    description: "Полное техническое обслуживание септика согласно регламенту от производителя",
-  },
-  {
-    urlImg: "",
-    title: "Годовое обслуживание",
-    price: "~ от 11 500 руб.",
-    description:
-      "Договор на годовое техническое обслуживание, в рамках которого наш мастер два раза за год выполняет полное техническое обслуживание Вашего септика",
-  },
-];
+const state = reactive({
+  price: [],
+  dataServices: initializeServicesStructure(),
+  loading: false,
+});
 
-onMounted(() => {
+function initializeServicesStructure() {
+  return [
+    {
+      urlImg: "",
+      title: "Разовое обслуживание",
+      price: "",
+      description: "Полное техническое обслуживание септика согласно регламенту от производителя",
+    },
+    {
+      urlImg: "",
+      title: "Годовое обслуживание",
+      price: "",
+      description:
+        "Договор на годовое техническое обслуживание, в рамках которого наш мастер два раза за год выполняет полное техническое обслуживание Вашего септика",
+    },
+    {
+      urlImg: "",
+      title: "Проверка технического состояния",
+      price: "",
+      description: "Диагностика работы септика, определение неисправностей с последующим ремонтом",
+    },
+  ];
+}
+
+onMounted(async () => {
   swiper_variant.init();
+  await catalogStore.loadCatalog();
+  updatePrices();
 });
 onUnmounted(() => {
   swiper_variant.destroy();
@@ -50,7 +72,7 @@ onUnmounted(() => {
       <div class="swiper-container">
         <div class="swiper-variant-services">
           <div class="swiper-wrapper">
-            <div v-for="item in data" class="swiper-slide swiper-slide__global-services">
+            <div v-for="item in state.dataServices" class="swiper-slide swiper-slide__global-services">
               <router-link
                 :style="{ 'background-image': 'url(' + item.urlImg + ')' }"
                 class="services__link"
