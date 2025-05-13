@@ -54,11 +54,11 @@ onMounted(() => {
                 </ul>
               </div>
               <div class="member-contacts">
-                <a href="tel:+79999999999" class="contact-link">
+                <a href="tel:+7 (911) 780-55-93" class="contact-link">
                   <v-icon>mdi-phone</v-icon>
                 </a>
-                <a href="mailto:s.polyakov@bis.ru" class="contact-link">
-                  <v-icon>mdi-email</v-icon>
+                <a href="https://wa.me/79117805593" class="contact-link">
+                  <v-icon>mdi-whatsapp</v-icon>
                 </a>
               </div>
             </div>
@@ -85,11 +85,11 @@ onMounted(() => {
                 </ul>
               </div>
               <div class="member-contacts">
-                <a href="tel:+79999999999" class="contact-link">
+                <a href="tel:+7 (911) 905-91-55" class="contact-link">
                   <v-icon>mdi-phone</v-icon>
                 </a>
-                <a href="mailto:a.kirillov@bis.ru" class="contact-link">
-                  <v-icon>mdi-email</v-icon>
+                <a href="https://wa.me/79119059155" class="contact-link">
+                  <v-icon>mdi-whatsapp</v-icon>
                 </a>
               </div>
             </div>
@@ -117,11 +117,11 @@ onMounted(() => {
                 </ul>
               </div>
               <div class="member-contacts">
-                <a href="tel:+79999999999" class="contact-link">
+                <a href="tel:+7 (953) 372-27-75" class="contact-link">
                   <v-icon>mdi-phone</v-icon>
                 </a>
-                <a href="mailto:s.voronin@bis.ru" class="contact-link">
-                  <v-icon>mdi-email</v-icon>
+                <a href="https://wa.me/79533722775" class="contact-link">
+                  <v-icon>mdi-whatsapp</v-icon>
                 </a>
               </div>
             </div>
@@ -147,11 +147,11 @@ onMounted(() => {
                 </ul>
               </div>
               <div class="member-contacts">
-                <a href="tel:+79999999999" class="contact-link">
+                <a href="tel:+7 (911) 277-56-07" class="contact-link">
                   <v-icon>mdi-phone</v-icon>
                 </a>
-                <a href="mailto:a.kacheruk@bis.ru" class="contact-link">
-                  <v-icon>mdi-email</v-icon>
+                <a href="https://wa.me/79112775607" class="contact-link">
+                  <v-icon>mdi-whatsapp</v-icon>
                 </a>
               </div>
             </div>
@@ -176,12 +176,12 @@ onMounted(() => {
                 </ul>
               </div>
               <div class="member-contacts">
-                <a href="tel:+79999999999" class="contact-link">
+                <!-- <a href="tel:+79999999999" class="contact-link">
                   <v-icon>mdi-phone</v-icon>
                 </a>
                 <a href="mailto:a.kacheruk@bis.ru" class="contact-link">
                   <v-icon>mdi-email</v-icon>
-                </a>
+                </a> -->
               </div>
             </div>
           </div>
@@ -206,12 +206,12 @@ onMounted(() => {
                 </ul>
               </div>
               <div class="member-contacts">
-                <a href="tel:+79999999999" class="contact-link">
+                <!-- <a href="tel:+79999999999" class="contact-link">
                   <v-icon>mdi-phone</v-icon>
                 </a>
                 <a href="mailto:a.kirillov@bis.ru" class="contact-link">
                   <v-icon>mdi-email</v-icon>
-                </a>
+                </a> -->
               </div>
             </div>
           </div>
