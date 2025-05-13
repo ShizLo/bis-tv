@@ -738,8 +738,8 @@ onBeforeUnmount(() => {
 
         <div class="footer__links">
           <router-link :to="{ name: ROUTES_PATHS.POLICY }" class="footer__link">Политика конфиденциальности</router-link>
-          <a href="#" class="footer__link">Договор-оферта</a>
-          <a href="#" class="footer__link">Карта сайта</a>
+          <router-link :to="{ name: ROUTES_PATHS.USERAGREEMENT }" class="footer__link">Пользовательское соглашение</router-link>
+          <router-link :to="{ name: ROUTES_PATHS.DEVELOP }" class="footer__link">Карта сайта</router-link>
         </div>
       </div>
     </div>

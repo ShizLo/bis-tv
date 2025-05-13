@@ -17,12 +17,14 @@ import Vacancies from "../pages/Vacancies.vue";
 import VacancyMiddle from "../pages/VacancyMiddle.vue";
 import SepticTank from "../pages/SepticTank.vue";
 import CalendarService from "../pages/CalendarService.vue";
+import UserАgreement from "../pages/UserАgreement.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: ROUTES_PATHS.HOME, name: ROUTES_PATHS.HOME, component: HomePage, meta: { title: "Главная" } },
     { path: ROUTES_PATHS.POLICY, name: ROUTES_PATHS.POLICY, component: PolicyPage },
+    { path: ROUTES_PATHS.USERAGREEMENT, name: ROUTES_PATHS.USERAGREEMENT, component: UserАgreement },
     { path: ROUTES_PATHS.FENCE, name: ROUTES_PATHS.FENCE, component: FencePage, meta: { title: "Заборы" } },
     { path: ROUTES_PATHS.FENCEFORM, name: ROUTES_PATHS.FENCEFORM, component: FenceFormPage },
     { path: ROUTES_PATHS.WATER, name: ROUTES_PATHS.WATER, component: WaterPage, meta: { title: "Водоснабжение" } },
