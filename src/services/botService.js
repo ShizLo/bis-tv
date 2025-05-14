@@ -95,3 +95,39 @@ export async function sendMessageTG(message) {
     console.error("Ошибка при отправке сообщения:", error);
   }
 }
+
+// Отправка фото со страниц вакансии
+export const sendFilesToTelegram = async (message) => {
+  try {
+    // Сначала создаем массив media для sendMediaGroup
+    const media = message.screenshots.value.map((file, index) => ({
+      type: "photo",
+      media: `attach://photo${index}`,
+      caption: index === 0 ? `📌 Отклик на вакансию\nИмя: ${message.name}\nКонтакт: ${message.email}` : undefined,
+    }));
+
+    // Создаем FormData и добавляем файлы
+    const formData = new FormData();
+    formData.append("chat_id", CHATS_ID.BASE_DEV);
+    formData.append("message_thread_id", TOPICS_ID.DEV); // для тем форума
+
+    // Добавляем каждый файл с уникальным именем
+    screenshots.value.forEach((file, index) => {
+      formData.append(`photo${index}`, file);
+    });
+
+    // Добавляем media как JSON строку
+    formData.append("media", JSON.stringify(media));
+
+    const response = await axios.post(`https://api.telegram.org/bot${token}/sendMediaGroup`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Ошибка отправки файлов:", error.response?.data || error.message);
+    throw error;
+  }
+};
