@@ -7,6 +7,7 @@ import VCalendar from "v-calendar";
 import "v-calendar/style.css";
 import VueMoment from "vue3-moment";
 import VueTheMask from "vue-the-mask";
+import { createHead } from "@vueuse/head";
 
 import { createApp } from "vue";
 import { createPinia } from "pinia";
@@ -84,11 +85,13 @@ const vuetify = createVuetify({
   },
 });
 const pinia = createPinia();
+const head = createHead();
 
 const app = createApp(App);
 app.use(router);
 app.use(vuetify);
 app.use(pinia);
+app.use(head);
 app.use(VueMoment);
 app.use(VCalendar, {});
 app.use(VueScrollTo);

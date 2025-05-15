@@ -1,7 +1,24 @@
 <script setup>
 import { reactive, defineAsyncComponent, onMounted } from "vue";
 import { useCatalogStore } from "@/stores/modules/catalog.store";
+import { useHead } from "@vueuse/head";
 const catalogStore = useCatalogStore();
+
+useHead({
+  title: "Забор под ключ - из штакетника, профлиста, 3D сетки и другие | БИС",
+  meta: [
+    {
+      name: "keywords",
+      content:
+        "забор под ключ, монтаж забора, установка заборов, забор из профнастила, забор из штакетника, забор из сетки рабица, забор из металла, забор из дерева, купить забор, цена забора",
+    },
+    {
+      name: "description",
+      content:
+        "Профессиональный монтаж заборов из профлиста, штакетника, 3D сетки и других материалов. Гарантия качества, бесплатный замер и установка под ключ.",
+    },
+  ],
+});
 
 onMounted(async () => {
   await catalogStore.loadCatalog();
