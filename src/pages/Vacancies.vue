@@ -1172,7 +1172,7 @@ const workConditions = ref([
                   </v-card>
                 </v-col>
 
-                <v-col cols="12">
+                <!-- <v-col cols="12">
                   <v-textarea
                     v-model="question"
                     label="Расскажите о своем опыте"
@@ -1184,7 +1184,7 @@ const workConditions = ref([
                     prepend-inner-icon="mdi-pencil-outline"
                     hint="Почему вы подходите на эту позицию?"
                   ></v-textarea>
-                </v-col>
+                </v-col> -->
 
                 <v-col cols="12" class="d-flex" :class="mobile ? 'flex-column-reverse gap-2' : 'justify-space-between'">
                   <v-btn
@@ -1263,7 +1263,7 @@ const { mobile } = useDisplay();
 const showDialog = ref(false);
 const name = ref("");
 const email = ref("");
-const question = ref("");
+// const question = ref("");
 const screenshots = ref([]);
 const form = ref(null);
 const isSubmitted = ref(false);
@@ -1301,11 +1301,11 @@ watch(isSubmitted, (newVal) => {
 // Сообщение для Telegram
 const vacancyMessage = computed(() => {
   return {
-    chat_id: CHATS_ID.BASE_DEV,
-    topic_id: TOPICS_ID.DEV,
-    text: `📌 Новый отклик на вакансию\nПозиция: Младший инженер-бригадир\nИмя: ${name.value}\nКонтакт: ${email.value}\nОпыт: ${
-      question.value
-    }\nСкриншотов: ${screenshots.value?.length || 0}`,
+    chat_id: CHATS_ID.BASE,
+    topic_id: TOPICS_ID.VACANCIES,
+    text: `📌 Новый отклик на вакансию\nПозиция: Младший инженер-бригадир\nИмя: ${name.value}\nКонтакт: ${email.value}\nСкриншотов: ${
+      screenshots.value?.length || 0
+    }`,
   };
 });
 
@@ -1321,7 +1321,7 @@ const photo = computed(() => {
 function resetForm() {
   name.value = "";
   email.value = "";
-  question.value = "";
+  // question.value = "";
   screenshots.value = [];
 }
 const isError = ref(false);
@@ -1339,8 +1339,8 @@ const sendFilesToTelegram = async () => {
 
     // Создаем FormData и добавляем файлы
     const formData = new FormData();
-    formData.append("chat_id", CHATS_ID.BASE_DEV);
-    formData.append("message_thread_id", TOPICS_ID.DEV); // для тем форума
+    formData.append("chat_id", CHATS_ID.BASE);
+    formData.append("message_thread_id", TOPICS_ID.VACANCIES); // для тем форума
 
     // Добавляем каждый файл с уникальным именем
     screenshots.value.forEach((file, index) => {
