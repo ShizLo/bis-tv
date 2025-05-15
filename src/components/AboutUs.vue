@@ -60,7 +60,7 @@ onMounted(() => {
                 </div>
                 <div class="feature-item">
                   <v-icon color="primary">mdi-check-circle-outline</v-icon>
-                  <span>300+ реализованных проектов</span>
+                  <span>500+ реализованных проектов</span>
                 </div>
                 <div class="feature-item">
                   <v-icon color="primary">mdi-check-circle-outline</v-icon>
