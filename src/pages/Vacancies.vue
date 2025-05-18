@@ -1531,11 +1531,11 @@ const workConditions = ref([
     title: "Возможности роста",
     description: "Освоение новых навыков в области нулевого цикла, карьерный рост внутри компании",
   },
-  {
-    icon: "mdi-map-marker",
-    title: "Место работы",
-    description: "Московская область",
-  },
+  // {
+  //   icon: "mdi-map-marker",
+  //   title: "Место работы",
+  //   description: "Московская область",
+  // },
 ]);
 </script>
 

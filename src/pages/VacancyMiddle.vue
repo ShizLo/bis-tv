@@ -504,11 +504,11 @@ const workConditions = ref([
     title: "Доход",
     description: "Возможность самостоятельно влиять на свой доход",
   },
-  {
-    icon: "mdi-map-marker",
-    title: "Место работы",
-    description: "Московская область",
-  },
+  // {
+  //   icon: "mdi-map-marker",
+  //   title: "Место работы",
+  //   description: "Московская область",
+  // },
 ]);
 </script>
 
